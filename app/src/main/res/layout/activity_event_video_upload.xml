@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:backgroundTint="@color/BlueishBlack"
+    android:layout_height="match_parent"
+    tools:context=".EventVideoUpload"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        layout = "@layout/app_bar_layout"
+        android:id="@+id/chatbarLayout"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/LemonChaffon"
+            android:backgroundTint="@color/LemonChaffon"
+            android:orientation="horizontal"
+            android:paddingRight="10dp">
+
+            <ImageView
+                android:id="@+id/writeStatus"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="3dp"
+                android:clickable="true"
+                android:foreground="?android:selectableItemBackground"
+                android:src="@drawable/deals_announce" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:id="@+id/chosenTitleEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/black_text_view_background"
+                android:backgroundTint="#fff"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:hint="title ..."
+                android:paddingRight="10dp"
+                android:scrollHorizontally="true"
+                android:textColorHighlight="@color/AlertRed"
+                android:textColorHint="@color/AlertRed" />
+
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="277dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="73dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/chosenTitleEdit">
+
+                <VideoView
+                    android:id="@+id/ChosenFilename"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@color/LemonChaffon"
+                    android:backgroundTint="@color/LemonChaffon"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:screenReaderFocusable="true" />
+
+                <ImageView
+                    android:id="@+id/ChosenFilenamImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="20"
+                    android:clickable="true"
+                    android:padding="10dp"
+                    android:screenReaderFocusable="true"
+                    android:src="@drawable/media" />
+
+                <ProgressBar
+                    android:id="@+id/progress_circle_upload"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center" />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:background="@color/BlueishBlack"
+            android:backgroundTint="@color/BlueishBlack">
+
+
+            <ImageView
+
+                android:id="@+id/uploadChosenFile"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/BlueishBlack"
+                android:backgroundTint="@color/BlueishBlack"
+                android:clickable="true"
+                android:foreground="?android:selectableItemBackground"
+                android:src="@drawable/click_one" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <ImageView
+            android:id="@+id/goToUploads"
+            android:layout_width="45dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:src="@drawable/media" />
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

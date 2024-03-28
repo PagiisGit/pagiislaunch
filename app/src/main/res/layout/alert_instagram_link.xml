@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:src="@drawable/insta_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/yogamedium"
+                android:text="Paste your instagram link below.. "
+                android:textColor="@color/EndBlue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginStart="15dp"
+                android:src="@drawable/link"
+                android:layout_gravity="center_vertical"
+                android:layout_width="50dp"
+                android:layout_height="45dp" />
+
+
+
+            <EditText
+                android:layout_gravity="center"
+                android:hint="http:/.."
+                android:id="@+id/instagramLinkEdit"
+                android:ellipsize="end"
+                android:lines="1"
+                android:fontFamily="@font/robobold"
+                android:scrollHorizontally="true"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:layout_marginBottom="10dp"
+            android:id="@+id/saveStatus"
+            android:layout_width="70dp"
+            android:clickable="true"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_save" />
+
+
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

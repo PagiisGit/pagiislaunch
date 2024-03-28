@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+
+    <color name="colorPrimaryDark">#e6000106</color>
+
+
+    <color name="colorPrimaryText">#212121</color>
+
+    <color name="colorSecondaryText">#757575</color>
+
+    <color name="colorPrimaryOne">#212121</color>
+    <color name="colorDevider">#ECECEC</color>
+
+    <color name="colorAccent">#ffb700</color>
+
+
+    <color name="AlertRed">#FC0F1B</color>
+    <color name="Transparent">#FC0F1B</color>
+
+    <color name="backBlue">#95DFE7</color>
+
+    <color name="AlerLime">#5FFF03</color>
+
+
+
+    <color name="bluelight">#A1E5E2</color>
+    <color name="LemonChaffon">#fffacd</color>
+
+    <color name="SquareBack">#000000</color>
+    <color name="DarkGreen">#082B02</color>
+    <color name="Orrnge_R">#E35401</color>
+
+    <color name="BlueishBlack">#01030F</color>
+    <color name="transBlueishBlack">#070C1C</color>
+
+    <color name="lightOrrnge">#FBFFAE</color>
+    <color name = "white_lemmon_chaffon">#F2FFE8</color>
+    <color name = "FFAA1D">#F2FFE8</color>
+    <color name = "Orrnge">#FFA50D</color>
+    <color name = "primaryDark">#292b3d</color>
+    <color name = "grayliggt">#fafa</color>
+    <color name = "startBlue">#09c6df</color>
+    <color name = "EndBlue">#0bcce6</color>
+    <color name = "TabIndicatorGrey">#c0c0c0</color>
+    <color name = "IntroDescriptionColor">#656565</color>
+</resources>

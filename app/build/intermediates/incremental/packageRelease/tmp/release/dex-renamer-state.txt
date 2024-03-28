@@ -1,0 +1,16 @@
+#Thu Mar 28 13:13:22 SAST 2024
+path.4=classes5.dex
+path.3=classes4.dex
+path.2=classes3.dex
+path.1=classes2.dex
+path.0=classes.dex
+base.4=C\:\\PAGiiSNET\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes5.dex
+base.3=C\:\\PAGiiSNET\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes4.dex
+base.2=C\:\\PAGiiSNET\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes3.dex
+base.1=C\:\\PAGiiSNET\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes2.dex
+base.0=C\:\\PAGiiSNET\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+renamed.4=classes5.dex

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ActivityNotifications">
+
+<include
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    layout = "@layout/app_bar_layout"
+    android:id="@+id/chatbarLayout"/>
+
+    <Button
+        android:id="@+id/createEvent"
+        android:layout_width="54dp"
+        android:layout_height="15dp"
+        android:layout_alignBottom="@+id/chatbarLayout"
+        android:layout_centerHorizontal="true"
+        android:background="@color/AlerLime"
+        android:backgroundTint="@color/AlerLime"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:text="start live event"
+        android:textColor="@color/AlertRed"
+        android:textStyle="bold" />
+
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_below="@id/chatbarLayout"
+    android:orientation="vertical"
+    android:id="@+id/notificationRecyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+</androidx.recyclerview.widget.RecyclerView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/chatbarLayout"
+        android:orientation="vertical"
+        android:id="@+id/notificationRecyclerViewInvites"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/businessId"
+        android:src="@drawable/location"
+        android:layout_width="83dp"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp" />
+
+
+    <!-- <com.google.android.gms.ads.AdView
+         xmlns:ads="http://schemas.android.com/apk/res-auto"
+         android:id="@+id/adView"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_alignParentBottom="true"
+         ads:adSize="SMART_BANNER"
+         ads:adUnitId="ca-app-pub-2663071363374794/7642842336">
+     </com.google.android.gms.ads.AdView>-->
+
+
+    <ProgressBar
+        android:id="@+id/progress_circle_user_memes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="208dp" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/adminRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="71dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:src="@drawable/announce"
+        app:fabCustomSize="40dp" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/adminRequest_live"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="17dp"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:src="@drawable/time_and_date"
+        app:fabCustomSize="40dp" />
+
+
+
+
+
+</RelativeLayout>

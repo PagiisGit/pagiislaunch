@@ -1,0 +1,105 @@
+{
+    "project_info": {
+      "project_number": "1011598254312",
+      "firebase_url": "https://pagiis-ix.firebaseio.com",
+      "project_id": "pagiis-ix",
+      "storage_bucket": "pagiis-ix.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:1011598254312:android:5019df482577610680e95d",
+          "android_client_info": {
+            "package_name": "pagiisnet.pagiisnet"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "1011598254312-d01unflalhl33ev4g164fh0alie6b9bc.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "n.pagiis.pagiisxsirocco",
+              "certificate_hash": "38072c04cfadf0b8bc541713c2cf695aa6cbe43a"
+            }
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDDtrmUsMQr0AZfqSAwcHbrEAWF7swRJHs"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
+        }
+      },
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:1011598254312:android:07cca500bb6ff254",
+          "android_client_info": {
+            "package_name": "network.pagiis.pagiis_app"
+          }
+        },
+        "oauth_client": [],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDDtrmUsMQr0AZfqSAwcHbrEAWF7swRJHs"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
+        }
+      },
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:1011598254312:android:d1f2aba9f65f124a80e95d",
+          "android_client_info": {
+            "package_name": "pagiis_public_user_platfrom.pagiisnet"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "1011598254312-8p4e2i1390s2v14971680kg61c73g3i9.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "pagiis_public_user_platfrom.pagiisnet",
+              "certificate_hash": "38072c04cfadf0b8bc541713c2cf695aa6cbe43a"
+            }
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDDtrmUsMQr0AZfqSAwcHbrEAWF7swRJHs"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
+        }
+      },
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:1011598254312:android:174b6143de3cc91980e95d",
+          "android_client_info": {
+            "package_name": "pagiisnet.pagiisnet"
+          }
+        },
+        "oauth_client": [],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDDtrmUsMQr0AZfqSAwcHbrEAWF7swRJHs"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

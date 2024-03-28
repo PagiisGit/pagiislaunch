@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#5500"
+        android:backgroundTint="@color/bluelight">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/pin" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="280dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:fontFamily="@font/robobold"
+                    android:text="ENTER OTP SENT TO YOUR PHONE NUMBER "
+                    android:textColor="@color/grey_900"
+                    android:textSize="20sp">
+
+
+                </TextView>
+
+
+                <EditText
+                    android:id="@+id/loginOTP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/follow_button_background"
+                    android:backgroundTint="#fff"
+                    android:fontFamily="@font/robobold"
+                    android:hint="OTP"
+                    android:foregroundGravity="center"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/BlueishBlack"
+                    android:textColorHighlight="@color/Orrnge"
+                    android:textColorHint="@color/BlueishBlack"
+                    android:textSize="15sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginTop="230dp"
+                android:background="@drawable/follow_button_background"
+                android:backgroundTint="@color/Orrnge"
+                android:fontFamily="@font/robobold"
+                android:text="NEXT"
+                android:textColor="@color/BlueishBlack"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+
+
+            <ProgressBar
+                android:id="@+id/progressBarOTP"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:fontFamily="@font/robobold"
+                android:gravity="center"
+                android:text="sending OTP in seconds"
+                android:textAlignment="center"
+                android:textColor="@color/BlueishBlack"
+                android:textSize="15sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/resendOTP"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/robobold"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:text="sending OTP in seconds"
+                android:textAlignment="center"
+                android:textColor="@color/BlueishBlack"
+                android:textSize="15sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

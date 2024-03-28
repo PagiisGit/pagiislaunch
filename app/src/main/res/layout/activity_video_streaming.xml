@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backBlue"
+    android:layout_height="match_parent"
+    tools:context=".VideoStreaming">
+
+
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        layout = "@layout/app_bar_layout"
+        android:id="@+id/chatbarLayout"/>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mapsSearchViewCardViewMax"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_alignParentStart="true"
+        android:clickable="true"
+        android:backgroundTint="@color/LemonChaffon"
+        android:clipToPadding="false"
+        android:layout_margin="10dp"
+        android:contextClickable="true"
+        app:cardCornerRadius="15dp"
+        android:foregroundGravity="center"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/mapsMaxView"
+            android:layout_margin="10dp"
+            android:src="@drawable/for_gallery_pic"
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/hideUserRecyclerviewMax"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:layout_marginTop="5dp"
+            android:contextClickable="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/mapsSearchViewCardView"
+            android:layout_marginStart="330dp"
+            android:layout_marginEnd="25dp"
+            android:src="@drawable/previous" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mapsSearchRecyclerViewMax"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="421dp"
+            android:background="@color/LemonChaffon"
+            android:backgroundTint="#fff"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:foregroundGravity="center"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mapsViewCardView"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="70dp"
+        android:clipToPadding="false"
+        android:foregroundGravity="center"
+        android:orientation="horizontal"
+        android:overScrollMode="never">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mapsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/LemonChaffon"
+            android:backgroundTint="#fff"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:foregroundGravity="center"
+            android:orientation="horizontal"
+            android:padding="1dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ImageView
+            android:id="@+id/hideUserRecyclerview"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/mapsSearchViewCardView"
+            android:layout_marginStart="340dp"
+            android:layout_marginEnd="25dp"
+            android:src="@drawable/previous" />
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

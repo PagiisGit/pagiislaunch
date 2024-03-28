@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/siroccoBottomSheetContainer"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:padding="15dp"
+        android:id="@+id/popUpDescriptionTextView"
+        android:gravity="center"
+        android:text="Shop"
+        android:fontFamily="@font/robobold"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginStart="10dp"
+        android:background="@color/colorDevider"
+        android:layout_height="1dp">
+    </View>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="10dp"
+                android:layout_height="80dp">
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
+                    android:clickable="true"
+                    android:id="@+id/siroccoArt"
+                    android:src="@drawable/origami"
+                    android:layout_height="match_parent">
+
+                </pl.droidsonroids.gif.GifImageView>
+
+
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Art"
+                    android:id="@+id/art"
+                    android:textSize="17sp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/colorPrimaryOne"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content">
+
+
+                </TextView>
+
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="10dp"
+                android:layout_height="80dp">
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/siroccoMusic"
+                    android:src="@drawable/speakers"
+                    android:layout_height="match_parent">
+
+                </pl.droidsonroids.gif.GifImageView>
+
+
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Music"
+                    android:id="@+id/popUpDescriptionTextViewOne"
+                    android:textSize="17sp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/colorPrimaryOne"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content">
+
+
+                </TextView>
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="80dp"
+                app:cardCornerRadius="10dp"
+                android:layout_margin="10dp"
+                android:layout_height="80dp">
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/siroccoFashion"
+                    android:src="@drawable/tag_siroco"
+                    android:layout_height="match_parent">
+
+                </pl.droidsonroids.gif.GifImageView>
+
+
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Fashion"
+                    android:id="@+id/popUpDescriptionTextViewTwo"
+                    android:textSize="17sp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/colorPrimaryOne"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content">
+
+
+                </TextView>
+
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorDevider">
+
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:clickable="true"
+            android:id="@+id/likes"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_like_it"
+
+            android:layout_marginStart="10dp">
+
+
+        </androidx.appcompat.widget.AppCompatImageView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/addToFavouriteTextView"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="25dp"
+            android:text="@string/add_to_favourite"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="15sp">
+
+
+        </TextView>
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:layout_marginBottom="10dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/shareImageView"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_share"
+            android:layout_marginStart="10dp">
+
+
+        </androidx.appcompat.widget.AppCompatImageView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:id="@+id/share"
+            android:layout_marginEnd="25dp"
+            android:text="@string/share_via"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="15sp">
+
+
+        </TextView>
+
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button_background_popup"
+        android:clickable="true"
+        android:text="Home"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        tools:ignore="TouchTargetSizeCheck">
+
+    </Button>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

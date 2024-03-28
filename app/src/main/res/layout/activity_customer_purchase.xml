@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".CustomerPurchase">
+
+    <include
+        android:id="@+id/chatbarLayout"
+        layout="@layout/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
+
+    <ProgressBar
+        android:id="@+id/progress_circle_upload"
+        android:layout_width="90dp"
+        android:layout_height="81dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="240dp" />
+
+
+    <ImageView
+        android:id="@+id/originalView"
+        android:layout_width="375dp"
+        android:layout_height="375dp"
+        android:layout_below="@+id/chatbarLayout"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:padding="1dp"
+        android:src="@drawable/alien_weak" />
+
+    <ImageView
+        android:id="@+id/originalPic"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_above="@+id/originalView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-34dp"
+        android:layout_marginEnd="21dp"
+        android:src="@drawable/previous" />
+
+
+    <RelativeLayout
+        android:contextClickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/billIcon"
+            android:layout_marginStart="10dp"
+            android:layout_width="70dp"
+            android:layout_height="200dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="180dp"
+            android:clickable="true"
+            android:src="@drawable/invoice" />
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:contextClickable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:background="@color/BlueishBlack"
+                android:backgroundTint="@color/BlueishBlack"
+                android:gravity="center"
+                android:text="Size"
+                android:textColor="@color/AlertRed"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/small"
+                android:layout_width="51dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:clickable="true"
+                android:src="@drawable/small" />
+
+
+            <ImageView
+                android:id="@+id/Medium"
+                android:layout_width="51dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:clickable="true"
+                android:src="@drawable/medium" />
+
+
+            <ImageView
+                android:id="@+id/Large"
+                android:layout_width="51dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:clickable="true"
+                android:src="@drawable/large" />
+
+
+            <ImageView
+                android:id="@+id/xLarge"
+                android:layout_width="51dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:clickable="true"
+                android:src="@drawable/xlarge" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="18dp"
+            android:contextClickable="true"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:id="@+id/storeLogo"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center"
+                android:layout_marginEnd="18dp"
+                android:layout_marginStart="7dp"
+                android:clickable="true"
+                android:src="@drawable/ic_sirocco_icon" />
+
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/item_bought_des"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:text="item Description"
+                android:textColor="@color/AlertRed"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:contextClickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/AlertRed"
+                android:backgroundTint="@color/AlertRed"
+                android:orientation="horizontal"
+                android:textColor="@color/BlueishBlack">
+
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/online_payment" />
+
+
+                <TextView
+                    android:id="@+id/eWalletValue"
+                    android:layout_width="160dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="3dp"
+                    android:background="@color/AlertRed"
+                    android:backgroundTint="@color/AlertRed"
+                    android:gravity="center"
+                    android:text="cell"
+                    android:textStyle="bold"
+                    android:textColor="@color/BlueishBlack"
+                    android:textSize="7sp" />
+
+
+                <TextView
+                    android:id="@+id/bankValue"
+                    android:layout_width="180dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:background="@color/AlertRed"
+                    android:backgroundTint="@color/AlertRed"
+                    android:gravity="center"
+                    android:text="bank Account"
+                    android:textColor="@color/BlueishBlack"
+                    android:textSize="7sp" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="11dp"
+                android:layout_marginStart="17dp"
+                android:gravity="center"
+                android:text=" Purchasing Details *"
+                android:textColor="@color/DarkGreen"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:contextClickable="true"
+                android:layout_width="242dp"
+                android:layout_height="45dp"
+                android:layout_marginBottom="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true">
+
+                <ImageView
+                    android:clickable="true"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/viewPaymentinfor"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/online_payment"
+                    android:textColor="@color/DarkGreen"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/addToCart"
+                    android:layout_width="37dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="3dp"
+                    android:clickable="true"
+                    android:src="@drawable/cart"
+                    android:textColor="@color/DarkGreen"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:clickable="true"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/extraPurchaseInfor"
+                    android:layout_width="36dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="12dp"
+                    android:src="@drawable/star_rate" />
+
+                <ImageView
+                    android:id="@+id/purchase"
+                    android:layout_width="33dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="3dp"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:src="@drawable/pay_for_purchase" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

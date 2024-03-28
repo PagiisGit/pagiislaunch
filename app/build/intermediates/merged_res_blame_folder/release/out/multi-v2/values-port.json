@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "pagiisnet.pagiisnet.app-mergeReleaseResources-4:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\27662\\.gradle\\caches\\transforms-3\\00289c716aa37e8022760fa063316a6d\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

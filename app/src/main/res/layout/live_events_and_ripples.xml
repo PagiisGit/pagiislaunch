@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <ImageView
+            android:id="@+id/requestImage"
+            android:clickable="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/time_and_date"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+
+        <LinearLayout
+            android:layout_width="238dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/requestName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pagiis"
+                android:textColor="@color/AlertRed"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/requestTextType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#5FFF03"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/EventName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:ellipsize="end"
+                android:lines="2"
+                android:scrollHorizontally="true"
+                android:textColor="@color/BlueishBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/requestImageEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="85dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/location" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:src="@drawable/pin" />
+
+        <TextView
+            android:id="@+id/eventLocation"
+            android:layout_width="199dp"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:lines="2"
+            android:scrollHorizontally="true"
+            android:textSize="8sp"
+            android:layout_height="15dp"
+            android:text="locations"
+            android:textColor="@color/AlertRed" />
+
+
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="3dp"
+        android:textSize="10sp"
+        android:text="click/press and hold for options."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

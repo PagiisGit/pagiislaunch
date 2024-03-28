@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "pagiisnet.pagiisnet.app-mergeReleaseResources-4:/values-w600dp-v13/values-w600dp-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\PAGiiSNET\\app\\src\\main\\res\\values-w600dp\\dimens.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "63",
+                        "endColumns": "95",
+                        "endOffsets": "154"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "100",
+                        "endColumns": "93",
+                        "endOffsets": "189"
+                    }
+                }
+            ]
+        }
+    ]
+}

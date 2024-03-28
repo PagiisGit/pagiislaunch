@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/LemonChaffon"
+    android:orientation="vertical"
+    tools:context=".first_time_profile_config">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/LemonChaffon"
+        android:backgroundTint="@color/LemonChaffon"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/follow_button_background"
+            android:backgroundTint="@color/LemonChaffon"
+            android:fontFamily="@font/yogamedium"
+            android:gravity="center"
+            android:text="Welcome to Pagiis please set up your profile."
+            android:textColor="@color/EndBlue"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@color/LemonChaffon"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:foreground="?android:selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/setFirstTimeDp"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:background="@color/LemonChaffon"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:foreground="?android:selectableItemBackground"
+                android:src="@drawable/user" />
+
+
+            <ProgressBar
+                android:id="@+id/progress_circle_own_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:progressTint="#76FF03" />
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstTimeTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:hintEnabled="true">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/setFirstTimeUsername"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:backgroundTint="#FFFFFF"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:fontFamily="@font/robobold"
+                android:textSize="20sp"
+                android:hint="USERNAME"
+                android:textColor="@color/EndBlue"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:textColorHint="@color/EndBlue"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/passButtonCardView"
+        android:layout_width="47dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/AlerLime"
+        android:clickable="true"
+        android:foreground="?android:selectableItemBackground"
+        android:gravity="center"
+        app:cardCornerRadius="7dp">
+
+        <ImageView
+            android:id="@+id/saveInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:foreground="?android:selectableItemBackground"
+            android:inputType="textPersonName"
+            android:src="@drawable/ic_save"
+            android:textColor="@color/SquareBack"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+</LinearLayout>

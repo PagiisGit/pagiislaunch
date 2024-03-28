@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home_update_r"
+        android:title="Online"
+        android:visible="true"
+        app:showAsAction="always" />
+
+
+    <item
+        app:showAsAction="always"
+        android:id="@+id/onlineShops"
+        android:icon="@drawable/shopping_bag_update"
+        android:visible="true"
+        android:title="Posts" />
+
+
+
+
+    <item
+        app:showAsAction="always"
+        android:id="@+id/addCOntent"
+        android:icon="@drawable/add_update"
+        android:visible="true"
+        android:title="Add"/>
+
+
+    <item
+        app:showAsAction="always"
+        android:id="@+id/Notifications"
+        android:icon="@drawable/notification_update"
+        android:visible="true"
+        android:title="Notifications"/>
+
+    <item
+
+        app:showAsAction="always"
+        android:id="@+id/userProfile"
+        android:icon="@drawable/user_update"
+        android:visible="true"
+        android:title="Profile"/>
+
+
+</menu>

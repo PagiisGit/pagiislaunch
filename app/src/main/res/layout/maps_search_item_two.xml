@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:contextClickable="true"
+    android:clickable="true"
+    android:layout_gravity="center_horizontal"
+    android:background="#fff"
+    android:id="@+id/relativeSearcLayout"
+    android:orientation="horizontal"
+    app:cardBackgroundColor="@color/fui_transparent"
+    android:foreground="?android:selectableItemBackground"
+    android:layout_height="200dp"
+    android:layout_margin="3dp">
+
+
+    <RelativeLayout
+        android:layout_marginEnd="3dp"
+        android:layout_width="195dp"
+        android:clickable="true"
+        android:layout_marginStart="155dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:id="@+id/searchedItemDescription"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:lines="7"
+            android:layout_marginStart="3dp"
+            android:scrollHorizontally="true"
+            android:text="Welcome to Pagiis"
+            android:textAlignment="textStart"
+            android:textColor="@color/EndBlue"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/viewImageItemCard"
+        android:layout_width="155dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:padding="3dp">
+
+        <RelativeLayout
+            android:id="@+id/TitleId"
+            android:layout_width="match_parent"
+            android:clickable="true"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/sirocco_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/for_camera_post" />
+
+            <ImageView
+                android:id="@+id/item_view_profilepic"
+                android:layout_width="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="15dp"
+
+                android:layout_gravity="center"
+                android:src="@drawable/pagiis_logo_final" />
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:layout_width="95dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/views"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="7dp"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground"
+            android:src="@drawable/viewers" />
+
+        <ImageView
+            android:id="@+id/pagiis_radius_friends"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground"
+            android:src="@drawable/location_group" />
+
+        <ImageView
+            android:id="@+id/pagiis_radius_chat"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground"
+            android:src="@drawable/location_based_chat" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="65dp"
+        android:layout_height="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="35dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/likes_one"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="3dp"
+            android:text="likes"
+            android:textColor="@color/EndBlue"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/likes_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/IntroDescriptionColor"
+            android:textSize="5sp"
+            android:textStyle="bold" />
+
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:src="@drawable/heart_yellow" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/sirocco_brand_model"
+        android:layout_width="250dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="-200dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/yogamedium"
+        android:gravity="center"
+        android:lines="1"
+        android:scrollHorizontally="true"
+        android:text="Profilename"
+        android:textColor="@color/BlueishBlack"
+        android:textSize="11sp" />
+
+
+    <!--<TextView
+        android:id="@+id/sirocco_brand_antique"
+        android:layout_width="30dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="20dp"
+        android:padding="5dp"
+        android:text="Profilename"
+        android:textColor="@color/AlertRed"
+        android:textSize="10sp" /> -->
+</RelativeLayout>

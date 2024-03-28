@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="3dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/signOutText"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="Pin Image"
+            android:textStyle="bold"
+            android:textColor="@color/BlueishBlack"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                android:id="@+id/SignOutImage"
+                android:src="@drawable/ic_save"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+            <ImageView
+
+                android:layout_marginTop="3dp"
+                android:id="@+id/cancelSignOutImage"
+                android:layout_marginBottom="3dp"
+                android:layout_marginStart="75dp"
+                android:src="@drawable/ic_cancel"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

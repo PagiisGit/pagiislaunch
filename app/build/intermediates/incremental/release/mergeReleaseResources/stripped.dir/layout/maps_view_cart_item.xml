@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="5dp"
+    android:backgroundTint="#ffffff"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="470dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="2dp"
+            android:clickable="true"
+            android:src="@drawable/ic_sirocco_icon" />
+
+        <TextView
+            android:id="@+id/sirocco_brand_antique"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:fontFamily="@font/yogamedium"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:paddingLeft="8dp"
+            android:paddingStart="8dp"
+            android:text="Brand Antique "
+            android:textColor="@color/EndBlue"
+            android:textSize="24sp" />
+
+
+        <RelativeLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:foregroundGravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contextClickable="true">
+
+
+            <ImageView
+                android:id="@+id/sirocco_image_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/for_gallery_pic" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_height="105dp"
+                android:layout_alignParentBottom="true"
+                android:backgroundTint="#55000000"
+                android:background="#55000000"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="3dp">
+
+                    <ImageView
+                        android:id="@+id/profileNameIcon"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="7dp"
+                        android:clickable="true"
+                        android:paddingLeft="3dp"
+                        android:src="@drawable/shop" />
+
+                    <TextView
+                        android:id="@+id/sirocco_brand_model"
+                        android:layout_width="230dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/yogamedium"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginStart="10dp"
+                        android:contextClickable="true"
+                        android:gravity="center_vertical"
+                        android:text="Full Name"
+                        android:textColor="@color/AlertRed"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/siroccoViews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:gravity="center"
+                        android:text="reviewed"
+                        android:textColor="@color/Orrnge"
+                        android:textSize="7sp"
+                        android:textStyle="bold" />
+
+
+                    <ImageView
+                        android:id="@+id/profileProffessionThree"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="10dp"
+                        android:clickable="true"
+                        android:src="@drawable/view_ratings" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal"
+                    android:paddingRight="3dp">
+
+                    <ImageView
+                        android:id="@+id/profileNameIcon_link"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="7dp"
+                        android:clickable="true"
+                        android:paddingLeft="3dp"
+                        android:src="@drawable/link" />
+
+
+                    <TextView
+                        android:id="@+id/modellink"
+                        android:layout_width="230dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/robobold"
+                        android:layout_marginEnd="3dp"
+                        android:layout_marginStart="10dp"
+                        android:contextClickable="true"
+                        android:gravity="center_vertical"
+                        android:text="https://sirocco..."
+                        android:textColor="@color/bluelight"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="@color/Orrnge"
+                        android:id="@+id/siroccoLikes"
+                        android:gravity="center"
+                        android:text="rated"
+                        android:textSize="7sp"
+                        android:layout_marginStart="30dp"
+                        android:layout_gravity="center"
+                        android:layout_width="30dp"
+                        android:layout_height="20dp" />
+
+
+                    <ImageView
+                        android:id="@+id/profileProffessionTwo"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginRight="2dp"
+                        android:clickable="true"
+                        android:src="@drawable/sale" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

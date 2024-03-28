@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:background="@color/lightOrrnge"
+    android:layout_height="250dp"
+    app:cardCornerRadius="15dp"
+    app:cardBackgroundColor="@color/lightOrrnge"
+    android:layout_gravity="center_horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="10dp"
+    tools:context=".ActivityUserPost">
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:background="#fff"
+        android:id="@+id/selectChoseOptionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="122dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/follow_button_background"
+            android:backgroundTint="@color/AlerLime"
+            android:fontFamily="@font/robobold"
+            android:gravity="center"
+            android:text="Select Post"
+            android:textColor="@color/SquareBack"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center">
+
+
+            <ImageView
+                android:id="@+id/cameraOption"
+                android:layout_width="95dp"
+                android:foreground="?android:selectableItemBackground"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:src="@drawable/video_camera" />
+
+
+            <ImageView
+                android:id="@+id/GalleryOption"
+                android:layout_width="112dp"
+                android:layout_height="116dp"
+                android:layout_marginStart="50dp"
+                android:clickable="true"
+                android:foreground="?android:selectableItemBackground"
+                android:src="@drawable/add" />
+
+
+        </LinearLayout>
+
+        <!--<ImageView
+            android:id="@+id/linkEditImageView"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:foreground="?android:selectableItemBackground"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            android:src="@drawable/link" /!-->
+
+        <ImageView
+            android:id="@+id/homeButotn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginLeft="5dp"
+            android:foreground="?android:selectableItemBackground"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/Orrnge"
+            android:clickable="true"
+            android:src="@drawable/previous" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

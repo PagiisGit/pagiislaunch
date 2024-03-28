@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainContainer"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentStart="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        tools:context=".MapsActivity">
+
+    </androidx.fragment.app.FragmentContainerView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/discoverLayout"
+        android:background="@drawable/gradient_background_maps"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/gradient_background_maps"
+            android:layout_height="match_parent">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:id="@+id/iconstand"
+                app:cardCornerRadius="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="-56dp"
+                android:layout_marginStart="5dp">
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:id="@+id/PAGiiS_ICON"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:contextClickable="true"
+                        android:src="@drawable/pagiis_splash_logo_edit_final_r"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/primaryDark"
+                android:textSize="35sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="80dp"
+                android:fontFamily="@font/robobold"
+                android:text="@string/discover_na_new_world"
+                android:layout_height="wrap_content">
+
+
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/searchTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/white_border"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:focusable="true"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:contextClickable="true"
+                    android:orientation="horizontal">
+
+
+                    <Spinner
+                        android:id="@+id/searchSpinner"
+                        android:layout_width="55dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:clickable="true"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
+
+                    </Spinner>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="2dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:id="@+id/nearbyLocation"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center_vertical"
+                            android:focusable="true"
+                            android:src="@drawable/pagiis_onlineusers_finder"
+                            android:text="@string/SearchLocation"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:layout_height="match_parent">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/searchEdittext"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/yogamedium"
+                        android:hint="@string/pagiis_search"
+                        android:lines="1"
+                        android:outlineSpotShadowColor="@color/BlueishBlack"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/BlueishBlack"
+                        android:textColorHighlight="@color/searchBarPrimaryColorDark"
+                        android:textColorHint="@color/searchBarPrimaryColorDark"
+                        android:textSize="20sp"
+                        tools:ignore="RtlCompat,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+
+                    <ImageView
+                        android:id="@+id/LogSearchIconGo"
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="center"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:clickable="true"
+                        android:contextClickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/loupe"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                        android:contentDescription="TODO" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/popular"
+                android:textSize="20sp"
+                android:fontFamily="@font/robobold"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/primaryDark"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mapsProfileCategory"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:background="#55000000"
+                android:backgroundTint="#55000000"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="75dp">
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mapsPublicProfilePostsCardView"
+        android:layout_width="match_parent"
+        android:contextClickable="true"
+        android:background="#55000000"
+        android:backgroundTint="#55000000"
+        android:layout_alignParentBottom="true"
+        android:foreground="?android:selectableItemBackground"
+        android:layout_height="wrap_content"
+        >
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/hideMapsPublicPostsCardView"
+            android:layout_width="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="220dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_height="30dp"
+            android:src="@drawable/previous">
+
+
+        </com.mikhaellopez.circularimageview.CircularImageView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mapsPublicContentRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="#55000000"
+            android:backgroundTint="#55000000"
+            android:clickable="true"
+            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck"
+            android:focusable="true">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:id="@+id/mapsViewOnlineUserCardView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="15dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/hidePublicProfilesCardView"
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:clickable="true"
+                    android:src="@drawable/previous"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck">
+
+
+                </com.mikhaellopez.circularimageview.CircularImageView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mapsOnlienUserRecyclerview"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="3dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/maps_bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        app:itemIconSize="25dp"
+        app:itemIconTint="@drawable/item_selector"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_nav">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
+
+
+    <!-- <androidx.cardview.widget.CardView
+        android:id="@+id/mapsSearchViewCardView"
+        android:layout_width="match_parent"
+        android:layout_height="610dp"
+        android:layout_below="@+id/iconstand"
+        android:layout_alignParentStart="true"
+        android:clickable="true"
+        app:cardCornerRadius="5dp"
+        android:clipToPadding="false"
+        android:contextClickable="true"
+        android:foregroundGravity="center"
+        android:orientation="vertical"
+        tools:ignore="DuplicateClickableBoundsCheck">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mapsSearchRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@color/LemonChaffon"
+                android:backgroundTint="#fff"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:foregroundGravity="center"
+                android:orientation="horizontal"
+                android:padding="1dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/hideSearchRecyclerView"
+                android:layout_width="30dp"
+                android:layout_height="28dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="340dp"
+                android:layout_marginBottom="254dp"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:src="@drawable/previous" />
+
+
+            <TextView
+                android:id="@+id/noSearcFOundText"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/robobold"
+                android:gravity="center"
+                android:text="There is currently no match for searched content."
+                android:textColor="@color/Orrnge"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/mapsMaxView"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"
+                android:background="#ffffff"
+                android:backgroundTint="#ffffff"
+                android:foreground="?android:selectableItemBackground"
+                android:src="@drawable/gallery">
+
+            </ImageView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mapsSearchRecyclerViewMax"
+                android:layout_width="match_parent"
+                android:layout_height="610dp"
+
+                android:background="@color/LemonChaffon"
+                android:backgroundTint="#fff"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:foregroundGravity="center"
+                android:orientation="horizontal">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/mapsSearchViewCardViewMax"
+                android:layout_width="match_parent"
+                android:layout_height="610dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="-2dp"
+                android:backgroundTint="@color/LemonChaffon"
+                android:clickable="true"
+                android:clipToPadding="false"
+                android:contextClickable="true"
+                android:foregroundGravity="center"
+                android:orientation="horizontal"
+                app:cardCornerRadius="10dp"
+                tools:ignore="DuplicateClickableBoundsCheck">
+
+
+                <ProgressBar
+                    android:id="@+id/progress_circle_maps_Max"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center" />
+
+
+                <ImageView
+                    android:id="@+id/hideUserRecyclerviewMax"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:foreground="?android:selectableItemBackground"
+                    android:src="@drawable/previous"
+                    tools:ignore="DuplicateClickableBoundsCheck,SpeakableTextPresentCheck" />
+
+
+                <ImageView
+                    android:id="@+id/hideUserMaxImage"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:foreground="?android:selectableItemBackground"
+                    android:src="@drawable/previous"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mapsViewCardView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="55dp"
+        android:background="#55000000"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:contextClickable="true"
+        android:foregroundGravity="center"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        app:cardCornerRadius="5dp"
+        tools:ignore="DuplicateClickableBoundsCheck">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
+
+            <ProgressBar
+                android:id="@+id/progress_circle_maps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="80dp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mapsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:backgroundTint="#fff"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:foregroundGravity="center"
+                android:orientation="horizontal"
+                android:padding="1dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/hideUserRecyclerview"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="340dp"
+                android:layout_marginEnd="55dp"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:foreground="?android:selectableItemBackground"
+                android:src="@drawable/previous"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+    <ProgressBar
+        android:id="@+id/progress_circle_mapsSearc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="222dp" />
+
+
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_alignParentBottom= "true"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconSize="35dp"
+
+        app:itemIconTint="@color/BlueishBlack"
+        app:menu="@menu/bottom_nav"/> !
+
+
+    <TextView
+        android:id="@+id/radiusView"
+        android:layout_width="80dp"
+        android:layout_height="47dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/follow_button_background"
+        android:backgroundTint="@color/BlueishBlack"
+        android:clickable="true"
+        android:fontFamily="@font/robobold"
+        android:gravity="center_horizontal"
+        android:scaleType="centerCrop"
+        android:text="std : 250m"
+        android:textColor="@color/AlertRed"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Switch
+        android:id="@+id/maxRadiusSwitch"
+        android:layout_width="100dp"
+        android:layout_height="7dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="95dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/robobold"
+        android:text="max:"
+        android:textColor="@color/AlertRed"
+        android:textStyle="bold"
+        tools:ignore="TouchTargetSizeCheck" /> -->
+
+
+
+
+
+    <!-- <androidx.cardview.widget.CardView
+         android:backgroundTint="#fff"
+         android:layout_width="225dp"
+         android:id="@+id/accessPoint"
+         android:foregroundGravity="center"
+         android:layout_height="60dp"
+         android:layout_alignParentTop="true"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="180dp">
+
+
+         <LinearLayout
+             android:background="#fff"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal">
+
+             <ImageView
+                 android:id="@+id/logOuticon"
+                 android:layout_width="50dp"
+                 android:layout_height="48dp"
+                 android:layout_marginStart="10dp"
+                 android:foreground="?android:selectableItemBackground"
+                 android:layout_marginTop="2dp"
+                 android:src="@drawable/location" />
+
+             <ImageView
+                 android:id="@+id/radiusUsersIcon"
+                 android:layout_width="60dp"
+                 android:layout_height="45dp"
+                 android:layout_alignParentEnd="true"
+                 android:layout_marginStart="20dp"
+                 android:layout_marginTop="3dp"
+                 android:backgroundTint="@color/Orrnge"
+                 android:clickable="true"
+                 android:foreground="?android:selectableItemBackground"
+                 android:src="@drawable/connection"
+                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+             <ImageView
+                 android:id="@+id/logSearchIcon"
+                 android:layout_width="50dp"
+                 android:layout_height="45dp"
+                 android:layout_marginStart="23dp"
+                 android:layout_marginTop="2dp"
+                 android:clickable="true"
+                 android:contextClickable="true"
+                 android:foreground="?android:selectableItemBackground"
+                 android:src="@drawable/loupe"
+                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+         </LinearLayout>
+
+     </androidx.cardview.widget.CardView> !-->
+
+
+</RelativeLayout>

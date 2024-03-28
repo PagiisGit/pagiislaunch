@@ -1,0 +1,438 @@
+package pagiisnet.pagiisnet;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.MediaController;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import pagiisnet.pagiisnet.Utils.PromoVideoViewAdapator;
+import pagiisnet.pagiisnet.Utils.VideoViewAdapter;
+
+import pagiisnet.pagiisnet.R;
+public class ViewStreams extends AppCompatActivity implements  PromoVideoViewAdapator.OnItemClickListener{
+
+
+
+
+    private RecyclerView mRecyclerView;
+
+    private PromoVideoViewAdapator mAdapter;
+
+    private ImageView userImageDp;
+
+    private TextView userName;
+
+    private DatabaseReference getUserAttendanceStatus;
+
+    private TextView EventAttendance;
+
+    private  String attendanceValue;
+
+
+
+
+    private  String on_maps_visited_user_id;
+
+    private androidx.appcompat.widget.Toolbar mToolbar;
+
+    private ProgressBar mProgressCircle;
+
+    private ImageView UploadMemeButton;
+
+    private FloatingActionButton contentRater;
+
+    private DatabaseReference mDatabaseRef_x;
+
+    private FirebaseAuth mAuth;
+    private int stopPosition;
+
+    enum  VolumeState {ON,OFF}
+
+    private  String myLastLocationDetails;
+
+    private VolumeState volumeState;
+
+    private FirebaseStorage mStorage;
+
+    private DatabaseReference mDatabaseRef;
+
+    private ValueEventListener mDBlistener;
+
+    private List<ImageUploads> mUploads;
+
+
+    private VideoView videoPlay;
+
+    private MediaPlayer Mp;
+
+    private ImageView closeVideoPlay;
+
+    private CardView videoPlayCard;
+
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_streams);
+        mRecyclerView = findViewById(R.id.memeRecyclerView);
+        mRecyclerView.setHasFixedSize(true);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAuth = FirebaseAuth.getInstance();
+
+        if (mAuth.getCurrentUser() == null)
+        {
+            mAuth.signOut();
+            Intent intent = new Intent(ViewStreams.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+        on_maps_visited_user_id = getIntent().getExtras().get("visit_user_id").toString();
+
+        mToolbar = findViewById(R.id.appBarLayout);
+        setSupportActionBar(mToolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Live Videos");
+
+
+        videoPlay = findViewById(R.id.memeImageViewVideo);
+        closeVideoPlay = findViewById(R.id.closeVideoPlay);
+        videoPlayCard = findViewById(R.id.videoViewCard);
+        videoPlayCard.setVisibility(View.INVISIBLE);
+
+        EventAttendance = findViewById(R.id.eventAttendance);
+
+
+        contentRater = findViewById(R.id.goToVideosUpload);
+
+        contentRater.setVisibility(View.INVISIBLE);
+
+        contentRater.setEnabled(false);
+
+
+
+        mStorage = FirebaseStorage.getInstance();
+
+
+
+        closeVideoPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+
+                view.findViewById(R.id.closeVideoPlay);
+
+                videoPlayCard.setVisibility(View.INVISIBLE);
+                videoPlay.stopPlayback();
+                finish();
+
+
+            }
+        });
+
+
+        contentRater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                view.findViewById(R.id.goToVideosUpload);
+                Intent intent = new Intent(ViewStreams.this,EventVideoUpload.class);
+                intent.putExtra("visit_user_id", on_maps_visited_user_id);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
+        mProgressCircle = findViewById(R.id.progress_circle);
+
+        mUploads = new ArrayList<>();
+
+        mAdapter = new PromoVideoViewAdapator(ViewStreams.this, mUploads);
+
+        mAdapter.setOnItemClickListener((VideoViewAdapter.OnItemClickListener) ViewStreams.this);
+
+        mRecyclerView.setAdapter(mAdapter);
+
+        userImageDp = findViewById(R.id.ImageDP);
+
+        userName = findViewById(R.id.profileName);
+
+        final String user_id = mAuth.getCurrentUser().getUid();
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("EventVideoUploads");
+
+        on_maps_visited_user_id = getIntent().getExtras().get("visit_user_id").toString();
+
+        mDBlistener = mDatabaseRef.child(on_maps_visited_user_id).addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                if(dataSnapshot.exists())
+                {
+                    mUploads.clear();
+
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
+                    {
+                        ImageUploads upload = postSnapshot.getValue(ImageUploads.class);
+                        upload.setKey(postSnapshot.getKey());
+                        mUploads.add(upload);
+                    }
+                    mAdapter.notifyDataSetChanged();
+                    mProgressCircle.setVisibility(View.INVISIBLE);
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(ViewStreams.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+        prepareVideoPlay();
+        checkIfAdminOrAttendin();
+    }
+
+
+
+    private void checkIfAdminOrAttendin()
+    {
+
+        final String user_id = mAuth.getCurrentUser().getUid();
+
+        on_maps_visited_user_id = getIntent().getExtras().get("visit_user_id").toString();
+
+        getUserAttendanceStatus = FirebaseDatabase.getInstance().getReference().child("EventAttendance").child(on_maps_visited_user_id);
+
+
+        getUserAttendanceStatus.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+
+                if(dataSnapshot.exists())
+                {
+                    if(dataSnapshot.hasChild(user_id) && dataSnapshot.child(user_id).getValue().toString() =="true" )
+                    {
+
+
+                        contentRater.setVisibility(View.VISIBLE);
+                        contentRater.setEnabled(true);
+
+
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    private void prepareVideoPlay()
+    {
+        videoPlay.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                    @Override
+                    public void onVideoSizeChanged(MediaPlayer mediaPlayer, int width, int height)
+                    {
+                        mc = new MediaController(getApplicationContext());
+                        videoPlay.setMediaController(mc);
+                        videoPlay.requestFocus();
+                        mc.setAnchorView(videoPlay);
+
+                    }
+                });
+            }
+        });
+
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.uploads_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_add) {
+            Intent intent = new Intent(ViewStreams.this, ActivityUploadVideo.class);
+
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDatabaseRef.removeEventListener(mDBlistener);
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
+
+        ImageUploads selectedImage = mUploads.get(position);
+
+        String selectedKey = selectedImage.getKey();
+
+        String imageUrl = selectedImage.getImageUrl();
+
+        String maxImageUserId = selectedImage.getUserId();
+
+        mProgressCircle.setVisibility(View.VISIBLE);
+
+
+        if(!imageUrl.isEmpty() && !selectedKey.isEmpty())
+        {
+            if(!videoPlay.isPlaying())
+            {
+                videoPlayCard.setVisibility(View.VISIBLE);
+                videoPlay.setVideoURI(Uri.parse(imageUrl));
+                videoPlay.start();
+
+                mProgressCircle.setVisibility(View.INVISIBLE);
+
+                videoPlay.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+                    @Override
+                    public boolean onInfo(MediaPlayer mediaPlayer, int i, int i1)
+                    {
+
+                        Mp = mediaPlayer;
+                        if(i == MediaPlayer.MEDIA_INFO_BUFFERING_START)
+                        {
+
+                            stopPosition = videoPlay.getCurrentPosition();
+                            mProgressCircle.setVisibility(View.VISIBLE);
+                            videoPlay.pause();
+                        }else if(i== MediaPlayer.MEDIA_INFO_BUFFERING_END)
+                        {
+                            mProgressCircle.setVisibility(View.INVISIBLE);
+                            videoPlay.seekTo(stopPosition);
+                            videoPlay.start();
+
+                        }
+                        return false;
+                    }
+                });
+
+            }else
+            {
+                videoPlay.stopPlayback();
+                Toast.makeText(this, "preparing video play ... ", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+
+        }
+    }
+
+    private MediaController mc;
+
+
+
+    @Override
+    public void onItemClickMute(int position)
+    {
+
+        setVolumeControl(VolumeState.OFF);
+
+    }
+
+    private void setVolumeControl(VolumeState state)
+
+    {
+
+        AudioManager audioManager = (AudioManager)getSystemService(VideowViewing.AUDIO_SERVICE);
+
+        volumeState = state;
+
+        if(state == VolumeState.ON)
+        {
+
+            audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,0,0);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,0,0);
+            volumeState = VolumeState.OFF;
+
+        }else if(state == VolumeState.OFF)
+        {
+
+            volumeState = VolumeState.ON;
+            audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM,100,0);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,100,0);
+
+        }
+    }
+
+
+    @Override
+    public void onWhatEverClick(int position) {
+
+        Intent intent = new Intent(ViewStreams.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
+}

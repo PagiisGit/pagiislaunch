@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="290dp"
+    android:layout_height="120dp"
+    android:clickable="true"
+    android:contextClickable="true"
+    android:foreground="?android:selectableItemBackground"
+    app:cardBackgroundColor="@color/fui_transparent"
+    app:cardCornerRadius="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#fff"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/TitleId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/sirocco_image_view"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/for_gallery_pic">
+
+            </ImageView>
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/item_view_profilepic"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="3dp"
+                android:padding="1dp"
+                android:src="@drawable/ic_like_it">
+
+            </com.mikhaellopez.circularimageview.CircularImageView>
+
+            <TextView
+                android:id="@+id/sirocco_brand_model"
+                android:layout_width="130dp"
+                android:paddingLeft="5dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="1dp"
+                android:layout_toRightOf="@+id/sirocco_image_view"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/ic_local_offer_blue"
+                android:drawablePadding="5dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/yogamedium"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:text="Status"
+                android:textColor="#00838F"
+                android:textSize="12sp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_view_likes"
+                android:layout_width="29dp"
+                android:layout_height="27dp"
+                android:clickable="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="28dp"
+                android:padding="1dp"
+                android:src="@drawable/ic_like_it">
+
+
+            </androidx.appcompat.widget.AppCompatImageView>
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/onLocationUsername"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/sirocco_image_view"
+            android:background="#FFFFFF"
+            android:drawableLeft="@drawable/ic_user_marker_red"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/yogamedium"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:text="Profilename"
+            android:textColor="#00838F"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:ignore="NotSibling">
+
+
+        </TextView>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+    <!--<TextView
+        android:id="@+id/sirocco_brand_antique"
+        android:layout_width="30dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginStart="20dp"
+        android:padding="5dp"
+        android:text="Profilename"
+        android:textColor="@color/AlertRed"
+        android:textSize="10sp" /> -->
+</androidx.cardview.widget.CardView>

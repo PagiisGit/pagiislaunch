@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/LemonChaffon"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfileActivity">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        layout = "@layout/app_bar_layout"
+        android:id="@+id/chatbarLayout"/>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="38dp">
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/visitOnlineShopButton"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="82dp"
+            android:layout_marginStart="28dp"
+            android:clickable="true"
+            android:src="@drawable/work_b" />
+
+
+        <TextView
+            android:id="@+id/visiOnlineShopText"
+            android:layout_width="121dp"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="92dp"
+            android:textStyle="bold"
+            android:layout_marginStart="79dp"
+            android:clickable="false"
+            android:gravity="center"
+            android:text="visit Sirocco Online_shop"
+            android:textColor="@color/AlertRed"
+            android:textSize="10sp" />
+
+
+        <LinearLayout
+
+            android:id="@+id/statusView"
+            android:layout_width="match_parent"
+            android:layout_height="415dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/LemonChaffon"
+            android:orientation="vertical">
+
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:id="@+id/profileName"
+                    android:layout_width="150dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/Orrnge"
+                    android:gravity="center"
+                    android:text="..."
+                    android:textColor="@color/SquareBack"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/profile_contact_details"
+                    android:layout_width="42dp"
+                    android:layout_marginStart="150dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:backgroundTint="#fff"
+                    android:clickable="true"
+                    android:src="@drawable/identification" />
+
+
+
+
+            </LinearLayout>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="350dp"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+
+
+
+                <ImageView
+                    android:id="@+id/viewfrom_maps_ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="307dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:foregroundGravity="center"
+                    android:src="@drawable/user" />
+
+                <ProgressBar
+
+                    android:id="@+id/progress_view_user_profile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center" />
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="320dp"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@id/viewfrom_maps_ImageView"
+                android:layout_gravity="center"
+                android:contextClickable="true"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:paddingLeft="3dp">
+
+
+                <TextView
+                    android:id="@+id/profileStatus"
+                    android:layout_width="320dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/black_text_view_background"
+                    android:backgroundTint="@color/BlueishBlack"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:contextClickable="true"
+                    android:text="Status text ..."
+                    android:textColor="@color/Orrnge"
+                    android:textStyle="bold" />
+
+
+                <ImageView
+                    android:id="@+id/goToMedia"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/visitOnlineShopButton"
+                    android:layout_marginEnd="14dp"
+                    android:clickable="true"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/media" />
+
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="67dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="0dp"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/facebookLinkIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:backgroundTint="#FFFFFF"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:src="@drawable/facebook_icon"
+                app:fabCustomSize="40dp" />
+
+            <TextView
+                android:id="@+id/faceboolinkEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:linksClickable="true"
+                android:autoSizeMaxTextSize="50dp"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:layout_gravity="center"
+                android:foreground="?android:selectableItemBackground"
+                android:background="@drawable/orrnge_text_background_view"
+                android:clickable="true"
+                android:textColor="@color/AlertRed"
+                android:contextClickable="true"
+                android:gravity="center"
+                android:hint="Link"
+                android:textColorHint="@color/bluelight"
+                android:textColorHighlight="@color/SquareBack"
+                android:textSize="10sp" />
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/tweeterIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="#FFFFFF"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:src="@drawable/tweeter_icon"
+                app:fabCustomSize="40dp" />
+
+
+            <TextView
+                android:id="@+id/tweeterLinkEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:foreground="?android:selectableItemBackground"
+                android:layout_gravity="center"
+                android:background="@drawable/orrnge_text_background_view"
+                android:clickable="true"
+                android:autoSizeMaxTextSize="50dp"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:contextClickable="true"
+                android:textColorHint="@color/bluelight"
+                android:textColor="@color/AlertRed"
+                android:linksClickable="true"
+                android:gravity="center"
+                android:hint="Link"
+                android:textColorHighlight="@color/SquareBack"
+                android:textSize="10sp" />
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/instagramIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="#FFFFFF"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:src="@drawable/insta_icon"
+                app:fabCustomSize="40dp" />
+
+            <TextView
+                android:id="@+id/instagramIconEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:textColorHint="@color/bluelight"
+                android:background="@drawable/orrnge_text_background_view"
+                android:clickable="true"
+                android:autoSizeMaxTextSize="50dp"
+                android:contextClickable="true"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:hint="Link"
+                android:linksClickable="true"
+                android:textColor="@color/AlertRed"
+                android:textColorHighlight="@color/SquareBack"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="platform.userx.pagiis.pagiis.Tabs">
+
+    <item
+        android:icon="@drawable/ic_save"
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+
+
+    <item
+        android:icon="@drawable/ic_profile"
+        android:id="@+id/allPagiisUsers"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+
+
+    <item
+        android:icon="@drawable/ic_add"
+        android:iconTint="@color/Orrnge"
+        android:id="@+id/LOGOUT"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+</menu>

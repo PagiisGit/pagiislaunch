@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+       <include
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        layout = "@layout/app_bar_layout"
+        android:id="@+id/chatbarLayout"/>
+
+    <ProgressBar
+        android:id="@+id/progress_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:orientation="vertical"
+        android:id="@+id/siroccoRecyclerView"
+        android:layout_below="@+id/chatbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@id/canvasId"
+        android:layout_width="157dp"
+        android:layout_height="69dp"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ii"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/pagiis_logo_final" />
+
+        <ImageView
+            android:id="@+id/cc"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:src="@drawable/ic_sirocco_icon" />
+
+
+    </LinearLayout>
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        android:id="@+id/goToMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="51dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:src="@drawable/compass"
+        app:fabCustomSize="40dp" />
+
+
+
+
+
+
+
+    <!-- <android.support.v7.widget.CardView
+         android:padding="10dp"
+         android:id="@+id/siroccoViewPager2"
+         android:layout_width="match_parent"
+         android:layout_height="150dp"
+         android:layout_marginStart="7dp"
+         android:layout_marginEnd="7dp"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="5dp"
+         android:layout_alignParentStart="true"
+         android:clipToPadding="false"
+         android:foregroundGravity="center"
+         android:orientation="horizontal"
+         android:overScrollMode="never">
+
+
+         <android.support.v7.widget.RecyclerView
+             android:padding="10dp"
+             android:id="@+id/siroccoViewPager"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_alignParentBottom="true"
+             android:layout_alignParentStart="true"
+             android:clipToPadding="false"
+             android:foregroundGravity="center"
+             android:orientation="horizontal"
+             android:overScrollMode="never">
+
+
+         </android.support.v7.widget.RecyclerView>
+
+
+     </android.support.v7.widget.CardView> -->
+
+
+
+
+
+
+</RelativeLayout>

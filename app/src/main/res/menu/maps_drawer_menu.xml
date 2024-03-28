@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/visitSirocco"
+        android:icon="@drawable/astronaut"
+        android:title="Visit Sirocco Page"
+        android:visible="true"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/aboutPagiis"
+        android:icon="@drawable/idea"
+        android:title="About Pagiis"
+        android:visible="true"
+        app:showAsAction="always" />
+
+
+</menu>

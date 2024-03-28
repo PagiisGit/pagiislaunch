@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/yogamedium"
+            android:layout_margin="5dp"
+            android:text="Edit Status "
+            android:textColor="@color/AlertRed"
+            android:textSize="16sp" />
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:hint="type Status ..."
+            android:fontFamily="@font/robobold"
+            android:id="@+id/statusEdit"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:id="@+id/saveStatus"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_save" />
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

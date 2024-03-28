@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">PAGiiS</string>
+    <string name="title_activity_maps">pagiisMaps</string>
+    <string name="action_settings">action_settings</string>
+    <string name="title_activity_tabs">Tabs</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="pagiis">pagiis</string>
+    <string name="splashh">splash</string>
+    <string name="camera">Camera</string>
+    <string name="title">title ...</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+    <string name="search_option">search</string>
+    <string name="ripple">ripple</string>
+    <string name="delete">delete</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="location">location</string>
+    <string name="pagiis_search">pagiis search ...</string>
+    <string name="SearchLocation">location</string>
+
+
+    <string name="discover_na_new_world">Discover a new world</string>
+
+    <string name="popular">Popular</string>
+
+    <string name="share_via">Share via</string>
+
+    <string name="add_to_favourite"> Add to favourite</string>
+
+
+</resources>

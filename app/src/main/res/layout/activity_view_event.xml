@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/lightOrrnge"
+    android:layout_height="match_parent"
+    tools:context=".ViewEvent">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        layout = "@layout/app_bar_layout"
+        android:id="@+id/chatbarLayout"/>
+
+
+    <ProgressBar
+        android:id="@+id/progress_circle_user_memes"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/eventAdminTextSetup"
+        android:layout_width="100dp"
+        android:gravity="center"
+        android:backgroundTint="#fff"
+        android:textColor="@color/AlerLime"
+        android:background="#fff"
+        android:clickable="true"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/chatbarLayout"
+        android:layout_centerHorizontal="true"
+        android:text="admin" />
+
+
+    <RelativeLayout
+        android:background="@color/LemonChaffon"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="35dp">
+
+
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="120dp"
+            android:layout_height="116dp"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:layout_marginStart="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="3dp">
+
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/storeLogo"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/deals_announce" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="224dp"
+            android:layout_height="107dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="9dp"
+            android:layout_marginTop="9dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/visitsTextView"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="*"
+                    android:textColor="@color/AlertRed"
+                    android:textSize="7sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/customerViewsText"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="*"
+                    android:textColor="@color/AlertRed"
+                    android:textSize="7sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/purchasesViewText"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="*"
+                    android:textColor="@color/AlertRed"
+                    android:textSize="7sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/eventStrems"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Streams"
+                    android:textColor="@color/BlueishBlack"
+                    android:textSize="7sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/eventAttendance"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="attendance"
+                    android:textColor="@color/BlueishBlack"
+                    android:textSize="7sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/eventPosts"
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Posts"
+                    android:textColor="@color/BlueishBlack"
+                    android:textSize="7sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="3dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="23dp">
+
+
+                    <ImageView
+                        android:id="@+id/storeAdminIcon"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:src="@drawable/coordinator" />
+
+
+                    <TextView
+                        android:id="@+id/storeAdminTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:text="admin"
+                        android:textColor="@color/BlueishBlack"
+                        android:textSize="7sp" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="23dp"
+                    android:layout_marginTop="3dp">
+
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/email_contact" />
+
+
+                    <TextView
+                        android:id="@+id/storeEmailTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:text="email"
+                        android:textColor="@color/BlueishBlack"
+                        android:textSize="7sp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="125dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+
+            <TextView
+                android:id="@+id/eventName"
+                android:layout_marginStart="7dp"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:lines="2"
+                android:scrollHorizontally="true"
+                android:textColor="@color/BlueishBlack"
+                android:text="Welcome to Pagiis Online  Events- Thank You for the Visit.  "
+                android:textSize="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/BlueishBlack"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/tag" />
+
+
+            <TextView
+                android:id="@+id/storeNameTextView"
+                android:layout_width="103dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:text="Event"
+                android:textColor="@color/AlertRed"
+                android:textSize="10sp" />
+
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/placeholder" />
+
+
+            <TextView
+                android:id="@+id/storeBankingDetailsText"
+                android:layout_width="75dp"
+                android:layout_height="15dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:text="location"
+                android:textColor="@color/AlertRed"
+                android:textSize="10sp" />
+
+
+            <ImageView
+                android:id="@+id/e_Wallet"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/deals_announce" />
+
+
+            <TextView
+                android:id="@+id/storeWalletTextView"
+                android:layout_width="54dp"
+                android:layout_height="15dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:text="Category"
+                android:textColor="@color/AlertRed"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/chatbarLayout"
+        android:id="@+id/memeRecyclerView"
+        android:orientation="horizontal"
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/adminVideos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="71dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:src="@drawable/video_camera"
+        app:fabCustomSize="40dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/adminRipple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:src="@drawable/click_one"
+        app:fabCustomSize="40dp" />
+
+
+    <ImageView
+        android:id="@+id/VideoAdd"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_above="@+id/adminVideos"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="19dp"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:src="@drawable/ic_add" />
+
+
+</RelativeLayout>

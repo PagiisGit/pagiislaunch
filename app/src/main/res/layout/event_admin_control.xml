@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="10dp"
+    android:layout_margin="16dp"
+    tools:context=".ActivityUserPost">
+
+
+    <LinearLayout
+        android:background="@color/lightOrrnge"
+        android:id="@+id/selectChoseOptionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@color/LemonChaffon"
+            android:gravity="center"
+            android:text="Select event options."
+            android:textColor="@color/AlertRed"
+            android:textStyle="bold" />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <ImageView
+                    android:layout_marginStart="7dp"
+                    android:id="@+id/cameraOption"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:clickable="true"
+                    android:src="@drawable/click_one" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/ripple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:layout_marginStart="7dp"
+                    android:id="@+id/GalleryOption"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:clickable="true"
+                    android:src="@drawable/stop_sign" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/close"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginStart="7dp"
+                    android:id="@+id/linkEditImageView"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="5dp"
+                    android:clickable="true"
+                    android:src="@drawable/dustbin" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:text="@string/delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:id="@+id/homeButotn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/Orrnge"
+            android:clickable="true"
+            android:src="@drawable/previous" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
