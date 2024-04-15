@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import pagiisnet.pagiisnet.R;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -348,6 +347,7 @@ public class ActivityUploadVideo extends AppCompatActivity {
     }
 
 
+
     private void UploadPromo()
     {
 
@@ -364,6 +364,8 @@ public class ActivityUploadVideo extends AppCompatActivity {
             Toast.makeText(this, "No video file selected..!", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     private void getTimeUploadPromo()
 

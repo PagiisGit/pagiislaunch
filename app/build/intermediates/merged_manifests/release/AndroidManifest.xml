@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pagiisnet.pagiisnet"
-    android:versionCode="204"
+    android:versionCode="666"
     android:versionName="ii" >
 
     <uses-sdk

@@ -742,7 +742,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 if(selectedItem.compareTo("live events") == 0)
                 {
                     searchIndicatoIcon.setImageResource(R.drawable.time_and_date);
-                    mSearchText.setText("search live events ");
+                    mSearchText.setHint("search live events ");
                     searcValue = "Events";
 
 
@@ -750,13 +750,13 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 }else if(selectedItem.compareTo("Services") == 0)
                 {
                     searchIndicatoIcon.setImageResource(R.drawable.tag_siroco);
-                    mSearchText.setText("Nearby services. ");
+                    mSearchText.setHint("Nearby services. ");
                     searcValue = "Services";
 
                 }else if(selectedItem.compareTo("nearby places") == 0)
                 {
                     searchIndicatoIcon.setImageResource(R.drawable.pagiis_onlineusers_finder);
-                    mSearchText.setText("Nearby paces. ");
+                    mSearchText.setHint("Nearby places.");
                     searcValue = "nearby places";
 
                     PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
