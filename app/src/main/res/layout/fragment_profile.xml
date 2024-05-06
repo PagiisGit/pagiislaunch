@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/ProfileFragment"
-
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/ProfileLayout"
         android:background="@color/LemonChaffon"
         android:orientation="vertical"
         tools:context=".ActivityOwnProfile">
@@ -180,6 +181,30 @@
                                 android:text="Profile Tag"
                                 android:textColor="@color/EndBlue"
                                 android:textSize="10sp" />
+
+                            <ImageView
+                                android:id="@+id/profileStoreOptionButton"
+                                android:layout_width="35dp"
+                                android:clickable="true"
+                                android:layout_height="35dp"
+                                android:layout_marginTop="45dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/store"
+                                tools:ignore="SpeakableTextPresentCheck" />
+
+                            <TextView
+                                android:id="@+id/profileStoreOptionText"
+                                android:layout_width="match_parent"
+                                android:layout_marginTop="5dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/profile_contact_Views"
+                                android:layout_alignParentEnd="true"
+                                android:gravity="center"
+                                android:fontFamily="@font/yogamedium"
+                                android:text="Service"
+                                android:textColor="@color/EndBlue"
+                                android:textSize="10sp" />
+
 
 
 
@@ -798,4 +823,22 @@
 
 
     </LinearLayout>
+
+
+    <WebView
+        android:id="@+id/webview"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </WebView>
+
+    <ProgressBar
+
+        android:id="@+id/progress_circle_webview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center" />
+
 </FrameLayout>

@@ -4,9 +4,11 @@ package pagiisnet.pagiisnet.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -38,6 +40,9 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final FrameLayout ProfileFragment;
 
   @NonNull
+  public final LinearLayout ProfileLayout;
+
+  @NonNull
   public final ImageView addContent;
 
   @NonNull
@@ -56,7 +61,16 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView profileStatus;
 
   @NonNull
+  public final ImageView profileStoreOptionButton;
+
+  @NonNull
+  public final TextView profileStoreOptionText;
+
+  @NonNull
   public final ProgressBar progressCircleOwnProfile;
+
+  @NonNull
+  public final ProgressBar progressCircleWebview;
 
   @NonNull
   public final TextView userProfileSettings;
@@ -65,30 +79,40 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView userProfileViews;
 
   @NonNull
+  public final WebView webview;
+
+  @NonNull
   public final ImageView writeStatus;
 
   private FragmentProfileBinding(@NonNull FrameLayout rootView, @NonNull ImageView ChangeOwnDP,
       @NonNull CircularImageView ImageDP, @NonNull Button LogoutText,
-      @NonNull FrameLayout ProfileFragment, @NonNull ImageView addContent,
-      @NonNull SparkButton imageViewAnimation, @NonNull RecyclerView memeRecyclerView,
-      @NonNull TextView profileName, @NonNull ImageView profileSettingsButton,
-      @NonNull TextView profileStatus, @NonNull ProgressBar progressCircleOwnProfile,
+      @NonNull FrameLayout ProfileFragment, @NonNull LinearLayout ProfileLayout,
+      @NonNull ImageView addContent, @NonNull SparkButton imageViewAnimation,
+      @NonNull RecyclerView memeRecyclerView, @NonNull TextView profileName,
+      @NonNull ImageView profileSettingsButton, @NonNull TextView profileStatus,
+      @NonNull ImageView profileStoreOptionButton, @NonNull TextView profileStoreOptionText,
+      @NonNull ProgressBar progressCircleOwnProfile, @NonNull ProgressBar progressCircleWebview,
       @NonNull TextView userProfileSettings, @NonNull TextView userProfileViews,
-      @NonNull ImageView writeStatus) {
+      @NonNull WebView webview, @NonNull ImageView writeStatus) {
     this.rootView = rootView;
     this.ChangeOwnDP = ChangeOwnDP;
     this.ImageDP = ImageDP;
     this.LogoutText = LogoutText;
     this.ProfileFragment = ProfileFragment;
+    this.ProfileLayout = ProfileLayout;
     this.addContent = addContent;
     this.imageViewAnimation = imageViewAnimation;
     this.memeRecyclerView = memeRecyclerView;
     this.profileName = profileName;
     this.profileSettingsButton = profileSettingsButton;
     this.profileStatus = profileStatus;
+    this.profileStoreOptionButton = profileStoreOptionButton;
+    this.profileStoreOptionText = profileStoreOptionText;
     this.progressCircleOwnProfile = progressCircleOwnProfile;
+    this.progressCircleWebview = progressCircleWebview;
     this.userProfileSettings = userProfileSettings;
     this.userProfileViews = userProfileViews;
+    this.webview = webview;
     this.writeStatus = writeStatus;
   }
 
@@ -139,6 +163,12 @@ public final class FragmentProfileBinding implements ViewBinding {
 
       FrameLayout ProfileFragment = (FrameLayout) rootView;
 
+      id = R.id.ProfileLayout;
+      LinearLayout ProfileLayout = ViewBindings.findChildViewById(rootView, id);
+      if (ProfileLayout == null) {
+        break missingId;
+      }
+
       id = R.id.addContent;
       ImageView addContent = ViewBindings.findChildViewById(rootView, id);
       if (addContent == null) {
@@ -175,9 +205,27 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.profileStoreOptionButton;
+      ImageView profileStoreOptionButton = ViewBindings.findChildViewById(rootView, id);
+      if (profileStoreOptionButton == null) {
+        break missingId;
+      }
+
+      id = R.id.profileStoreOptionText;
+      TextView profileStoreOptionText = ViewBindings.findChildViewById(rootView, id);
+      if (profileStoreOptionText == null) {
+        break missingId;
+      }
+
       id = R.id.progress_circle_own_profile;
       ProgressBar progressCircleOwnProfile = ViewBindings.findChildViewById(rootView, id);
       if (progressCircleOwnProfile == null) {
+        break missingId;
+      }
+
+      id = R.id.progress_circle_webview;
+      ProgressBar progressCircleWebview = ViewBindings.findChildViewById(rootView, id);
+      if (progressCircleWebview == null) {
         break missingId;
       }
 
@@ -193,6 +241,12 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.webview;
+      WebView webview = ViewBindings.findChildViewById(rootView, id);
+      if (webview == null) {
+        break missingId;
+      }
+
       id = R.id.writeStatus;
       ImageView writeStatus = ViewBindings.findChildViewById(rootView, id);
       if (writeStatus == null) {
@@ -200,9 +254,10 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       return new FragmentProfileBinding((FrameLayout) rootView, ChangeOwnDP, ImageDP, LogoutText,
-          ProfileFragment, addContent, imageViewAnimation, memeRecyclerView, profileName,
-          profileSettingsButton, profileStatus, progressCircleOwnProfile, userProfileSettings,
-          userProfileViews, writeStatus);
+          ProfileFragment, ProfileLayout, addContent, imageViewAnimation, memeRecyclerView,
+          profileName, profileSettingsButton, profileStatus, profileStoreOptionButton,
+          profileStoreOptionText, progressCircleOwnProfile, progressCircleWebview,
+          userProfileSettings, userProfileViews, webview, writeStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -2,21 +2,21 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/siroccoBottomSheetContainer"
     android:layout_height="wrap_content"
-    android:id="@+id/mapsBottomSheetCOntainer"
     android:background="#fff"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:padding="5dp"
+        android:padding="15dp"
         android:id="@+id/popUpDescriptionTextView"
         android:gravity="center"
         android:text="Choose Activity"
         android:fontFamily="@font/robobold"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:layout_height="wrap_content">
 
@@ -31,38 +31,12 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            app:cardCornerRadius="10dp"
-            android:layout_margin="5dp"
-            android:layout_height="70dp">
-
-            <pl.droidsonroids.gif.GifImageView
-                android:layout_width="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/robot"
-                android:layout_height="match_parent">
-
-            </pl.droidsonroids.gif.GifImageView>
-
-
-
-
-        </androidx.cardview.widget.CardView>
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    <androidx.appcompat.widget.LinearLayoutCompat
         android:orientation="horizontal"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
@@ -74,12 +48,11 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
                 app:cardCornerRadius="10dp"
-                android:contextClickable="true"
                 android:layout_margin="10dp"
                 android:layout_height="100dp">
 
                 <pl.droidsonroids.gif.GifImageView
-                    android:id="@+id/popUpPostOption"
+                    android:id="@+id/siroccoArt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="true"
@@ -103,11 +76,11 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="Post"
-                    android:id="@+id/popUpDescriptionTextViewTwo"
+                    android:text="Upload product"
+                    android:id="@+id/art"
                     android:textSize="17sp"
                     android:gravity="center_horizontal"
-                    android:textColor="@color/colorPrimaryOne"
+                    android:textColor="@color/bluelight"
                     android:textStyle="bold"
                     android:layout_height="wrap_content">
 
@@ -126,10 +99,14 @@
 
 
 
+
+
+
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
-            android:layout_marginStart="50dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -137,18 +114,15 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
                 app:cardCornerRadius="10dp"
-                android:contextClickable="true"
                 android:layout_margin="10dp"
                 android:layout_height="100dp">
 
                 <pl.droidsonroids.gif.GifImageView
-                    android:id="@+id/popUpOnlineShoppingOption"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:clickable="true"
                     android:scaleType="centerCrop"
+                    android:id="@+id/siroccoFashion"
                     android:src="@drawable/store"
-                    tools:ignore="SpeakableTextPresentCheck">
+                    android:layout_height="match_parent">
 
                 </pl.droidsonroids.gif.GifImageView>
 
@@ -166,16 +140,17 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="Shop online"
-                    android:id="@+id/popUpDescriptionTextViewOne"
+                    android:text="Visist store"
+                    android:id="@+id/popUpDescriptionTextViewTwo"
                     android:textSize="17sp"
                     android:gravity="center_horizontal"
-                    android:textColor="@color/colorPrimaryOne"
+                    android:textColor="@color/bluelight"
                     android:textStyle="bold"
                     android:layout_height="wrap_content">
 
 
                 </TextView>
+
 
 
 
@@ -196,58 +171,103 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/colorDevider">
 
     </View>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="5dp"
-        tools:ignore="TouchTargetSizeCheck">
+        android:padding="12dp">
 
 
-        <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/shareImageView"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="10dp"
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:clickable="true"
+            android:id="@+id/likes"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/share_profiles">
+            android:src="@drawable/ic_like_it"
+
+            android:layout_marginStart="10dp">
 
 
-        </pl.droidsonroids.gif.GifImageView>
+        </androidx.appcompat.widget.AppCompatImageView>
 
 
         <TextView
-            android:id="@+id/share"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/addToFavouriteTextView"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="25dp"
-            android:text="@string/share_via"
+            android:text="@string/add_to_favourite"
             android:textColor="@color/colorPrimaryText"
-            android:textSize="19sp">
+            android:textSize="15sp">
 
 
         </TextView>
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:layout_marginBottom="10dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/shareImageView"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_share"
+            android:layout_marginStart="10dp">
+
+
+        </androidx.appcompat.widget.AppCompatImageView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:id="@+id/share"
+            android:layout_marginEnd="25dp"
+            android:text="@string/share_via"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="15sp">
+
+
+        </TextView>
+
 
 
     </LinearLayout>
 
 
     <Button
-        android:id="@+id/exit"
+        android:id="@+id/home"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"

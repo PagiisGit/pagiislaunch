@@ -98,7 +98,6 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
                     startActivity(intent);
 
-
                 } else
                 {
                     // There is no activity that can handle the intent
@@ -432,10 +431,11 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
         webViewLinks = rootView.findViewById(R.id.webview);
+        webSettings = webViewLinks.getSettings();
 
         siroccoCategory = rootView.findViewById(R.id.siroccoCatergoryText);
 
-        webSettings = webViewLinks.getSettings();
+
 
         webSettings.setJavaScriptEnabled(true);
 

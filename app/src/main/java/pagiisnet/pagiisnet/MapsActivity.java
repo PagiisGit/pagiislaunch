@@ -1415,7 +1415,9 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
     private void checkDataAvalability()
+
     {
+
         lockedImages  = FirebaseDatabase.getInstance().getReference().child("Uploads");
         final String userIdRef = mAuth.getCurrentUser().getUid();
         //final String on_maps_visited_user_id = String.valueOf(getIntent().getExtras().get("visit_user_id").toString());
@@ -1466,24 +1468,20 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                                     @Override
                                     public void onClick(View v)
                                     {
+
                                         oldFragment = null;
                                         // Create a new instance of your target fragment
                                         //GalleryFragment newFragment = new GalleryFragment();
-
                                         // Get the FragmentManager
                                         //FragmentManager fragmentManager = getSupportFragmentManager(); // Or use getFragmentManager() if you're not in an AppCompatActivity
-
                                         // Begin a transaction
                                         //FragmentTransaction transaction = fragmentManager.beginTransaction();
-
                                         // Replace the current fragment with the new one
                                         //transaction.replace(R.id.mainContainer, newFragment);
                                         // Optionally, add the transaction to the back stack
                                         //transaction.addToBackStack(null);
-
                                         // Commit the transaction
                                         //transaction.commit();
-
                                         Intent intent = new Intent(getApplicationContext(),GalleryUploads.class);
                                         startActivity(intent);
                                         finish();
@@ -1635,18 +1633,19 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                     }
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(DatabaseError databaseError)
+                    {
                         Toast.makeText(MapsActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                         recyclerProgressBar.setVisibility(View.INVISIBLE);
                     }
                 });
             }
         }else
+
         {
 
             publicProfilePostsCardView.setVisibility(View.INVISIBLE);
             //siroccoView();
-
             Toast.makeText(this, "There are no Post Items", Toast.LENGTH_SHORT).show();
 
         }

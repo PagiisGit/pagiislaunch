@@ -4728,6 +4728,7 @@ id PageViewer
 id PagiisMaxProgressBar
 id PopUpMaxView
 id ProfileFragment
+id ProfileLayout
 id PublicIcon
 id RIGHT
 id RUSSIAN
@@ -4887,6 +4888,7 @@ id body_scroll
 id bottom
 id bottomNav
 id bottomSheeContainer
+id bottomSheeContainerProfileProduct
 id bounce
 id bounceBoth
 id bounceEnd
@@ -5485,6 +5487,8 @@ id profileServiceCategoryDescription
 id profileServiceImage
 id profileSettingsButton
 id profileStatus
+id profileStoreOptionButton
+id profileStoreOptionText
 id profileUSerName
 id profile_contact_
 id profile_contact_Connected
@@ -5498,6 +5502,7 @@ id progress_circle_own_profile
 id progress_circle_play
 id progress_circle_upload
 id progress_circle_user_memes
+id progress_circle_webview
 id progress_circular
 id progress_horizontal
 id progress_view_user_profile
@@ -6019,6 +6024,7 @@ layout any_link_post
 layout app_bar_layout
 layout banner
 layout bottom_sheet_expore
+layout bottom_sheet_expore_profile_product
 layout bottom_sheet_profile_service
 layout botttom_sheet_layout
 layout browser_actions_context_menu_page

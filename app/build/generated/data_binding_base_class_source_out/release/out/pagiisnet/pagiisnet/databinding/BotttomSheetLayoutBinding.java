@@ -27,7 +27,7 @@ public final class BotttomSheetLayoutBinding implements ViewBinding {
   public final TextView addToFavouriteTextView;
 
   @NonNull
-  public final LinearLayoutCompat bottomSheeContainer;
+  public final LinearLayoutCompat bottomSheeContainerProfileProduct;
 
   @NonNull
   public final SparkButton likes;
@@ -57,15 +57,15 @@ public final class BotttomSheetLayoutBinding implements ViewBinding {
   public final Button visitProfile;
 
   private BotttomSheetLayoutBinding(@NonNull LinearLayoutCompat rootView,
-      @NonNull TextView addToFavouriteTextView, @NonNull LinearLayoutCompat bottomSheeContainer,
-      @NonNull SparkButton likes, @NonNull ImageView mapsItemProfile,
-      @NonNull TextView popLocationTexview, @NonNull TextView popUpDescriptionTextView,
-      @NonNull TextView popUpDescriptionTextViewThreee,
+      @NonNull TextView addToFavouriteTextView,
+      @NonNull LinearLayoutCompat bottomSheeContainerProfileProduct, @NonNull SparkButton likes,
+      @NonNull ImageView mapsItemProfile, @NonNull TextView popLocationTexview,
+      @NonNull TextView popUpDescriptionTextView, @NonNull TextView popUpDescriptionTextViewThreee,
       @NonNull TextView popUpDescriptionTextViewTwo, @NonNull TextView share,
       @NonNull AppCompatImageView shareImageView, @NonNull Button visitProfile) {
     this.rootView = rootView;
     this.addToFavouriteTextView = addToFavouriteTextView;
-    this.bottomSheeContainer = bottomSheeContainer;
+    this.bottomSheeContainerProfileProduct = bottomSheeContainerProfileProduct;
     this.likes = likes;
     this.mapsItemProfile = mapsItemProfile;
     this.popLocationTexview = popLocationTexview;
@@ -110,7 +110,7 @@ public final class BotttomSheetLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      LinearLayoutCompat bottomSheeContainer = (LinearLayoutCompat) rootView;
+      LinearLayoutCompat bottomSheeContainerProfileProduct = (LinearLayoutCompat) rootView;
 
       id = R.id.likes;
       SparkButton likes = ViewBindings.findChildViewById(rootView, id);
@@ -167,9 +167,9 @@ public final class BotttomSheetLayoutBinding implements ViewBinding {
       }
 
       return new BotttomSheetLayoutBinding((LinearLayoutCompat) rootView, addToFavouriteTextView,
-          bottomSheeContainer, likes, mapsItemProfile, popLocationTexview, popUpDescriptionTextView,
-          popUpDescriptionTextViewThreee, popUpDescriptionTextViewTwo, share, shareImageView,
-          visitProfile);
+          bottomSheeContainerProfileProduct, likes, mapsItemProfile, popLocationTexview,
+          popUpDescriptionTextView, popUpDescriptionTextViewThreee, popUpDescriptionTextViewTwo,
+          share, shareImageView, visitProfile);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -331,12 +331,10 @@ public class ActivityUploadVideo extends AppCompatActivity {
     private void Upload()
     {
 
-        if (mImageUri != null) {
-
-
+        if (mImageUri != null)
+        {
 
             getTimeUpload();
-
             Toast.makeText(ActivityUploadVideo.this, "PAGiiS image uploading ...", Toast.LENGTH_SHORT).show();
 
 

@@ -1,10 +1,13 @@
 package pagiisnet.pagiisnet;
 
 import static android.app.Activity.RESULT_OK;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,10 +16,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +40,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,6 +63,7 @@ import java.util.Collections;
 import java.util.List;
 
 import pagiisnet.pagiisnet.Utils.ViewStoreItemAdapter;
+import pl.droidsonroids.gif.GifImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,6 +80,10 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+
+    private WebView webViewLinks;
+    private WebSettings webSettings;
 
 
     private final static int Gallery_Pick = 1;
@@ -94,18 +106,24 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private ImageView saveinfo;
     private ImageView editStatus;
     private ImageView AddContent;
+
+    private ImageView viewProfileStore;
+
+
     private String StringCarrier;
     private String DeleteKeyAlternative;
     private FloatingActionButton videosButton;
     private DatabaseReference mDatabaseRef;
     private DatabaseReference mDatabaseRef_x;
     private DatabaseReference mDatabaseRef_y;
+    private DatabaseReference getStoreProductUpdate;
     private ValueEventListener mDBlistener;
     private DatabaseReference mDatabaseUploads;
     private Button logoutText;
 
     private Fragment oldFragment;
     private ProgressBar mProgressBar;
+    private ProgressBar mProgressBarWebview;
     private StorageTask mUploadTask;
     private androidx.appcompat.widget.Toolbar mToolbar;
     private ImageView profileEMail, profileMobile, profileProffession, profileName;
@@ -121,8 +139,14 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private String onlineUserId;
 
     private TextView profileViews;
+    private String UrlString;
+    private String UrlString2;
+    private String UrlString3;
 
     private TextView profilePosts;
+
+
+    private LinearLayout profileFramelayout;
 
     private TextView profileTags;
 
@@ -132,7 +156,9 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private ImageView mProgressCircle;
 
 
-    public ProfileFragment() {
+
+    public ProfileFragment()
+    {
         // Required empty public constructor
     }
 
@@ -156,13 +182,16 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
     @SuppressLint("RestrictedApi")
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         /*if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }*/
         FirebaseApp.initializeApp(getApplicationContext());
+
+
 
 
         mUploads = new ArrayList<>();
@@ -180,7 +209,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
             mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
             userProfileInfor = FirebaseDatabase.getInstance().getReference("Users").child(User_id);
-
+            getStoreProductUpdate = FirebaseDatabase.getInstance().getReference("SiroccoSite");
 
         }
 
@@ -249,6 +278,319 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         dialog.show();
     }
 
+//Here we open a webview for the webiste of the pagiis profile which has an online shopping site inisde of pagiis
+    private void profileProductWebview()
+
+    {
+
+        webViewLinks.getSettings().setJavaScriptEnabled(true);
+        webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webViewLinks.getSettings().setSupportZoom(true);
+        webViewLinks.getSettings().setLoadsImagesAutomatically(true);
+        webViewLinks.getSettings().setUseWideViewPort(true);
+        webViewLinks.getSettings().setLoadWithOverviewMode(true);
+        webViewLinks.setInitialScale(1);
+
+
+        webViewLinks.loadUrl(UrlString);
+
+
+        webViewLinks.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url)
+            {
+
+                if(view.getProgress() == 100)
+                {
+                    mProgressBarWebview.setVisibility(INVISIBLE);
+
+                }
+                // This method will be called when the page finishes loading
+                // You can put your code to check if it's done loading here
+                // For example, you can set a flag or perform some action
+            }
+        });
+
+
+
+    }
+
+
+    private void showBottomSheetDialog()
+
+    {
+
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogueTheme);
+        View bottomSheetView = LayoutInflater.from(requireContext()).inflate(R.layout.bottom_sheet_expore_profile_product, null);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) View rootView = bottomSheetView.findViewById(R.id.bottomSheeContainerProfileProduct); // Replace with your root layout ID
+
+
+        GifImageView siroccoArtView = bottomSheetView.findViewById(R.id.siroccoArt);
+        GifImageView siroccoFashionView = bottomSheetView.findViewById(R.id.siroccoFashion);
+        Button homeButton = bottomSheetView.findViewById(R.id.home);
+        TextView sharePagiis = bottomSheetView.findViewById(R.id.share);
+
+        siroccoArtView.setOnClickListener(new View.OnClickListener()
+
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                if(UrlString2.compareTo("null")!=0)
+                {
+
+                    webViewLinks.loadUrl(UrlString2);
+                   // mProgressCircle.setVisibility(VISIBLE);
+                    webViewLinks.setVisibility(VISIBLE);
+                    mProgressBarWebview.setVisibility(VISIBLE);
+
+
+                    webViewLinks.setWebViewClient(new WebViewClient() {
+                        @Override
+                        public void onPageFinished(WebView view, String url)
+                        {
+
+                            if(view.getProgress() == 100)
+                            {
+                                //webViewLinks.setVisibility(INVISIBLE);
+                                mProgressBarWebview.setVisibility(INVISIBLE);
+
+                            }
+                            // This method will be called when the page finishes loading
+                            // You can put your code to check if it's done loading here
+                            // For example, you can set a flag or perform some action
+                        }
+                    });
+
+                    bottomSheetDialog.dismiss();
+
+
+                }else
+                {
+
+                    Toast.makeText(getActivity(), "Please make sure to open an online store before adding products", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        });
+
+        sharePagiis.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(UrlString));
+                intent.setType("text/plain");
+
+                if (getActivity() != null && getActivity().getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
+                    // There is an activity that can handle the intent
+
+                    startActivity(intent);
+
+                } else
+                {
+                    // There is no activity that can handle the intent
+                }
+
+
+            }
+        });
+
+
+        siroccoFashionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+
+
+                if(UrlString.compareTo("nulll")!=0)
+
+                {
+
+                    webViewLinks.loadUrl(UrlString);
+                    //mProgressCircle.setVisibility(View.VISIBLE);
+                    webViewLinks.setVisibility(VISIBLE);
+                    mProgressBarWebview.setVisibility(VISIBLE);
+
+                    webViewLinks.setWebViewClient(new WebViewClient() {
+                        @Override
+                        public void onPageFinished(WebView view, String url)
+                        {
+
+                            if(view.getProgress() == 100)
+                            {
+                                //webViewLinks.setVisibility(INVISIBLE);
+                                mProgressBarWebview.setVisibility(INVISIBLE);
+
+                            }
+                            // This method will be called when the page finishes loading
+                            // You can put your code to check if it's done loading here
+                            // For example, you can set a flag or perform some action
+                        }
+                    });
+
+                    bottomSheetDialog.dismiss();
+
+
+                }else
+                {
+
+                    Toast.makeText(getActivity(), "Please make sure to open an online store before you can access it", Toast.LENGTH_LONG).show();
+
+
+                }
+
+
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+
+                //Code for the selected option
+                bottomSheetDialog.dismiss();
+
+            }
+        });
+
+
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+
+    }
+
+
+
+    private void showBottomSheetDialogVisitStore()
+
+
+    {
+
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogueTheme);
+        View bottomSheetView = LayoutInflater.from(requireContext()).inflate(R.layout.bottom_sheet_expore_profile_product, null);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) View rootView = bottomSheetView.findViewById(R.id.bottomSheeContainerProfileProduct); // Replace with your root layout ID
+
+        GifImageView siroccoArtView = bottomSheetView.findViewById(R.id.siroccoArt);
+        GifImageView siroccoFashionView = bottomSheetView.findViewById(R.id.siroccoFashion);
+        Button homeButton = bottomSheetView.findViewById(R.id.home);
+        TextView sharePagiis = bottomSheetView.findViewById(R.id.share);
+
+        siroccoArtView.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                webViewLinks.loadUrl(UrlString2);
+                mProgressCircle.setVisibility(VISIBLE);
+
+                webViewLinks.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public void onPageFinished(WebView view, String url)
+                    {
+
+                        if(view.getProgress() == 100)
+                        {
+                            mProgressCircle.setVisibility(INVISIBLE);
+                            profileFramelayout.setVisibility(INVISIBLE);
+
+                        }
+                        // This method will be called when the page finishes loading
+                        // You can put your code to check if it's done loading here
+                        // For example, you can set a flag or perform some action
+                    }
+                });
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        sharePagiis.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(UrlString));
+                intent.setType("text/plain");
+
+                if (getActivity() != null && getActivity().getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
+                    // There is an activity that can handle the intent
+
+                    startActivity(intent);
+
+                } else
+                {
+                    // There is no activity that can handle the intent
+                }
+
+
+            }
+        });
+
+
+        siroccoFashionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                webViewLinks.loadUrl(UrlString);
+                mProgressCircle.setVisibility(VISIBLE);
+
+
+                webViewLinks.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public void onPageFinished(WebView view, String url)
+                    {
+
+                        if(view.getProgress() == 100)
+                        {
+                            //webViewLinks.setVisibility(INVISIBLE);
+                            mProgressBarWebview.setVisibility(INVISIBLE);
+
+                        }
+                        // This method will be called when the page finishes loading
+                        // You can put your code to check if it's done loading here
+                        // For example, you can set a flag or perform some action
+                    }
+                });
+
+                bottomSheetDialog.dismiss();
+
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+
+                //Code for the selected option
+                bottomSheetDialog.dismiss();
+
+            }
+        });
+
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+
+    }
 
     private void checkifAdmindTrue()
     {
@@ -305,7 +647,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                    mProgressBar.setVisibility(View.INVISIBLE);
+                    mProgressBar.setVisibility(INVISIBLE);
 
                     String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
                     String status = dataSnapshot.child("userDefaultStatus").getValue().toString();
@@ -316,6 +658,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     String facebookLink = dataSnapshot.child("facebookLink").getValue().toString();
                     String twitterLink = dataSnapshot.child("twitterLink").getValue().toString();
                     String instagramLink = dataSnapshot.child("instagramLink").getValue().toString();
+                    UrlString = instagramLink; //This is for StoreUrl
+                    UrlString2 = twitterLink;//This is for adding product to the store
 
                     userName.setText(name);//Returning The Email as userName for now...
                     Status.setText(status);
@@ -469,13 +813,13 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     Collections.reverse(mUploads);
                     // Notify adapter that data set has changed
                     mAdapter.notifyDataSetChanged();
-                    AddContent.setVisibility(View.INVISIBLE);
+                    AddContent.setVisibility(INVISIBLE);
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                    mProgressCircle.setVisibility(View.INVISIBLE);
+                    mProgressCircle.setVisibility(INVISIBLE);
                 }
             });
 
@@ -483,10 +827,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         } else  {
 
 
-
-
             Bundle bundle = getArguments();
-
 
 
             if (bundle != null)
@@ -495,7 +836,6 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                 
                 // Now you can use receivedData
                 getUserProfileDataRef = FirebaseDatabase.getInstance().getReference("Users");
-
                 mDatabaseRef_x = FirebaseDatabase.getInstance().getReference("uploads").child(onlineUserId);
                 mDatabaseRef_y = FirebaseDatabase.getInstance().getReference("Tags").child(onlineUserId);
                 getUserProfileDataRef.keepSynced(true);
@@ -515,6 +855,12 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                         String facebookLink = dataSnapshot.child("facebookLink").getValue().toString();
                         String twitterLink = dataSnapshot.child("twitterLink").getValue().toString();
                         String instagramLink = dataSnapshot.child("instagramLink").getValue().toString();
+                        String profileProfession = dataSnapshot.child("proffession").getValue().toString();
+
+
+                        UrlString3 = facebookLink;//This is for StoreUrl for the customers
+                        UrlString = instagramLink; //This is for StoreUrl
+                        UrlString2 = twitterLink;//This is for adding product to the store
 
                         userName.setText(name);//Returning The Email as userName for now...
                         Status.setText(status);
@@ -537,6 +883,21 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                             requestNameEdit();
                         }
 
+                        if(profileProfession.compareTo("Proffession")!=0)
+
+                        {
+                            viewProfileStore.setVisibility(VISIBLE);
+                            viewProfileStore.setEnabled(true);
+
+                        }else
+                        {
+
+                            viewProfileStore.setVisibility(INVISIBLE);
+                            viewProfileStore.setEnabled(false);
+
+
+                        }
+
                     }
 
                     @Override
@@ -555,12 +916,6 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
             //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
-
-
-
-
-
 
             mDatabaseRef_y.child(onlineUserId).orderByValue().equalTo(onlineUserId).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -678,13 +1033,13 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
                     Collections.reverse(mUploads);
                     mAdapter.notifyDataSetChanged();
-                    AddContent.setVisibility(View.INVISIBLE);
+                    AddContent.setVisibility(INVISIBLE);
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                    mProgressCircle.setVisibility(View.INVISIBLE);
+                    mProgressCircle.setVisibility(INVISIBLE);
                 }
             });
 
@@ -763,7 +1118,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             Toast.makeText(getActivity(), "here is the uri: " + resultUri, Toast.LENGTH_SHORT).show();
 
             if (mUploadTask == null || !mUploadTask.isInProgress()) {
-                mProgressBar.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(VISIBLE);
                 Upload(resultUri);
                 Log.d("Fragment", "Starting upload");
             } else {
@@ -861,8 +1216,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
                             mProgressBar.setProgress((int) progress);
-                            mProgressBar.setVisibility(View.VISIBLE);
-                            changeDp.setVisibility(View.INVISIBLE);
+                            mProgressBar.setVisibility(VISIBLE);
+                            changeDp.setVisibility(INVISIBLE);
                         }
                     });
         } else {
@@ -905,13 +1260,22 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
 
+        webViewLinks = rootView.findViewById(R.id.webview);
+        webSettings = webViewLinks.getSettings();
+        profileFramelayout = rootView.findViewById(R.id.ProfileLayout);
+
+
         userImageDp = rootView.findViewById(R.id.ImageDP);
         //closeLinkView = rootView.findViewById(R.id.close_link);
         userName = rootView.findViewById(R.id.profileName);
         PostTitle = rootView.findViewById(R.id.post_title);
         Status = rootView.findViewById(R.id.profileStatus);
         logoutText = rootView.findViewById(R.id.LogoutText);
+
+        viewProfileStore = rootView.findViewById(R.id.profileStoreOptionButton);
+
         mProgressBar = rootView.findViewById(R.id.progress_circle_own_profile);
+        mProgressBarWebview = rootView.findViewById(R.id.progress_circle_webview);
         //facebookIcon = rootView.findViewById(R.id.facebookLinkIcon);
         //twitterIcon = rootView.findViewById(R.id.tweeterIcon);
         //instagramIcon = rootView.findViewById(R.id.instagramIcon);
@@ -927,6 +1291,11 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
         profileProffession.setEnabled(false);
+        viewProfileStore.setEnabled(false);
+        viewProfileStore.setVisibility(INVISIBLE);
+
+        webViewLinks.setVisibility(INVISIBLE);
+        mProgressBarWebview.setVisibility(INVISIBLE);
 
         //userMemelayout = rootView.findViewById(R.id.userMemeCardView);
 
@@ -946,25 +1315,21 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
         AddContent.setEnabled(false);
-        AddContent.setVisibility(View.INVISIBLE);
+        AddContent.setVisibility(INVISIBLE);
 
 
         changeDp.setEnabled(false);
-        changeDp.setVisibility(View.INVISIBLE);
+        changeDp.setVisibility(INVISIBLE);
 
         logoutText.setEnabled(false);
-        logoutText.setVisibility(View.INVISIBLE);
+        logoutText.setVisibility(INVISIBLE);
 
         editStatus.setEnabled(false);
-
-
-
 
         profilePosts = rootView.findViewById(R.id.userProfilePosts);
         profileTags = rootView.findViewById(R.id.userProfileConnected);
         profileViews = rootView.findViewById(R.id.userProfileViews);
         userContactDetails = rootView.findViewById(R.id.profile_contact_details);
-
 
         //facebookLinkTextView = rootView.findViewById(R.id.faceboolinkTextview);
         //twitterLinkTextView = rootView.findViewById(R.id.tweeterLinkTexview);
@@ -1038,6 +1403,43 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         });
 
 
+        //Here we open the store of the profile the user has visited
+        viewProfileStore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                view.findViewById(R.id.profileStoreOptionButton);
+                String visited_user_key = null;
+                mProgressBarWebview.setVisibility(VISIBLE);
+
+                Bundle extras = getActivity().getIntent().getExtras();
+
+                Bundle arguments = getArguments();
+
+                if(arguments != null)
+
+                {
+                    String name = getArguments().getString("visited_user_id");
+
+                    if (name!= null && !(name.compareTo(mAuth.getCurrentUser().getUid())==0) && UrlString.compareTo("nulll")!=0 ) {
+
+                        //mProgressBarWebview.setVisibility(INVISIBLE);
+                        //profileFramelayout.setVisibility(INVISIBLE);
+                        webViewLinks.setVisibility(VISIBLE);
+                        mProgressBarWebview.setVisibility(INVISIBLE);
+
+                    }else
+                    {
+                        Toast.makeText(getActivity(),"This profile does not have an online store open", Toast.LENGTH_LONG).show();
+                    }
+                }else
+                {
+                    showBottomSheetDialog();
+                }
+            }
+        });
+
+
 
         imageviewAnim.setEventListener(new SparkEventListener() {
             @SuppressLint("RestrictedApi")
@@ -1064,6 +1466,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
             }
         });
+
+        profileProductWebview();
 
 
 
@@ -1125,11 +1529,13 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     {
 
         changeDp.setEnabled(true);
-        changeDp.setVisibility(View.VISIBLE);
+        changeDp.setVisibility(VISIBLE);
         editStatus.setEnabled(true);
         profileProffession.setEnabled(true);
-        logoutText.setVisibility(View.VISIBLE);
+        logoutText.setVisibility(VISIBLE);
         logoutText.setEnabled(true);
+
+
     }
 
     @Override

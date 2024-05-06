@@ -1,662 +1,666 @@
 [
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/meme_item_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/meme_item_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_pagiis_max_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_pagiis_max_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_student_register.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_student_register.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\maps_search_item_two.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\maps_search_item_two.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/drawer_layout.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/drawer_layout.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_link_post.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_link_post.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/notification_view_layout.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/notification_view_layout.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\radius_user_list_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\radius_user_list_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_splash_intro_one.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_splash_intro_one.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_buy_end_edit.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_buy_end_edit.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_music.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_music.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_item_viewers.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_item_viewers.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/age_dialog_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/age_dialog_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\app_bar_layout.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\app_bar_layout.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/maps_search_item_two.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/maps_search_item_two.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\live_events_and_ripples.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\live_events_and_ripples.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_login.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_login.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\bottom_sheet_expore.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\bottom_sheet_expore.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_user_post.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_user_post.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_streams.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_streams.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_notification.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_notification.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\friends_list_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\friends_list_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_fashion.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_fashion.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_own_profile.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_own_profile.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirocco_profile.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirocco_profile.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_main_video_upload.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_main_video_upload.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/store_item_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/store_item_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\test_this_shiit.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\test_this_shiit.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_event_content_upload.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_event_content_upload.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\sirroce_item_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\sirroce_item_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_request_max_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_request_max_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_register.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_register.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_gallery_uploads.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_gallery_uploads.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\alert_edit_filename.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\alert_edit_filename.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_art.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_art.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\video_view_item_two.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\video_view_item_two.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_own_profile.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_own_profile.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_user_max_image.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_user_max_image.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/sirocco_expore.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/sirocco_expore.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_tabs.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_tabs.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/view_user_meme_item_link.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/view_user_meme_item_link.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\event_closed_notice.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\event_closed_notice.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_toast_custom_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_toast_custom_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\friend_request_cardview.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\friend_request_cardview.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/chatting_message_item_r.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/chatting_message_item_r.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/custom_bar_notifications.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/custom_bar_notifications.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_upload_video.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_upload_video.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/botttom_sheet_layout.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/botttom_sheet_layout.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_on_chatting.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_on_chatting.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirocco_promo_videos.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirocco_promo_videos.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_radius_users.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_radius_users.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_video_streaming.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_video_streaming.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_event_profile.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_event_profile.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sell_item_post.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sell_item_post.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirroco_music_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirroco_music_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/alert_status_edit.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/alert_status_edit.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\botttom_sheet_layout.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\botttom_sheet_layout.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/view_user_video_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/view_user_video_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\notifications_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\notifications_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/maps_searched_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/maps_searched_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\alert_max_dialog_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\alert_max_dialog_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_event_profile.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_event_profile.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_user_profile.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_user_profile.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_verify_cellphonenumber_login.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_verify_cellphonenumber_login.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_verify_cellphonenumber_login.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_verify_cellphonenumber_login.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/sir_occo_bar_layout.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/sir_occo_bar_layout.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_video_trimmer.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_video_trimmer.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/friend_request_cardview.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/friend_request_cardview.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_music.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_music.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_main_video_upload.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_main_video_upload.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_video.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_video.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_pagiis_max_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_pagiis_max_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirocco_page.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirocco_page.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_contact_request_list.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_contact_request_list.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\view_user_video_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\view_user_video_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_set_profile_dialogue_box.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_set_profile_dialogue_box.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\stream_video_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\stream_video_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/test_this_shiit.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/test_this_shiit.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sell_item_post.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sell_item_post.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/notifications_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/notifications_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_profile_service.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_profile_service.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_bought_item_max_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_bought_item_max_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\alert_facebook_link_edit.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\alert_facebook_link_edit.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_on_chatting.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_on_chatting.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\notification_view_layout.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\notification_view_layout.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/app_bar_layout.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/app_bar_layout.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_sirocco.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_sirocco.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirroco_music_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirroco_music_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirroco_post.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirroco_post.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_student_login.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_student_login.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_student_register.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_student_register.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_home.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_home.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_cart.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_cart.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/item_viewers_itemview.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/item_viewers_itemview.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_notifications.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_notifications.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_upload_image.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_upload_image.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\age_dialog_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\age_dialog_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_online_shop_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_online_shop_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_store_bank_details.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_store_bank_details.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/chats_list_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/chats_list_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_users_videos.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_users_videos.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_video_posts.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_video_posts.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirocco_promo_videos.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirocco_promo_videos.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_video_streams.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_video_streams.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_video_upload.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_video_upload.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/receipt_verification.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/receipt_verification.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\chats_custom_bar.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\chats_custom_bar.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_welcome_motion_layout.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_welcome_motion_layout.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_gallery_uploads.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_gallery_uploads.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/video_item_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/video_item_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_bought_item_max_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_bought_item_max_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_visit_user_posts.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_visit_user_posts.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\customer_buy_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\customer_buy_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_store_bank_details.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_store_bank_details.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\alert_status_edit.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\alert_status_edit.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/view_from_maps_profile.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/view_from_maps_profile.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_welcome_motion_layout.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_welcome_motion_layout.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/sirocco_viewpager_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/sirocco_viewpager_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\sir_occo_bar_layout.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\sir_occo_bar_layout.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_cart.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_cart.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\onboarding_slideview.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\onboarding_slideview.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_video.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_video.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\sirocco_viewpager_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\sirocco_viewpager_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/bottom_sheet_profile_service.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/bottom_sheet_profile_service.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_maps_drawer.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_maps_drawer.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirocco_max_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirocco_max_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\meme_item_view_link.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\meme_item_view_link.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_splash_intro_two.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_splash_intro_two.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_visit_user_posts.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_visit_user_posts.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/view_user_deafualt_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/view_user_deafualt_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\view_from_maps_profile.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\view_from_maps_profile.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_my_cart.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_my_cart.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_on_boarding.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_on_boarding.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_users_memes.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_users_memes.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_online_shop_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_online_shop_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/video_view_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/video_view_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_first_time_profile_config.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_first_time_profile_config.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/maps_category_profile_itemview.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/maps_category_profile_itemview.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_upload_image.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_upload_image.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_profile_service.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_profile_service.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_videow_viewing.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_videow_viewing.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_tabs.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_tabs.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_notification.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_notification.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_splash_intro_three.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_splash_intro_three.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\view_user_deafualt_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\view_user_deafualt_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\view_user_meme_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\view_user_meme_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_event.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_event.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_meme_page.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_meme_page.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_contact_request_list.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_contact_request_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirroco_image_upload.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirroco_image_upload.xml"
     },
     {
         "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_profile.xml",
         "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_profile.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_camera.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_camera.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_video_streaming.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_video_streaming.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_register.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_register.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_student_login.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_student_login.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_buy_end_edit.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_buy_end_edit.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_fashion.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_fashion.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/radius_user_list_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/radius_user_list_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_art.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_art.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/star_rate_sirocco.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/star_rate_sirocco.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\custom_bar_notifications.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\custom_bar_notifications.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirroco_image_upload.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirroco_image_upload.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_splash_intro_two.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_splash_intro_two.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/send_contact_request.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/send_contact_request.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_users_memes.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_users_memes.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_splash_intro_three.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_splash_intro_three.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\maps_searched_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\maps_searched_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_item_viewers.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_item_viewers.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_testin.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_testin.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/custom_bar_upload.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/custom_bar_upload.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\maps_view_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\maps_view_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_notifications.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_notifications.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_user_contact_details.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_user_contact_details.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/alert_twitter_link_edit.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/alert_twitter_link_edit.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_gallery.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_gallery.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_users_videos.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_users_videos.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_fashion.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_fashion.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/forgortpassword_edit.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/forgortpassword_edit.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\pagiis_notifications_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\pagiis_notifications_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_fashion.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_fashion.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_event_preview_edit.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_event_preview_edit.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/meme_item_view_link.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/meme_item_view_link.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_business.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_business.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_upload_video.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_upload_video.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_my_cart.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_my_cart.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_admin_cart_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_admin_cart_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_catch_up.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_catch_up.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_on_boarding.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_on_boarding.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\store_item_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\store_item_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_event.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_event.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\maps_category_profile_itemview.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\maps_category_profile_itemview.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_link_post.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_link_post.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\any_link_post.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\any_link_post.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_splash.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\chats_list_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\chats_list_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/event_closed_notice.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/event_closed_notice.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\view_store_item_list.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\view_store_item_list.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_create_online_shop.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_create_online_shop.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_visit_profile_posts.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_visit_profile_posts.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_videow_viewing.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_videow_viewing.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_event_content_upload.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_event_content_upload.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_event_preview_edit.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_event_preview_edit.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirocco_max_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirocco_max_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/view_store_item_list.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/view_store_item_list.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\pin_image_dialog.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\pin_image_dialog.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_meme_page.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_meme_page.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirocco_profile.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirocco_profile.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_streams.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_streams.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\walkin_full_screen_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\walkin_full_screen_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_maps.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_maps.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\edit_conatct_details.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\edit_conatct_details.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/request_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/request_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_cellphone_login.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_cellphone_login.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/chats_update_infor.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/chats_update_infor.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\forgortpassword_edit.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\forgortpassword_edit.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/edit_conatct_details.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/edit_conatct_details.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\bottom_sheet_profile_service.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\bottom_sheet_profile_service.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/alert_instagram_link.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/alert_instagram_link.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_login.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_radius_users.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_radius_users.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_customer_purchase.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_customer_purchase.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\star_rate_sirocco.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\star_rate_sirocco.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_video_upload.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_video_upload.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\alert_instagram_link.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\alert_instagram_link.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/notification_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/notification_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\max_view_pop_up.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\max_view_pop_up.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_multi_post.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_multi_post.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\chatting_message_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\chatting_message_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/customer_buy_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/customer_buy_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_user_post.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_user_post.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_gallery.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_gallery.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_video_streams.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_video_streams.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/pagiis_notifications_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/pagiis_notifications_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_create_online_shop.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_create_online_shop.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/maps_view_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/maps_view_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_music.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_music.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/walkin_full_screen_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/walkin_full_screen_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\profile_service_item_selector.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\profile_service_item_selector.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_first_time_profile_config.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_first_time_profile_config.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\meme_item_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\meme_item_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/maps_view_cart_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/maps_view_cart_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\maps_view_cart_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\maps_view_cart_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/view_user_meme_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/view_user_meme_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_admin_cart_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_admin_cart_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/max_view_pop_up.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/max_view_pop_up.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\alert_twitter_link_edit.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\alert_twitter_link_edit.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_catch_up.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_catch_up.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\request_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\request_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_start_up.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_start_up.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\chats_update_infor.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\chats_update_infor.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_music.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_music.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\thank_you_sir.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\thank_you_sir.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirroco_post.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirroco_post.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_link_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_link_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/sirroce_item_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/sirroce_item_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_request_max_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_request_max_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/online_user_item_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/online_user_item_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\custom_bar_upload.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\custom_bar_upload.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_create_event.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_create_event.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_main.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirocco_page.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirocco_page.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\item_viewers_itemview.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\item_viewers_itemview.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_sirocco.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_sirocco.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_profile.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_profile.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/alert_edit_filename.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/alert_edit_filename.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\chatting_message_item_r.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\chatting_message_item_r.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_testin.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_testin.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\video_item_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\video_item_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_link_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_link_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_video_posts.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_video_posts.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_art.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_art.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_splash_intro_one.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_splash_intro_one.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/event_admin_control.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/event_admin_control.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\logout_dialog.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\logout_dialog.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirocco_bottom_nav_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirocco_bottom_nav_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_maps.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_maps.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirocco_music.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirocco_music.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\online_user_item_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\online_user_item_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/video_view_item_two.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/video_view_item_two.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\event_admin_control.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\event_admin_control.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/maps_search_view_popup.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/maps_search_view_popup.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_create_event.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_create_event.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/bottom_sheet_expore.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/bottom_sheet_expore.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\view_user_meme_item_link.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\view_user_meme_item_link.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/live_events_and_ripples.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/live_events_and_ripples.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_view_online_purchases.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_view_online_purchases.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_event_video_upload.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_event_video_upload.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_customer_purchase.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_customer_purchase.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/stream_video_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/stream_video_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\drawer_layout.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\drawer_layout.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_video_trimmer.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_video_trimmer.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_set_profile_dialogue_box.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_set_profile_dialogue_box.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_visit_profile_posts.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_visit_profile_posts.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\video_view_item.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\video_view_item.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/thank_you_sir.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/thank_you_sir.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\maps_search_view_popup.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\maps_search_view_popup.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/chatting_message_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/chatting_message_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\sirocco_expore.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\sirocco_expore.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_business.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_business.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\notification_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\notification_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/onboarding_slideview.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/onboarding_slideview.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_toast_custom_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_toast_custom_view.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/any_link_post.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/any_link_post.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirocco_online_stores.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirocco_online_stores.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/friends_list_item.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/friends_list_item.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\receipt_verification.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\receipt_verification.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_user_max_image.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_user_max_image.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_camera.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_camera.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/logout_dialog.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/logout_dialog.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_multi_post.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_multi_post.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_maps_drawer.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_maps_drawer.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_start_up.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_start_up.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/chats_custom_bar.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/chats_custom_bar.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_art.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_art.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/alert_max_dialog_view.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/alert_max_dialog_view.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\send_contact_request.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\send_contact_request.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/alert_facebook_link_edit.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/alert_facebook_link_edit.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_event_video_upload.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_event_video_upload.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_sirocco_online_stores.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_sirocco_online_stores.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirocco_music.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirocco_music.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/pin_image_dialog.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/pin_image_dialog.xml"
-    },
-    {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_cellphone_login.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_cellphone_login.xml"
-    },
-    {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/profile_service_item_selector.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/profile_service_item_selector.xml"
-    },
-    {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_user_contact_details.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_user_contact_details.xml"
-    },
-    {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_main.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_main.xml"
-    },
-    {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_online_purchases.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_online_purchases.xml"
-    },
-    {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_user_profile.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_user_profile.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirocco_bottom_nav_view.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirocco_bottom_nav_view.xml"
     }
 ]
