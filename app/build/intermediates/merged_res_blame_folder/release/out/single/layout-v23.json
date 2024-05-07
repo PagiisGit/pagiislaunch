@@ -4,6 +4,10 @@
         "source": "pagiisnet.pagiisnet.app-main-7:/layout-v23/bottom_sheet_expore_profile_product.xml"
     },
     {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout-v23\\bottom_sheet_expore_profile_product.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout-v23\\bottom_sheet_expore_profile_product.xml"
+    },
+    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout-v23\\activity_maps.xml",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout-v23\\activity_maps.xml"
     }

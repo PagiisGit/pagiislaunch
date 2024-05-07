@@ -158,13 +158,9 @@
             android:textColor="@color/colorPrimaryText"
             android:textSize="15sp">
 
-
         </TextView>
 
-
-
     </LinearLayout>
-
 
 
     <LinearLayout
@@ -181,12 +177,12 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/shareImageView"
             android:clickable="true"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_share"
+            android:src="@drawable/share_new"
             android:layout_marginStart="10dp">
 
 

@@ -52,12 +52,13 @@
                 android:layout_height="80dp">
 
                 <pl.droidsonroids.gif.GifImageView
-                    android:layout_width="match_parent"
-                    android:scaleType="centerCrop"
-                    android:clickable="true"
                     android:id="@+id/siroccoArt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/origami"
-                    android:layout_height="match_parent">
+                    tools:ignore="SpeakableTextPresentCheck">
 
                 </pl.droidsonroids.gif.GifImageView>
 
@@ -239,19 +240,21 @@
         android:padding="12dp">
 
 
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:clickable="true"
+        <com.varunest.sparkbutton.SparkButton
             android:id="@+id/likes"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_like_it"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            app:sparkbutton_activeImage="@drawable/add_update"
+            app:sparkbutton_iconSize="30dp"
+            app:sparkbutton_inActiveImage="@drawable/add_update"
+            app:sparkbutton_primaryColor="@color/bluelight"
+            app:sparkbutton_secondaryColor="@color/EndBlue"
+            tools:ignore="SpeakableTextPresentCheck">
 
-            android:layout_marginStart="10dp">
 
-
-        </androidx.appcompat.widget.AppCompatImageView>
+        </com.varunest.sparkbutton.SparkButton>
 
 
         <TextView
@@ -260,7 +263,7 @@
             android:id="@+id/addToFavouriteTextView"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="25dp"
-            android:text="@string/add_to_favourite"
+            android:text="More"
             android:textColor="@color/colorPrimaryText"
             android:textSize="15sp">
 
@@ -287,12 +290,12 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/shareImageView"
             android:clickable="true"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_share"
+            android:src="@drawable/share_new"
             android:layout_marginStart="10dp">
 
 

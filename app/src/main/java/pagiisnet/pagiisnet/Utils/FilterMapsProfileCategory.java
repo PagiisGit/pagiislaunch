@@ -124,7 +124,7 @@ public class FilterMapsProfileCategory extends RecyclerView.Adapter<FilterMapsPr
             public void onClick(View view)
             {
 
-                view.findViewById(R.id.sirocco_image_view);
+                //view.findViewById(R.id.sirocco_image_view);
                 mListener.onItemClickMapsProfileCategory(position);
 
             }
@@ -134,7 +134,9 @@ public class FilterMapsProfileCategory extends RecyclerView.Adapter<FilterMapsPr
             @Override
             public void onClick(View view) {
                 // Assuming R.drawable.bg_item_selected is the ID of your drawable resource
-                holder.primarylayoutView.setBackgroundResource(R.drawable.bg_item_selcted);
+
+                mListener.onItemClickMapsProfileCategory(position);
+                //holder.primarylayoutView.setBackgroundResource(R.drawable.bg_item_selcted);
             }
         });
 
@@ -163,7 +165,7 @@ public class FilterMapsProfileCategory extends RecyclerView.Adapter<FilterMapsPr
         public ImageViewHolder(View itemView) {
             super(itemView);
 
-            textViewName = itemView.findViewById(R.id.sirocco_brand_model);
+            textViewName = itemView.findViewById(R.id.profileServiceCategory);
             textViewNameTwo = itemView.findViewById(R.id.profileServiceCategoryDescription);
             imageView = itemView.findViewById(R.id.profileServiceImage);
 

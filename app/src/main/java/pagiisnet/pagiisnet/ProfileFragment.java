@@ -332,6 +332,36 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         Button homeButton = bottomSheetView.findViewById(R.id.home);
         TextView sharePagiis = bottomSheetView.findViewById(R.id.share);
 
+
+        SparkButton addToFavourite = bottomSheetView.findViewById(R.id.likes);
+
+        addToFavourite.setEventListener(new SparkEventListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+                if (buttonState) {
+
+
+                    Toast.makeText(getApplicationContext(), "add to favourite!", Toast.LENGTH_SHORT).show();
+                } else {
+
+
+                    Toast.makeText(getApplicationContext(), "remove from favourite!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+
+            }
+        });
+
+
         siroccoArtView.setOnClickListener(new View.OnClickListener()
 
         {

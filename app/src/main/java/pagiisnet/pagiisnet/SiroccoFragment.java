@@ -15,6 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,10 +37,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.varunest.sparkbutton.SparkButton;
+import com.varunest.sparkbutton.SparkEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import pagiisnet.pagiisnet.Utils.FilterMapsProfileCategory;
 import pagiisnet.pagiisnet.Utils.ViewStoreItemAdapter;
 import pl.droidsonroids.gif.GifImageView;
 
@@ -47,28 +53,51 @@ import pl.droidsonroids.gif.GifImageView;
  * Use the {@link SiroccoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.OnItemClickListener {
+public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.OnItemClickListener, FilterMapsProfileCategory.OnItemClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private void showBottomSheetDialog()
-
-    {
+    private void showBottomSheetDialog() {
 
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogueTheme);
         View bottomSheetView = LayoutInflater.from(requireContext()).inflate(R.layout.sirocco_expore, null);
 
         View rootView = bottomSheetView.findViewById(R.id.siroccoBottomSheetContainer); // Replace with your root layout ID
 
-
         GifImageView siroccoArtView = bottomSheetView.findViewById(R.id.siroccoArt);
         GifImageView siroccoMusicView = bottomSheetView.findViewById(R.id.siroccoMusic);
         GifImageView siroccoFashionView = bottomSheetView.findViewById(R.id.siroccoFashion);
         Button homeButton = bottomSheetView.findViewById(R.id.home);
         TextView sharePagiis = bottomSheetView.findViewById(R.id.share);
+
+        SparkButton addToFavourite = bottomSheetView.findViewById(R.id.likes);
+
+        addToFavourite.setEventListener(new SparkEventListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+
+
+                    //filterProfileByCategory();
+                    mRecyclerViewProfileCategory.setVisibility(View.VISIBLE);
+                    bottomSheetDialog.dismiss();
+
+
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+
+            }
+        });
 
         siroccoArtView.setOnClickListener(new View.OnClickListener()
 
@@ -161,11 +190,22 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
     private DatabaseReference mDatabaseRef_x;
     private DatabaseReference mDatabaseRef;
 
+    private RecyclerView mRecyclerViewProfileCategory;
+
+    private DatabaseReference mDatabaseRef_Y;
+    private DatabaseReference mDatabaseRef_Z;
+
+    private List<ImageUploads> mUploadsProfileCategory;
+
+    private FilterMapsProfileCategory mAdapterProfileCategory;
+
     private ValueEventListener mDBlistener;
     private WebView webViewLinks;
     private WebSettings webSettings;
 
     private List<ImageUploads> mUploads, mUploads1;
+
+
 
     private RecyclerView mRecyclerView;
 
@@ -233,6 +273,13 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
         mUploads = new ArrayList<>();
         mUploads1 = new ArrayList<>();
+        mUploadsProfileCategory = new ArrayList<>();
+
+        mUploads1 = new ArrayList<>();
+
+
+
+       // mAdapterProfileCategory = new FilterMapsProfileCategory(getApplicationContext(), mUploadsProfileCategory);
 
 
         //shareItemId = "https://pagiisnetwork.wixsite.com/sirocco";
@@ -288,10 +335,61 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
         }*/
 
         retrieveAllOnlineStores();
+        filterProfileByCategory();
 
+    }
+
+
+    public void filterProfileByCategory()
+    {
+
+        //getDataNormally();
+
+            mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("SiroccoServiceList");
+
+
+            mDBlistener = mDatabaseRef_Y.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists())
+                    {
+
+                        //mapsViewSearcCardMax.setVisibility(View.VISIBLE);
+                        //mRecyclerView.setVisibility(View.VISIBLE);
+                        // recyclerProgressBar.setVisibility(View.INVISIBLE);
+                        mUploadsProfileCategory.clear();
+
+
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
+                        {
+                            ImageUploads upload = postSnapshot.getValue(ImageUploads.class);
+                            upload.setKey(postSnapshot.getKey());
+                            mUploadsProfileCategory.add(upload);
+
+                        }
+
+
+                        Collections.shuffle(mUploadsProfileCategory);
+                        mAdapterProfileCategory.notifyDataSetChanged();
+                        //publicProfilePostsCardView.setVisibility(View.VISIBLE);
+
+                    }
+
+                }
+
+                @SuppressLint("RestrictedApi")
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+                    Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    //recyclerProgressBar.setVisibility(View.INVISIBLE);
+                }
+            });
 
 
     }
+
 
     private void retrieveAllOnlineStores()
 
@@ -313,7 +411,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                         if (postSnapshot.getKey().compareTo("store1") == 0) {
                             UrlString = upload.getExRating();
                             webViewLinks.getSettings().setJavaScriptEnabled(true);
-                   	    webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+                   	        webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                             webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
                             webViewLinks.getSettings().setSupportZoom(true);
                             webViewLinks.getSettings().setLoadsImagesAutomatically(true);
@@ -362,7 +460,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
     {
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("SiroccoSite");
+        mDatabaseRef_x = FirebaseDatabase.getInstance().getReference("SiroccoSite");
 
         Query mSearchQuery = mDatabaseRef.orderByChild("category").startAt(currentView).endAt(currentView + "\uf8ff");
 
@@ -382,6 +480,72 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                     {
                         UrlString = upload.getExRating();
 
+                        webViewLinks.getSettings().setJavaScriptEnabled(true);
+                        webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+                        webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+                        webViewLinks.getSettings().setSupportZoom(true);
+                        webViewLinks.getSettings().setLoadsImagesAutomatically(true);
+                        webViewLinks.getSettings().setUseWideViewPort(true);
+                        webViewLinks.getSettings().setLoadWithOverviewMode(true);
+                        webViewLinks.loadUrl(UrlString);
+
+
+                        webViewLinks.setWebViewClient(new WebViewClient() {
+                            @Override
+                            public void onPageFinished(WebView view, String url)
+                            {
+
+                                if(view.getProgress() == 100)
+                                {
+                                    mRecyclerViewProfileCategory.setVisibility(View.INVISIBLE);
+                                    mProgressCircle.setVisibility(View.INVISIBLE);
+
+                                }
+                                // This method will be called when the page finishes loading
+                                // You can put your code to check if it's done loading here
+                                // For example, you can set a flag or perform some action
+                            }
+                        });
+                    }
+                }
+
+                mAdapter.notifyDataSetChanged();
+                //  AddContent.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                // mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+        });
+
+    }
+
+
+    private void getMoreServiceCategory(String currentView)
+
+    {
+
+        mDatabaseRef_Z = FirebaseDatabase.getInstance().getReference("SiroccoSite");
+
+        Query mSearchQuery = mDatabaseRef.orderByChild("category").startAt(currentView).endAt(currentView + "\uf8ff");
+
+
+        mSearchQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                mUploads.clear();
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    ImageUploads upload = postSnapshot.getValue(ImageUploads.class);
+                    upload.setKey(postSnapshot.getKey());
+                    mUploads.add(upload);
+
+                    if (postSnapshot.getKey().compareTo("service1") ==0)
+                    {
+                        UrlString = upload.getExRating();
                         webViewLinks.getSettings().setJavaScriptEnabled(true);
                         webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                         webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
@@ -423,6 +587,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -447,10 +612,26 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
         mProgressCircle = rootView.findViewById(R.id.progress_circle_user_memes);
 
+        mRecyclerViewProfileCategory = rootView.findViewById(R.id.mapsProfileCategory);
+
+        @SuppressLint("RestrictedApi") LinearLayoutManager linearLayoutManagerProfileCategory = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
+        @SuppressLint("RestrictedApi") LinearLayoutManager linearLayoutManagerX = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false);
+
+        //mapsRecyclerView.setLayoutManager(linearLayoutManager);
+        //mapSearchRecyclerView.setLayoutManager(linearLayoutManagerR);
+        mRecyclerView.setLayoutManager(linearLayoutManagerProfileCategory);
+
+        mRecyclerViewProfileCategory.setLayoutManager(linearLayoutManagerX);
+
+
+        mRecyclerViewProfileCategory.setHasFixedSize(true);
         mRecyclerView.setHasFixedSize(true);
 
         hideStoreList = rootView.findViewById(R.id.hideStoreList);
         storeItemListCardView = rootView.findViewById(R.id.storeListCardView);
+
+        mRecyclerViewProfileCategory.setVisibility(View.INVISIBLE);
+
 
 
         LinearLayoutManager gridLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -459,10 +640,13 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
         mAdapter = new ViewStoreItemAdapter(getActivity(), mUploads);
         mAdapter2 = new ViewStoreItemAdapter(getActivity(), mUploads);
+        mAdapterProfileCategory = new FilterMapsProfileCategory(getActivity(),mUploadsProfileCategory);
 
         mAdapter.setOnItemClickListener(SiroccoFragment.this);
+        mAdapterProfileCategory.setOnItemClickListener(SiroccoFragment.this);
 
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerViewProfileCategory.setAdapter(mAdapterProfileCategory);
 
         SABRANDS.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceType")
@@ -614,6 +798,38 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
     @Override
     public void onWhatEverClick(int position) {
 
+    }
+
+    @Override
+    public void onItemClickMapsProfileCategory(int position)
+    {
+
+        ImageUploads selectedImage = mUploadsProfileCategory.get(position);
+
+        String selectedKey = selectedImage.getKey();
+
+        String imageUrl = selectedImage.getExRating();
+
+        String category = selectedImage.getPostName();
+        mProgressCircle.setVisibility(View.VISIBLE);
+
+        //mRecyclerViewProfileCategory.setVisibility(View.INVISIBLE);
+
+
+        getOnlineCategory(category);
+        siroccoCategory.setText(category);
+
+
+    }
+
+    @Override
+    public void onWhatEverClickMapsProfileCategory(int position) {
+
+    }
+
+    @Override
+    public CreationExtras getDefaultViewModelCreationExtras() {
+        return super.getDefaultViewModelCreationExtras();
     }
 
     private class Callback extends WebViewClient {

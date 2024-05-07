@@ -189,18 +189,20 @@
 
 
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:clickable="true"
+        <com.varunest.sparkbutton.SparkButton
             android:id="@+id/likes"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_like_it"
+            android:layout_width="35dp"
+            android:layout_gravity="center"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            app:sparkbutton_activeImage="@drawable/ic_heart_red"
+            app:sparkbutton_inActiveImage="@drawable/heart_seletor"
+            app:sparkbutton_iconSize="30dp"
+            app:sparkbutton_primaryColor="@color/Orrnge"
+            app:sparkbutton_secondaryColor="@color/AlertRed">
 
-            android:layout_marginStart="10dp">
 
-
-        </androidx.appcompat.widget.AppCompatImageView>
+        </com.varunest.sparkbutton.SparkButton>
 
 
         <TextView
@@ -236,12 +238,12 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:id="@+id/shareImageView"
             android:clickable="true"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_share"
+            android:src="@drawable/share_new"
             android:layout_marginStart="10dp">
 
 

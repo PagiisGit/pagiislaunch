@@ -74,7 +74,9 @@
             android:textColor="@color/primaryDark"
             android:textSize="10sp"
             android:lines="1"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content">
+
+        </TextView>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
