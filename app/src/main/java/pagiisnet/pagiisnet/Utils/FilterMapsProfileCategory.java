@@ -136,7 +136,7 @@ public class FilterMapsProfileCategory extends RecyclerView.Adapter<FilterMapsPr
                 // Assuming R.drawable.bg_item_selected is the ID of your drawable resource
 
                 mListener.onItemClickMapsProfileCategory(position);
-                //holder.primarylayoutView.setBackgroundResource(R.drawable.bg_item_selcted);
+                holder.primarylayoutView.setBackgroundResource(R.drawable.bg_item_selcted);
             }
         });
 

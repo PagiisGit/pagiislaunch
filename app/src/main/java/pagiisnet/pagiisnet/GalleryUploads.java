@@ -13,6 +13,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
@@ -24,6 +25,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -266,75 +268,170 @@ public class GalleryUploads extends AppCompatActivity
 
                 v.findViewById(R.id.uploadChosenFile);
 
-                if (differentiaterValue == "primary") {
+                Bundle bundle = getIntent().getExtras();
+
+                String dataString = bundle.getString("visited_user_id");
 
 
-                    if (mUploadTask != null && mUploadTask.isInProgress()) {
-                        Toast.makeText(getApplicationContext(), "PAGiiS image upload in progress !!", Toast.LENGTH_SHORT).show();
+                if(bundle != null)
+                {
 
+                    String data = bundle.getString("visited_user_id");
+                    if (differentiaterValue == "primary" && dataString.compareTo("nulll")!=0) {
+
+
+                        if (mUploadTask != null && mUploadTask.isInProgress()) {
+                            Toast.makeText(getApplicationContext(), "PAGiiS image upload in progress !!", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+
+                            final String own_user_id = mAuth.getUid();
+
+                            mProgressBar.setVisibility(View.VISIBLE);
+
+
+
+                            mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+
+                            mDatabaseRef.child(own_user_id).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.getChildrenCount() <= 100)
+                                    {
+                                        addProduct(dataString);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "PAGiiS status upload-max reached !!" + "\n" + "Please delete some of your posts and repost", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+                        }
 
                     } else {
 
-                        final String own_user_id = mAuth.getUid();
+                        if (mUploadTask != null && mUploadTask.isInProgress()) {
+                            Toast.makeText(getApplicationContext(), "Video upload in progress !!", Toast.LENGTH_SHORT).show();
 
-                        mProgressBar.setVisibility(View.VISIBLE);
 
-                        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+                        } else {
 
-                        mDatabaseRef.child(own_user_id).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.getChildrenCount() <= 100) {
-                                    Upload();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "PAGiiS status upload-max reached !!" + "\n" + "Please delete some of your posts and repost", Toast.LENGTH_LONG).show();
+                            final String own_user_id = mAuth.getUid();
+
+                            mProgressBar.setVisibility(View.VISIBLE);
+
+                            mDatabaseRef = FirebaseDatabase.getInstance().getReference("videoUploads");
+
+                            mDatabaseRef.child(own_user_id).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.getChildrenCount() <= 100) {
+                                        getTimeUpload();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "PAGiiS status upload-max reached !!" + "\n" + "Please delete some of your posts and repost", Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
+                                }
+                            });
+
+
+                        }
 
 
                     }
 
-                } else {
 
-                    if (mUploadTask != null && mUploadTask.isInProgress()) {
-                        Toast.makeText(getApplicationContext(), "Video upload in progress !!", Toast.LENGTH_SHORT).show();
 
+
+
+
+                }else
+
+                {
+                    if (differentiaterValue == "primary") {
+
+
+                        if (mUploadTask != null && mUploadTask.isInProgress()) {
+                            Toast.makeText(getApplicationContext(), "PAGiiS image upload in progress !!", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+
+                            final String own_user_id = mAuth.getUid();
+
+                            mProgressBar.setVisibility(View.VISIBLE);
+
+                            mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+
+                            mDatabaseRef.child(own_user_id).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.getChildrenCount() <= 100) {
+                                        Upload();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "PAGiiS status upload-max reached !!" + "\n" + "Please delete some of your posts and repost", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+                        }
 
                     } else {
 
-                        final String own_user_id = mAuth.getUid();
+                        if (mUploadTask != null && mUploadTask.isInProgress()) {
+                            Toast.makeText(getApplicationContext(), "Video upload in progress !!", Toast.LENGTH_SHORT).show();
 
-                        mProgressBar.setVisibility(View.VISIBLE);
 
-                        mDatabaseRef = FirebaseDatabase.getInstance().getReference("videoUploads");
+                        } else {
 
-                        mDatabaseRef.child(own_user_id).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.getChildrenCount() <= 100) {
-                                    getTimeUpload();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "PAGiiS status upload-max reached !!" + "\n" + "Please delete some of your posts and repost", Toast.LENGTH_LONG).show();
+                            final String own_user_id = mAuth.getUid();
+
+                            mProgressBar.setVisibility(View.VISIBLE);
+
+                            mDatabaseRef = FirebaseDatabase.getInstance().getReference("videoUploads");
+
+                            mDatabaseRef.child(own_user_id).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.getChildrenCount() <= 100) {
+                                        getTimeUpload();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "PAGiiS status upload-max reached !!" + "\n" + "Please delete some of your posts and repost", Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            }
-                        });
+                                }
+                            });
+
+
+                        }
 
 
                     }
 
 
                 }
+
+
 
             }
         });
@@ -343,6 +440,47 @@ public class GalleryUploads extends AppCompatActivity
 
     }
 
+    private void popLinkEdit()
+    {
+
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(GalleryUploads.this);
+                View mView = getLayoutInflater().inflate(R.layout.productstorelink, null);
+
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+                @SuppressLint({"MissingInflatedId", "LocalSuppress"}) EditText emailField = mView.findViewById(R.id.emailContact);
+                @SuppressLint({"MissingInflatedId", "LocalSuppress"}) EditText cellPhoneNumber = mView.findViewById(R.id.cancelSignOutImage);
+                ImageButton sendEmail = mView.findViewById(R.id.sendEmail);
+
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+                sendEmail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if(!emailField.getText().toString().isEmpty())
+
+                        {
+
+                            String link = emailField.getText().toString();
+
+
+                            addProduct(link);
+
+
+                        }else
+                        {
+
+                            Toast.makeText(getApplicationContext(), "Paste a link to your product store.", Toast.LENGTH_LONG).show();
+
+                        }
+
+                    }
+                });
+
+    }
 
 
     private void openImageChooser()
@@ -654,6 +792,149 @@ public class GalleryUploads extends AppCompatActivity
 
 
                                         ImageUploads upload = new ImageUploads(mEditTextFileName.getText().toString().trim(), finalImageUrl, raterBarValue, currentUserId, raterBarValueDefault, raterBarValueDefault, raterBarValueDefault, postTimeDateStamp, myLastLocationDetails, MyName);
+                                        mDatabaseRef.child(currentUserId)
+                                                .push()
+                                                .setValue(upload, new DatabaseReference.CompletionListener() {
+                                                    @Override
+                                                    public void onComplete(DatabaseError databaseError,
+                                                                           DatabaseReference databaseReference) {
+
+                                                        //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
+                                                        Toast.makeText(getApplicationContext(), "PAGiiS image upload successful !!", Toast.LENGTH_SHORT).show();
+
+                                                        mProgressBar.setVisibility(View.INVISIBLE);
+                                                        finish();
+                                                        // String uniqueKey = databaseReference.getKey();
+                                                        //Create the function for Clearing/The ImageView Widget.
+                                                    }
+                                                });
+                                    }
+
+                                });
+
+                                //finalImageUrl = String.valueOf(finalImageUri);
+
+                                Handler handler = new Handler();
+
+                                handler.postDelayed(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        mProgressBar.setProgress(0);
+                                    }
+                                }, 1000);
+
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Get the custom layout view.
+
+
+                                View toastView = getLayoutInflater().inflate(R.layout.activity_toast_custom_view, null);
+
+                                mProgressBar.setVisibility(View.INVISIBLE);
+
+                                TextView messageGrid = toastView.findViewById(R.id.customToastText);
+                                // Initiate the Toast instance.
+                                Toast toast = new Toast(getApplicationContext());
+
+                                messageGrid.setText("Pagiis failed to upload, please check Internet connections.");
+                                // Set custom view in toast.
+                                toast.setView(toastView);
+                                toast.setDuration(Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                                //Toast.makeText(ActivityUploadImage.this, "", Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                mProgressBar.setProgress((int) progress);
+                                mProgressBar.setVisibility(View.VISIBLE);
+                            }
+                        });
+
+            }
+
+
+        } else {
+            mProgressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(getApplicationContext(), "No file selected", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+
+    private void addProduct(String link)
+    {
+        if (mImageUri != null)
+        {
+            final String raterBarValueDefault = "userDefaultDp";
+
+            final String currentUserId = mAuth.getCurrentUser().getUid();
+
+            mDatabaseRef_x = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+
+            mDatabaseRef_x.addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    raterBarValue = dataSnapshot.child("userImageDp").getValue().toString();
+                    MyName = dataSnapshot.child("userNameAsEmail").getValue().toString();
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+            Toast.makeText(getApplicationContext(), "PAGiiS image uploading ...", Toast.LENGTH_SHORT).show();
+
+            //mProgressCircle.setVisibility(View.VISIBLE);
+
+            //final String imageUrl = String.valueOf(mImageUri);
+
+            final String saveRaterBarValue = String.valueOf(raterBarValue);
+
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+
+            mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+
+            final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
+                    + "." + getFileExtension(Uri.parse(String.valueOf(mImageUri))));
+
+            if (mUploadTask != null && !mUploadTask.isInProgress()) {
+                Toast.makeText(getApplicationContext(), "Image upload in progress.", Toast.LENGTH_SHORT).show();
+            } else {
+
+                mUploadTask = fileReference.putFile(mImageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+                                    Uri finalImageUri;
+
+                                    String finalImageUrl;
+
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+
+                                        finalImageUri = uri;
+                                        finalImageUrl = String.valueOf(uri);
+
+
+                                        ImageUploads upload = new ImageUploads(mEditTextFileName.getText().toString().trim(), finalImageUrl, link, currentUserId, raterBarValueDefault, raterBarValueDefault, raterBarValueDefault, postTimeDateStamp, myLastLocationDetails, MyName);
                                         mDatabaseRef.child(currentUserId)
                                                 .push()
                                                 .setValue(upload, new DatabaseReference.CompletionListener() {

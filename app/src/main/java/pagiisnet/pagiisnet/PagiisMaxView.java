@@ -1,10 +1,17 @@
 package pagiisnet.pagiisnet;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,6 +39,10 @@ public class PagiisMaxView extends AppCompatActivity
 
     private FirebaseAuth mAuth;
     private androidx.appcompat.widget.Toolbar mToolbar;
+
+    private String UrlString;
+
+
     private ProgressBar mProgressBar;
     private ImageView maxView, blackLock, blueLock;
     private DatabaseReference mDataRef;
@@ -41,16 +52,25 @@ public class PagiisMaxView extends AppCompatActivity
     private DatabaseReference myDetailsRef;
     private String from;
     private DatabaseReference myLocatinLastRef;
+
+
+
+    private WebView webViewLinks;
+    private WebSettings webSettings;
+
+
     private String ImageUrl;
     private String imageKey;
     private String imageUserId;
     private TextView maxViewLink;
 
-    private ImageView RippleButton;
+    private Button RippleButton;
     private String itemName;
     private List<tags> tagedUsers;
     private Long tagedUsersSizeValue;
     private Long tagedUsersDabaseCount;
+
+    private ProgressBar mProgressBarWebview;
 
 
     private String MyName;
@@ -72,6 +92,12 @@ public class PagiisMaxView extends AppCompatActivity
 
         tagedUsers = new ArrayList<>();
 
+        webViewLinks = findViewById(R.id.webview);
+        webSettings = webViewLinks.getSettings();
+        mProgressBarWebview = findViewById(R.id.progress_circle_webview);
+        webViewLinks.setVisibility(INVISIBLE);
+        mProgressBarWebview.setVisibility(INVISIBLE);
+
 
         myLocatinLastRef = FirebaseDatabase.getInstance().getReference().child("MyLastLocation");
         myDetailsRef = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -92,13 +118,14 @@ public class PagiisMaxView extends AppCompatActivity
 
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("@PAGiiS_x_SiR-OCCO");
+        actionBar.setTitle("Pagiis");
 
         maxView = findViewById(R.id.pagiis_max_view);
 
         ImageUrl = getIntent().getExtras().get("imageUrlMax").toString();
         imageKey = getIntent().getExtras().get("imageKeyMAx").toString();
         imageUserId = getIntent().getExtras().get("imageUserId").toString();
+        UrlString = getIntent().getExtras().get("orderLink").toString();
 
         RippleButton = findViewById(R.id.ripplePost);
 
@@ -108,6 +135,20 @@ public class PagiisMaxView extends AppCompatActivity
         maxViewLink.setMovementMethod(LinkMovementMethod.getInstance());
 
         mProgressBar = findViewById(R.id.PagiisMaxProgressBar);
+
+        if(UrlString.compareTo("nulll")==0)
+        {
+            RippleButton.setVisibility(INVISIBLE);
+            RippleButton.setEnabled(false);
+
+        }else
+        {
+
+            RippleButton.setVisibility(INVISIBLE);
+            RippleButton.setEnabled(false);
+
+
+        }
 
        /* maxView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +199,8 @@ public class PagiisMaxView extends AppCompatActivity
             }
         });*/
 
+
+
         RippleButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -165,10 +208,47 @@ public class PagiisMaxView extends AppCompatActivity
 
             {
 
+                if(UrlString.compareTo("nulll")!=0)
 
-                view.findViewById(R.id.ripplePost);
+                {
 
-                updateArrayList();
+                    //mProgressCircle.setVisibility(View.VISIBLE);
+                    webViewLinks.setVisibility(VISIBLE);
+                    mProgressBarWebview.setVisibility(VISIBLE);
+                    webViewLinks.loadUrl(UrlString);
+                    webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+                    webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+                    webViewLinks.getSettings().setSupportZoom(true);
+                    webViewLinks.getSettings().setLoadsImagesAutomatically(true);
+                    webViewLinks.getSettings().setLoadWithOverviewMode(true);
+                    webViewLinks.getSettings().setLoadWithOverviewMode(true);
+                    webViewLinks.setInitialScale(1);
+
+                    webViewLinks.setWebViewClient(new WebViewClient() {
+                        @Override
+                        public void onPageFinished(WebView view, String url)
+                        {
+
+                            if(view.getProgress() == 100)
+                            {
+                                //webViewLinks.setVisibility(INVISIBLE);
+                                mProgressBarWebview.setVisibility(INVISIBLE);
+
+                            }
+                            // This method will be called when the page finishes loading
+                            // You can put your code to check if it's done loading here
+                            // For example, you can set a flag or perform some action
+                        }
+                    });
+
+
+                }else
+                {
+
+                    Toast.makeText(PagiisMaxView.this, "Store not available", Toast.LENGTH_LONG).show();
+
+
+                }
 
             }
         });

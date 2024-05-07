@@ -31,6 +31,9 @@ public final class FragmentSiroccoBinding implements ViewBinding {
   public final CircularImageView hideStoreList;
 
   @NonNull
+  public final RecyclerView mapsProfileCategory;
+
+  @NonNull
   public final ProgressBar progressCircleUserMemes;
 
   @NonNull
@@ -49,13 +52,14 @@ public final class FragmentSiroccoBinding implements ViewBinding {
   public final WebView webview;
 
   private FragmentSiroccoBinding(@NonNull CardView rootView, @NonNull FloatingActionButton SABrands,
-      @NonNull CircularImageView hideStoreList, @NonNull ProgressBar progressCircleUserMemes,
-      @NonNull TextView siroccoCatergoryText, @NonNull FloatingActionButton siroccoHome,
-      @NonNull RecyclerView storeList, @NonNull CardView storeListCardView,
-      @NonNull WebView webview) {
+      @NonNull CircularImageView hideStoreList, @NonNull RecyclerView mapsProfileCategory,
+      @NonNull ProgressBar progressCircleUserMemes, @NonNull TextView siroccoCatergoryText,
+      @NonNull FloatingActionButton siroccoHome, @NonNull RecyclerView storeList,
+      @NonNull CardView storeListCardView, @NonNull WebView webview) {
     this.rootView = rootView;
     this.SABrands = SABrands;
     this.hideStoreList = hideStoreList;
+    this.mapsProfileCategory = mapsProfileCategory;
     this.progressCircleUserMemes = progressCircleUserMemes;
     this.siroccoCatergoryText = siroccoCatergoryText;
     this.siroccoHome = siroccoHome;
@@ -103,6 +107,12 @@ public final class FragmentSiroccoBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.mapsProfileCategory;
+      RecyclerView mapsProfileCategory = ViewBindings.findChildViewById(rootView, id);
+      if (mapsProfileCategory == null) {
+        break missingId;
+      }
+
       id = R.id.progress_circle_user_memes;
       ProgressBar progressCircleUserMemes = ViewBindings.findChildViewById(rootView, id);
       if (progressCircleUserMemes == null) {
@@ -140,8 +150,8 @@ public final class FragmentSiroccoBinding implements ViewBinding {
       }
 
       return new FragmentSiroccoBinding((CardView) rootView, SABrands, hideStoreList,
-          progressCircleUserMemes, siroccoCatergoryText, siroccoHome, storeList, storeListCardView,
-          webview);
+          mapsProfileCategory, progressCircleUserMemes, siroccoCatergoryText, siroccoHome,
+          storeList, storeListCardView, webview);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

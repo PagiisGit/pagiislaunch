@@ -6205,6 +6205,7 @@ layout places_autocomplete_impl_fragment_overlay
 layout places_autocomplete_impl_powered_by_google
 layout places_autocomplete_impl_search_bar
 layout places_autocomplete_prediction
+layout productstorelink
 layout profile_service_item_selector
 layout radius_user_list_item
 layout receipt_verification

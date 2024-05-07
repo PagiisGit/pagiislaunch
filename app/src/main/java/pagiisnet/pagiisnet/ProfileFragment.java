@@ -370,32 +370,17 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             public void onClick(View v)
             {
 
-                if(UrlString2.compareTo("null")!=0)
+                if(UrlString.compareTo("nulll")!=0)
                 {
 
-                    webViewLinks.loadUrl(UrlString2);
-                   // mProgressCircle.setVisibility(VISIBLE);
-                    webViewLinks.setVisibility(VISIBLE);
-                    mProgressBarWebview.setVisibility(VISIBLE);
+                    Bundle bundle = new Bundle();
 
+                    bundle.putString("visited_user_id", UrlString);
 
-                    webViewLinks.setWebViewClient(new WebViewClient() {
-                        @Override
-                        public void onPageFinished(WebView view, String url)
-                        {
-
-                            if(view.getProgress() == 100)
-                            {
-                                //webViewLinks.setVisibility(INVISIBLE);
-                                mProgressBarWebview.setVisibility(INVISIBLE);
-
-                            }
-                            // This method will be called when the page finishes loading
-                            // You can put your code to check if it's done loading here
-                            // For example, you can set a flag or perform some action
-                        }
-                    });
-
+                    @SuppressLint("RestrictedApi") Intent intent = new Intent(getApplicationContext(), GalleryUploads.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    oldFragment = null;
                     bottomSheetDialog.dismiss();
 
 
@@ -447,10 +432,19 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
                 {
 
-                    webViewLinks.loadUrl(UrlString);
+
+
                     //mProgressCircle.setVisibility(View.VISIBLE);
                     webViewLinks.setVisibility(VISIBLE);
                     mProgressBarWebview.setVisibility(VISIBLE);
+                    webViewLinks.loadUrl(UrlString);
+                    webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+                    webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+                    webViewLinks.getSettings().setSupportZoom(true);
+                    webViewLinks.getSettings().setLoadsImagesAutomatically(true);
+                    webViewLinks.getSettings().setLoadWithOverviewMode(true);
+                    webViewLinks.getSettings().setLoadWithOverviewMode(true);
+                    webViewLinks.setInitialScale(1);
 
                     webViewLinks.setWebViewClient(new WebViewClient() {
                         @Override
@@ -688,6 +682,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     String facebookLink = dataSnapshot.child("facebookLink").getValue().toString();
                     String twitterLink = dataSnapshot.child("twitterLink").getValue().toString();
                     String instagramLink = dataSnapshot.child("instagramLink").getValue().toString();
+                    String profileProfession = dataSnapshot.child("proffession").getValue().toString();
                     UrlString = instagramLink; //This is for StoreUrl
                     UrlString2 = twitterLink;//This is for adding product to the store
 
@@ -712,6 +707,21 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                             // Access getActivity() here
                             Glide.with(getActivity()).load(imageProfileDP).diskCacheStrategy(DiskCacheStrategy.ALL).apply(options.centerCrop()).thumbnail(0.75f).into(userImageDp);
                         }
+
+
+                    }
+
+                    if(profileProfession.compareTo("Proffession")!=0)
+
+                    {
+                        viewProfileStore.setVisibility(VISIBLE);
+                        viewProfileStore.setEnabled(true);
+
+                    }else
+                    {
+
+                        viewProfileStore.setVisibility(INVISIBLE);
+                        viewProfileStore.setEnabled(false);
 
 
                     }
@@ -1578,12 +1588,14 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         String maxImageUserId = selectedImage.getUserId();
 
-        if (!imageUrl.isEmpty() && !selectedKey.isEmpty()) {
+        if (!imageUrl.isEmpty() && !selectedKey.isEmpty())
+        {
             Intent intent = new Intent(getActivity(), PagiisMaxView.class);
             intent.putExtra("imageKeyMAx", selectedKey);
             intent.putExtra("imageUrlMax", imageUrl);
             intent.putExtra("imageUserId", maxImageUserId);
             intent.putExtra("From", "Profile");
+            intent.putExtra("orderLink",UrlString);
             startActivity(intent);
 
         } else {

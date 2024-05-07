@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.varunest.sparkbutton.SparkButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -32,7 +33,7 @@ public final class SiroccoExporeBinding implements ViewBinding {
   public final Button home;
 
   @NonNull
-  public final AppCompatImageView likes;
+  public final SparkButton likes;
 
   @NonNull
   public final TextView popUpDescriptionTextView;
@@ -63,7 +64,7 @@ public final class SiroccoExporeBinding implements ViewBinding {
 
   private SiroccoExporeBinding(@NonNull LinearLayoutCompat rootView,
       @NonNull TextView addToFavouriteTextView, @NonNull TextView art, @NonNull Button home,
-      @NonNull AppCompatImageView likes, @NonNull TextView popUpDescriptionTextView,
+      @NonNull SparkButton likes, @NonNull TextView popUpDescriptionTextView,
       @NonNull TextView popUpDescriptionTextViewOne, @NonNull TextView popUpDescriptionTextViewTwo,
       @NonNull TextView share, @NonNull AppCompatImageView shareImageView,
       @NonNull GifImageView siroccoArt, @NonNull LinearLayoutCompat siroccoBottomSheetContainer,
@@ -130,7 +131,7 @@ public final class SiroccoExporeBinding implements ViewBinding {
       }
 
       id = R.id.likes;
-      AppCompatImageView likes = ViewBindings.findChildViewById(rootView, id);
+      SparkButton likes = ViewBindings.findChildViewById(rootView, id);
       if (likes == null) {
         break missingId;
       }

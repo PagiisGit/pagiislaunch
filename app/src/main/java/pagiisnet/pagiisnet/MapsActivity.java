@@ -440,6 +440,10 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                     oldFragment = new SiroccoFragment();
                     iconStandView.setVisibility(View.INVISIBLE);
                 } else if (itemId == R.id.addCOntent) {
+
+                    Bundle bundle = new Bundle();
+
+                    bundle.putString("visited_user_id", "fromMaps");
                     mapsDiscoverLayout.setVisibility(View.INVISIBLE);
 
                     Intent intent = new Intent(getApplicationContext(), GalleryUploads.class);
