@@ -144,8 +144,8 @@ public class PagiisMaxView extends AppCompatActivity
         }else
         {
 
-            RippleButton.setVisibility(INVISIBLE);
-            RippleButton.setEnabled(false);
+            RippleButton.setVisibility(VISIBLE);
+            RippleButton.setEnabled(true);
 
 
         }
@@ -212,17 +212,22 @@ public class PagiisMaxView extends AppCompatActivity
 
                 {
 
-                    //mProgressCircle.setVisibility(View.VISIBLE);
                     webViewLinks.setVisibility(VISIBLE);
+                    webViewLinks.setEnabled(true);
                     mProgressBarWebview.setVisibility(VISIBLE);
-                    webViewLinks.loadUrl(UrlString);
+
+                    webViewLinks.getSettings().setJavaScriptEnabled(true);
                     webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                     webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
                     webViewLinks.getSettings().setSupportZoom(true);
                     webViewLinks.getSettings().setLoadsImagesAutomatically(true);
-                    webViewLinks.getSettings().setLoadWithOverviewMode(true);
+                    webViewLinks.getSettings().setUseWideViewPort(true);
                     webViewLinks.getSettings().setLoadWithOverviewMode(true);
                     webViewLinks.setInitialScale(1);
+
+
+                    webViewLinks.loadUrl(UrlString);
+
 
                     webViewLinks.setWebViewClient(new WebViewClient() {
                         @Override
@@ -231,7 +236,6 @@ public class PagiisMaxView extends AppCompatActivity
 
                             if(view.getProgress() == 100)
                             {
-                                //webViewLinks.setVisibility(INVISIBLE);
                                 mProgressBarWebview.setVisibility(INVISIBLE);
 
                             }
@@ -242,10 +246,11 @@ public class PagiisMaxView extends AppCompatActivity
                     });
 
 
+
                 }else
                 {
 
-                    Toast.makeText(PagiisMaxView.this, "Store not available", Toast.LENGTH_LONG).show();
+                    Toast.makeText(PagiisMaxView.this, "Please make sure to open an online store before you can access it", Toast.LENGTH_LONG).show();
 
 
                 }

@@ -257,10 +257,15 @@ public class GalleryUploads extends AppCompatActivity
         });
 
 
+
+
         mButtonUpload.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+
+
 
                 simpleDateFormat = new SimpleDateFormat("dd:MM:yy:HH:mm:ss");
 
@@ -270,14 +275,16 @@ public class GalleryUploads extends AppCompatActivity
 
                 Bundle bundle = getIntent().getExtras();
 
-                String dataString = bundle.getString("visited_user_id");
+                final String dataString = bundle.getString("visited_user_id");
 
 
                 if(bundle != null)
                 {
 
                     String data = bundle.getString("visited_user_id");
-                    if (differentiaterValue == "primary" && dataString.compareTo("nulll")!=0) {
+                    if (differentiaterValue == "primary" && dataString.compareTo("nulll")!=0)
+
+                    {
 
 
                         if (mUploadTask != null && mUploadTask.isInProgress()) {
@@ -314,7 +321,48 @@ public class GalleryUploads extends AppCompatActivity
 
                         }
 
-                    } else {
+                    } else if(differentiaterValue == "primary" && dataString.compareTo("nulll")==0)
+                    {
+
+                        if (mUploadTask != null && mUploadTask.isInProgress()) {
+                            Toast.makeText(getApplicationContext(), "PAGiiS image upload in progress !!", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+
+                            final String own_user_id = mAuth.getUid();
+
+                            mProgressBar.setVisibility(View.VISIBLE);
+
+
+
+                            mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+
+                            mDatabaseRef.child(own_user_id).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.getChildrenCount() <= 100)
+                                    {
+                                        addProduct(dataString);
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "PAGiiS status upload-max reached !!" + "\n" + "Please delete some of your posts and repost", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+                        }
+
+
+
+
+
+                    }else {
 
                         if (mUploadTask != null && mUploadTask.isInProgress()) {
                             Toast.makeText(getApplicationContext(), "Video upload in progress !!", Toast.LENGTH_SHORT).show();

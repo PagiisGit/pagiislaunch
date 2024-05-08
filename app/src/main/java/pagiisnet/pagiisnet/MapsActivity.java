@@ -447,6 +447,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                     mapsDiscoverLayout.setVisibility(View.INVISIBLE);
 
                     Intent intent = new Intent(getApplicationContext(), GalleryUploads.class);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                     finish();
                     oldFragment = null;

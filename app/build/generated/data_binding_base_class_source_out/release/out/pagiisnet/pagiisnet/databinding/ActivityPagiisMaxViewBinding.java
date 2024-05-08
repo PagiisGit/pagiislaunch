@@ -4,12 +4,14 @@ package pagiisnet.pagiisnet.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import java.lang.NullPointerException;
@@ -19,7 +21,7 @@ import pagiisnet.pagiisnet.R;
 
 public final class ActivityPagiisMaxViewBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final CardView rootView;
 
   @NonNull
   public final ProgressBar PagiisMaxProgressBar;
@@ -46,14 +48,21 @@ public final class ActivityPagiisMaxViewBinding implements ViewBinding {
   public final ImageView pagiisMaxView;
 
   @NonNull
-  public final ImageView ripplePost;
+  public final ProgressBar progressCircleWebview;
 
-  private ActivityPagiisMaxViewBinding(@NonNull RelativeLayout rootView,
+  @NonNull
+  public final Button ripplePost;
+
+  @NonNull
+  public final WebView webview;
+
+  private ActivityPagiisMaxViewBinding(@NonNull CardView rootView,
       @NonNull ProgressBar PagiisMaxProgressBar, @NonNull AppBarLayoutBinding chatbarLayout,
       @NonNull TextView linkRipple, @NonNull TextView linkTextView,
       @NonNull TextView linkTextViewLocationChat, @NonNull TextView linkTextViewShares,
       @NonNull TextView linkTextViewViewers, @NonNull ImageView pagiisMaxView,
-      @NonNull ImageView ripplePost) {
+      @NonNull ProgressBar progressCircleWebview, @NonNull Button ripplePost,
+      @NonNull WebView webview) {
     this.rootView = rootView;
     this.PagiisMaxProgressBar = PagiisMaxProgressBar;
     this.chatbarLayout = chatbarLayout;
@@ -63,12 +72,14 @@ public final class ActivityPagiisMaxViewBinding implements ViewBinding {
     this.linkTextViewShares = linkTextViewShares;
     this.linkTextViewViewers = linkTextViewViewers;
     this.pagiisMaxView = pagiisMaxView;
+    this.progressCircleWebview = progressCircleWebview;
     this.ripplePost = ripplePost;
+    this.webview = webview;
   }
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public CardView getRoot() {
     return rootView;
   }
 
@@ -142,15 +153,28 @@ public final class ActivityPagiisMaxViewBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progress_circle_webview;
+      ProgressBar progressCircleWebview = ViewBindings.findChildViewById(rootView, id);
+      if (progressCircleWebview == null) {
+        break missingId;
+      }
+
       id = R.id.ripplePost;
-      ImageView ripplePost = ViewBindings.findChildViewById(rootView, id);
+      Button ripplePost = ViewBindings.findChildViewById(rootView, id);
       if (ripplePost == null) {
         break missingId;
       }
 
-      return new ActivityPagiisMaxViewBinding((RelativeLayout) rootView, PagiisMaxProgressBar,
+      id = R.id.webview;
+      WebView webview = ViewBindings.findChildViewById(rootView, id);
+      if (webview == null) {
+        break missingId;
+      }
+
+      return new ActivityPagiisMaxViewBinding((CardView) rootView, PagiisMaxProgressBar,
           binding_chatbarLayout, linkRipple, linkTextView, linkTextViewLocationChat,
-          linkTextViewShares, linkTextViewViewers, pagiisMaxView, ripplePost);
+          linkTextViewShares, linkTextViewViewers, pagiisMaxView, progressCircleWebview, ripplePost,
+          webview);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1588,6 +1588,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         String maxImageUserId = selectedImage.getUserId();
 
+
         if (!imageUrl.isEmpty() && !selectedKey.isEmpty())
         {
             Intent intent = new Intent(getActivity(), PagiisMaxView.class);
