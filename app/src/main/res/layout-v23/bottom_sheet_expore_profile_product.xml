@@ -236,15 +236,14 @@
         android:padding="12dp">
 
 
-
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
             android:id="@+id/shareImageView"
+            android:layout_width="30dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="10dp"
             android:clickable="true"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/share_new"
-            android:layout_marginStart="10dp">
+            android:src="@drawable/share_new">
 
 
         </androidx.appcompat.widget.AppCompatImageView>

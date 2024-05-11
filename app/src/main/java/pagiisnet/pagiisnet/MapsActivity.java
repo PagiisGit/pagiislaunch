@@ -1545,7 +1545,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                                     {
                                         Intent intent = new Intent();
                                         intent.setAction(Intent.ACTION_SEND);
-                                        intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://apkpure.com/pagiis/pagiisnet.pagiisnet"));
+                                        intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
                                         intent.setType("text/plain");
 
                                         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -2085,12 +2085,103 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private void whatAreyouLookingFor()
 
     {
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MapsActivity.this,R.style.BottomSheetDialogueTheme);
 
-        View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.botttom_sheet_layout,findViewById(R.id.mapsBottomSheetCOntainer));
+            View bottomSheetView = LayoutInflater.from(MapsActivity.this).inflate(R.layout.bottom_sheet_explore_activities, findViewById(R.id.mapsBottomSheetCOntainer));
+            bottomSheetView.findViewById(R.id.popUpPostOption).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
 
-        bottomSheetDialog.setContentView(bottomSheetView);
-        bottomSheetDialog.show();
+                    oldFragment = null;
+                    // Create a new instance of your target fragment
+                    //GalleryFragment newFragment = new GalleryFragment();
+                    // Get the FragmentManager
+                    //FragmentManager fragmentManager = getSupportFragmentManager(); // Or use getFragmentManager() if you're not in an AppCompatActivity
+                    // Begin a transaction
+                    //FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    // Replace the current fragment with the new one
+                    //transaction.replace(R.id.mainContainer, newFragment);
+                    // Optionally, add the transaction to the back stack
+                    //transaction.addToBackStack(null);
+                    // Commit the transaction
+                    //transaction.commit();
+                    Intent intent = new Intent(getApplicationContext(),GalleryUploads.class);
+                    startActivity(intent);
+                    finish();
+                    //oldFragment = null;
+                    //publicProfilesCardview.setVisibility(View.INVISIBLE);
+
+                    bottomSheetDialog.dismiss();
+                }
+            });
+
+
+            bottomSheetView.findViewById(R.id.popUpOnlineShoppingOption).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    oldFragment = null;
+                    // Create a new instance of your target fragment
+                    SiroccoFragment newFragment = new SiroccoFragment();
+
+                    // Get the FragmentManager
+                    FragmentManager fragmentManager = getSupportFragmentManager(); // Or use getFragmentManager() if you're not in an AppCompatActivity
+
+                    // Begin a transaction
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                    // Replace the current fragment with the new one
+                    transaction.replace(R.id.mainContainer, newFragment);
+
+                    // Optionally, add the transaction to the back stack
+                    transaction.addToBackStack(null);
+
+                    // Commit the transaction
+                    publicProfilesCardview.setVisibility(View.INVISIBLE);
+                    bottomSheetDialog.dismiss();
+                    transaction.commit();
+                }
+
+            });
+
+            bottomSheetView.findViewById(R.id.exit).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+
+                    bottomSheetDialog.dismiss();
+
+                }
+            });
+
+
+            bottomSheetView.findViewById(R.id.share).setOnClickListener(new View.OnClickListener()
+
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                    intent.setType("text/plain");
+
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+
+
+                }
+            });
+
+
+                bottomSheetDialog.setContentView(bottomSheetView);
+                bottomSheetDialog.show();
+
+
+
+            // The BottomSheetDialog is currently visible or active
+            // Put your code here for the case when the BottomSheetDialog is active
 
     }
 
@@ -2497,7 +2588,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         }
     }
 
-    private void requestPermissions() {
+    private void requestPermissions()
+    {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 MY_PERMISSIONS_REQUEST_LOCATION);
@@ -3211,7 +3303,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://apkpure.com/pagiis/pagiisnet.pagiisnet"));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
                 intent.setType("text/plain");
 
                 if (intent.resolveActivity(getPackageManager()) != null) {
@@ -3246,6 +3338,31 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                 mapsDiscoverLayout.setVisibility(View.INVISIBLE);
 
+
+
+            }
+        });
+
+        bottomSheetView.findViewById(R.id.shareImageView).setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                intent.setType("text/plain");
+
+                if (MapsActivity.this != null && getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
+                    // There is an activity that can handle the intent
+
+                    startActivity(intent);
+
+                } else
+                {
+                    // There is no activity that can handle the intent
+                }
 
 
             }
@@ -3356,6 +3473,31 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         SparkButton imageViewLikes = bottomSheetView.findViewById(R.id.likes);
 
+        bottomSheetView.findViewById(R.id.shareImageView).setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                intent.setType("text/plain");
+
+                if (MapsActivity.this != null && getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
+                    // There is an activity that can handle the intent
+
+                    startActivity(intent);
+
+                } else
+                {
+                    // There is no activity that can handle the intent
+                }
+
+
+            }
+        });
+
 
         sharePagiis.setOnClickListener(new View.OnClickListener()
 
@@ -3365,7 +3507,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://apkpure.com/pagiis/pagiisnet.pagiisnet"));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
                 intent.setType("text/plain");
 
                 if (intent.resolveActivity(getPackageManager()) != null)

@@ -70,15 +70,18 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
         GifImageView siroccoArtView = bottomSheetView.findViewById(R.id.siroccoArt);
         GifImageView siroccoMusicView = bottomSheetView.findViewById(R.id.siroccoMusic);
         GifImageView siroccoFashionView = bottomSheetView.findViewById(R.id.siroccoFashion);
+        ImageView shareImageViewPic = bottomSheetView.findViewById(R.id.shareImageView);
         Button homeButton = bottomSheetView.findViewById(R.id.home);
         TextView sharePagiis = bottomSheetView.findViewById(R.id.share);
 
         SparkButton addToFavourite = bottomSheetView.findViewById(R.id.likes);
 
-        addToFavourite.setEventListener(new SparkEventListener() {
+        addToFavourite.setEventListener(new SparkEventListener()
+        {
             @SuppressLint("RestrictedApi")
             @Override
-            public void onEvent(ImageView button, boolean buttonState) {
+            public void onEvent(ImageView button, boolean buttonState)
+            {
 
 
                     //filterProfileByCategory();
@@ -121,6 +124,31 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                intent.setAction(Intent.ACTION_SEND);
                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://apkpure.com/pagiis/pagiisnet.pagiisnet"));
                intent.setType("text/plain");
+
+                if (getActivity() != null && getActivity().getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
+                    // There is an activity that can handle the intent
+
+                    startActivity(intent);
+
+                } else
+                {
+                    // There is no activity that can handle the intent
+                }
+
+
+            }
+        });
+
+        shareImageViewPic.setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                intent.setType("text/plain");
 
                 if (getActivity() != null && getActivity().getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
                     // There is an activity that can handle the intent
@@ -676,6 +704,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
                     retrieveAllOnlineStores();
                     storeItemListCardView.setVisibility(View.VISIBLE);
+                    mRecyclerViewProfileCategory.setVisibility(View.INVISIBLE);
 
                 }
 
@@ -688,6 +717,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
             public void onClick(View v)
             {
                 storeItemListCardView.setVisibility(View.INVISIBLE);
+                mRecyclerViewProfileCategory.setVisibility(View.INVISIBLE);
 
             }
         });
@@ -717,6 +747,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                     webViewLinks.getSettings().setLoadWithOverviewMode(true);
                     webViewLinks.setInitialScale(1);
                     webViewLinks.loadUrl(UrlString);
+
 
 
                     webViewLinks.setWebViewClient(new WebViewClient() {
@@ -772,7 +803,6 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
             webViewLinks.getSettings().setLoadWithOverviewMode(true);
             webViewLinks.setInitialScale(1);
 
-
             webViewLinks.setWebViewClient(new WebViewClient() {
                 @Override
                 public void onPageFinished(WebView view, String url)
@@ -818,6 +848,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
         getOnlineCategory(category);
         siroccoCategory.setText(category);
+        mRecyclerViewProfileCategory.setVisibility(View.INVISIBLE);
 
 
     }

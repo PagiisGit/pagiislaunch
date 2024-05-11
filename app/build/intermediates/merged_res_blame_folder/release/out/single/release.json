@@ -576,6 +576,10 @@
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xxhdpi\\click_three.png"
     },
     {
+        "merged": "pagiisnet.pagiisnet.app-merged_res-6:/drawable_bg_message_sender_display.xml.flat",
+        "source": "pagiisnet.pagiisnet.app-main-7:/drawable/bg_message_sender_display.xml"
+    },
+    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xxhdpi_share_profiles.gif.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xxhdpi\\share_profiles.gif"
     },
@@ -3672,10 +3676,6 @@
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\ic_radius_cloud.png"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-merged_res-6:/layout_activity_pagiis_max_view.xml.flat",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_pagiis_max_view.xml"
-    },
-    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\mipmap-mdpi_ic_launcher_background.png.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\mipmap-mdpi\\ic_launcher_background.png"
     },
@@ -4582,6 +4582,10 @@
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-hdpi_mute_sound.png.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-hdpi\\mute_sound.png"
+    },
+    {
+        "merged": "pagiisnet.pagiisnet.app-merged_res-6:/layout_bottom_sheet_explore_activities.xml.flat",
+        "source": "pagiisnet.pagiisnet.app-main-7:/layout/bottom_sheet_explore_activities.xml"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-mdpi_loupe.png.flat",

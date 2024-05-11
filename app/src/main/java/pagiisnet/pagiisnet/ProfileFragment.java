@@ -283,35 +283,47 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
     {
 
-        webViewLinks.getSettings().setJavaScriptEnabled(true);
-        webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        webViewLinks.getSettings().setSupportZoom(true);
-        webViewLinks.getSettings().setLoadsImagesAutomatically(true);
-        webViewLinks.getSettings().setUseWideViewPort(true);
-        webViewLinks.getSettings().setLoadWithOverviewMode(true);
-        webViewLinks.setInitialScale(1);
+        if(UrlString.compareTo("nulll")!=0)
 
+        {
 
-        webViewLinks.loadUrl(UrlString);
+            //mProgressCircle.setVisibility(View.VISIBLE);
+            webViewLinks.setVisibility(VISIBLE);
+            mProgressBarWebview.setVisibility(VISIBLE);
+            webViewLinks.loadUrl(UrlString);
+            webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+            webViewLinks.getSettings().setSupportZoom(true);
+            webViewLinks.getSettings().setLoadsImagesAutomatically(true);
+            webViewLinks.getSettings().setLoadWithOverviewMode(true);
+            webViewLinks.getSettings().setLoadWithOverviewMode(true);
+            webViewLinks.setInitialScale(1);
 
-
-        webViewLinks.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url)
-            {
-
-                if(view.getProgress() == 100)
+            webViewLinks.setWebViewClient(new WebViewClient() {
+                @Override
+                public void onPageFinished(WebView view, String url)
                 {
-                    mProgressBarWebview.setVisibility(INVISIBLE);
 
+                    if(view.getProgress() == 100)
+                    {
+                        //webViewLinks.setVisibility(INVISIBLE);
+                        mProgressBarWebview.setVisibility(INVISIBLE);
+
+                    }
+                    // This method will be called when the page finishes loading
+                    // You can put your code to check if it's done loading here
+                    // For example, you can set a flag or perform some action
                 }
-                // This method will be called when the page finishes loading
-                // You can put your code to check if it's done loading here
-                // For example, you can set a flag or perform some action
-            }
-        });
+            });
 
+
+        }else
+        {
+
+            Toast.makeText(getActivity(), "Please make sure to open an online store before you can access it", Toast.LENGTH_LONG).show();
+
+
+        }
 
 
     }
@@ -1463,10 +1475,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
                     if (name!= null && !(name.compareTo(mAuth.getCurrentUser().getUid())==0) && UrlString.compareTo("nulll")!=0 ) {
 
-                        //mProgressBarWebview.setVisibility(INVISIBLE);
-                        //profileFramelayout.setVisibility(INVISIBLE);
-                        webViewLinks.setVisibility(VISIBLE);
-                        mProgressBarWebview.setVisibility(INVISIBLE);
+                        profileProductWebview();
 
                     }else
                     {
@@ -1507,8 +1516,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             }
         });
 
-        profileProductWebview();
-
+        //profileProductWebview();
 
 
         logoutText.setOnClickListener(new View.OnClickListener() {

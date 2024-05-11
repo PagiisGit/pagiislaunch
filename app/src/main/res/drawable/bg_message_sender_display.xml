@@ -1,0 +1,15 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:shape="rectangle"
+    tools:ignore="ExtraText">
+    <corners
+        android:radius="16dp" /> <!-- Adjust the radius to change the roundness of the corners -->
+
+    <!-- Gradient background -->
+    <gradient
+        android:startColor="#009688">
+        
+    </gradient> <!-- Start color of the gradient -->
+    android:endColor="#00796B" <!-- End color of the gradient -->
+    android:angle="90" /> <!-- Gradient angle (90 for vertical gradient) -->
+</shape>
