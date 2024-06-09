@@ -3950,6 +3950,7 @@ drawable bg
 drawable bg_card
 drawable bg_item
 drawable bg_item_selcted
+drawable bg_message_sender_display
 drawable bg_radius
 drawable bg_skype
 drawable bg_telegram
@@ -6023,6 +6024,7 @@ layout alert_twitter_link_edit
 layout any_link_post
 layout app_bar_layout
 layout banner
+layout bottom_sheet_explore_activities
 layout bottom_sheet_expore
 layout bottom_sheet_expore_profile_product
 layout bottom_sheet_profile_service

@@ -37,11 +37,12 @@ public class SliderAdaptor extends PagerAdapter {
     };
     public String[] slide_description = {
 
+            "GEOLOCATION AND PUBLIC USER INTERACTIONS. \n "+
+                    "Founder: MR. ML MLAMBO, \n" +
+                    "Co-Founders: MR. SA NGUBANE, MR. ZM MTHEMBU, MR. MS MATHE, MR. FS MTHETHWA",
 
-            "PUBLIC USER INTERACTIONS BASED ON REAL TIME LOCATIONS.",
-            "PAGIIS ONLINE MARKETING AND ADVERTISEMENT PLATFORM FOR ONLINE SHOPPING",
-            "PAGiiS x SIROCCO is Designed and Created for both public social and Advertisement purposes. The platform integrates two of the most influential ways infomation sharing, PAGiiS being the (Networking House) and Sirocco being the (Online Shopping and Advertisement House). These two platforms aims to serve and deliver valuable user information to and from the public in a most effective and secured way, thus improving the present and future internet-based user interactions. \n" + "\n" + "Founder: MR. ML MLAMBO, Co-Founder: MR. SA NGUBANE"
-
+            "Ecommerce",
+            "Welcome to Pagiis."
 
     };
     Context mContext;
@@ -72,24 +73,19 @@ public class SliderAdaptor extends PagerAdapter {
         layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.onboarding_slideview, container, false);
 
-
         CircularImageView circularImageView = view.findViewById(R.id.logo);
-
 
         TextView textViewHeading = view.findViewById(R.id.Heading);
         TextView textDescription = view.findViewById(R.id.description);
 
         circularImageView.setImageResource(slide_images[position]);
 
-
         textViewHeading.setText(slide_headings[position]);
 
         textDescription.setText(slide_description[position]);
-
         container.addView(view);
-
-
         return view;
+
     }
 
     @Override

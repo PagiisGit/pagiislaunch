@@ -5,6 +5,8 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,6 +17,7 @@ import android.location.GnssStatus;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Looper;
@@ -150,6 +153,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private RecyclerView mRecyclerView;
 
     private String selectedItem;
+
+    private String shareAppLink;
 
     private RecyclerView mRecyclerViewProfileCategory;
 
@@ -315,6 +320,10 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     //private PlacesClient mPlacesClient;
     // private GoogleApiClient mGoogleApiClient;
     private DatabaseReference mDatabaseRef_x;
+
+    private DatabaseReference mDatabaseRef_online_products;
+
+    private DatabaseReference mDatabaseRef_shareApp;
     private ImageView SeachLocationImageview;
 
 
@@ -345,6 +354,10 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     private BottomSheetDialog bottomSheetDialog;
 
+
+    public class MyAppConstants {
+        public static final String CHANNEL_ID = "YOUR_CHANNEL_ID";
+    }
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -354,6 +367,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         FirebaseApp.initializeApp(getApplicationContext());
 
         PlacesClient placesClient = Places.createClient(this);
+
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -705,6 +720,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         //recyclerProgressBar.setVisibility(View.INVISIBLE);
         mDatabaseRef_x = FirebaseDatabase.getInstance().getReference("Tags");
         mDatabaseRef_Z = FirebaseDatabase.getInstance().getReference().child("Users");
+
+        mDatabaseRef_shareApp = FirebaseDatabase.getInstance().getReference().child("shareAppLink");
 
         if (mAuth.getCurrentUser() != null) {
             final String user_id = mAuth.getCurrentUser().getUid();
@@ -1362,9 +1379,57 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         filterProfileByCategory();
         //checkDataAvalability();
         //getDataNormally();
+        getShareAppLink();
+        createNotificationChannel();
 
 
     } // Oncreate Ends Here
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = MyAppConstants.CHANNEL_ID;
+            String channelName = "Pagiis request for admin product verification.";
+            String channelDescription = "Admin is requested to handle the verification of Pagiis online shopped products.";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+            channel.setDescription(channelDescription);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+
+    private void getShareAppLink()
+    {
+
+        mDatabaseRef_shareApp  = FirebaseDatabase.getInstance().getReference().child("shareAppLink");
+
+        mDatabaseRef_shareApp.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists())
+                {
+
+                    shareAppLink = dataSnapshot.getValue().toString();
+                    //publicProfilePostsCardView.setVisibility(View.VISIBLE);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(MapsActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                recyclerProgressBar.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+
+    }
 
     private void getDataNormally()
     {
@@ -1545,7 +1610,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                                     {
                                         Intent intent = new Intent();
                                         intent.setAction(Intent.ACTION_SEND);
-                                        intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                                        intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                                         intent.setType("text/plain");
 
                                         if (intent.resolveActivity(getPackageManager()) != null) {
@@ -2163,7 +2228,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 {
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_SEND);
-                    intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                    intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                     intent.setType("text/plain");
 
                     if (intent.resolveActivity(getPackageManager()) != null) {
@@ -3303,7 +3368,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                 intent.setType("text/plain");
 
                 if (intent.resolveActivity(getPackageManager()) != null) {
@@ -3351,7 +3416,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                 intent.setType("text/plain");
 
                 if (MapsActivity.this != null && getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
@@ -3367,6 +3432,9 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
             }
         });
+
+
+
 
 
         imageViewLikes.setEventListener(new SparkEventListener() {
@@ -3481,7 +3549,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                 intent.setType("text/plain");
 
                 if (MapsActivity.this != null && getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
@@ -3507,7 +3575,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                 intent.setType("text/plain");
 
                 if (intent.resolveActivity(getPackageManager()) != null)

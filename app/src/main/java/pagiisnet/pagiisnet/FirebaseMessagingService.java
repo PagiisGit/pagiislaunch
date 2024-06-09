@@ -20,7 +20,9 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     NotificationManager mNotificationManager;
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
+    public void onMessageReceived(RemoteMessage remoteMessage)
+    {
+
         super.onMessageReceived(remoteMessage);
 
 
@@ -42,7 +44,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        {
 //            builder.setSmallIcon(R.drawable.icontrans);
             builder.setSmallIcon(resourceImage);
         } else {
@@ -57,6 +60,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         builder.setContentTitle(remoteMessage.getNotification().getTitle());
         builder.setContentText(remoteMessage.getNotification().getBody());
+
         builder.setContentIntent(pendingIntent);
         builder.setStyle(new NotificationCompat.BigTextStyle().bigText(remoteMessage.getNotification().getBody()));
         builder.setAutoCancel(true);

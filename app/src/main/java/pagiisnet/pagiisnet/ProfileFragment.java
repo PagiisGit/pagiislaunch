@@ -136,6 +136,9 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private FirebaseAuth mAuth;
     private Uri resultUri;
 
+
+    private DatabaseReference mDatabaseRef_shareApp;
+
     private String onlineUserId;
 
     private TextView profileViews;
@@ -144,6 +147,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private String UrlString3;
 
     private TextView profilePosts;
+
+    private String shareAppLink;
 
 
     private LinearLayout profileFramelayout;
@@ -237,8 +242,43 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         //checkifAdmindTrue();
 
+        getShareAppLink();
+
 
     }//End of the Oncreate function. The function scan now be initialted here.
+
+
+    private void getShareAppLink()
+    {
+
+        mDatabaseRef_shareApp  = FirebaseDatabase.getInstance().getReference().child("shareAppLink");
+
+        mDatabaseRef_shareApp.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists())
+                {
+
+                    shareAppLink = dataSnapshot.getValue().toString();
+                    //publicProfilePostsCardView.setVisibility(View.VISIBLE);
+
+
+                }
+            }
+
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+    }
+
 
 
     private void openStatusEditText() {
@@ -295,6 +335,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
             webViewLinks.getSettings().setSupportZoom(true);
             webViewLinks.getSettings().setLoadsImagesAutomatically(true);
+            webViewLinks.getSettings().setUseWideViewPort(true);
             webViewLinks.getSettings().setLoadWithOverviewMode(true);
             webViewLinks.getSettings().setLoadWithOverviewMode(true);
             webViewLinks.setInitialScale(1);
@@ -415,7 +456,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(UrlString));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                 intent.setType("text/plain");
 
                 if (getActivity() != null && getActivity().getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
@@ -453,6 +494,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                     webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
                     webViewLinks.getSettings().setSupportZoom(true);
+                    webViewLinks.getSettings().setUseWideViewPort(true);
                     webViewLinks.getSettings().setLoadsImagesAutomatically(true);
                     webViewLinks.getSettings().setLoadWithOverviewMode(true);
                     webViewLinks.getSettings().setLoadWithOverviewMode(true);
@@ -563,7 +605,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(UrlString));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                 intent.setType("text/plain");
 
                 if (getActivity() != null && getActivity().getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
@@ -1204,7 +1246,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
     private void Upload(Uri fileUri) {
-        if (resultUri != null) {
+        if (resultUri != null)
+        {
 
             String onlineUserId = mAuth.getCurrentUser().getUid();
 
@@ -1471,7 +1514,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                 if(arguments != null)
 
                 {
-                    String name = getArguments().getString("visited_user_id");
+                   /* String name = getArguments().getString("visited_user_id");
 
                     if (name!= null && !(name.compareTo(mAuth.getCurrentUser().getUid())==0) && UrlString.compareTo("nulll")!=0 ) {
 
@@ -1480,7 +1523,11 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     }else
                     {
                         Toast.makeText(getActivity(),"This profile does not have an online store open", Toast.LENGTH_LONG).show();
-                    }
+                    }*/
+
+                    profileProductWebviewInent(UrlString);
+
+
                 }else
                 {
                     showBottomSheetDialog();
@@ -1570,7 +1617,23 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         return rootView;
     }
 
+    private void profileProductWebviewInent( String url) {
 
+        if (UrlString.compareTo("nulll") != 0) {
+
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            // Check if there is an application capable of handling the intent
+            if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
+                startActivity(intent);
+
+            }
+
+        }else
+        {
+            Toast.makeText(getActivity(),"This profile does not have an online store open", Toast.LENGTH_LONG).show();
+        }
+    }
 
 
     private void changeDisplay()

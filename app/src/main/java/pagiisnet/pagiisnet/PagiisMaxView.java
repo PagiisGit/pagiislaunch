@@ -2,11 +2,14 @@ package pagiisnet.pagiisnet;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -20,8 +23,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -78,6 +85,12 @@ public class PagiisMaxView extends AppCompatActivity
 
     private String MyProfileUrl;
 
+    private BottomSheetDialog bottomSheetDialog;
+
+    private DatabaseReference mDatabaseRef_online_products;
+
+    private Fragment oldFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +99,101 @@ public class PagiisMaxView extends AppCompatActivity
 
 
         mAuth = FirebaseAuth.getInstance();
+
+        bottomSheetDialog = new BottomSheetDialog(PagiisMaxView.this, R.style.BottomSheetDialogueTheme);
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("noticeId")) {
+            String imageDatabaseRefId = intent.getStringExtra("noticeId");
+            String imageUrl= "";
+
+
+            mDatabaseRef_online_products = FirebaseDatabase.getInstance().getReference().child("uploads").child(imageDatabaseRefId);
+
+
+            Log.d(TAG, "Received imageDatabaseRefId: " + imageDatabaseRefId);
+            // Handle the imageDatabaseRefId (e.g., fetch data from Firebase and display)
+
+
+
+
+            View bottomSheetView = LayoutInflater.from(PagiisMaxView.this).inflate(R.layout.bottom_sheet_explore_activities, findViewById(R.id.mapsBottomSheetCOntainer));
+            bottomSheetView.findViewById(R.id.popUpPostOption).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+
+
+                    // Create a new instance of your target fragment
+                    //GalleryFragment newFragment = new GalleryFragment();
+                    // Get the FragmentManager
+                    //FragmentManager fragmentManager = getSupportFragmentManager(); // Or use getFragmentManager() if you're not in an AppCompatActivity
+                    // Begin a transaction
+                    //FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    // Replace the current fragment with the new one
+                    //transaction.replace(R.id.mainContainer, newFragment);
+                    // Optionally, add the transaction to the back stack
+                    //transaction.addToBackStack(null);
+                    // Commit the transaction
+                    //transaction.commit();
+                    mDatabaseRef_online_products.child("status").setValue("verified");
+
+
+
+                    bottomSheetDialog.dismiss();
+                }
+            });
+
+
+            bottomSheetView.findViewById(R.id.popUpOnlineShoppingOption).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    oldFragment = null;
+                    // Create a new instance of your target fragment
+                    SiroccoFragment newFragment = new SiroccoFragment();
+
+                    // Get the FragmentManager
+                    FragmentManager fragmentManager = getSupportFragmentManager(); // Or use getFragmentManager() if you're not in an AppCompatActivity
+
+                    // Begin a transaction
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                    // Replace the current fragment with the new one
+                    transaction.replace(R.id.mainContainer, newFragment);
+
+                    // Optionally, add the transaction to the back stack
+                    transaction.addToBackStack(null);
+
+                    // Commit the transaction
+                    bottomSheetDialog.dismiss();
+                    transaction.commit();
+                }
+
+            });
+
+            bottomSheetView.findViewById(R.id.exit).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+
+                    bottomSheetDialog.dismiss();
+
+                }
+            });
+
+
+
+            bottomSheetDialog.setContentView(bottomSheetView);
+            bottomSheetDialog.show();
+
+
+
+            // The BottomSheetDialog is currently visible or active
+            // Put your code here for the case when the BottomSheetDialog is active
+
+
+        }
 
         mToolbar = findViewById(R.id.appBarLayout);
         setSupportActionBar(mToolbar);
@@ -108,8 +216,8 @@ public class PagiisMaxView extends AppCompatActivity
         if (mAuth.getCurrentUser() == null) {
             FirebaseAuth.getInstance().signOut();
             finish();
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent1);
         }
 
 
@@ -215,7 +323,7 @@ public class PagiisMaxView extends AppCompatActivity
                     webViewLinks.setVisibility(VISIBLE);
                     webViewLinks.setEnabled(true);
                     mProgressBarWebview.setVisibility(VISIBLE);
-
+                    webViewLinks.getSettings().setUseWideViewPort(true);
                     webViewLinks.getSettings().setJavaScriptEnabled(true);
                     webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                     webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
@@ -245,6 +353,16 @@ public class PagiisMaxView extends AppCompatActivity
                         }
                     });
 
+                    webViewLinks.setWebViewClient(new WebViewClient() {
+                        @Override
+                        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                            // Load the URL in the WebView
+                            view.loadUrl(url);
+                            return true; // Return true to indicate that the URL loading has been handled
+                        }
+                    });
+
+
 
 
                 }else
@@ -257,6 +375,9 @@ public class PagiisMaxView extends AppCompatActivity
 
             }
         });
+
+
+
 
         from = getIntent().getExtras().get("From").toString();
         if(from.compareTo("Profile")==0)

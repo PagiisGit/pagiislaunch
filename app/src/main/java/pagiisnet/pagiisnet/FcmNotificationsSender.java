@@ -24,11 +24,13 @@ public class FcmNotificationsSender {
     String userFcmToken;
     String title;
     String body;
+    String userId;
     Context mContext;
     Activity mActivity;
     private RequestQueue requestQueue;
 
-    public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext, Activity mActivity) {
+
+    public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext, Activity mActivity,String userIf) {
         this.userFcmToken = userFcmToken;
         this.title = title;
         this.body = body;
@@ -47,6 +49,7 @@ public class FcmNotificationsSender {
             JSONObject notiObject = new JSONObject();
             notiObject.put("title", title);
             notiObject.put("body", body);
+            notiObject.put("noticeId",userId);
             notiObject.put("Pagiis Notifcation", R.drawable.pagiis_splash_logo_edit_final_file); // enter icon that exists in drawable only
 
 

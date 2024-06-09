@@ -122,7 +122,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
             {
                Intent intent = new Intent();
                intent.setAction(Intent.ACTION_SEND);
-               intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://apkpure.com/pagiis/pagiisnet.pagiisnet"));
+               intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                intent.setType("text/plain");
 
                 if (getActivity() != null && getActivity().getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
@@ -147,7 +147,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
             {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse("https://portal.testapp.io/apps/install/jPz45L78J45Nz"));
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family please care to check out this amazing App called Pagiis:    "+ Uri.parse(shareAppLink));
                 intent.setType("text/plain");
 
                 if (getActivity() != null && getActivity().getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
@@ -224,6 +224,11 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
     private DatabaseReference mDatabaseRef_Z;
 
     private List<ImageUploads> mUploadsProfileCategory;
+
+    private String shareAppLink;
+
+
+    private DatabaseReference mDatabaseRef_shareApp;
 
     private FilterMapsProfileCategory mAdapterProfileCategory;
 
@@ -364,6 +369,39 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
         retrieveAllOnlineStores();
         filterProfileByCategory();
+        getShareAppLink();
+
+    }
+
+
+    private void getShareAppLink()
+    {
+
+        mDatabaseRef_shareApp  = FirebaseDatabase.getInstance().getReference().child("shareAppLink");
+
+        mDatabaseRef_shareApp.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.exists())
+                {
+
+                    shareAppLink = dataSnapshot.getValue().toString();
+                    //publicProfilePostsCardView.setVisibility(View.VISIBLE);
+
+
+                }
+            }
+
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
     }
 
@@ -442,6 +480,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                    	        webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                             webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
                             webViewLinks.getSettings().setSupportZoom(true);
+                            webViewLinks.getSettings().setUseWideViewPort(true);
                             webViewLinks.getSettings().setLoadsImagesAutomatically(true);
                             webViewLinks.getSettings().setUseWideViewPort(true);
                             webViewLinks.getSettings().setLoadWithOverviewMode(true);
@@ -512,6 +551,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                         webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                         webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
                         webViewLinks.getSettings().setSupportZoom(true);
+                        webViewLinks.getSettings().setUseWideViewPort(true);
                         webViewLinks.getSettings().setLoadsImagesAutomatically(true);
                         webViewLinks.getSettings().setUseWideViewPort(true);
                         webViewLinks.getSettings().setLoadWithOverviewMode(true);
@@ -579,6 +619,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                         webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
                         webViewLinks.getSettings().setSupportZoom(true);
                         webViewLinks.getSettings().setLoadsImagesAutomatically(true);
+                        webViewLinks.getSettings().setUseWideViewPort(true);
                         webViewLinks.getSettings().setUseWideViewPort(true);
                         webViewLinks.getSettings().setLoadWithOverviewMode(true);
                         webViewLinks.loadUrl(UrlString);
@@ -742,6 +783,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                     webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                     webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
                     webViewLinks.getSettings().setSupportZoom(true);
+                    webViewLinks.getSettings().setUseWideViewPort(true);
                     webViewLinks.getSettings().setLoadsImagesAutomatically(true);
                     webViewLinks.getSettings().setUseWideViewPort(true);
                     webViewLinks.getSettings().setLoadWithOverviewMode(true);
@@ -801,6 +843,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
             webViewLinks.getSettings().setLoadsImagesAutomatically(true);
             webViewLinks.getSettings().setLoadWithOverviewMode(true);
             webViewLinks.getSettings().setLoadWithOverviewMode(true);
+            webViewLinks.getSettings().setUseWideViewPort(true);
             webViewLinks.setInitialScale(1);
 
             webViewLinks.setWebViewClient(new WebViewClient() {

@@ -279,6 +279,7 @@ public class NotificationFragment extends Fragment implements NotificationsAdapt
             intent.putExtra("imageUrlMax", imageUrl);
             intent.putExtra("imageUserId", maxImageUserId);
             intent.putExtra("From", "Notification");
+            intent.putExtra("orderLink","null");
             startActivity(intent);
 
         } else {

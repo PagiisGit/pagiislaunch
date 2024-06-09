@@ -6,11 +6,13 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,8 +35,10 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -42,14 +46,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -118,6 +129,8 @@ public class GalleryFragment extends Fragment {
 
     private ProgressBar mProgressBar;
 
+    private ArrayList<String> pagiisAdmins;
+
     private androidx.appcompat.widget.Toolbar mToolbar;
 
     private DatabaseReference mDatabaseRef;
@@ -129,7 +142,6 @@ public class GalleryFragment extends Fragment {
 
     private String shareItemId;
     private String MyName;
-	
 
 
     // private Uri resultUri;
@@ -172,8 +184,6 @@ public class GalleryFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -293,22 +303,14 @@ public class GalleryFragment extends Fragment {
     }
 
 
-
-
-
-
-
-    private void openImageChooser()
-    {
+    private void openImageChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         pickImageLauncher.launch(intent);
     }
 
 
-
-    private void openVideoChooser()
-    {
+    private void openVideoChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("video/*");
         pickVideoLauncher.launch(intent);
@@ -325,13 +327,11 @@ public class GalleryFragment extends Fragment {
 
     // ... Rest of your Fragment code ...
 
-    private void handleImageResult(@NonNull ActivityResult result)
-    {
+    private void handleImageResult(@NonNull ActivityResult result) {
 
         Toast.makeText(getActivity(), "All Good", Toast.LENGTH_SHORT).show();
 
-        if (result.getResultCode() == Activity.RESULT_OK)
-        {
+        if (result.getResultCode() == Activity.RESULT_OK) {
 
             Toast.makeText(getActivity(), "All Good", Toast.LENGTH_SHORT).show();
 
@@ -340,15 +340,12 @@ public class GalleryFragment extends Fragment {
                 mImageUri = data.getData();
                 finalPicUri = mImageUri;
 
-                if(mImageUri != null)
-                {
-                    Toast.makeText(getActivity(), "this is the image Uri"+ mImageUri, Toast.LENGTH_SHORT).show();
+                if (mImageUri != null) {
+                    Toast.makeText(getActivity(), "this is the image Uri" + mImageUri, Toast.LENGTH_SHORT).show();
 
-                }else
-                {
+                } else {
                     Toast.makeText(getActivity(), "Image Uri is null", Toast.LENGTH_SHORT).show();
                 }
-
 
 
                 RequestOptions options = new RequestOptions();
@@ -357,16 +354,12 @@ public class GalleryFragment extends Fragment {
                 videoView.setVisibility(View.INVISIBLE);
 
                 Glide.with(getActivity()).load(mImageUri).apply(options.centerCrop()).thumbnail(0.65f).into(mImageView);
-            }else
-
-            {
+            } else {
                 Toast.makeText(getActivity(), "Data returned is null", Toast.LENGTH_SHORT).show();
 
             }
 
-        }else
-
-        {
+        } else {
             Toast.makeText(getActivity(), "Result code had an error", Toast.LENGTH_SHORT).show();
 
         }
@@ -416,44 +409,15 @@ public class GalleryFragment extends Fragment {
                 videoView.start();
 
                 // ... Rest of your video handling code ...
-            }else
-
-            {
+            } else {
                 Toast.makeText(getActivity(), "Data returned is null", Toast.LENGTH_SHORT).show();
 
             }
-        }else
-
-        {
+        } else {
             Toast.makeText(getActivity(), "Result code had an error", Toast.LENGTH_SHORT).show();
 
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private void myLastLocationDetailsMetod() {
@@ -512,13 +476,58 @@ public class GalleryFragment extends Fragment {
     }
 
 
-
-
     private String getFileExtension(Uri uri) {
         @SuppressLint("RestrictedApi") ContentResolver cR = getApplicationContext().getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
+
+    private void refreshFCMToken() {
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("FCM Token", "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+                        Log.d("FCM Token", "Token: " + token);
+
+                        // Call your method to send the token to the server
+                        sendTokenToServer(token);
+                    }
+                });
+    }
+
+    private void sendTokenToServer(String token) {
+        new Thread(() -> {
+            try {
+                URL url = new URL("https://pagiis-ix.firebaseio.com/");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+
+                try (OutputStream os = conn.getOutputStream()) {
+                    os.write(token.getBytes());
+                }
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    Log.d("FCM Token", "Token sent successfully");
+                } else {
+                    Log.e("FCM Token", "Failed to send token. Response code: " + responseCode);
+                }
+                conn.disconnect();
+            } catch (Exception e) {
+                Log.e("FCM Token", "Error sending token: " + e.getMessage(), e);
+            }
+        }).start();
+    }
+
+
 
 
     private void Upload()
@@ -528,6 +537,10 @@ public class GalleryFragment extends Fragment {
             final String raterBarValueDefault = "userDefaultDp";
 
             final String currentUserId = mAuth.getCurrentUser().getUid();
+
+            String token = FirebaseInstanceId.getInstance().getToken();
+
+
 
             mDatabaseRef_x = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
 
@@ -584,6 +597,7 @@ public class GalleryFragment extends Fragment {
 
                                         finalImageUri = uri;
                                         finalImageUrl = String.valueOf(uri);
+                                        final String[] noficationItemid = {null};
 
 
                                         ImageUploads upload = new ImageUploads(mEditTextFileName.getText().toString().trim(), finalImageUrl, raterBarValue, currentUserId, raterBarValueDefault, raterBarValueDefault, raterBarValueDefault, postTimeDateStamp, myLastLocationDetails, MyName);
@@ -594,6 +608,63 @@ public class GalleryFragment extends Fragment {
                                                     public void onComplete(DatabaseError databaseError,
                                                                            DatabaseReference databaseReference) {
 
+
+                                                        noficationItemid[0] = databaseReference.getKey();
+
+
+                                                        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("PagiisAdmins");
+
+                                                        // Retrieve the user tokens from the "users" node
+                                                        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                                List<String> userFcmTokens = new ArrayList<>();
+                                                                pagiisAdmins = new ArrayList<>();
+
+                                                                // Iterate through the children (user IDs) of the "users" node
+                                                                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                                                                    // Get the token of each user
+                                                                    pagiisAdmins.add(userSnapshot.getKey());
+                                                                    String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+                                                                    //String userToken = userSnapshot.child("token").getValue(String.class);
+                                                                    if (refreshedToken != null) {
+                                                                        // Add the token to the list
+                                                                        userFcmTokens.add(refreshedToken);
+                                                                        sendNotificationsToUsers(userFcmTokens);
+                                                                    }
+                                                                }
+
+                                                                // Now you have a list of user tokens
+                                                                // You can use this list to send notifications to users
+
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(DatabaseError databaseError) {
+                                                                // Handle error
+                                                            }
+                                                        });
+                                                    }
+
+                                                    private void sendNotificationsToUsers(List<String> userFcmTokens) {
+                                                        // Notification details
+                                                        String title = "Admnin verification request";
+                                                        String body = "You are here requested to perform product verification  task.";
+
+
+                                                        // Get the context and activity
+                                                        @SuppressLint("RestrictedApi") Context context = getApplicationContext();
+                                                        Activity activity = getActivity();
+
+                                                        // Iterate through the list of user FCM tokens and send notifications to each user
+                                                        for (String userFcmToken : userFcmTokens) {
+                                                            // Instantiate FcmNotificationsSender with the necessary parameters
+                                                            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(userFcmToken, title, body, context, activity, noficationItemid[0]);
+
+                                                            // Send the notification
+                                                            notificationsSender.SendNotifications();
+                                                        }
+
                                                         //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
                                                         Toast.makeText(getActivity(), "PAGiiS image upload successful !!", Toast.LENGTH_SHORT).show();
 
@@ -601,6 +672,8 @@ public class GalleryFragment extends Fragment {
                                                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.GalleryFragment,new HomeFragment()).commit();
                                                         // String uniqueKey = databaseReference.getKey();
                                                         //Create the function for Clearing/The ImageView Widget.
+
+
                                                     }
                                                 });
                                     }
@@ -662,6 +735,8 @@ public class GalleryFragment extends Fragment {
 
 
     }
+
+
 
 
     private void getTimeUpload() {
@@ -881,6 +956,7 @@ public class GalleryFragment extends Fragment {
                         mProgressBar.setVisibility(View.VISIBLE);
 
                         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+                        refreshFCMToken();
 
                         mDatabaseRef.child(own_user_id).addValueEventListener(new ValueEventListener() {
                             @Override
@@ -914,6 +990,8 @@ public class GalleryFragment extends Fragment {
                         mProgressBar.setVisibility(View.VISIBLE);
 
                         mDatabaseRef = FirebaseDatabase.getInstance().getReference("videoUploads");
+                        refreshFCMToken();
+
 
                         mDatabaseRef.child(own_user_id).addValueEventListener(new ValueEventListener() {
                             @Override

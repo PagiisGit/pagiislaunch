@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pagiisnet.pagiisnet"
-    android:versionCode="666"
+    android:versionCode="667"
     android:versionName="ii" >
 
     <uses-sdk
@@ -87,6 +87,7 @@
         android:label="Pagiis"
         android:roundIcon="@drawable/pagiis_home_icon"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="pagiisnet.pagiisnet.GalleryUploads"
