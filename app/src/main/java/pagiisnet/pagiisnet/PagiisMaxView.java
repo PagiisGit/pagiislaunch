@@ -15,6 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,8 +25,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -103,21 +102,48 @@ public class PagiisMaxView extends AppCompatActivity
         bottomSheetDialog = new BottomSheetDialog(PagiisMaxView.this, R.style.BottomSheetDialogueTheme);
 
         Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("noticeId")) {
+        if (intent != null && intent.hasExtra("noticeId"))
+        {
             String imageDatabaseRefId = intent.getStringExtra("noticeId");
-            String imageUrl= "";
-
 
             mDatabaseRef_online_products = FirebaseDatabase.getInstance().getReference().child("uploads").child(imageDatabaseRefId);
+            mDatabaseRef_online_products.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
+
+                    ImageUrl = dataSnapshot.child("imageUrl").getValue().toString();
+                    imageKey = dataSnapshot.getKey().toString();
+                    imageUserId = dataSnapshot.child("userId").getValue().toString();
+                    UrlString ="nulll";
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError)
+                {
+
+                }
+            });
+
 
 
             Log.d(TAG, "Received imageDatabaseRefId: " + imageDatabaseRefId);
             // Handle the imageDatabaseRefId (e.g., fetch data from Firebase and display)
 
+            ImageUrl = getIntent().getExtras().get("imageUrl").toString();
+            imageKey = getIntent().getExtras().get("imageKeyMAx").toString();
+            imageUserId = getIntent().getExtras().get("imageUserId").toString();
+            UrlString = getIntent().getExtras().get("orderLink").toString();
+
+
+
 
 
 
             View bottomSheetView = LayoutInflater.from(PagiisMaxView.this).inflate(R.layout.bottom_sheet_explore_activities, findViewById(R.id.mapsBottomSheetCOntainer));
+            EditText productLinkEditText = bottomSheetView.findViewById(R.id.share);
             bottomSheetView.findViewById(R.id.popUpPostOption).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
@@ -136,7 +162,18 @@ public class PagiisMaxView extends AppCompatActivity
                     //transaction.addToBackStack(null);
                     // Commit the transaction
                     //transaction.commit();
-                    mDatabaseRef_online_products.child("status").setValue("verified");
+
+
+                    if(!productLinkEditText.getText().toString().isEmpty())
+                    {
+                        mDatabaseRef_online_products.child("status").setValue("verified");
+                        mDatabaseRef_online_products.child("productLink").setValue(productLinkEditText.getText().toString());
+
+                    }else
+                    {
+                        Toast.makeText(PagiisMaxView.this, "Make sure product link is copied and pasted.", Toast.LENGTH_LONG).show();
+                    }
+
 
 
 
@@ -149,25 +186,19 @@ public class PagiisMaxView extends AppCompatActivity
                 @Override
                 public void onClick(View v) {
 
-                    oldFragment = null;
-                    // Create a new instance of your target fragment
-                    SiroccoFragment newFragment = new SiroccoFragment();
+                    if(!productLinkEditText.getText().toString().isEmpty())
+                    {
+                        mDatabaseRef_online_products.child("status").setValue("declined");
+                        mDatabaseRef_online_products.child("productLink").setValue(productLinkEditText.getText().toString());
 
-                    // Get the FragmentManager
-                    FragmentManager fragmentManager = getSupportFragmentManager(); // Or use getFragmentManager() if you're not in an AppCompatActivity
-
-                    // Begin a transaction
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-                    // Replace the current fragment with the new one
-                    transaction.replace(R.id.mainContainer, newFragment);
-
-                    // Optionally, add the transaction to the back stack
-                    transaction.addToBackStack(null);
+                    }else
+                    {
+                        Toast.makeText(PagiisMaxView.this, "Declined Successfully.", Toast.LENGTH_LONG).show();
+                    }
 
                     // Commit the transaction
                     bottomSheetDialog.dismiss();
-                    transaction.commit();
+
                 }
 
             });
@@ -193,6 +224,13 @@ public class PagiisMaxView extends AppCompatActivity
             // Put your code here for the case when the BottomSheetDialog is active
 
 
+        }else
+
+        {
+            ImageUrl = getIntent().getExtras().get("imageUrlMax").toString();
+            imageKey = getIntent().getExtras().get("imageKeyMAx").toString();
+            imageUserId = getIntent().getExtras().get("imageUserId").toString();
+            UrlString = getIntent().getExtras().get("orderLink").toString();
         }
 
         mToolbar = findViewById(R.id.appBarLayout);
@@ -230,10 +268,7 @@ public class PagiisMaxView extends AppCompatActivity
 
         maxView = findViewById(R.id.pagiis_max_view);
 
-        ImageUrl = getIntent().getExtras().get("imageUrlMax").toString();
-        imageKey = getIntent().getExtras().get("imageKeyMAx").toString();
-        imageUserId = getIntent().getExtras().get("imageUserId").toString();
-        UrlString = getIntent().getExtras().get("orderLink").toString();
+
 
         RippleButton = findViewById(R.id.ripplePost);
 

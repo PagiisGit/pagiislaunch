@@ -6028,6 +6028,7 @@ layout bottom_sheet_explore_activities
 layout bottom_sheet_expore
 layout bottom_sheet_expore_profile_product
 layout bottom_sheet_profile_service
+layout bottom_sheet_verify
 layout botttom_sheet_layout
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row

@@ -6027,6 +6027,7 @@ int layout bottom_sheet_explore_activities 0x7f0c0077
 int layout bottom_sheet_expore 0x7f0c0078
 int layout bottom_sheet_expore_profile_product 0x7f0c0079
 int layout bottom_sheet_profile_service 0x7f0c007a
+int layout bottom_sheet_verify 0x7f0c014f
 int layout botttom_sheet_layout 0x7f0c007b
 int layout browser_actions_context_menu_page 0x7f0c007c
 int layout browser_actions_context_menu_row 0x7f0c007d
