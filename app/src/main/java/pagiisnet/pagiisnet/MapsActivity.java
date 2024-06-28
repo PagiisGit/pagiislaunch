@@ -7,6 +7,11 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.Arrays;
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -113,6 +118,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.varunest.sparkbutton.SparkButton;
@@ -146,7 +152,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private static final int PLACE_PICKER_REQUEST = 1;
     private static final int PLACE_PICKER_REQUEST_Two = 2;
-    private final long UPDATE_INTERVAL = 60 * 1000;  /* 10 secs */
+    private final long UPDATE_INTERVAL = 8 * 1000;  /* 10 secs */
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(new LatLng(-40, -168), new LatLng(71, 136));
     private GoogleMap mMap;
     private Switch radiusSwitch;
@@ -365,6 +371,17 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         setContentView(R.layout.activity_maps);
         Places.initialize(getApplicationContext(), "AIzaSyAWyHMDgO9ZvpefFyYxmPoal7J-uljmouk");
         FirebaseApp.initializeApp(getApplicationContext());
+
+
+
+        // Assuming you have a FirebaseMessaging instance
+        FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
+
+        // Replace with your actual registration token(s)
+        List<String> registrationTokens = Arrays.asList("your_registration_token_here");
+
+        // Subscribe the tokens to the topic
+        firebaseMessaging.subscribeToTopic("new_product_forms");
 
         PlacesClient placesClient = Places.createClient(this);
 
@@ -1371,16 +1388,23 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             }
         });
 
-        init();
 
-        //getAutoCompletPlaceSuggestion();
 
-        GetMapsOnlineProfile();
-        filterProfileByCategory();
-        //checkDataAvalability();
-        //getDataNormally();
-        getShareAppLink();
-        createNotificationChannel();
+
+            init();
+
+            //getAutoCompletPlaceSuggestion();
+
+            GetMapsOnlineProfile();
+            filterProfileByCategory();
+            //checkDataAvalability();
+            //getDataNormally();
+            getShareAppLink();
+            createNotificationChannel();
+
+
+
+
 
 
     } // Oncreate Ends Here
@@ -1938,7 +1962,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                         }
 
-                        Collections.reverse(uploads);
+                        //Collections.reverse(uploads);
                         Collections.shuffle(mUploads);
                         mAdapter.notifyDataSetChanged();
                         //recyclerProgressBar.setVisibility(View.INVISIBLE);
@@ -1997,7 +2021,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                         }
 
-                        Collections.reverse(mUploadsProfileCategory);
+                        //Collections.reverse(mUploadsProfileCategory);
                         Collections.shuffle(mUploadsProfileCategory);
                         mAdapterProfileCategory.notifyDataSetChanged();
                         //publicProfilePostsCardView.setVisibility(View.VISIBLE);
@@ -2062,6 +2086,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                         mAdapter.notifyDataSetChanged();
                         //recyclerProgressBar.setVisibility(View.INVISIBLE);
+                        //Collections.reverse(mUploadsProfileCategory);
+                        Collections.shuffle(uploads);
                         mapsViewCard.setVisibility(View.VISIBLE);
                         //mapsRecyclerView.setVisibility(View.VISIBLE);
                     }else
@@ -2087,6 +2113,67 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             Toast.makeText(MapsActivity.this, "Profiles with matching services unavailable in your local.", Toast.LENGTH_SHORT).show();
 
         }
+
+    }
+
+
+
+    public void GetMapsOnlineProfileByCategoryAll(String profileCategory)
+    {
+
+        //getDataNormally();
+
+
+            mAuth.getCurrentUser().getUid();
+            String user_id = mAuth.getCurrentUser().getUid();
+
+            mDatabaseRef_Z = FirebaseDatabase.getInstance().getReference().child("ProfessionalProfiles");
+            Query mSearchQuery = mDatabaseRef_Z.orderByChild("exRating").startAt(profileCategory).endAt(profileCategory + "\uf8ff");
+
+            mDBlistener =mSearchQuery.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists())
+                    {
+                        //mapsViewSearcCardMax.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.VISIBLE);
+                        // recyclerProgressBar.setVisibility(View.INVISIBLE);
+                        uploads.clear();
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
+                        {
+                            ImageUploads upload = postSnapshot.getValue(ImageUploads.class);
+                            upload.setKey(postSnapshot.getKey());
+                            uploads.add(upload);
+
+                        }
+
+                        mAdapter.notifyDataSetChanged();
+                        //recyclerProgressBar.setVisibility(View.INVISIBLE);
+                        //Collections.reverse(mUploadsProfileCategory);
+                        Collections.shuffle(uploads);
+                        mapsViewCard.setVisibility(View.VISIBLE);
+                        //mapsRecyclerView.setVisibility(View.VISIBLE);
+                    }else
+                    {
+
+
+                            Toast.makeText(MapsActivity.this, "Profiles with matching services unavailable in your local.", Toast.LENGTH_SHORT).show();
+
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+                    Toast.makeText(MapsActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    //recyclerProgressBar.setVisibility(View.INVISIBLE);
+                }
+            });
+
+
 
     }
 
@@ -2179,6 +2266,19 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                     bottomSheetDialog.dismiss();
                 }
             });
+
+
+        bottomSheetView.findViewById(R.id.explorePagiis).setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick(View v)
+            {
+                GetMapsOnlineProfileByCategoryAll(profileCategoryValue);
+                bottomSheetDialog.dismiss();
+
+            }
+        });
 
 
             bottomSheetView.findViewById(R.id.popUpOnlineShoppingOption).setOnClickListener(new View.OnClickListener() {
@@ -2471,7 +2571,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     }
 
 
-    private void saveUserLocation() {
+    private void saveUserLocation()
+    {
         String userID = mAuth.getCurrentUser().getUid();
 
         getmDatabaseRef_lastLocation = FirebaseDatabase.getInstance().getReference("MyLastLocation").child(userID);
@@ -2618,9 +2719,11 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         if (!(mSearchText.getText() == null) && !(mSearchText.getText().toString() == "")) {
 
 
-            mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener()
+            {
                 @Override
-                public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent)
+                {
 
                     if (i == EditorInfo.IME_ACTION_SEARCH
                             || i == EditorInfo.IME_ACTION_DONE
@@ -2636,7 +2739,6 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             });
 
             HideSoftKeyboard();
-
 
         }
 
@@ -2759,7 +2861,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         //onlineUserLocation();
     }
 
-    private final double radius = 1;
+    private final double radius = 25;
     private boolean userFound = false;
     private String userFoundExited;
     private final int UsersOnline = 0;
@@ -3435,8 +3537,6 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
 
-
-
         imageViewLikes.setEventListener(new SparkEventListener() {
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
@@ -3514,6 +3614,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
     //The Following is for ViewProfilePic Adaptor for the Content received from public online users
+    @SuppressLint("MissingInflatedId")
     @Override
     public void onClick(int position)
 
@@ -3541,6 +3642,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         SparkButton imageViewLikes = bottomSheetView.findViewById(R.id.likes);
 
+
+
         bottomSheetView.findViewById(R.id.shareImageView).setOnClickListener(new View.OnClickListener()
 
         {
@@ -3567,6 +3670,22 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         });
 
 
+        bottomSheetView.findViewById(R.id.explorePagiis).setOnClickListener(new View.OnClickListener()
+
+        {
+            @Override
+            public void onClick(View v)
+            {
+                GetMapsOnlineProfileByCategoryAll(profileCategoryValue);
+                bottomSheetDialog.dismiss();
+
+            }
+        });
+
+
+
+
+
         sharePagiis.setOnClickListener(new View.OnClickListener()
 
         {
@@ -3586,6 +3705,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
             }
         });
+
 
         viewProfileButton.setOnClickListener(new View.OnClickListener()
 
@@ -3950,103 +4070,6 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                             }
 
 
-                            // mapsProfileImageUrl = mapsProfileUrl;
-
-                           /*onlineUserRef.addValueEventListener(new ValueEventListener()
-
-                            {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    int i = 0;
-
-                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                        int size = Math.toIntExact(dataSnapshot.getChildrenCount());
-                                        if (ds.getKey().compareTo(userFoundID) == 0 && userFoundID.compareTo(currentUserId) != 0) {
-                                            //Toast.makeText(MapsActivity.this, "This user has Entered " + userFoundID, Toast.LENGTH_SHORT).show();
-                                            // TagRef_x = FirebaseDatabase.getInstance().getReference().child("Tags").child(currentUserId);
-
-
-
-
-                                            TagRef_x.addValueEventListener(new ValueEventListener() {
-
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                                                    if (dataSnapshot.exists())
-                                                    {
-                                                        ImageUploads upload = new ImageUploads(mapsUsername, mapsProfileUrl, userFoundID, userFoundID, userFoundID, userFoundID, userFoundID, "", "", userStatus);
-                                                        TagRef_x.child(userFoundID)
-                                                                .setValue(upload, new DatabaseReference.CompletionListener() {
-                                                                    @Override
-                                                                    public void onComplete(DatabaseError databaseError,
-                                                                                           DatabaseReference databaseReference)
-                                                                    {
-
-
-                                                                        if(userTags.size() > 0 && userTags.get(userTags.size()-1).equals(userFoundID))
-                                                                        {
-                                                                        }
-
-
-
-                                                                    }
-                                                                });
-
-                                                        //String myUserId =  mAuth.getCurrentUser().getUid();
-                                                        // mLocationDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userFoundID);
-
-
-                                                    } else {
-                                                        ImageUploads upload = new ImageUploads(userFoundID, mapsProfileUrl, userFoundID, userFoundID, userFoundID, userFoundID, userFoundID, "", "", "");
-                                                        TagRef_x.child(userFoundID)
-                                                                .setValue(upload, new DatabaseReference.CompletionListener() {
-                                                                    @Override
-                                                                    public void onComplete(DatabaseError databaseError,
-                                                                                           DatabaseReference databaseReference) {
-                                                                        //setRecyclerView Visible
-
-                                                                    }
-                                                                });
-
-                                                        updateArrayList();
-                                                    }
-
-
-                                                }
-
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                                }
-                                            });
-                                            //getUserLocation();
-                                            //tagUser();
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    // Get the custom layout view.
-                                    View toastView = getLayoutInflater().inflate(R.layout.activity_toast_custom_view, null);
-
-                                    TextView messageGrid = findViewById(R.id.customToastText);
-                                    // Initiate the Toast instance.
-                                    Toast toast = new Toast(getApplicationContext());
-
-                                    //messageGrid.setText("Pagiis failed to get online users, Pagiis will restart activity.");
-                                    // Set custom view in toast.
-                                    toast.setView(toastView);
-                                    toast.setDuration(Toast.LENGTH_SHORT);
-                                    toast.setGravity(Gravity.CENTER, 0,0);
-                                    toast.show();
-                                    finish();
-
-                                }
-                            });*/
 
                         }
 

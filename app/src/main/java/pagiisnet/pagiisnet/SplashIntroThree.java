@@ -71,8 +71,10 @@ public class SplashIntroThree extends AppCompatActivity {
                 }else
                 {
 
+
                     Intent registerIntent = new Intent(SplashIntroThree.this, MapsActivity.class);
                     registerIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    registerIntent.putExtra("fromSplash","yes");
                     startActivity(registerIntent);
                     finish();
 

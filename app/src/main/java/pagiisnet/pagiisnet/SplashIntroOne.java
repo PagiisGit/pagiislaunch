@@ -27,6 +27,8 @@ public class SplashIntroOne extends AppCompatActivity {
 
         skipOne = findViewById(R.id.skip);
 
+
+
         skipOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)

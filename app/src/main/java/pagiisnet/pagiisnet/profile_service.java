@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.net.InternetDomainName;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -74,6 +75,13 @@ public class profile_service extends Fragment implements ChooseProfileServiceCat
     private Fragment oldFragment;
 
     private String selectedItem;
+    private DatabaseReference mDatabaseRef_Z;
+    private String userFoundID;
+    private String mapsProfileUrl;
+    private String mapsUsername;
+    private String userStatus;
+    private String  userProfileServiceTag;
+    private DatabaseReference TagRef_x;
 
     public profile_service() {
         // Required empty public constructor
@@ -244,9 +252,9 @@ public class profile_service extends Fragment implements ChooseProfileServiceCat
                     mDatabaseRef.child("proffession").setValue(selectedItem)
                             .addOnSuccessListener(task ->
                             {
-                                oldFragment = null;
-                                oldFragment = new ProfileFragment();
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, oldFragment).commit();
+
+                                saveData(selectedItem);
+
                             });
 
                 }else
@@ -278,6 +286,61 @@ public class profile_service extends Fragment implements ChooseProfileServiceCat
             }
         });
         return rootView;
+    }
+
+    private void saveData(String selectedItem)
+
+    {
+        final String currentUserId = mAuth.getCurrentUser().getUid();
+        TagRef_x = FirebaseDatabase.getInstance().getReference().child("ProfessionalProfiles").child(currentUserId);
+
+        mDatabaseRef_Z = FirebaseDatabase.getInstance().getReference("Users");
+
+        mDatabaseRef_Z.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.child("userImageDp").exists())
+                {
+                    mapsProfileUrl = dataSnapshot.child("userImageDp").getValue().toString();
+
+                }
+
+                if (dataSnapshot.child("userNameAsEmail").exists())
+
+                {
+
+                    mapsUsername = dataSnapshot.child("userNameAsEmail").getValue().toString();
+                    userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+                    userProfileServiceTag = dataSnapshot.child("proffession").getValue().toString();
+                }
+
+
+                ImageUploads upload = new ImageUploads(mapsUsername, mapsProfileUrl,userProfileServiceTag , currentUserId, currentUserId, currentUserId, currentUserId, "", "", userStatus);
+                TagRef_x.setValue(upload, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference)
+
+                        {
+
+                            oldFragment = null;
+
+                            oldFragment = new ProfileFragment();
+                            if (oldFragment != null) {
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer, oldFragment).commit();
+                            }
+
+                        }
+                    });
+                }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 

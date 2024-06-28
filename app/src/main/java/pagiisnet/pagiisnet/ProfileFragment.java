@@ -330,15 +330,15 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             //mProgressCircle.setVisibility(View.VISIBLE);
             webViewLinks.setVisibility(VISIBLE);
             mProgressBarWebview.setVisibility(VISIBLE);
-            webViewLinks.loadUrl(UrlString);
+            webViewLinks.getSettings().setJavaScriptEnabled(true);
             webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
             webViewLinks.getSettings().setSupportZoom(true);
+            webViewLinks.getSettings().setUseWideViewPort(true);
             webViewLinks.getSettings().setLoadsImagesAutomatically(true);
             webViewLinks.getSettings().setUseWideViewPort(true);
             webViewLinks.getSettings().setLoadWithOverviewMode(true);
-            webViewLinks.getSettings().setLoadWithOverviewMode(true);
-            webViewLinks.setInitialScale(1);
+            webViewLinks.loadUrl(UrlString);
 
             webViewLinks.setWebViewClient(new WebViewClient() {
                 @Override
@@ -1525,7 +1525,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                         Toast.makeText(getActivity(),"This profile does not have an online store open", Toast.LENGTH_LONG).show();
                     }*/
 
-                    profileProductWebviewInent(UrlString);
+                    profileProductWebview();
 
 
                 }else
@@ -1670,13 +1670,13 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             intent.putExtra("orderLink",UrlString);
             startActivity(intent);
 
-        } else {
+        } else
+        {
+
             Toast.makeText(getActivity(), "Pagiis failed to open maxview.", Toast.LENGTH_SHORT).show();
 
         }
-
     }
-
     @Override
     public void onWhatEverClick(int position) {
         Intent intent = new Intent(getActivity(), ActivityOwnProfile.class);
