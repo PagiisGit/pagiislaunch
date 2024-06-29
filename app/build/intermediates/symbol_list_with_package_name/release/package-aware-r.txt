@@ -4012,6 +4012,7 @@ drawable contactless
 drawable coordinator
 drawable deals_announce
 drawable default_display_pic
+drawable delete
 drawable delivery_cart
 drawable delivery_truck_x
 drawable design_fab_background
@@ -5189,6 +5190,7 @@ id is_pooling_container_tag
 id italic
 id item_bought_des
 id item_touch_helper_previous_elevation
+id item_view_Delete
 id item_view_likes
 id item_view_profilepic
 id ivImage

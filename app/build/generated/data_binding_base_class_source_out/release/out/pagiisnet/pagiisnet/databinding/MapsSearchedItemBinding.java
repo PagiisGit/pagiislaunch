@@ -4,13 +4,11 @@ package pagiisnet.pagiisnet.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -48,17 +46,13 @@ public final class MapsSearchedItemBinding implements ViewBinding {
   public final TextView siroccoBrandModel;
 
   @NonNull
-  public final ImageView siroccoImageView;
-
-  @NonNull
-  public final CardView viewImageItemCard;
+  public final CircularImageView siroccoImageView;
 
   private MapsSearchedItemBinding(@NonNull RelativeLayout rootView, @NonNull RelativeLayout TitleId,
       @NonNull CircularImageView itemViewProfilepic, @NonNull TextView likesOne,
       @NonNull TextView likesTwo, @NonNull ProgressBar progressCircleUserMemes,
       @NonNull RelativeLayout relativeSearcLayout, @NonNull TextView searchedItemDescription,
-      @NonNull TextView siroccoBrandModel, @NonNull ImageView siroccoImageView,
-      @NonNull CardView viewImageItemCard) {
+      @NonNull TextView siroccoBrandModel, @NonNull CircularImageView siroccoImageView) {
     this.rootView = rootView;
     this.TitleId = TitleId;
     this.itemViewProfilepic = itemViewProfilepic;
@@ -69,7 +63,6 @@ public final class MapsSearchedItemBinding implements ViewBinding {
     this.searchedItemDescription = searchedItemDescription;
     this.siroccoBrandModel = siroccoBrandModel;
     this.siroccoImageView = siroccoImageView;
-    this.viewImageItemCard = viewImageItemCard;
   }
 
   @Override
@@ -144,20 +137,14 @@ public final class MapsSearchedItemBinding implements ViewBinding {
       }
 
       id = R.id.sirocco_image_view;
-      ImageView siroccoImageView = ViewBindings.findChildViewById(rootView, id);
+      CircularImageView siroccoImageView = ViewBindings.findChildViewById(rootView, id);
       if (siroccoImageView == null) {
-        break missingId;
-      }
-
-      id = R.id.viewImageItemCard;
-      CardView viewImageItemCard = ViewBindings.findChildViewById(rootView, id);
-      if (viewImageItemCard == null) {
         break missingId;
       }
 
       return new MapsSearchedItemBinding((RelativeLayout) rootView, TitleId, itemViewProfilepic,
           likesOne, likesTwo, progressCircleUserMemes, relativeSearcLayout, searchedItemDescription,
-          siroccoBrandModel, siroccoImageView, viewImageItemCard);
+          siroccoBrandModel, siroccoImageView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

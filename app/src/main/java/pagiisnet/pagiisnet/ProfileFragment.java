@@ -1591,9 +1591,11 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
                 cancelLogOutImage.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        @SuppressLint("RestrictedApi") Intent intent = new Intent(getApplicationContext(), ActivityOwnProfile.class);
-                        startActivity(intent);
+                    public void onClick(View view)
+                    {
+                        mBuilder.setView(mView);
+                        AlertDialog dialog = mBuilder.create();
+                        dialog.dismiss();
 
                     }
                 });
@@ -1693,32 +1695,68 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads").child(myUserId);
 
+
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+        View mView = getLayoutInflater().inflate(R.layout.logout_dialog, null);
+        getUserProfileDataRef = FirebaseDatabase.getInstance().getReference("Users");
+
+        ImageView logoutImage = mView.findViewById(R.id.SignOutImage);
+        TextView signOut = mView.findViewById(R.id.signOutText);
+        ImageView cancelLogOutImage = mView.findViewById(R.id.cancelSignOutImage);
+
+
+        signOut.setText("Delete post");
+
+        AlertDialog dialog = mBuilder.create();
+
+
+        logoutImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                view.findViewById(R.id.SignOutImage);
+                mDatabaseRef.child(selectedKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @SuppressLint("RestrictedApi")
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+
+                        dialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Item sent to bin..", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+
+
+                    String errorText;
+                    @SuppressLint("RestrictedApi")
+                    @Override
+                    public void onFailure(@NonNull Exception e)
+                    {
+
+                        errorText = String.valueOf(e);
+                        Toast.makeText(getApplicationContext(), errorText + " Deletion Will restart in few seconds", Toast.LENGTH_LONG).show();
+
+
+
+                    }
+                });
+            }
+        });
+
+        cancelLogOutImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                dialog.dismiss();
+            }
+        });
+        mBuilder.setView(mView);
+
+        dialog.show();
+
         //StorageReference deletImage = mStorage.getReferenceFromUrl(selectedImage.getImageUrl());
 
 
-        mDatabaseRef.child(selectedKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @SuppressLint("RestrictedApi")
-            @Override
-            public void onComplete(@NonNull Task<Void> task)
-            {
-                Toast.makeText(getApplicationContext(), "Item sent to bin..", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-
-
-            String errorText;
-            @SuppressLint("RestrictedApi")
-            @Override
-            public void onFailure(@NonNull Exception e)
-            {
-
-                errorText = String.valueOf(e);
-                Toast.makeText(getApplicationContext(), errorText + " Deletion Will restart in few seconds", Toast.LENGTH_LONG).show();
-
-
-
-            }
-        });
 
     }
 

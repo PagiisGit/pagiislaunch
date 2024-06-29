@@ -4011,6 +4011,7 @@ int drawable contactless 0x7f0700cb
 int drawable coordinator 0x7f0700cc
 int drawable deals_announce 0x7f0700cd
 int drawable default_display_pic 0x7f0700ce
+int drawable delete 0x7f070348
 int drawable delivery_cart 0x7f0700cf
 int drawable delivery_truck_x 0x7f0700d0
 int drawable design_fab_background 0x7f0700d1
@@ -5188,6 +5189,7 @@ int id is_pooling_container_tag 0x7f090218
 int id italic 0x7f090219
 int id item_bought_des 0x7f09021a
 int id item_touch_helper_previous_elevation 0x7f09021b
+int id item_view_Delete 0x7f09048e
 int id item_view_likes 0x7f09021c
 int id item_view_profilepic 0x7f09021d
 int id ivImage 0x7f09021e

@@ -31,7 +31,7 @@ public final class ActivityMapsBinding implements ViewBinding {
   public final ImageView LogSearchIconGo;
 
   @NonNull
-  public final ImageView PAGiiSICON;
+  public final View PAGiiSICON;
 
   @NonNull
   public final CardView discoverLayout;
@@ -82,7 +82,7 @@ public final class ActivityMapsBinding implements ViewBinding {
   public final LinearLayout searchTextInputLayout;
 
   private ActivityMapsBinding(@NonNull RelativeLayout rootView, @NonNull ImageView LogSearchIconGo,
-      @NonNull ImageView PAGiiSICON, @NonNull CardView discoverLayout,
+      @NonNull View PAGiiSICON, @NonNull CardView discoverLayout,
       @NonNull CircularImageView hideMapsPublicPostsCardView,
       @NonNull CircularImageView hidePublicProfilesCardView, @NonNull CardView iconstand,
       @NonNull RelativeLayout mainContainer, @NonNull FragmentContainerView map,
@@ -148,7 +148,7 @@ public final class ActivityMapsBinding implements ViewBinding {
       }
 
       id = R.id.PAGiiS_ICON;
-      ImageView PAGiiSICON = ViewBindings.findChildViewById(rootView, id);
+      View PAGiiSICON = ViewBindings.findChildViewById(rootView, id);
       if (PAGiiSICON == null) {
         break missingId;
       }

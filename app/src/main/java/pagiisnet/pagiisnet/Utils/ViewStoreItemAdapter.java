@@ -73,10 +73,25 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
         final ImageUploads uploadCurrent = mUploads.get(position);
 
         String loadImageUrl = uploadCurrent.getImageUrl();
+        mAuth = FirebaseAuth.getInstance();
+
+        String userId = mAuth.getCurrentUser().getUid();
 
         String raterValue = uploadCurrent.getExRating();
 
         String FinalValue = "internetLink";
+
+
+        if(uploadCurrent.getUserId().compareTo(userId)==0)
+
+        {
+            holder.imageViewDelete.setVisibility(View.VISIBLE);
+
+
+        }else
+        {
+            holder.imageViewDelete.setVisibility(INVISIBLE);
+        }
 
         if (loadImageUrl.compareTo("null") != 0 && loadImageUrl != null)
         {
@@ -134,6 +149,7 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
     {
         public TextView textViewName;
         public ImageView imageView;
+        public ImageView imageViewDelete;
         public CircularImageView profileImageView;
 
         public ProgressBar progressImageBar;
@@ -143,27 +159,16 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
 
             textViewName = itemView.findViewById(R.id.sirocco_brand_model);
             imageView = itemView.findViewById(R.id.sirocco_image_view);
+            imageViewDelete = itemView.findViewById(R.id.item_view_Delete);
             profileImageView = itemView.findViewById(R.id.item_view_profilepic);
+
 
             progressImageBar = itemView.findViewById(R.id.progress_circle_user_memes);
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
 
 
-            imageView.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-
-                    int position = getAdapterPosition();
-                    mListener.onWhatEverClick(position);
-
-                }
-            });
-
-
-            textViewName.setOnClickListener(new View.OnClickListener()
+            imageViewDelete.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)

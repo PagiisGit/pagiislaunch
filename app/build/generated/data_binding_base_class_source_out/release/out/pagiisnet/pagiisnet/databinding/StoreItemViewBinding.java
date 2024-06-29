@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -21,10 +21,13 @@ import pagiisnet.pagiisnet.R;
 
 public final class StoreItemViewBinding implements ViewBinding {
   @NonNull
-  private final CardView rootView;
+  private final LinearLayoutCompat rootView;
 
   @NonNull
   public final RelativeLayout TitleId;
+
+  @NonNull
+  public final ImageView itemViewDelete;
 
   @NonNull
   public final CircularImageView itemViewProfilepic;
@@ -38,11 +41,13 @@ public final class StoreItemViewBinding implements ViewBinding {
   @NonNull
   public final ImageView siroccoImageView;
 
-  private StoreItemViewBinding(@NonNull CardView rootView, @NonNull RelativeLayout TitleId,
+  private StoreItemViewBinding(@NonNull LinearLayoutCompat rootView,
+      @NonNull RelativeLayout TitleId, @NonNull ImageView itemViewDelete,
       @NonNull CircularImageView itemViewProfilepic, @NonNull ProgressBar progressCircleUserMemes,
       @NonNull TextView siroccoBrandModel, @NonNull ImageView siroccoImageView) {
     this.rootView = rootView;
     this.TitleId = TitleId;
+    this.itemViewDelete = itemViewDelete;
     this.itemViewProfilepic = itemViewProfilepic;
     this.progressCircleUserMemes = progressCircleUserMemes;
     this.siroccoBrandModel = siroccoBrandModel;
@@ -51,7 +56,7 @@ public final class StoreItemViewBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public CardView getRoot() {
+  public LinearLayoutCompat getRoot() {
     return rootView;
   }
 
@@ -82,6 +87,12 @@ public final class StoreItemViewBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.item_view_Delete;
+      ImageView itemViewDelete = ViewBindings.findChildViewById(rootView, id);
+      if (itemViewDelete == null) {
+        break missingId;
+      }
+
       id = R.id.item_view_profilepic;
       CircularImageView itemViewProfilepic = ViewBindings.findChildViewById(rootView, id);
       if (itemViewProfilepic == null) {
@@ -106,8 +117,8 @@ public final class StoreItemViewBinding implements ViewBinding {
         break missingId;
       }
 
-      return new StoreItemViewBinding((CardView) rootView, TitleId, itemViewProfilepic,
-          progressCircleUserMemes, siroccoBrandModel, siroccoImageView);
+      return new StoreItemViewBinding((LinearLayoutCompat) rootView, TitleId, itemViewDelete,
+          itemViewProfilepic, progressCircleUserMemes, siroccoBrandModel, siroccoImageView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
