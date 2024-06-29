@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainContainer"
     android:layout_alignParentEnd="true"
+    android:background="#55000000"
+    android:backgroundTint="#55000000"
     android:layout_alignParentStart="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -15,6 +17,8 @@
         class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#55000000"
+        android:backgroundTint="#55000000"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -25,6 +29,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:id="@+id/discoverLayout"
+        android:backgroundTint="#55000000"
         android:background="@drawable/gradient_background_maps"
         android:layout_height="match_parent">
 
@@ -32,6 +37,7 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:backgroundTint="#55000000"
             android:background="@drawable/gradient_background_maps"
             android:layout_height="match_parent">
 
@@ -39,7 +45,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:id="@+id/iconstand"
-                app:cardCornerRadius="15dp"
+                app:cardCornerRadius="23dp"
+                android:background="#55000000"
+                android:backgroundTint="#55000000"
                 android:layout_marginTop="5dp"
                 android:layout_height="50dp"
                 android:layout_alignParentStart="true"
@@ -50,12 +58,13 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:backgroundTint="@color/white"
+
+                    android:background="#55000000"
+                    android:backgroundTint="#55000000"
                     android:orientation="horizontal">
 
 
-                    <ImageView
+                    <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/PAGiiS_ICON"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
@@ -75,8 +84,8 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:textColor="@color/primaryDark"
-                android:textSize="35sp"
+                android:textColor="@color/EndBlue"
+                android:textSize="45sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="80dp"
                 android:fontFamily="@font/robobold"
@@ -89,7 +98,8 @@
             <LinearLayout
                 android:id="@+id/searchTextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#fff"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
@@ -152,8 +162,7 @@
                     <AutoCompleteTextView
                         android:id="@+id/searchEdittext"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_height="40dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:layout_marginEnd="50dp"
@@ -200,7 +209,7 @@
                 android:fontFamily="@font/robobold"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/primaryDark"
+                android:textColor="@color/EndBlue"
                 android:layout_height="wrap_content">
 
             </TextView>
@@ -273,12 +282,13 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="172dp"
         android:id="@+id/mapsViewOnlineUserCardView"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="20dp"
+        android:backgroundTint="#55000000"
         android:layout_marginEnd="20dp"
-        app:cardCornerRadius="15dp"
+        android:background="#55000000"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="90dp">
@@ -286,6 +296,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:backgroundTint="#55000000"
+            android:background="#55000000"
             android:layout_height="match_parent">
 
 
@@ -305,7 +317,6 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mapsOnlienUserRecyclerview"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="3dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -323,9 +334,10 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/maps_bottom_nav"
         android:layout_width="match_parent"
+        android:background="#fff"
+        android:backgroundTint="#fff"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#fff"
         app:itemIconSize="25dp"
         app:itemIconTint="@drawable/item_selector"
         app:labelVisibilityMode="unlabeled"

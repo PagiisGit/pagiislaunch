@@ -1971,7 +1971,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                     }else
                     {
 
-                        whatAreyouLookingFor();
+                        GetMapsOnlineProfileByCategoryAll(profileCategoryValue);
 
                     }
 

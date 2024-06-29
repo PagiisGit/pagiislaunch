@@ -32,14 +32,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
@@ -1677,9 +1680,51 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         }
     }
+
     @Override
     public void onWhatEverClick(int position) {
-        Intent intent = new Intent(getActivity(), ActivityOwnProfile.class);
-        startActivity(intent);
+        final ImageUploads selectedImage = mUploads.get(position);
+
+        final String selectedKey = selectedImage.getKey();
+
+        DeleteKeyAlternative = selectedKey;
+
+        String myUserId = mAuth.getCurrentUser().getUid();
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads").child(myUserId);
+
+        //StorageReference deletImage = mStorage.getReferenceFromUrl(selectedImage.getImageUrl());
+
+
+        mDatabaseRef.child(selectedKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onComplete(@NonNull Task<Void> task)
+            {
+                Toast.makeText(getApplicationContext(), "Item sent to bin..", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+
+
+            String errorText;
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onFailure(@NonNull Exception e)
+            {
+
+                errorText = String.valueOf(e);
+                Toast.makeText(getApplicationContext(), errorText + " Deletion Will restart in few seconds", Toast.LENGTH_LONG).show();
+
+
+
+            }
+        });
+
+    }
+
+
+    @Override
+    public CreationExtras getDefaultViewModelCreationExtras() {
+        return super.getDefaultViewModelCreationExtras();
     }
 }

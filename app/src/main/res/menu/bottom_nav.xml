@@ -7,6 +7,7 @@
         android:id="@+id/home"
         android:icon="@drawable/home_update_r"
         android:title="Online"
+        android:iconTint="@color/EndBlue"
         android:visible="true"
         app:showAsAction="always" />
 
@@ -16,6 +17,7 @@
         android:id="@+id/onlineShops"
         android:icon="@drawable/shopping_bag_update"
         android:visible="true"
+        android:iconTint="@color/EndBlue"
         android:title="Posts" />
 
 
@@ -26,12 +28,14 @@
         android:id="@+id/addCOntent"
         android:icon="@drawable/add_update"
         android:visible="true"
+        android:iconTint="@color/EndBlue"
         android:title="Add"/>
 
 
     <item
         app:showAsAction="always"
         android:id="@+id/Notifications"
+        android:iconTint="@color/EndBlue"
         android:icon="@drawable/notification_update"
         android:visible="true"
         android:title="Notifications"/>
@@ -42,6 +46,7 @@
         android:id="@+id/userProfile"
         android:icon="@drawable/user_update"
         android:visible="true"
+        android:iconTint="@color/EndBlue"
         android:title="Profile"/>
 
 

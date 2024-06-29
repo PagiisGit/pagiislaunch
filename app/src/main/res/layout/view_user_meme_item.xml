@@ -18,8 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:contextClickable="true"
+        android:background="#55000000"
+        android:layout_alignParentTop="true"
         android:orientation="vertical"
         tools:ignore="DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck,DuplicateClickableBoundsCheck">
 
@@ -28,8 +29,9 @@
             android:id="@+id/TitleId"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:backgroundTint="#FFFFFF"
+            android:contextClickable="true"
+            android:background="#55000000"
+            android:backgroundTint="#55000000"
             android:orientation="vertical">
 
             <LinearLayout

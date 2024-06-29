@@ -149,7 +149,33 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
 
+
+            imageView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+
+                    int position = getAdapterPosition();
+                    mListener.onWhatEverClick(position);
+
+                }
+            });
+
+
+            textViewName.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+
+                    int position = getAdapterPosition();
+                    mListener.onWhatEverClick(position);
+
+                }
+            });
         }
+
 
         @Override
         public void onClick(final View view) {
@@ -172,8 +198,8 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
 
-            contextMenu.setHeaderTitle("Select Action");
-            MenuItem doWhatever = contextMenu.add(Menu.NONE, 1, 1, "View Profile");
+            contextMenu.setHeaderTitle("Delete Post");
+            MenuItem doWhatever = contextMenu.add(Menu.NONE, 1, 1, "Action");
 
             doWhatever.setOnMenuItemClickListener(this);
         }
