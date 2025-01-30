@@ -37,10 +37,7 @@ public class SliderAdaptor extends PagerAdapter {
     };
     public String[] slide_description = {
 
-            "GEOLOCATION AND PUBLIC USER INTERACTIONS. \n "+
-                    "Founder: MR. ML MLAMBO, \n" +
-                    "Co-Founders: MR. SA NGUBANE, MR. ZM MTHEMBU, MR. MS MATHE, MR. FS MTHETHWA",
-
+            "Geolocation and public user interaction.",
             "Ecommerce",
             "Welcome to Pagiis."
 

@@ -1,84 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="pagiisnet.pagiisnet.GalleryUploads">
 
-    <LinearLayout
-        android:id="@+id/selectChoseOptionLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:background="#fff"
-        android:orientation="vertical">
 
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="35dp"
-                android:id="@+id/returnToHome"
-                android:clickable="true"
-                android:background="@color/EndBlue"
-                android:backgroundTint="@color/EndBlue"
-                android:src="@drawable/previous"
-                android:layout_height="45dp">
-
-
-            </androidx.appcompat.widget.AppCompatImageView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:background="@color/EndBlue"
-                android:backgroundTint="@color/EndBlue"
-                android:fontFamily="@font/yogamedium"
-                android:gravity="center"
-                android:text="SELECT POST"
-                android:textColor="@color/test"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="0dp"
-            android:gravity="center">
-
-
-            <ImageView
-                android:id="@+id/videOption"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:clickable="true"
-                android:foreground="?android:selectableItemBackground"
-                android:src="@drawable/video_camera"
-                tools:ignore="SpeakableTextPresentCheck"
-                android:contentDescription="TODO" />
-
-
-            <ImageView
-                android:id="@+id/GalleryOption"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="100dp"
-                android:clickable="true"
-                android:foreground="?android:selectableItemBackground"
-                android:src="@drawable/add"
-                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
-
-
-        </LinearLayout>
 
         <!--<ImageView
             android:id="@+id/linkEditImageView"
@@ -90,16 +17,21 @@
             android:clickable="true"
             android:src="@drawable/link" /!-->
 
-    </LinearLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="160dp"
-        android:background="@color/LemonChaffon"
-        android:orientation="vertical">
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
@@ -107,6 +39,7 @@
         <VideoView
             android:id="@+id/chosenVideoView"
             android:layout_width="match_parent"
+            android:layout_below="@+id/postTitle"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
@@ -114,16 +47,18 @@
             android:src="@drawable/video_camera"
             tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
-        <ImageView
-            android:id="@+id/galleryChosenImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:background="#fff"
-            android:backgroundTint="#fff"
-            android:clickable="true"
-            android:src="@drawable/add"
-            tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck,ImageContrastCheck" />
+    <ImageView
+        android:id="@+id/galleryChosenImageView"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:layout_below="@+id/postTitle"
+        android:layout_centerInParent="true"
+        android:background="#fff"
+        android:backgroundTint="#fff"
+        android:clickable="true"
+        android:src="@drawable/add"
+        tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck,ImageContrastCheck" />
 
 
         <ProgressBar
@@ -137,6 +72,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/postTitle"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@id/uploadChosenFile"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:orientation="horizontal">
@@ -151,9 +89,9 @@
                 android:backgroundTint="#fff"
                 android:clickable="true"
                 android:contextClickable="true"
-                android:fontFamily="@font/robobold"
-                android:gravity="center"
+                android:fontFamily="@font/yogamedium"
                 android:hint="Type title"
+                android:layout_marginStart="7dp"
                 android:textColor="@color/BlueishBlack"
                 android:textColorHighlight="@color/colorPrimaryText"
                 android:textColorHint="@color/colorPrimaryText"
@@ -163,24 +101,56 @@
         </LinearLayout>
 
 
-        <Button
-            android:id="@+id/uploadChosenFile"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="Upload"
-            android:textSize="20sp"
-            android:layout_alignParentBottom="true"
-            android:fontFamily="@font/yogamedium"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/button_background_popup"
-            android:layout_marginBottom="60dp"
+    <Button
+        android:id="@+id/uploadChosenFile"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/red_background_button"
+        android:clickable="true"
+        android:defaultFocusHighlightEnabled="true"
+        android:fontFamily="@font/yogamedium"
+        android:foreground="?android:selectableItemBackground"
+        android:text="Post"
+        android:textSize="20sp"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#55000000"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/videOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:clickable="true"
-            android:defaultFocusHighlightEnabled="true"
-            android:foreground="?android:selectableItemBackground"
-            android:src="@drawable/upload_click"
+
+            android:contentDescription="TODO"
+            android:src="@drawable/video_camera"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/GalleryOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:backgroundTint="@color/AlertRed"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground"
+            android:src="@drawable/add"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+
+</RelativeLayout>

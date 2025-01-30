@@ -160,7 +160,6 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                     // There is no activity that can handle the intent
                 }
 
-
             }
         });
 
@@ -193,7 +192,6 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
             @Override
             public void onClick(View v)
             {
-
 
                 siroccoCategory.setText("Sirocco");
                 bottomSheetDialog.dismiss();
@@ -477,12 +475,11 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                         if (postSnapshot.getKey().compareTo("store1") == 0) {
                             UrlString = upload.getExRating();
                             webViewLinks.getSettings().setJavaScriptEnabled(true);
-                   	        webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+                            // webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                             webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
                             webViewLinks.getSettings().setSupportZoom(true);
                             webViewLinks.getSettings().setUseWideViewPort(true);
-                            webViewLinks.getSettings().setLoadsImagesAutomatically(true);
-                            webViewLinks.getSettings().setUseWideViewPort(true);
+                            //webViewLinks.getSettings().setLoadsImagesAutomatically(true);
                             webViewLinks.getSettings().setLoadWithOverviewMode(true);
                             webViewLinks.loadUrl(UrlString);
 

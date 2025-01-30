@@ -8,13 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.cardview.widget.CardView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -23,10 +23,10 @@ import pagiisnet.pagiisnet.R;
 
 public final class ActivityGalleryUploadsBinding implements ViewBinding {
   @NonNull
-  private final CardView rootView;
+  private final RelativeLayout rootView;
 
   @NonNull
-  public final ImageView GalleryOption;
+  public final FloatingActionButton GalleryOption;
 
   @NonNull
   public final TextInputEditText chosenTitleEdit;
@@ -38,41 +38,36 @@ public final class ActivityGalleryUploadsBinding implements ViewBinding {
   public final ImageView galleryChosenImageView;
 
   @NonNull
+  public final LinearLayout postTitle;
+
+  @NonNull
   public final ProgressBar progressCircleUpload;
-
-  @NonNull
-  public final AppCompatImageView returnToHome;
-
-  @NonNull
-  public final LinearLayout selectChoseOptionLayout;
 
   @NonNull
   public final Button uploadChosenFile;
 
   @NonNull
-  public final ImageView videOption;
+  public final FloatingActionButton videOption;
 
-  private ActivityGalleryUploadsBinding(@NonNull CardView rootView,
-      @NonNull ImageView GalleryOption, @NonNull TextInputEditText chosenTitleEdit,
+  private ActivityGalleryUploadsBinding(@NonNull RelativeLayout rootView,
+      @NonNull FloatingActionButton GalleryOption, @NonNull TextInputEditText chosenTitleEdit,
       @NonNull VideoView chosenVideoView, @NonNull ImageView galleryChosenImageView,
-      @NonNull ProgressBar progressCircleUpload, @NonNull AppCompatImageView returnToHome,
-      @NonNull LinearLayout selectChoseOptionLayout, @NonNull Button uploadChosenFile,
-      @NonNull ImageView videOption) {
+      @NonNull LinearLayout postTitle, @NonNull ProgressBar progressCircleUpload,
+      @NonNull Button uploadChosenFile, @NonNull FloatingActionButton videOption) {
     this.rootView = rootView;
     this.GalleryOption = GalleryOption;
     this.chosenTitleEdit = chosenTitleEdit;
     this.chosenVideoView = chosenVideoView;
     this.galleryChosenImageView = galleryChosenImageView;
+    this.postTitle = postTitle;
     this.progressCircleUpload = progressCircleUpload;
-    this.returnToHome = returnToHome;
-    this.selectChoseOptionLayout = selectChoseOptionLayout;
     this.uploadChosenFile = uploadChosenFile;
     this.videOption = videOption;
   }
 
   @Override
   @NonNull
-  public CardView getRoot() {
+  public RelativeLayout getRoot() {
     return rootView;
   }
 
@@ -98,7 +93,7 @@ public final class ActivityGalleryUploadsBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.GalleryOption;
-      ImageView GalleryOption = ViewBindings.findChildViewById(rootView, id);
+      FloatingActionButton GalleryOption = ViewBindings.findChildViewById(rootView, id);
       if (GalleryOption == null) {
         break missingId;
       }
@@ -121,21 +116,15 @@ public final class ActivityGalleryUploadsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.postTitle;
+      LinearLayout postTitle = ViewBindings.findChildViewById(rootView, id);
+      if (postTitle == null) {
+        break missingId;
+      }
+
       id = R.id.progress_circle_upload;
       ProgressBar progressCircleUpload = ViewBindings.findChildViewById(rootView, id);
       if (progressCircleUpload == null) {
-        break missingId;
-      }
-
-      id = R.id.returnToHome;
-      AppCompatImageView returnToHome = ViewBindings.findChildViewById(rootView, id);
-      if (returnToHome == null) {
-        break missingId;
-      }
-
-      id = R.id.selectChoseOptionLayout;
-      LinearLayout selectChoseOptionLayout = ViewBindings.findChildViewById(rootView, id);
-      if (selectChoseOptionLayout == null) {
         break missingId;
       }
 
@@ -146,14 +135,14 @@ public final class ActivityGalleryUploadsBinding implements ViewBinding {
       }
 
       id = R.id.videOption;
-      ImageView videOption = ViewBindings.findChildViewById(rootView, id);
+      FloatingActionButton videOption = ViewBindings.findChildViewById(rootView, id);
       if (videOption == null) {
         break missingId;
       }
 
-      return new ActivityGalleryUploadsBinding((CardView) rootView, GalleryOption, chosenTitleEdit,
-          chosenVideoView, galleryChosenImageView, progressCircleUpload, returnToHome,
-          selectChoseOptionLayout, uploadChosenFile, videOption);
+      return new ActivityGalleryUploadsBinding((RelativeLayout) rootView, GalleryOption,
+          chosenTitleEdit, chosenVideoView, galleryChosenImageView, postTitle, progressCircleUpload,
+          uploadChosenFile, videOption);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

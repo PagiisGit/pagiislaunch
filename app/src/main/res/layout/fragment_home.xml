@@ -11,6 +11,47 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:id="@+id/iconstand"
+            app:cardCornerRadius="23dp"
+            android:background="#55000000"
+            android:backgroundTint="#55000000"
+            android:layout_marginTop="5dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="-56dp"
+            android:layout_marginStart="5dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="#55000000"
+                android:backgroundTint="#55000000"
+                android:orientation="horizontal">
+
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/PAGiiS_ICON"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:src="@drawable/pagiis_splash_logo_edit_final_r"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/memeRecyclerView"
             android:layout_width="match_parent"
@@ -94,7 +135,7 @@
             android:layout_height="65dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="100dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:background="#55000000"

@@ -1,5 +1,6 @@
 package pagiisnet.pagiisnet;
 
+import static android.view.View.INVISIBLE;
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 import android.Manifest;
@@ -7,6 +8,12 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Arrays;
@@ -148,7 +155,6 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     GnssStatus.Callback mGnssStatusCallback;
     LocationManager mLocationManager;
-
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private static final int PLACE_PICKER_REQUEST = 1;
     private static final int PLACE_PICKER_REQUEST_Two = 2;
@@ -159,6 +165,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private RecyclerView mRecyclerView;
 
     private String selectedItem;
+    private String pagiis360DataValue;
 
     private String shareAppLink;
 
@@ -186,8 +193,12 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private Adapter adapter;
 
     private mapsViewAdapter mAdapter;
+
+    private ViewProfilePicsAdapter pagiis360Adapter;
     private ViewMapsProfileCategory mAdapterProfileCategory;
     private List<ImageUploads> mUploads;
+
+    private List<ImageUploads> pagiis360Uploads;
 
     private List<ImageUploads> mUploadsProfileCategory;
     private List<ImageUploads> kUploads;
@@ -265,6 +276,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     private RecyclerView publicProfilesPostsRecyclerView;
     private RecyclerView publicProfileRecyclerView;
+    private RecyclerView pagiis360RecyclerView;
 
 
     private String userFoundID;
@@ -285,7 +297,11 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private ValueEventListener mDBlistener;
     private DatabaseReference mDatabaseRef;
     private ProgressBar mProgressCircle;
+    private DatabaseReference getUserProfileDataRef;
     private DatabaseReference mDatabaseRef_Y;
+    private DatabaseReference notificationReference;
+
+    private DatabaseReference mDatabaseRef_Tokens;
     private DatabaseReference mDatabaseRef_Z;
     private DatabaseReference mDatabaseRef_viewProfiles;
     private DatabaseReference TagRef_x;
@@ -335,6 +351,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     private String searcValue;
     private String userStatus;
+    private AdView adView;
 
     private String userProfileServiceTag;
 
@@ -364,13 +381,21 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     public class MyAppConstants {
         public static final String CHANNEL_ID = "YOUR_CHANNEL_ID";
     }
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "MissingPermission"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Places.initialize(getApplicationContext(), "AIzaSyAWyHMDgO9ZvpefFyYxmPoal7J-uljmouk");
         FirebaseApp.initializeApp(getApplicationContext());
+
+
+        MobileAds.initialize(this, initializationStatus -> {});
+
+        // Find the AdView and load the ad
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
 
 
@@ -401,6 +426,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
         bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setItemIconSize(30);
 
         searchSpinner = findViewById(R.id.searchSpinner);
 
@@ -411,6 +437,21 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         //mapsDiscoverLayout.setVisibility(View.INVISIBLE);
 
         nearbyLocationImagevIew = findViewById(R.id.nearbyLocation);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
+
+
+        mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference().child("userTokens");
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task<InstanceIdResult> task)
+
+            {
+                mDatabaseRef_Tokens.child(mAuth.getCurrentUser().getUid()).setValue(task.getResult().getToken().toString());
+
+            }
+        });
 
         nearbyLocationImagevIew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -505,6 +546,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             }
         });
 
+
+
         SeachLocationImageview = findViewById(R.id.LogSearchIconGo);
 
         //SeachLocationImageview.setEnabled(FALSE);
@@ -528,6 +571,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         mapsViewCard = findViewById(R.id.mapsViewOnlineUserCardView);
         mRecyclerView = findViewById(R.id.mapsOnlienUserRecyclerview);
+        pagiis360RecyclerView = findViewById(R.id.memeRecyclerView);
 
         mRecyclerViewProfileCategory = findViewById(R.id.mapsProfileCategory);
         mRecyclerViewProfileCategory.setHasFixedSize(true);
@@ -536,7 +580,10 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         publicProfilesPostsRecyclerView = findViewById(R.id.mapsPublicContentRecyclerView);
 
         mRecyclerView.setAdapter(mAdapter);
+        pagiis360RecyclerView.setAdapter(pagiis360Adapter);
         mRecyclerViewProfileCategory.setAdapter(mAdapterProfileCategory);
+
+        pagiis360RecyclerView.setVisibility(INVISIBLE);
 
 
         mapsViewCard.setVisibility(View.INVISIBLE);
@@ -660,13 +707,15 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         LinearLayoutManager linearLayoutManagerR = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         LinearLayoutManager linearLayoutManagerProfileCategory = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        //LinearLayoutManager linearLayoutManagerX = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager linearLayoutManagerX = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
         //mapsRecyclerView.setLayoutManager(linearLayoutManager);
         //mapSearchRecyclerView.setLayoutManager(linearLayoutManagerR);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerViewProfileCategory.setLayoutManager(linearLayoutManagerProfileCategory);
         publicProfilesPostsRecyclerView.setLayoutManager(linearLayoutManagerR);
+        pagiis360RecyclerView.setLayoutManager(linearLayoutManagerX);
+
 
 
         uploads = new ArrayList<>();
@@ -674,6 +723,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         ProfileUploads = new ArrayList<>();
         mUploads = new ArrayList<>();
+        pagiis360Uploads = new ArrayList<>();
 
 
 
@@ -685,6 +735,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         searchString.add("nearby places");
         searchString.add("Services");
+        searchString.add("pagiis360");
         searchString.add("live events");
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,searchString);
@@ -697,9 +748,13 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         mAdapterProfileCategory = new ViewMapsProfileCategory(MapsActivity.this, mUploadsProfileCategory);
         viewProfilesAdapter = new ViewProfilePicsAdapter(MapsActivity.this, ViewProfilePostsUploads);
+
+        pagiis360Adapter = new ViewProfilePicsAdapter(MapsActivity.this, pagiis360Uploads);
         viewAllPagiisProfilesAdapter = new ViewAllPagiisProfiles(MapsActivity.this,ProfileUploads);
         mapsAdapterNew = new mapSearchedItemAdaptor(MapsActivity.this, mUploads);
         sAdapter = new mapsProfileItemsViewAdaptor(MapsActivity.this, kUploads);
+
+        pagiis360Adapter.setOnItemClickListener2(MapsActivity.this);
         sAdapter.setOnItemClickListener(MapsActivity.this);
 
         mAdapter.setOnItemClickListener(MapsActivity.this);
@@ -1383,6 +1438,11 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                     //progressBarSearc.setVisibility(View.VISIBLE);
 
                     GetMapsOnlineProfileByCategory(searchedText);
+                }else if (!mSearchText.getText().toString().isEmpty() && searcValue.compareTo("pagiis360") ==0)
+                {
+
+                    send360request(mSearchText.getText().toString());
+
                 }
 
             }
@@ -1487,7 +1547,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                                 viewProfileUploads.add(upload);
 
 
-                            Collections.reverse(viewProfileUploads);
+                            Collections.shuffle(viewProfileUploads);
 
                             viewProfilesAdapter.notifyDataSetChanged();
                             //publicProfilePostsCardView.setVisibility(View.VISIBLE);
@@ -1505,6 +1565,10 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             }
         }
     }
+
+
+
+
 
 
 
@@ -1763,6 +1827,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
     //HideSoftkey Method
+
+
 
     private void siroccoView() {
         mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("WalkinWall");
@@ -2053,6 +2119,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     }
 
 
+
+
     public void GetMapsOnlineProfileByCategory(String profileCategory)
     {
 
@@ -2084,10 +2152,11 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                         }
 
-                        mAdapter.notifyDataSetChanged();
+
                         //recyclerProgressBar.setVisibility(View.INVISIBLE);
                         //Collections.reverse(mUploadsProfileCategory);
                         Collections.shuffle(uploads);
+                        mAdapter.notifyDataSetChanged();
                         mapsViewCard.setVisibility(View.VISIBLE);
                         //mapsRecyclerView.setVisibility(View.VISIBLE);
                     }else
@@ -2115,6 +2184,12 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         }
 
     }
+
+
+
+
+
+
 
 
 
@@ -2148,10 +2223,11 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                         }
 
-                        mAdapter.notifyDataSetChanged();
+
                         //recyclerProgressBar.setVisibility(View.INVISIBLE);
                         //Collections.reverse(mUploadsProfileCategory);
                         Collections.shuffle(uploads);
+                        mAdapter.notifyDataSetChanged();
                         mapsViewCard.setVisibility(View.VISIBLE);
                         //mapsRecyclerView.setVisibility(View.VISIBLE);
                     }else
@@ -2176,6 +2252,316 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
     }
+
+    private void getPagiis360Data(String valueToCheck) {
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        final String userIdRef = mAuth.getCurrentUser().getUid();
+        //final String on_maps_visited_user_id = String.valueOf(getIntent().getExtras().get("visit_user_id").toString());
+
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren())
+                {
+
+                    String location = dataSnapshot.getValue(String.class);
+
+
+                    if (location != null && !location.isEmpty())
+
+                    {
+
+                        // Split the string into components (Address, City, Country)
+                        String[] locationParts = location.split(", \\s*"); // Split by comma and optional spaces
+
+                        // Check if the input value matches any part of the location
+                        boolean matchFound = false;
+                        for (String part : locationParts) {
+                            if (valueToCheck.equalsIgnoreCase(part.trim()))
+                            {
+
+                                String userKey = dataSnapshot.getKey().toString();
+                                for (DataSnapshot dx : ds.getChildren()) {
+                                    ImageUploads upload = dx.getValue(ImageUploads.class);
+                                    upload.setKey(dx.getKey());
+                                    pagiis360Uploads.add(upload);
+                                    Collections.shuffle(mUploads);
+                                }
+
+                                pagiis360Adapter.notifyDataSetChanged();
+                                mProgressCircle.setVisibility(INVISIBLE);
+
+                            }
+                        }
+
+                        if (!matchFound) {
+                            System.out.println("No match found for: " + valueToCheck);
+                        }
+                    } else {
+                        System.out.println("Location value is null or empty.");
+                    }
+
+
+
+                    if (ds.exists() && ds.child("postLocation").getValue().toString() == pagiis360DataValue)
+                    {
+
+
+                    }
+
+                    //getDataNormally();
+
+                    //0799506310
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                //mProgressCircle.setVisibility(INVISIBLE);
+            }
+        });
+
+    }
+
+
+    public void send360request(String profileCategory)
+    {
+
+        //getDataNormally();
+
+        if(mAuth != null && profileCategory != null && !profileCategory.isEmpty())
+        {
+            mAuth.getCurrentUser().getUid();
+            //String user_id = mAuth.getCurrentUser().getUid();
+
+            mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("MyLastLocation");
+            //Query mSearchQuery = mDatabaseRef_Y.orderByChild("exRating").startAt(profileCategory).endAt(profileCategory + "\uf8ff");
+
+            mDBlistener =mDatabaseRef_Y.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists())
+                    {
+                        //mapsViewSearcCardMax.setVisibility(View.VISIBLE);
+                        //mRecyclerView.setVisibility(View.VISIBLE);
+                        // recyclerProgressBar.setVisibility(View.INVISIBLE);
+                       // uploads.clear();
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
+                        {
+                            CheckLocation checkLocation = new CheckLocation();
+
+                            checkLocation.checkLocation(postSnapshot.getValue().toString());
+                        }
+
+
+
+
+                        //recyclerProgressBar.setVisibility(View.INVISIBLE);
+                        //Collections.reverse(mUploadsProfileCategory);
+                        //Collections.shuffle(uploads);
+                        //mAdapter.notifyDataSetChanged();
+                        //mapsViewCard.setVisibility(View.VISIBLE);
+                        //mapsRecyclerView.setVisibility(View.VISIBLE);
+                        String searchedText = mSearchText.getText().toString();
+
+                        getPagiis360Data(searchedText);
+                    }else
+                    {
+
+                        whatAreyouLookingFor();
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+                    Toast.makeText(MapsActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    //recyclerProgressBar.setVisibility(View.INVISIBLE);
+                }
+            });
+
+        }else
+
+        {
+            Toast.makeText(MapsActivity.this, "Please make sure you type in correctly what you want to search", Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
+    public class CheckLocation {
+
+        // Firebase database reference
+        private DatabaseReference databaseReference;
+
+        public CheckLocation() {
+            // Initialize Firebase reference
+            databaseReference = FirebaseDatabase.getInstance().getReference("myLastLocation");
+        }
+
+        String userToken;
+
+        String  myImageDpUrl;
+
+        String myName;
+
+        public void checkLocation(String valueToCheck) {
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Retrieve the location value as a string
+                        String location = dataSnapshot.getValue(String.class);
+                        mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference("userTokens");
+
+
+                        getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                        mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("WalkinWall");
+
+                        notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+
+
+
+
+                        if (location != null && !location.isEmpty()) {
+                            // Split the string into components (Address, City, Country)
+                            String[] locationParts = location.split(",\\s*"); // Split by comma and optional spaces
+
+                            // Check if the input value matches any part of the location
+                            boolean matchFound = false;
+                            for (String part : locationParts) {
+                                if (valueToCheck.equalsIgnoreCase(part.trim()))
+                                {
+
+                                    String userKey = dataSnapshot.getKey().toString();
+
+
+
+
+                                    mDatabaseRef_Tokens.child(userKey).addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                        {
+                                            if(dataSnapshot.exists())
+                                            {
+
+                                                String userId = dataSnapshot.getKey().toString();
+                                                getUserProfileDataRef.child(userId).addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                                    {
+                                                        if(dataSnapshot.exists())
+                                                        {
+
+                                                            String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
+                                                            String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+
+                                                            String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
+
+
+                                                            myImageDpUrl = myDpUrl;
+                                                            myName = name;
+
+                                                            postNotification();
+
+                                                        }
+
+
+
+                                                    }
+
+
+                                                    private void postNotification()
+                                                    {
+                                                        String myUserId = mAuth.getCurrentUser().getUid().toString();
+                                                        ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Request for shared experience in your location.");
+                                                        notificationReference.child(userId)
+                                                                .push()
+                                                                .setValue(upload, new DatabaseReference.CompletionListener() {
+                                                                    @Override
+                                                                    public void onComplete(DatabaseError databaseError,
+                                                                                           DatabaseReference databaseReference) {
+
+                                                                        //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
+                                                                        Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
+                                                                        finish();
+                                                                        // String uniqueKey = databaseReference.getKey();
+                                                                        //Create the function for Clearing/The ImageView Widget.
+                                                                    }
+                                                                });
+
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
+
+                                                userToken = dataSnapshot.getValue().toString();
+
+                                                FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in "+valueToCheck ,getApplicationContext(),
+                                                        MapsActivity.this);
+
+                                                notificationSender.SendNotifications();
+
+                                            }else
+
+                                            {
+                                                Toast.makeText(MapsActivity.this, "There are currently no profile activities in this are please try again later.", Toast.LENGTH_SHORT).show();
+
+                                            }
+
+
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
+
+                                    matchFound = true;
+                                    break;
+                                }
+                            }
+
+                            if (!matchFound) {
+                                System.out.println("No match found for: " + valueToCheck);
+                            }
+                        } else {
+                            System.out.println("Location value is null or empty.");
+                        }
+                    } else {
+                        System.out.println("No location found under 'myLastLocation'.");
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                    System.err.println("Error retrieving location: " + databaseError.getMessage());
+                }
+            });
+        }
+    }
+
+
+
+
+
+
 
     public void GetPagiisProfiles()
     {
@@ -2613,7 +2999,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
             addresses = geocoder.getFromLocation(latitude, longitude, 1);
             String address = addresses.get(0).getAddressLine(0);
-            //String area = addresses.get(0).getLocality();
+            String area = addresses.get(0).getLocality();
             String citi = addresses.get(0).getAdminArea();
             String country = addresses.get(0).getCountryName();
 
@@ -3135,7 +3521,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                             mCuurentUserMaker = mMap.addMarker(markerOptions);
                             //move map camera
                             //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentUserLocation, 19));
-                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUserLocation, 18.0f));
+                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUserLocation, 19.0f));
                             // Toast.makeText(MapsActivity.this, "Latitude : " + mLastLocation.getLatitude() + "  & Longitude : " + mLastLocation.getLongitude(), Toast.LENGTH_LONG).show();
                             //onLocationChanged(location);
                             //onlineUserLocation();
@@ -3308,6 +3694,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 mPlace.setPhoneNumber(places1.getName().toString());
                 mPlace.setWebsiteUrl(places1.getWebsiteUri());
                 mPlace.setRating(places1.getRating());
+
                 Log.d(TAG, "Onresult for place object" + mPlace.toString());
 
                 currentUserLocation = places1.getLatLng();

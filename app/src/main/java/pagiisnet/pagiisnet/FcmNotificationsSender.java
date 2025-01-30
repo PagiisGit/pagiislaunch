@@ -17,7 +17,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FcmNotificationsSender {
+public class FcmNotificationsSender
+{
 
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
     private final String fcmServerKey = "AAAA64f0YOg:APA91bF98RhT-3jKt1zHvDbhzdlYWGVqX_NqitzwMp_3SpC8ZgIoantI0GfhUKDJ6qLUBZcXpdn857BzkyKhIYAFM6eX0pT3Zmxkut08HBj1mABJPzjqsEWzg2pf9Q8F9hL5l2qWH-sC";
@@ -30,7 +31,7 @@ public class FcmNotificationsSender {
     private RequestQueue requestQueue;
 
 
-    public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext, Activity mActivity,String userIf) {
+    public FcmNotificationsSender(String userFcmToken, String title, String body, Context mContext, Activity mActivity) {
         this.userFcmToken = userFcmToken;
         this.title = title;
         this.body = body;
@@ -40,7 +41,14 @@ public class FcmNotificationsSender {
 
     }
 
-    public void SendNotifications() {
+    public FcmNotificationsSender(String[] userToken, String title, String body, Context applicationContext, MapsActivity mActivity)
+
+    {
+    }
+
+    public void SendNotifications()
+
+    {
 
         requestQueue = Volley.newRequestQueue(mActivity);
         JSONObject mainObj = new JSONObject();

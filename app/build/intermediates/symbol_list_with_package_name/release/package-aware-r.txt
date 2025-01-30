@@ -4589,6 +4589,7 @@ drawable quantum_ic_search_grey600_24
 drawable radius_group_chat
 drawable radius_users
 drawable red_back_ground
+drawable red_background_button
 drawable robot
 drawable round_corners
 drawable rounded_layout
@@ -4836,6 +4837,7 @@ id action_settings
 id action_text
 id actions
 id activity_chooser_view_content
+id adView
 id add
 id addCOntent
 id addContent
@@ -5220,11 +5222,7 @@ id linkPostFacebookIcon
 id linkPostInstagram
 id linkPostInstruction
 id linkPostTwitter
-id linkRipple
 id linkTextView
-id linkTextViewLocationChat
-id linkTextViewShares
-id linkTextViewViewers
 id listMode
 id list_item
 id loading
@@ -5462,6 +5460,7 @@ id position
 id postLayout
 id postPosition
 id postTime
+id postTitle
 id postUserName
 id post_title
 id preferenceDivider
@@ -5533,7 +5532,6 @@ id requestTextType
 id resendOTP
 id resend_barrier
 id resend_code
-id returnToHome
 id reverseSawtooth
 id rich_link_card
 id rich_link_desp
@@ -6071,6 +6069,7 @@ layout fastscroll__default_bubble
 layout forgortpassword_edit
 layout fragment_art
 layout fragment_cart
+layout fragment_explore
 layout fragment_fashion
 layout fragment_gallery
 layout fragment_home
@@ -6198,6 +6197,8 @@ layout notification_view_layout
 layout notifications_item
 layout onboarding_slideview
 layout online_user_item_view
+layout pagiis360
+layout pagiis_explore
 layout pagiis_notifications_item
 layout pin_image_dialog
 layout place_autocomplete_fragment

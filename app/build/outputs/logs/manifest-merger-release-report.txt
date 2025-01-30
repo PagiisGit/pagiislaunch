@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-282:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-282:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-282:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-282:12
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
 MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\27662\.gradle\caches\transforms-3\2572e656b94b57c4b34fe0a31428280a\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:2:1-31:12
 MERGED from [com.firebaseui:firebase-ui-auth:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\b8eff7a660636dd7f06811274f93f25a\transformed\jetified-firebase-ui-auth-4.2.0\AndroidManifest.xml:2:1-93:12
@@ -145,22 +145,22 @@ MERGED from [com.android.volley:volley:1.2.1] C:\Users\27662\.gradle\caches\tran
 MERGED from [io.michaelrocks:libphonenumber-android:8.12.19-2] C:\Users\27662\.gradle\caches\transforms-3\3a015e353724e990328b21ee80620668\transformed\jetified-libphonenumber-android-8.12.19-2\AndroidManifest.xml:2:1-9:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\27662\.gradle\caches\transforms-3\658760c472f513a8ffd37f1312be2afe\transformed\jetified-rxandroid-2.0.2\AndroidManifest.xml:15:1-21:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\27662\.gradle\caches\transforms-3\1c101753d7ccbc9bafba6b3ca48f8a42\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-282:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-282:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-282:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
 	package
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:5:5-36
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:5:5-35
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-282:12
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-282:12
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:11-69
@@ -625,7 +625,7 @@ ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:39:5-81
 	android:name
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:39:22-78
 application
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:42:5-280:19
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:42:5-290:19
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:18:5-29:19
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:18:5-29:19
 MERGED from [com.firebaseui:firebase-ui-auth:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\b8eff7a660636dd7f06811274f93f25a\transformed\jetified-firebase-ui-auth-4.2.0\AndroidManifest.xml:15:5-91:19
@@ -776,459 +776,459 @@ MERGED from [pub.hanks:smallbang:1.2.2] C:\Users\27662\.gradle\caches\transforms
 	tools:replace
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:51:9-38
 activity#pagiisnet.pagiisnet.GalleryUploads
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:53:9-59:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:57:5-63:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:55:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:59:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:54:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:58:13-62
 meta-data#android.app.lib_name
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:56:13-58:36
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:60:13-62:36
 	android:value
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:58:17-33
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:62:17-33
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:57:17-52
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:61:17-52
 activity#pagiisnet.pagiisnet.WelcomeMotionLayout
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:60:9-69:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:64:9-73:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:62:13-36
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:66:13-36
 	tools:ignore
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:63:13-56
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:67:13-56
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:61:13-67
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:65:13-67
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:64:13-68:29
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:68:13-72:29
 action#android.intent.action.MAIN
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:65:17-69
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:69:17-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:65:25-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:69:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:67:17-77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:71:17-77
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:67:27-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:71:27-74
 activity#pagiisnet.pagiisnet.Verify_Cellphonenumber_Login
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:70:9-76:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:74:9-82:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:72:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:76:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:71:13-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:75:13-76
 activity#pagiisnet.pagiisnet.CellphoneLogin
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:77:9-83:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:83:9-89:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:79:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:85:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:78:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:84:13-62
 activity#pagiisnet.pagiisnet.OnBoarding
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:85:9-91:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:91:9-97:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:87:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:93:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:86:13-58
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:92:13-58
 activity#pagiisnet.pagiisnet.LinkView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:92:9-65
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:98:9-65
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:92:19-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:98:19-62
 activity#pagiisnet.pagiisnet.StudentRegister
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:93:9-72
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:99:9-72
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:93:19-69
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:99:19-69
 activity#pagiisnet.pagiisnet.StudentLogin
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:94:9-69
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:100:9-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:94:19-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:100:19-66
 activity#pagiisnet.pagiisnet.SiroccoPromoVideos
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:95:9-75
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:101:9-75
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:95:19-72
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:101:19-72
 activity#pagiisnet.pagiisnet.SiroccoOnlineStores
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:96:9-76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:102:9-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:96:19-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:102:19-73
 activity#pagiisnet.pagiisnet.StoreBankDetails
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:97:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:103:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:97:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:103:19-70
 activity#pagiisnet.pagiisnet.SplashActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:98:9-100:48
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:104:9-106:48
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:100:13-36
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:106:13-36
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:99:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:105:13-62
 activity#pagiisnet.pagiisnet.RegisterActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:109:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:115:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:109:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:115:19-70
 activity#pagiisnet.pagiisnet.first_time_profile_config
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:110:9-82
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:116:9-82
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:110:19-79
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:116:19-79
 activity#pagiisnet.pagiisnet.MapsActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:111:9-113:59
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:117:9-119:59
 	android:label
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:113:13-56
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:119:13-56
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:112:13-60
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:118:13-60
 activity#pagiisnet.pagiisnet.ActivityOwnProfile
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:114:9-116:77
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:116:13-74
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:115:13-66
-activity#pagiisnet.pagiisnet.ActivityUploadImage
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:117:9-76
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:117:19-73
-activity#pagiisnet.pagiisnet.LoginActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:118:9-70
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:118:19-67
-activity#pagiisnet.pagiisnet.UserProfileActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:119:9-121:79
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:121:13-76
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:120:13-67
-activity#pagiisnet.pagiisnet.MemePage
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:122:9-124:77
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:124:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:123:13-56
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:123:13-66
+activity#pagiisnet.pagiisnet.ActivityUploadImage
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:125:9-76
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:125:19-73
+activity#pagiisnet.pagiisnet.LoginActivity
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:126:9-70
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:126:19-67
+activity#pagiisnet.pagiisnet.UserProfileActivity
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:127:9-129:79
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:129:13-76
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:128:13-67
+activity#pagiisnet.pagiisnet.MemePage
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:130:9-132:77
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:132:13-74
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:131:13-56
 activity#pagiisnet.pagiisnet.ViewUsersMemes
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:125:9-127:77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:133:9-135:77
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:127:13-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:135:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:126:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:134:13-62
 activity#pagiisnet.pagiisnet.ActivityCamera
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:128:9-130:77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:136:9-138:77
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:130:13-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:138:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:129:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:137:13-62
 activity#pagiisnet.pagiisnet.ActivityNotifications
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:131:9-133:77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:139:9-141:77
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:133:13-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:141:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:132:13-69
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:140:13-69
 activity#pagiisnet.pagiisnet.ActivityUserPost
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:134:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:142:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:134:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:142:19-70
 activity#pagiisnet.pagiisnet.OnChatting
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:135:9-67
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:143:9-67
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:135:19-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:143:19-64
 activity#pagiisnet.pagiisnet.SiroccoPage
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:136:9-138:79
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:144:9-146:79
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:138:13-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:146:13-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:137:13-59
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:145:13-59
 activity#pagiisnet.pagiisnet.SiroccoProfile
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:139:9-141:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:147:9-149:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:141:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:149:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:140:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:148:13-62
 activity#pagiisnet.pagiisnet.SirrocoImageUpload
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:142:9-144:77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:150:9-152:77
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:144:13-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:152:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:143:13-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:151:13-66
 activity#pagiisnet.pagiisnet.SiroccoMaxView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:145:9-147:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:153:9-155:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:147:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:155:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:146:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:154:13-62
 activity#pagiisnet.pagiisnet.PagiisMaxView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:148:9-150:79
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:156:9-158:79
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:150:13-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:158:13-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:149:13-61
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:157:13-61
 activity#pagiisnet.pagiisnet.CatchUp
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:151:9-153:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:159:9-161:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:153:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:161:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:152:13-55
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:160:13-55
 activity#pagiisnet.pagiisnet.ViewUserMaxImage
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:154:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:162:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:154:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:162:19-70
 activity#pagiisnet.pagiisnet.VideowViewing
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:155:9-157:73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:163:9-165:73
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:157:13-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:165:13-70
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:156:13-61
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:164:13-61
 activity#pagiisnet.pagiisnet.ViewUsersVideos
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:158:9-160:79
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:166:9-168:79
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:160:13-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:168:13-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:159:13-63
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:167:13-63
 activity#pagiisnet.pagiisnet.ActivityUploadVideo
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:161:9-163:77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:169:9-171:77
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:163:13-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:171:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:162:13-67
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:170:13-67
 activity#pagiisnet.pagiisnet.LinkPost
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:164:9-166:77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:172:9-174:77
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:166:13-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:174:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:165:13-56
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:173:13-56
 activity#pagiisnet.pagiisnet.MapsDrawer
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:167:9-67
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:175:9-67
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:167:19-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:175:19-64
 activity#pagiisnet.pagiisnet.SirrocoMusicView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:168:9-170:85
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:176:9-178:85
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:170:13-82
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:178:13-82
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:169:13-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:177:13-64
 activity#pagiisnet.pagiisnet.SiroccoMusicActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:171:9-173:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:179:9-181:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:173:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:181:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:172:13-68
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:180:13-68
 activity#pagiisnet.pagiisnet.MainActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:174:9-69
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:182:9-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:174:19-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:182:19-66
 activity#pagiisnet.pagiisnet.CustomerPurchase
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:175:9-177:76
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:177:13-73
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:176:13-64
-activity#pagiisnet.pagiisnet.OnlineShopView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:178:9-71
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:178:19-68
-activity#pagiisnet.pagiisnet.ViewOnlinePurchases
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:179:9-76
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:179:19-73
-activity#pagiisnet.pagiisnet.CreateOnlineShop
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:180:9-182:76
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:182:13-73
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:181:13-64
-activity#pagiisnet.pagiisnet.SellItemPost
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:183:9-185:76
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:185:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:184:13-60
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:184:13-64
+activity#pagiisnet.pagiisnet.OnlineShopView
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:186:9-71
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:186:19-68
+activity#pagiisnet.pagiisnet.ViewOnlinePurchases
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:187:9-76
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:187:19-73
+activity#pagiisnet.pagiisnet.CreateOnlineShop
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:188:9-190:76
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:190:13-73
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:189:13-64
+activity#pagiisnet.pagiisnet.SellItemPost
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:191:9-193:76
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:193:13-73
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:192:13-60
 activity#pagiisnet.pagiisnet.SiroccoBottomNavView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:186:9-77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:194:9-77
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:186:19-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:194:19-74
 activity#pagiisnet.pagiisnet.Art
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:187:9-189:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:195:9-197:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:189:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:197:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:188:13-51
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:196:13-51
 activity#pagiisnet.pagiisnet.Music
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:190:9-192:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:198:9-200:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:192:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:200:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:191:13-53
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:199:13-53
 activity#pagiisnet.pagiisnet.Business
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:193:9-195:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:201:9-203:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:195:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:203:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:194:13-56
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:202:13-56
 activity#pagiisnet.pagiisnet.Fashion
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:196:9-198:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:204:9-206:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:198:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:206:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:197:13-55
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:205:13-55
 activity#pagiisnet.pagiisnet.BoughtItemMaxView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:199:9-201:75
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:207:9-209:75
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:201:13-72
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:209:13-72
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:200:13-65
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:208:13-65
 activity#pagiisnet.pagiisnet.ViewMyCart
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:202:9-204:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:210:9-212:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:204:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:212:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:203:13-58
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:211:13-58
 activity#pagiisnet.pagiisnet.AdminCartView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:205:9-207:72
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:213:9-215:72
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:207:13-69
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:215:13-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:206:13-61
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:214:13-61
 activity#pagiisnet.pagiisnet.CreateEvent
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:208:9-210:86
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:216:9-218:86
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:210:13-83
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:218:13-83
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:209:13-59
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:217:13-59
 activity#pagiisnet.pagiisnet.ViewStreams
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:211:9-68
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:219:9-68
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:211:19-65
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:219:19-65
 activity#pagiisnet.pagiisnet.EventContentUpload
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:212:9-214:74
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:220:9-222:74
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:214:13-71
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:222:13-71
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:213:13-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:221:13-66
 activity#pagiisnet.pagiisnet.ViewEventProfile
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:215:9-217:74
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:223:9-225:74
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:217:13-71
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:225:13-71
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:216:13-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:224:13-64
 activity#pagiisnet.pagiisnet.VisitUserPosts
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:218:9-220:84
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:226:9-228:84
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:220:13-81
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:228:13-81
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:219:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:227:13-62
 activity#pagiisnet.pagiisnet.SplashIntroOne
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:221:9-71
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:229:9-71
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:221:19-68
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:229:19-68
 activity#pagiisnet.pagiisnet.SplashIntroTwo
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:222:9-71
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:230:9-71
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:222:19-68
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:230:19-68
 activity#pagiisnet.pagiisnet.SplashIntroThree
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:223:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:231:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:223:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:231:19-70
 activity#pagiisnet.pagiisnet.VisitProfilePosts
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:224:9-74
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:232:9-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:224:19-71
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:232:19-71
 activity#pagiisnet.pagiisnet.ViewUserContactDetails
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:225:9-227:84
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:233:9-235:84
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:227:13-81
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:235:13-81
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:226:13-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:234:13-70
 activity#pagiisnet.pagiisnet.ViewContactRequestList
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:228:9-230:86
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:236:9-238:86
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:230:13-83
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:238:13-83
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:229:13-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:237:13-70
 activity#pagiisnet.pagiisnet.VideoStreaming
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:231:9-233:72
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:239:9-241:72
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:233:13-69
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:232:13-62
-activity#pagiisnet.pagiisnet.ActivityItemViewers
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:234:9-236:78
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:236:13-75
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:235:13-67
-activity#pagiisnet.pagiisnet.Utils.Testin
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:237:9-69
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:237:19-66
-activity#pagiisnet.pagiisnet.MultiPost
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:238:9-66
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:238:19-63
-activity#pagiisnet.pagiisnet.RequestMaxView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:239:9-241:86
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:241:13-83
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:241:13-69
 	android:name
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:240:13-62
-activity#pagiisnet.pagiisnet.ViewEvent
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:242:9-244:86
+activity#pagiisnet.pagiisnet.ActivityItemViewers
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:242:9-244:78
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:244:13-83
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:244:13-75
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:243:13-57
-activity#pagiisnet.pagiisnet.MultiMAxView
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:243:13-67
+activity#pagiisnet.pagiisnet.Utils.Testin
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:245:9-69
 	android:name
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:245:19-66
-activity#pagiisnet.pagiisnet.EventVideoUpload
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:246:9-248:74
+activity#pagiisnet.pagiisnet.MultiPost
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:246:9-66
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:246:19-63
+activity#pagiisnet.pagiisnet.RequestMaxView
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:247:9-249:86
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:248:13-71
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:249:13-83
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:247:13-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:248:13-62
+activity#pagiisnet.pagiisnet.ViewEvent
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:250:9-252:86
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:252:13-83
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:251:13-57
+activity#pagiisnet.pagiisnet.MultiMAxView
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:253:9-69
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:253:19-66
+activity#pagiisnet.pagiisnet.EventVideoUpload
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:254:9-256:74
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:256:13-71
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:255:13-64
 activity#pagiisnet.pagiisnet.EventPreviewEdit
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:249:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:257:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:249:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:257:19-70
 activity#pagiisnet.pagiisnet.BuyEndEdit
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:250:9-67
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:258:9-67
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:250:19-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:258:19-64
 meta-data#com.google.android.geo.API_KEY
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:252:9-254:55
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:260:9-262:55
 	android:value
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:254:13-52
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:262:13-52
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:253:13-58
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:261:13-58
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:255:9-257:70
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:263:9-267:21
 	android:value
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:257:13-67
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:265:13-67
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:256:13-69
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:264:13-69
 service#pagiisnet.pagiisnet.Utils.MyFirebaseIdService
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:259:9-265:19
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:269:9-275:19
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:261:13-36
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:271:13-36
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:260:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:270:13-73
 intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:262:13-264:29
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:272:13-274:29
 action#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:263:17-80
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:273:17-80
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:263:25-77
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:273:25-77
 uses-library#org.apache.http.legacy
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:267:9-269:40
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:277:9-279:40
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
 	android:required
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:269:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:279:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:268:13-50
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:278:13-50
 service#pagiisnet.pagiisnet.FirebaseMessagingService
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:271:9-279:19
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:281:9-289:19
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:273:13-36
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:283:13-36
 	tools:ignore
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:275:13-43
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:285:13-43
 	android:permission
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:274:13-38
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:284:13-38
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:272:13-72
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:282:13-72
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:276:13-278:29
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:286:13-288:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:277:17-78
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:287:17-78
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:277:25-75
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:287:25-75
 queries
 ADDED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:10:5-16:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15

@@ -6,16 +6,24 @@ import static android.view.View.VISIBLE;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+
+import android.Manifest;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
+import android.webkit.GeolocationPermissions;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -27,6 +35,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
@@ -45,12 +54,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.common.net.InternetDomainName;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -79,6 +90,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -122,7 +135,14 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private DatabaseReference getStoreProductUpdate;
     private ValueEventListener mDBlistener;
     private DatabaseReference mDatabaseUploads;
-    private Button logoutText;
+    private TextView logoutText;
+
+    private TextView numberOfFollowers;
+    private TextView followProfileTextView;
+
+    private String userToken;
+
+    private String  myImageDpUrl;
 
     private Fragment oldFragment;
     private ProgressBar mProgressBar;
@@ -134,6 +154,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private TextView facebookLinkTextView, twitterLinkTextView, instagramLinkTextView;
     private StorageReference userImageStorageDpRef;
     private DatabaseReference getUserProfileDataRef;
+
+    private DatabaseReference mDatabaseRef_Y;
     private FloatingActionButton facebookIcon, twitterIcon, instagramIcon;
     private DatabaseReference usernameDataRef;
     private FirebaseAuth mAuth;
@@ -153,6 +175,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
     private String shareAppLink;
 
+    private AlertDialog dialog;
+
 
     private LinearLayout profileFramelayout;
 
@@ -162,7 +186,12 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
     private ImageView mProgressCircle;
-
+    private DatabaseReference databaseReferenceLocation;
+    private DatabaseReference mDatabaseRef_Tokens;
+    private DatabaseReference notificationReference;
+    private String myName;
+    private String myLastLocationDetails;
+    private DatabaseReference mDatabaseRefLikes;
 
 
     public ProfileFragment()
@@ -321,56 +350,152 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         dialog.show();
     }
 
+
+
+
 //Here we open a webview for the webiste of the pagiis profile which has an online shopping site inisde of pagiis
-    private void profileProductWebview()
+    private void profileProductWebview() {
 
-    {
+        if (UrlString.compareTo("nulll") != 0) {
 
-        if(UrlString.compareTo("nulll")!=0)
-
-        {
-
-            //mProgressCircle.setVisibility(View.VISIBLE);
+            mProgressBarWebview.setVisibility(View.VISIBLE);
             webViewLinks.setVisibility(VISIBLE);
-            mProgressBarWebview.setVisibility(VISIBLE);
+
             webViewLinks.getSettings().setJavaScriptEnabled(true);
-            webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+           // webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-            webViewLinks.getSettings().setSupportZoom(true);
-            webViewLinks.getSettings().setUseWideViewPort(true);
+            //webViewLinks.getSettings().setSupportZoom(true);
+            //webViewLinks.getSettings().setUseWideViewPort(true);
             webViewLinks.getSettings().setLoadsImagesAutomatically(true);
-            webViewLinks.getSettings().setUseWideViewPort(true);
-            webViewLinks.getSettings().setLoadWithOverviewMode(true);
+            //webViewLinks.getSettings().setLoadWithOverviewMode(true);
+            webViewLinks.setInitialScale(70);
+
+            webViewLinks.getSettings().setSupportZoom(true);
+            webViewLinks.getSettings().setBuiltInZoomControls(true);
+            webViewLinks.getSettings().setDisplayZoomControls(false); //
+
+
+
+            webViewLinks.getSettings().setDomStorageEnabled(true);
+            webViewLinks.getSettings().setDatabaseEnabled(true);
+            CookieManager.getInstance().setAcceptCookie(true);
+            String desktopUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36";
+            webViewLinks.getSettings().setUserAgentString(desktopUserAgent);
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                webViewLinks.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+            }
+
+
+            //webViewLinks.getSettings().setDomStorageEnabled(true);
+            //webViewLinks.setWebContentsDebuggingEnabled(true);
+            //webViewLinks.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+
+            //webViewLinks.setWebViewClient(new CustomWebViewClient());
+
+
+
+
+            // Load the URL
             webViewLinks.loadUrl(UrlString);
 
             webViewLinks.setWebViewClient(new WebViewClient() {
                 @Override
-                public void onPageFinished(WebView view, String url)
-                {
-
-                    if(view.getProgress() == 100)
-                    {
-                        //webViewLinks.setVisibility(INVISIBLE);
-                        mProgressBarWebview.setVisibility(INVISIBLE);
-
+                public void onPageFinished(WebView view, String url) {
+                    if (view.getProgress() == 100) {
+                        mProgressBarWebview.setVisibility(View.INVISIBLE);
                     }
-                    // This method will be called when the page finishes loading
-                    // You can put your code to check if it's done loading here
-                    // For example, you can set a flag or perform some action
                 }
             });
 
 
-        }else
-        {
 
-            Toast.makeText(getActivity(), "Please make sure to open an online store before you can access it", Toast.LENGTH_LONG).show();
+
+
+
+            // Handle page loading progress
+            /*webViewLinks.setWebViewClient(new WebViewClient() {
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    if (view.getProgress() == 100) {
+                        mProgressBarWebview.setVisibility(View.INVISIBLE);
+                    }
+                }
+            });
+
+            // Handle geolocation permissions
+            webViewLinks.setWebChromeClient(new WebChromeClient() {
+                @Override
+                public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+                    if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        // Permission granted, allow geolocation
+                        callback.invoke(origin, true, false);
+                    } else {
+                        // Request location permission
+                        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+                    }
+                }
+            });
+
+        }
+    }
+
+        @Override
+        public void onRequestPermissionsResult ( int requestCode, @NonNull String[] permissions,
+        @NonNull int[] grantResults){
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Reload the WebView to trigger geolocation
+                    webViewLinks.reload();
+                } else {
+                    // Show a message to the user if the location permission is denied
+                    Toast.makeText(requireContext(), "Location permission is required to use this feature.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+// Handle back button press in the Fragment
+        @Override
+        public void onResume () {
+            super.onResume();
+            requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+                @Override
+                public void handleOnBackPressed() {
+                    if (webViewLinks.canGoBack()) {
+                        webViewLinks.goBack();
+                    } else {
+                        requireActivity().onBackPressed();
+                    }
+                }
+            });*/
+
+
 
 
         }
-
-
     }
+
+    private class CustomWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            String url = request.getUrl().toString();
+
+            // Check if the URL should be opened in the default browser
+
+                // Open the URL in the default browser
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+                return true; // Return true to indicate that the URL is handled
+
+
+            // Allow WebView to handle other URLs
+
+        }
+    }
+
 
 
     private void showBottomSheetDialog()
@@ -1370,6 +1495,9 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         Status = rootView.findViewById(R.id.profileStatus);
         logoutText = rootView.findViewById(R.id.LogoutText);
 
+        numberOfFollowers = rootView.findViewById(R.id.numberOfFollowers);
+        followProfileTextView = rootView.findViewById(R.id.followProfileButton);
+
         viewProfileStore = rootView.findViewById(R.id.profileStoreOptionButton);
 
         mProgressBar = rootView.findViewById(R.id.progress_circle_own_profile);
@@ -1569,6 +1697,10 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         //profileProductWebview();
 
 
+
+
+
+
         logoutText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1593,8 +1725,10 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     @Override
                     public void onClick(View view)
                     {
-                        mBuilder.setView(mView);
+
+                        oldFragment = null;
                         AlertDialog dialog = mBuilder.create();
+                        Toast.makeText(getActivity(),"Stay tuned.", Toast.LENGTH_LONG).show();
                         dialog.dismiss();
 
                     }
@@ -1618,9 +1752,162 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         checkifAdmindTrue();
 
+        databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
+
+        databaseReferenceLocation.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+            {
+                if(dataSnapshot.exists())
+                {
+
+                    myLastLocationDetails = dataSnapshot.getValue().toString();
+
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         return rootView;
     }
+
+
+
+
+
+    public void checkLocation(String FollowOrLike)
+
+    {
+
+        databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
+        databaseReferenceLocation.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+
+                // Retrieve the location value as a string
+                String location = dataSnapshot.getValue(String.class);
+                mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference("userTokens");
+
+
+                getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("WalkinWall");
+                mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
+
+                notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+
+
+
+                String userKey = dataSnapshot.getKey().toString();
+
+                mDatabaseRef_Tokens.child(userKey).addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("RestrictedApi")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                    {
+                        if(dataSnapshot.exists())
+                        {
+
+                            String userId = dataSnapshot.getKey().toString();
+                            getUserProfileDataRef.child(userId).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                {
+                                    if(dataSnapshot.exists())
+                                    {
+
+                                        String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
+                                        String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+
+                                        String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
+
+
+                                        myImageDpUrl = myDpUrl;
+                                        myName = name;
+
+                                        mDatabaseRefLikes.child(onlineUserId).child(mAuth.getCurrentUser().getUid().toString()).setValue(mAuth);
+
+                                        postNotification();
+
+                                    }
+
+
+
+                                }
+
+
+                                private void postNotification()
+                                {
+                                    String myUserId = mAuth.getCurrentUser().getUid().toString();
+                                    ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Your Profile has a new like");
+                                    notificationReference.child(userId)
+                                            .push()
+                                            .setValue(upload, new DatabaseReference.CompletionListener() {
+                                                @Override
+                                                public void onComplete(DatabaseError databaseError,
+                                                                       DatabaseReference databaseReference) {
+
+                                                    //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
+                                                    //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
+                                                    // String uniqueKey = databaseReference.getKey();
+                                                    //Create the function for Clearing/The ImageView Widget.
+                                                }
+                                            });
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                            userToken = dataSnapshot.getValue().toString();
+
+                            @SuppressLint("RestrictedApi") FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in ",getApplicationContext(),
+                                    (Activity) getApplicationContext());
+
+                            notificationSender.SendNotifications();
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors
+                System.err.println("Error retrieving location: " + databaseError.getMessage());
+            }
+        });
+    }
+
+
+
+
 
     private void profileProductWebviewInent( String url) {
 
@@ -1695,24 +1982,24 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads").child(myUserId);
 
-
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         View mView = getLayoutInflater().inflate(R.layout.logout_dialog, null);
         getUserProfileDataRef = FirebaseDatabase.getInstance().getReference("Users");
+
 
         ImageView logoutImage = mView.findViewById(R.id.SignOutImage);
         TextView signOut = mView.findViewById(R.id.signOutText);
         ImageView cancelLogOutImage = mView.findViewById(R.id.cancelSignOutImage);
 
+        mBuilder.setView(mView);
+
 
         signOut.setText("Delete post");
-
-        AlertDialog dialog = mBuilder.create();
-
 
         logoutImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 view.findViewById(R.id.SignOutImage);
                 mDatabaseRef.child(selectedKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -1720,9 +2007,13 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     @Override
                     public void onComplete(@NonNull Task<Void> task)
                     {
-
-                        dialog.dismiss();
+                        //AlertDialog dialog = mBuilder.create();
                         Toast.makeText(getApplicationContext(), "Item sent to bin..", Toast.LENGTH_SHORT).show();
+
+                        //dialog.dismiss();
+
+
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
 
@@ -1737,27 +2028,53 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                         Toast.makeText(getApplicationContext(), errorText + " Deletion Will restart in few seconds", Toast.LENGTH_LONG).show();
 
 
-
                     }
                 });
             }
         });
 
         cancelLogOutImage.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View view)
             {
-                dialog.dismiss();
+               // dialog.dismiss();
+                //AlertDialog dialog = mBuilder.create();
+                Toast.makeText(getApplicationContext(), "Cancelled.", Toast.LENGTH_SHORT).show();
+
+                //dialog.dismiss();
+
+
             }
         });
-        mBuilder.setView(mView);
+
+
+        AlertDialog dialog = mBuilder.create();
 
         dialog.show();
 
         //StorageReference deletImage = mStorage.getReferenceFromUrl(selectedImage.getImageUrl());
 
+    }
+
+    @SuppressLint("RestrictedApi")
+    private void dismissDialog_two()
+    {
 
 
+
+        oldFragment = null;
+        Toast.makeText(getApplicationContext(), "Cancelled.", Toast.LENGTH_SHORT).show();
+        oldFragment = new ProfileFragment();
+    }
+
+    @SuppressLint("RestrictedApi")
+    private void dismissDialog()
+    {
+
+        oldFragment = null;
+        Toast.makeText(getApplicationContext(), "Item sent to bin..", Toast.LENGTH_SHORT).show();
+        oldFragment = new ProfileFragment();
     }
 
 

@@ -126,9 +126,12 @@ public class GalleryUploads extends AppCompatActivity
     private DatabaseReference getUserInfor;
 
 
-    private ImageView Gallery;
-    private ImageView Videos;
+    private FloatingActionButton Gallery;
+    private FloatingActionButton Videos;
     private ImageView returnToHomeImageView;
+    private DatabaseReference mDatabaseRef_Tokens;
+    private DatabaseReference mDatabaseRef_Y;
+    private DatabaseReference notificationReference;
 
 
     @SuppressLint("MissingInflatedId")
@@ -187,7 +190,7 @@ public class GalleryUploads extends AppCompatActivity
 
         Videos = findViewById(R.id.videOption);
         Gallery = findViewById(R.id.GalleryOption);
-        returnToHomeImageView = findViewById(R.id.returnToHome);
+        //returnToHomeImageView = findViewById(R.id.returnToHome);
 
         userProfileDp = findViewById(R.id.writeStatus);
 
@@ -222,13 +225,6 @@ public class GalleryUploads extends AppCompatActivity
             }
         });
 
-        returnToHomeImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.findViewById(R.id.returnToHome);
-                finish();
-            }
-        });
 
         Gallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -850,6 +846,10 @@ public class GalleryUploads extends AppCompatActivity
                                                         //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
                                                         Toast.makeText(getApplicationContext(), "PAGiiS image upload successful !!", Toast.LENGTH_SHORT).show();
 
+                                                        GalleryUploads.CheckLocation checkLocation = new GalleryUploads.CheckLocation();
+
+                                                        checkLocation.checkLocation(myLastLocationDetails);
+
                                                         mProgressBar.setVisibility(View.INVISIBLE);
                                                         finish();
                                                         // String uniqueKey = databaseReference.getKey();
@@ -915,6 +915,336 @@ public class GalleryUploads extends AppCompatActivity
 
 
     }
+
+    /*public class CheckLocation
+    {
+
+
+        // Firebase database reference
+        private DatabaseReference databaseReference;
+
+
+        public CheckLocation() {
+            // Initialize Firebase reference
+            databaseReference = FirebaseDatabase.getInstance().getReference("myLastLocation");
+            mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference("userTokens");
+
+
+            getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
+            mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("WalkinWall");
+
+            notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+
+        }
+
+        String userToken;
+
+        String  myImageDpUrl;
+
+        String myName;
+
+        public void checkLocation(String addressToCheck, String cityToCheck) {
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Retrieve the location value as a string
+                        String location = dataSnapshot.getValue(String.class);
+
+                        if (location != null) {
+                            // Split the string into components (Address, City, Country)
+                            String[] locationParts = location.split(",");
+                            if (locationParts.length >= 2) {
+                                String address = locationParts[0].trim();
+                                String city = locationParts[1].trim();
+
+                                // Check if the address or city matches the specified value
+                                if (address.equalsIgnoreCase(addressToCheck))
+                                {
+
+                                    String userKey = dataSnapshot.getKey().toString();
+
+                                    mDatabaseRef_Tokens.child(userKey).addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                        {
+                                            if(dataSnapshot.exists())
+                                            {
+
+                                                String userId = dataSnapshot.getKey().toString();
+                                                getUserProfileDataRef.child(userId).addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                                    {
+                                                        if(dataSnapshot.exists())
+                                                        {
+
+                                                            String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
+                                                            String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+
+                                                            String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
+
+
+                                                            myImageDpUrl = myDpUrl;
+                                                            myName = name;
+
+                                                            postNotification();
+
+                                                        }
+
+
+
+                                                    }
+
+
+                                                    private void postNotification()
+                                                    {
+                                                        String myUserId = mAuth.getCurrentUser().getUid().toString();
+                                                        ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Request for shared experience in your location.");
+                                                        notificationReference.child(userId)
+                                                                .push()
+                                                                .setValue(upload, new DatabaseReference.CompletionListener() {
+                                                                    @Override
+                                                                    public void onComplete(DatabaseError databaseError,
+                                                                                           DatabaseReference databaseReference) {
+
+                                                                        //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
+                                                                        Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
+                                                                        finish();
+                                                                        // String uniqueKey = databaseReference.getKey();
+                                                                        //Create the function for Clearing/The ImageView Widget.
+                                                                    }
+                                                                });
+
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
+
+                                                userToken = dataSnapshot.getValue().toString();
+
+                                                FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in "+valueToCheck ,getApplicationContext(),
+                                                        GalleryUploads.this);
+
+                                                notificationSender.SendNotifications();
+
+                                            }else
+
+                                            {
+                                                Toast.makeText(GalleryUploads.this, "There are currently no profile activities in this are please try again later.", Toast.LENGTH_SHORT).show();
+
+                                            }
+
+
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                    System.out.println("Address matches: " + address);
+                                } else if (city.equalsIgnoreCase(cityToCheck)) {
+                                    System.out.println("City matches: " + city);
+                                } else {
+                                    System.out.println("No match found.");
+                                }
+                            } else {
+                                System.out.println("Invalid location format.");
+                            }
+                        } else {
+                            System.out.println("Location value is null.");
+                        }
+                    } else {
+                        System.out.println("No location found under 'myLastLocation'.");
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                    System.err.println("Error retrieving location: " + databaseError.getMessage());
+                }
+            });
+        }
+    }*/
+
+
+
+    public class CheckLocation {
+
+        // Firebase database reference
+        private DatabaseReference databaseReference;
+
+        public CheckLocation() {
+            // Initialize Firebase reference
+            databaseReference = FirebaseDatabase.getInstance().getReference("myLastLocation");
+            mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference("userTokens");
+
+
+            getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
+            mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("WalkinWall");
+
+            notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+        }
+
+        String userToken;
+
+        String  myImageDpUrl;
+
+        String myName;
+
+        public void checkLocation(String valueToCheck) {
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Retrieve the location value as a string
+                        String location = dataSnapshot.getValue(String.class);
+                        mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference("userTokens");
+
+
+                        getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                        mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("WalkinWall");
+
+                        notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+
+
+
+
+                        if (location != null && !location.isEmpty()) {
+                            // Split the string into components (Address, City, Country)
+                            String[] locationParts = location.split(",\\s*"); // Split by comma and optional spaces
+
+                            // Check if the input value matches any part of the location
+                            boolean matchFound = false;
+                            for (String part : locationParts) {
+                                if (valueToCheck.equalsIgnoreCase(part.trim()))
+                                {
+
+                                    String userKey = dataSnapshot.getKey().toString();
+
+                                    mDatabaseRef_Tokens.child(userKey).addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                        {
+                                            if(dataSnapshot.exists())
+                                            {
+
+                                                String userId = dataSnapshot.getKey().toString();
+                                                getUserProfileDataRef.child(userId).addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                                    {
+                                                        if(dataSnapshot.exists())
+                                                        {
+
+                                                            String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
+                                                            String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+
+                                                            String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
+
+
+                                                            myImageDpUrl = myDpUrl;
+                                                            myName = name;
+
+                                                            postNotification();
+
+                                                        }
+
+
+
+                                                    }
+
+
+                                                    private void postNotification()
+                                                    {
+                                                        String myUserId = mAuth.getCurrentUser().getUid().toString();
+                                                        ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Request for shared experience in your location.");
+                                                        notificationReference.child(userId)
+                                                                .push()
+                                                                .setValue(upload, new DatabaseReference.CompletionListener() {
+                                                                    @Override
+                                                                    public void onComplete(DatabaseError databaseError,
+                                                                                           DatabaseReference databaseReference) {
+
+                                                                        //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
+                                                                        //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
+                                                                        finish();
+                                                                        // String uniqueKey = databaseReference.getKey();
+                                                                        //Create the function for Clearing/The ImageView Widget.
+                                                                    }
+                                                                });
+
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
+
+                                                userToken = dataSnapshot.getValue().toString();
+
+                                                FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in "+valueToCheck ,getApplicationContext(),
+                                                        GalleryUploads.this);
+
+                                                notificationSender.SendNotifications();
+
+                                            }else
+
+                                            {
+                                                Toast.makeText(GalleryUploads.this, "There are currently no profile activities in this are please try again later.", Toast.LENGTH_SHORT).show();
+
+                                            }
+
+
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
+
+                                    matchFound = true;
+                                    break;
+                                }
+                            }
+
+                            if (!matchFound) {
+                                System.out.println("No match found for: " + valueToCheck);
+                            }
+                        } else {
+                            System.out.println("Location value is null or empty.");
+                        }
+                    } else {
+                        System.out.println("No location found under 'myLastLocation'.");
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                    System.err.println("Error retrieving location: " + databaseError.getMessage());
+                }
+            });
+        }
+    }
+
+
 
 
     private void addProduct(String link)

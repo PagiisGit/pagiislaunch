@@ -51,6 +51,10 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
 
     private ViewStoreItemAdapter.OnItemClickListener mListener;
 
+    private String UserID;
+    private String UserID_2;
+    private int position_one;
+
     // private  List<String> linIconsView;
 
     public ViewStoreItemAdapter(Context context, List<ImageUploads> uploads)
@@ -73,25 +77,39 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
         final ImageUploads uploadCurrent = mUploads.get(position);
 
         String loadImageUrl = uploadCurrent.getImageUrl();
+
         mAuth = FirebaseAuth.getInstance();
 
         String userId = mAuth.getCurrentUser().getUid();
+        UserID= userId;
+
+
+        if(uploadCurrent.getUserId() !=null)
+        {
+            UserID_2= uploadCurrent.getUserId();
+        }
+
 
         String raterValue = uploadCurrent.getExRating();
 
+        position_one = position;
+
         String FinalValue = "internetLink";
-
-
-        if(uploadCurrent.getUserId().compareTo(userId)==0)
-
+        //holder.imageViewDelete.setVisibility(View.INVISIBLE);
+        holder.imageViewDelete.setOnClickListener(new View.OnClickListener()
         {
-            holder.imageViewDelete.setVisibility(View.VISIBLE);
+            @Override
+            public void onClick(View view)
+            {
+
+                //view.findViewById(R.id.sirocco_image_view);
+                mListener.onWhatEverClick(position);
+
+            }
+        });
 
 
-        }else
-        {
-            holder.imageViewDelete.setVisibility(INVISIBLE);
-        }
+
 
         if (loadImageUrl.compareTo("null") != 0 && loadImageUrl != null)
         {
@@ -127,17 +145,7 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
         }
 
 
-        holder.imageView.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
 
-                view.findViewById(R.id.sirocco_image_view);
-                mListener.onItemClick(position);
-
-            }
-        });
     }
 
     @Override
@@ -151,8 +159,17 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
         public ImageView imageView;
         public ImageView imageViewDelete;
         public CircularImageView profileImageView;
-
         public ProgressBar progressImageBar;
+        final ImageUploads uploadCurrent = mUploads.get(position_one);
+
+        String loadImageUrl = uploadCurrent.getImageUrl();
+
+
+
+        String raterValue = uploadCurrent.getExRating();
+
+
+
 
         public ImageViewHolder(View itemView) {
             super(itemView);
@@ -166,19 +183,22 @@ public class ViewStoreItemAdapter extends RecyclerView.Adapter<ViewStoreItemAdap
             progressImageBar = itemView.findViewById(R.id.progress_circle_user_memes);
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
+            imageViewDelete.setVisibility(INVISIBLE);
 
+            if(UserID_2 != null && !UserID_2.isEmpty() && UserID.compareTo(UserID_2) ==0)
 
-            imageViewDelete.setOnClickListener(new View.OnClickListener()
             {
-                @Override
-                public void onClick(View view)
-                {
+                imageViewDelete.setVisibility(View.VISIBLE);
 
-                    int position = getAdapterPosition();
-                    mListener.onWhatEverClick(position);
 
-                }
-            });
+            }else
+            {
+                imageViewDelete.setVisibility(INVISIBLE);
+            }
+
+
+
+
         }
 
 

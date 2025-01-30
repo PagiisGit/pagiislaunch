@@ -16,6 +16,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -27,6 +28,9 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   @NonNull
   public final ImageView LogSearchIconGo;
+
+  @NonNull
+  public final CircularImageView PAGiiSICON;
 
   @NonNull
   public final RecyclerView SearchRecyclerViewTop;
@@ -44,6 +48,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final FrameLayout homeFragment;
 
   @NonNull
+  public final CardView iconstand;
+
+  @NonNull
   public final RecyclerView memeRecyclerView;
 
   @NonNull
@@ -59,18 +66,21 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final CardView searchTextInputLayout;
 
   private FragmentHomeBinding(@NonNull FrameLayout rootView, @NonNull ImageView LogSearchIconGo,
-      @NonNull RecyclerView SearchRecyclerViewTop, @NonNull ImageView businessId,
-      @NonNull FloatingActionButton goToMaps, @NonNull FloatingActionButton goToVideos,
-      @NonNull FrameLayout homeFragment, @NonNull RecyclerView memeRecyclerView,
+      @NonNull CircularImageView PAGiiSICON, @NonNull RecyclerView SearchRecyclerViewTop,
+      @NonNull ImageView businessId, @NonNull FloatingActionButton goToMaps,
+      @NonNull FloatingActionButton goToVideos, @NonNull FrameLayout homeFragment,
+      @NonNull CardView iconstand, @NonNull RecyclerView memeRecyclerView,
       @NonNull LinearLayout nputLayout, @NonNull ProgressBar progressCircleUserMemes,
       @NonNull TextInputEditText searchEdittext, @NonNull CardView searchTextInputLayout) {
     this.rootView = rootView;
     this.LogSearchIconGo = LogSearchIconGo;
+    this.PAGiiSICON = PAGiiSICON;
     this.SearchRecyclerViewTop = SearchRecyclerViewTop;
     this.businessId = businessId;
     this.goToMaps = goToMaps;
     this.goToVideos = goToVideos;
     this.homeFragment = homeFragment;
+    this.iconstand = iconstand;
     this.memeRecyclerView = memeRecyclerView;
     this.nputLayout = nputLayout;
     this.progressCircleUserMemes = progressCircleUserMemes;
@@ -111,6 +121,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.PAGiiS_ICON;
+      CircularImageView PAGiiSICON = ViewBindings.findChildViewById(rootView, id);
+      if (PAGiiSICON == null) {
+        break missingId;
+      }
+
       id = R.id.SearchRecyclerViewTop;
       RecyclerView SearchRecyclerViewTop = ViewBindings.findChildViewById(rootView, id);
       if (SearchRecyclerViewTop == null) {
@@ -136,6 +152,12 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       FrameLayout homeFragment = (FrameLayout) rootView;
+
+      id = R.id.iconstand;
+      CardView iconstand = ViewBindings.findChildViewById(rootView, id);
+      if (iconstand == null) {
+        break missingId;
+      }
 
       id = R.id.memeRecyclerView;
       RecyclerView memeRecyclerView = ViewBindings.findChildViewById(rootView, id);
@@ -167,9 +189,10 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((FrameLayout) rootView, LogSearchIconGo, SearchRecyclerViewTop,
-          businessId, goToMaps, goToVideos, homeFragment, memeRecyclerView, nputLayout,
-          progressCircleUserMemes, searchEdittext, searchTextInputLayout);
+      return new FragmentHomeBinding((FrameLayout) rootView, LogSearchIconGo, PAGiiSICON,
+          SearchRecyclerViewTop, businessId, goToMaps, goToVideos, homeFragment, iconstand,
+          memeRecyclerView, nputLayout, progressCircleUserMemes, searchEdittext,
+          searchTextInputLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

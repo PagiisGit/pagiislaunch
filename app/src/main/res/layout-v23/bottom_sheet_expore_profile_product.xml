@@ -188,16 +188,15 @@
         android:padding="12dp">
 
 
-
         <com.varunest.sparkbutton.SparkButton
             android:id="@+id/likes"
             android:layout_width="35dp"
+            android:layout_height="33dp"
             android:layout_gravity="center"
-            android:layout_height="35dp"
             android:layout_marginStart="10dp"
             app:sparkbutton_activeImage="@drawable/ic_heart_red"
-            app:sparkbutton_inActiveImage="@drawable/heart_seletor"
             app:sparkbutton_iconSize="30dp"
+            app:sparkbutton_inActiveImage="@drawable/heart_seletor"
             app:sparkbutton_primaryColor="@color/Orrnge"
             app:sparkbutton_secondaryColor="@color/AlertRed">
 

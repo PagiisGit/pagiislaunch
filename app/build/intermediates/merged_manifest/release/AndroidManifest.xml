@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pagiisnet.pagiisnet"
-    android:versionCode="669"
+    android:versionCode="703"
     android:versionName="ii" >
 
     <uses-sdk
@@ -87,7 +87,6 @@
         android:label="Pagiis"
         android:roundIcon="@drawable/pagiis_home_icon"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="pagiisnet.pagiisnet.GalleryUploads"
@@ -291,7 +290,8 @@
             android:value="@string/google_maps_key" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2663071363374794~2545717889" />
+            android:value="ca-app-pub-1698498156044590~7742421625" >
+        </meta-data>
 
         <service
             android:name="pagiisnet.pagiisnet.Utils.MyFirebaseIdService"

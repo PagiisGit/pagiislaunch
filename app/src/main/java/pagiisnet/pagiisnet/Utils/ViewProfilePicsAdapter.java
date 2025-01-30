@@ -1,5 +1,9 @@
 package pagiisnet.pagiisnet.Utils;
 
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.Patterns;
@@ -14,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
@@ -26,6 +31,13 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.google.common.net.InternetDomainName;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
@@ -34,6 +46,7 @@ import java.util.List;
 
 import io.github.ponnamkarthik.richlinkpreview.RichLinkView;
 import io.github.ponnamkarthik.richlinkpreview.ViewListener;
+import pagiisnet.pagiisnet.FcmNotificationsSender;
 import pagiisnet.pagiisnet.R;
 import pagiisnet.pagiisnet.ImageUploads;
 //import pagiisnet.pagiisnet.R;
@@ -46,8 +59,29 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
     private final List<ImageUploads> mUploads;
 
     private OnItemClickListener mListener;
+    private DatabaseReference databaseReferenceLocation;
+    private String onlineUserId;
+    private String  userStatusMessage;
+
+    private String userToken;
+
+    private String  myImageDpUrl;
+
+    private String myName;
+    private DatabaseReference notificationReference;
+    private DatabaseReference mDatabaseRef_Tokens;
+
+    private DatabaseReference getUserProfileDataRef;
+    private DatabaseReference mDatabaseRef_Y;
+
+    private DatabaseReference mDatabaseRefLikes;
+
+    private FirebaseAuth mAuth;
+    private String myLastLocationDetails;
 
     //private ProgressBar loadbar;
+
+    private String postLikes;
 
     public ViewProfilePicsAdapter(Context context, List<ImageUploads> uploads)
     {
@@ -90,6 +124,33 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
         RequestOptions options = new RequestOptions();
 
+        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
+
+
+
+
+        mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+            {
+                if(dataSnapshot.exists())
+                {
+
+                    postLikes = String.valueOf(dataSnapshot.getChildrenCount());
+
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         if(loadImageUrl != null && loadImageUrl.compareTo("null") !=0  && !Patterns.WEB_URL.matcher(post_tile).matches() )
@@ -98,6 +159,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             imageViewHolder.Post_Title.setText(post_tile);
             imageViewHolder.Post_Position.setText(postPosition);
             imageViewHolder.Post_Time.setText(time);
+            imageViewHolder.textViewNameLikes.setText(postLikes);
 
             imageViewHolder.linkView.setVisibility(View.INVISIBLE);
 
@@ -236,7 +298,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
         public ProgressBar loading;
 
-        private final RichLinkView linkView;
+        private RichLinkView linkView;
 
         public CardView userMemeCardView;
 
@@ -245,6 +307,130 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         public TextView Post_Time;
 
         public TextView Post_Position;
+
+
+
+        public void checkLocation()
+
+        {
+
+            databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
+            databaseReferenceLocation.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot)
+                {
+
+                        // Retrieve the location value as a string
+                        String location = dataSnapshot.getValue(String.class);
+                        mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference("userTokens");
+
+
+                        getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
+                        mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("WalkinWall");
+                        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
+
+                        notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+
+
+
+                                    String userKey = dataSnapshot.getKey().toString();
+
+                                    mDatabaseRef_Tokens.child(userKey).addValueEventListener(new ValueEventListener() {
+                                        @SuppressLint("RestrictedApi")
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                        {
+                                            if(dataSnapshot.exists())
+                                            {
+
+                                                String userId = dataSnapshot.getKey().toString();
+                                                getUserProfileDataRef.child(userId).addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                                    {
+                                                        if(dataSnapshot.exists())
+                                                        {
+
+                                                            String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
+                                                            String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+
+                                                            String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
+
+
+                                                            myImageDpUrl = myDpUrl;
+                                                            myName = name;
+
+                                                            mDatabaseRefLikes.child(onlineUserId).child(mAuth.getCurrentUser().getUid().toString()).setValue(mAuth);
+
+
+
+                                                            postNotification();
+
+                                                        }
+
+
+
+                                                    }
+
+
+                                                    private void postNotification()
+                                                    {
+                                                        String myUserId = mAuth.getCurrentUser().getUid().toString();
+                                                        ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Your post has a new like");
+                                                        notificationReference.child(userId)
+                                                                .push()
+                                                                .setValue(upload, new DatabaseReference.CompletionListener() {
+                                                                    @Override
+                                                                    public void onComplete(DatabaseError databaseError,
+                                                                                           DatabaseReference databaseReference) {
+
+                                                                        //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
+                                                                        //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
+                                                                        // String uniqueKey = databaseReference.getKey();
+                                                                        //Create the function for Clearing/The ImageView Widget.
+                                                                    }
+                                                                });
+
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
+
+                                                userToken = dataSnapshot.getValue().toString();
+
+                                                @SuppressLint("RestrictedApi") FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in ",getApplicationContext(),
+                                                        (Activity) getApplicationContext());
+
+                                                notificationSender.SendNotifications();
+
+                                            }
+
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors
+                    System.err.println("Error retrieving location: " + databaseError.getMessage());
+                }
+            });
+        }
+
 
 
 
@@ -291,11 +477,83 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                 }
             });*/
 
+            int position = getAdapterPosition();
+            int postionX = (int) getItemId();
+
+
+            databaseReferenceLocation.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                {
+                    if(dataSnapshot.exists())
+                    {
+
+                        myLastLocationDetails = dataSnapshot.getValue().toString();
+
+
+                    }
+
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+
+
+            ImageUploads selectedImage = mUploads.get(position);
+
+            String selectedKey = selectedImage.getKey();
+
+            onlineUserId = selectedKey;
+
+
 
             imageViewLikes.setEventListener(new SparkEventListener() {
                 @Override
                 public void onEvent(ImageView button, boolean buttonState) {
-                    if(buttonState){
+                    if(buttonState)
+                    {
+                        getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
+                        getUserProfileDataRef.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                            {
+                                if(dataSnapshot.exists())
+                                {
+
+                                    String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
+                                    String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+
+                                    String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
+                                    userStatusMessage = userStatus;
+                                    myImageDpUrl = myDpUrl;
+                                    myName = name;
+
+                                    checkLocation();
+
+                                }
+
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        mDatabaseRefLikes.child(onlineUserId).child(mAuth.getCurrentUser().toString()).setValue("1");
+
 
 
                         Toast.makeText(mContext.getApplicationContext(), "add to favourite!", Toast.LENGTH_SHORT).show();
@@ -316,6 +574,10 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
                 }
             });
+
+
+
+
 
 
            /* imageViewLikes.setOnClickListener(
@@ -492,8 +754,6 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             itemView.setOnCreateContextMenuListener(this);
         }
 
-
-
         @Override
         public void onClick(View view) {
 
@@ -572,6 +832,12 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
     {
         mListener = listener;
+    }
+
+    public void setOnItemClickListener2(OnItemClickListener listener2)
+
+    {
+        mListener = listener2;
     }
 }
 

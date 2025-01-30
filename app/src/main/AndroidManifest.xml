@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="ExtraText"
-    package= "pagiisnet.pagiis.net">
+    package= "pagiisnet.pagiisnet">
 
 
 
@@ -50,7 +50,11 @@
         android:theme="@style/AppTheme"
         tools:replace="android:label"
         tools:ignore="UnusedAttribute">
-        <activity
+
+
+
+
+    <activity
             android:name="pagiisnet.pagiisnet.GalleryUploads"
             android:exported="false">
             <meta-data
@@ -73,6 +77,8 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
+
         </activity>
         <activity
             android:name="pagiisnet.pagiisnet.CellphoneLogin"
@@ -111,6 +117,8 @@
         <activity
             android:name="pagiisnet.pagiisnet.MapsActivity"
             android:label="@string/title_activity_maps" />
+
+
         <activity
             android:name="pagiisnet.pagiisnet.ActivityOwnProfile"
             android:parentActivityName="pagiisnet.pagiisnet.MapsActivity" />
@@ -254,7 +262,9 @@
             android:value="@string/google_maps_key" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2663071363374794~2545717889" />
+            android:value="ca-app-pub-1698498156044590~7742421625">
+
+        </meta-data>
 
         <service
             android:name="pagiisnet.pagiisnet.Utils.MyFirebaseIdService"

@@ -21,7 +21,7 @@ android {
         minSdkVersion 22
         vectorDrawables.useSupportLibrary = true
         targetSdkVersion 34
-        versionCode 669
+        versionCode 703
         versionName "ii"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         multiDexEnabled true
@@ -151,6 +151,9 @@ dependencies {
     // FirebaseUI for Cloud Storage
 
     implementation platform('com.google.firebase:firebase-bom:32.7.3')
+
+    //implementation 'org.telegram:tdlib:1.7.9'
+    //implementation 'com.amazon.device.ads:amazon-ads:5.9.0'
 
     //implementation 'com.github.mancj:MaterialSearchBar:0.8.1'
     //implementation 'com.firebaseui:firebase-ui-storage:4.2.0'

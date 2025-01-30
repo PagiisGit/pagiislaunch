@@ -5,6 +5,7 @@ import static com.firebase.ui.auth.AuthUI.TAG;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -34,6 +35,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.common.net.InternetDomainName;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -64,6 +66,8 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     //the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private DatabaseReference mDatabaseRef_Y;
+    private DatabaseReference mDatabaseRef_Tokens;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -108,6 +112,8 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     private androidx.appcompat.widget.Toolbar mToolbar;
 
     private FloatingActionButton goToMaps;
+    private DatabaseReference notificationReference;
+    private DatabaseReference databaseReference;
 
 
     public HomeFragment() {
@@ -174,12 +180,43 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
         lockedImages = FirebaseDatabase.getInstance().getReference("Likes");
 
         //mDatabaseRef_y = FirebaseDatabase.getInstance().getReference("LockedImages");
+        databaseReference = FirebaseDatabase.getInstance().getReference("myLastLocation");
 
 
         String onlineUserId = mAuth.getCurrentUser().getUid();
 
 
         getUserProfileDataRef.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+            {
+                if(dataSnapshot.exists())
+                {
+
+                    String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
+                    String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+
+                    String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
+                    userStatusMessage = userStatus;
+                    myImageDpUrl = myDpUrl;
+                    myName = name;
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        databaseReference.child(onlineUserId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
 
@@ -221,8 +258,7 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
             getPagiisData();
         }
     }
-
-
+     
     private void updateArrayListImages() {
         mDatabaseRef_y = FirebaseDatabase.getInstance().getReference("LockedImages");
 
