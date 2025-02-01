@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-295:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-295:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-295:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-295:12
 MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\27662\.gradle\caches\transforms-3\2572e656b94b57c4b34fe0a31428280a\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:2:1-31:12
 MERGED from [com.firebaseui:firebase-ui-auth:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\b8eff7a660636dd7f06811274f93f25a\transformed\jetified-firebase-ui-auth-4.2.0\AndroidManifest.xml:2:1-93:12
@@ -29,12 +29,13 @@ MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\27662\.gradle\caches\tra
 MERGED from [com.firebaseui:firebase-ui-firestore:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\8762ba464108a0a863b63cdee49f8cd3\transformed\jetified-firebase-ui-firestore-4.2.0\AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\27662\.gradle\caches\transforms-3\d7db57b6ef60306e42eb39fc0de3e743\transformed\jetified-viewpager2-1.1.0-beta02\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\27662\.gradle\caches\transforms-3\253b7d7e966c983a34dc3453c2449ebf\transformed\recyclerview-1.3.2\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:17:1-75:12
+MERGED from [androidx.browser:browser:1.7.0] C:\Users\27662\.gradle\caches\transforms-3\320397af8c19b8882c4e8ab559239b90\transformed\browser-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:17:1-38:12
 MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\27662\.gradle\caches\transforms-3\608b4631df21d5b06b3f5eecad9f2a1f\transformed\jetified-emoji2-views-helper-1.2.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\27662\.gradle\caches\transforms-3\d4682db875754ff0d76e7e1f988245d4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:17:1-35:12
 MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\27662\.gradle\caches\transforms-3\5e8f87e0da81bee55117187199bf7cca\transformed\jetified-play-services-places-17.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:17:1-75:12
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:17:1-44:12
 MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\27662\.gradle\caches\transforms-3\099d424bb46eae3e2cc6bab1f62262fd\transformed\jetified-glide-4.11.0\AndroidManifest.xml:2:1-12:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\27662\.gradle\caches\transforms-3\5e22650cf7bbd38846354244b1742e7d\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -98,7 +99,6 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.5.1] C:
 MERGED from [com.google.android.gms:play-services-measurement-base:21.5.1] C:\Users\27662\.gradle\caches\transforms-3\6007832a7349221873b20b27471ef5e6\transformed\jetified-play-services-measurement-base-21.5.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\27662\.gradle\caches\transforms-3\2e0ee7e4eb60eab3f249b33b33d9bccc\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:16:1-26:12
 MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\27662\.gradle\caches\transforms-3\814b147e099ea4b5d03c99d72d7fdf21\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\27662\.gradle\caches\transforms-3\3d876e41451a8a612ed8f89bfcb0c90f\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\27662\.gradle\caches\transforms-3\530f0c52c1abc663118a54d5e29b4a18\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\27662\.gradle\caches\transforms-3\65e82d27c1fc959e27f7c47050a1a303\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.transition:transition:1.2.0] C:\Users\27662\.gradle\caches\transforms-3\771edfbf52783f3594c57a0e11eea2d6\transformed\transition-1.2.0\AndroidManifest.xml:17:1-24:12
@@ -140,27 +140,27 @@ MERGED from [pub.hanks:smallbang:1.2.2] C:\Users\27662\.gradle\caches\transforms
 MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.2.3] C:\Users\27662\.gradle\caches\transforms-3\48a1b37eafa435c0a6bcacb931e7f875\transformed\jetified-android-gif-drawable-1.2.3\AndroidManifest.xml:2:1-11:12
 MERGED from [com.firebase:geofire-android:2.1.1] C:\Users\27662\.gradle\caches\transforms-3\2b4cd55db6ee6f55832d2f85cf99c856\transformed\jetified-geofire-android-2.1.1\AndroidManifest.xml:1:1-5:12
 MERGED from [com.mikhaellopez:circularimageview:3.2.0] C:\Users\27662\.gradle\caches\transforms-3\646fc8f9d0dd995d27e295789d023873\transformed\jetified-circularimageview-3.2.0\AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\27662\.gradle\caches\transforms-3\33cebc88efb04911f5a2f33bc597271a\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.volley:volley:1.2.1] C:\Users\27662\.gradle\caches\transforms-3\0d194cb2e91cdde304d53e028fdf5acd\transformed\jetified-volley-1.2.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\27662\.gradle\caches\transforms-3\33cebc88efb04911f5a2f33bc597271a\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
 MERGED from [io.michaelrocks:libphonenumber-android:8.12.19-2] C:\Users\27662\.gradle\caches\transforms-3\3a015e353724e990328b21ee80620668\transformed\jetified-libphonenumber-android-8.12.19-2\AndroidManifest.xml:2:1-9:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\27662\.gradle\caches\transforms-3\658760c472f513a8ffd37f1312be2afe\transformed\jetified-rxandroid-2.0.2\AndroidManifest.xml:15:1-21:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\27662\.gradle\caches\transforms-3\1c101753d7ccbc9bafba6b3ca48f8a42\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-295:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-295:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-295:12
 	package
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:5:5-35
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-295:12
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-292:12
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-295:12
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:11-69
@@ -220,6 +220,10 @@ MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\27662\.gradle
 MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\27662\.gradle\caches\transforms-3\d7db57b6ef60306e42eb39fc0de3e743\transformed\jetified-viewpager2-1.1.0-beta02\AndroidManifest.xml:5:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\27662\.gradle\caches\transforms-3\253b7d7e966c983a34dc3453c2449ebf\transformed\recyclerview-1.3.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\27662\.gradle\caches\transforms-3\253b7d7e966c983a34dc3453c2449ebf\transformed\recyclerview-1.3.2\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:21:5-23:64
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:21:5-23:64
+MERGED from [androidx.browser:browser:1.7.0] C:\Users\27662\.gradle\caches\transforms-3\320397af8c19b8882c4e8ab559239b90\transformed\browser-1.7.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.7.0] C:\Users\27662\.gradle\caches\transforms-3\320397af8c19b8882c4e8ab559239b90\transformed\browser-1.7.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:20:5-44
@@ -230,8 +234,6 @@ MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\27662\.gradle\caches\transfo
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\27662\.gradle\caches\transforms-3\d4682db875754ff0d76e7e1f988245d4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:21:5-44
 MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\27662\.gradle\caches\transforms-3\5e8f87e0da81bee55117187199bf7cca\transformed\jetified-play-services-places-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\27662\.gradle\caches\transforms-3\5e8f87e0da81bee55117187199bf7cca\transformed\jetified-play-services-places-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:21:5-23:64
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:21:5-23:64
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:20:5-44
 MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\27662\.gradle\caches\transforms-3\099d424bb46eae3e2cc6bab1f62262fd\transformed\jetified-glide-4.11.0\AndroidManifest.xml:6:5-8:41
@@ -358,8 +360,6 @@ MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\2766
 MERGED from [com.google.android.gms:play-services-basement:18.3.0] C:\Users\27662\.gradle\caches\transforms-3\2e0ee7e4eb60eab3f249b33b33d9bccc\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:18:5-43
 MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\27662\.gradle\caches\transforms-3\814b147e099ea4b5d03c99d72d7fdf21\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\27662\.gradle\caches\transforms-3\814b147e099ea4b5d03c99d72d7fdf21\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\27662\.gradle\caches\transforms-3\3d876e41451a8a612ed8f89bfcb0c90f\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.browser:browser:1.4.0] C:\Users\27662\.gradle\caches\transforms-3\3d876e41451a8a612ed8f89bfcb0c90f\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\27662\.gradle\caches\transforms-3\530f0c52c1abc663118a54d5e29b4a18\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\27662\.gradle\caches\transforms-3\530f0c52c1abc663118a54d5e29b4a18\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\27662\.gradle\caches\transforms-3\65e82d27c1fc959e27f7c47050a1a303\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -442,10 +442,10 @@ MERGED from [com.firebase:geofire-android:2.1.1] C:\Users\27662\.gradle\caches\t
 MERGED from [com.firebase:geofire-android:2.1.1] C:\Users\27662\.gradle\caches\transforms-3\2b4cd55db6ee6f55832d2f85cf99c856\transformed\jetified-geofire-android-2.1.1\AndroidManifest.xml:2:3-70
 MERGED from [com.mikhaellopez:circularimageview:3.2.0] C:\Users\27662\.gradle\caches\transforms-3\646fc8f9d0dd995d27e295789d023873\transformed\jetified-circularimageview-3.2.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.mikhaellopez:circularimageview:3.2.0] C:\Users\27662\.gradle\caches\transforms-3\646fc8f9d0dd995d27e295789d023873\transformed\jetified-circularimageview-3.2.0\AndroidManifest.xml:7:5-9:41
-MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\27662\.gradle\caches\transforms-3\33cebc88efb04911f5a2f33bc597271a\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\27662\.gradle\caches\transforms-3\33cebc88efb04911f5a2f33bc597271a\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
 MERGED from [com.android.volley:volley:1.2.1] C:\Users\27662\.gradle\caches\transforms-3\0d194cb2e91cdde304d53e028fdf5acd\transformed\jetified-volley-1.2.1\AndroidManifest.xml:5:5-43
 MERGED from [com.android.volley:volley:1.2.1] C:\Users\27662\.gradle\caches\transforms-3\0d194cb2e91cdde304d53e028fdf5acd\transformed\jetified-volley-1.2.1\AndroidManifest.xml:5:5-43
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\27662\.gradle\caches\transforms-3\33cebc88efb04911f5a2f33bc597271a\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\27662\.gradle\caches\transforms-3\33cebc88efb04911f5a2f33bc597271a\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
 MERGED from [io.michaelrocks:libphonenumber-android:8.12.19-2] C:\Users\27662\.gradle\caches\transforms-3\3a015e353724e990328b21ee80620668\transformed\jetified-libphonenumber-android-8.12.19-2\AndroidManifest.xml:5:5-7:41
 MERGED from [io.michaelrocks:libphonenumber-android:8.12.19-2] C:\Users\27662\.gradle\caches\transforms-3\3a015e353724e990328b21ee80620668\transformed\jetified-libphonenumber-android-8.12.19-2\AndroidManifest.xml:5:5-7:41
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\27662\.gradle\caches\transforms-3\658760c472f513a8ffd37f1312be2afe\transformed\jetified-rxandroid-2.0.2\AndroidManifest.xml:19:5-43
@@ -476,14 +476,20 @@ MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\27662\.g
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\27662\.gradle\caches\transforms-3\9b5bf6f3075c5edad10698720740ab41\transformed\jetified-places-3.3.0\AndroidManifest.xml:10:5-79
 	android:name
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:15:22-76
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:25:5-76
+MERGED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:23:5-77
+MERGED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:23:5-77
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:25:22-74
 uses-feature#android.hardware.camera
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:25:5-27:35
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:28:5-30:35
 	android:required
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:27:9-32
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:30:9-32
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:26:9-47
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:29:9-47
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:30:5-79
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:33:5-79
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:7:5-79
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:7:5-79
 MERGED from [com.firebaseui:firebase-ui-auth:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\b8eff7a660636dd7f06811274f93f25a\transformed\jetified-firebase-ui-auth-4.2.0\AndroidManifest.xml:12:5-79
@@ -494,10 +500,10 @@ MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\27662\.gradle
 MERGED from [com.google.firebase:firebase-storage:20.3.0] C:\Users\27662\.gradle\caches\transforms-3\4dee24ca752cf1ecefd17a84c1e7d2a3\transformed\jetified-firebase-storage-20.3.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle\caches\transforms-3\2d7010a55d8ae76836b0cead0715a471\transformed\jetified-firebase-database-20.3.1\AndroidManifest.xml:22:5-79
 MERGED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle\caches\transforms-3\2d7010a55d8ae76836b0cead0715a471\transformed\jetified-firebase-database-20.3.1\AndroidManifest.xml:22:5-79
-MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:22:5-79
-MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:22:5-79
 MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:26:5-79
 MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:26:5-79
+MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:22.6.0] C:\Users\27662\.gradle\caches\transforms-3\c7cc96253e8b19499606cdf8160ca178\transformed\jetified-play-services-ads-lite-22.6.0\AndroidManifest.xml:25:5-79
@@ -529,19 +535,19 @@ MERGED from [com.google.android.datatransport:transport-runtime:3.1.9] C:\Users\
 MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\27662\.gradle\caches\transforms-3\d2fd776fd73d7c13ecd01bd602fd5780\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:7:5-79
 MERGED from [io.grpc:grpc-android:1.57.2] C:\Users\27662\.gradle\caches\transforms-3\d2fd776fd73d7c13ecd01bd602fd5780\transformed\jetified-grpc-android-1.57.2\AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:30:22-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:33:22-76
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:31:5-80
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:34:5-80
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:31:22-77
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:34:22-77
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:32:5-76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:35:5-76
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\27662\.gradle\caches\transforms-3\9b5bf6f3075c5edad10698720740ab41\transformed\jetified-places-3.3.0\AndroidManifest.xml:11:5-76
 MERGED from [com.google.android.libraries.places:places:3.3.0] C:\Users\27662\.gradle\caches\transforms-3\9b5bf6f3075c5edad10698720740ab41\transformed\jetified-places-3.3.0\AndroidManifest.xml:11:5-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:32:22-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:35:22-73
 uses-permission#android.permission.INTERNET
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:33:5-67
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:36:5-67
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:8:5-67
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:8:5-67
 MERGED from [com.firebaseui:firebase-ui-auth:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\b8eff7a660636dd7f06811274f93f25a\transformed\jetified-firebase-ui-auth-4.2.0\AndroidManifest.xml:13:5-67
@@ -556,12 +562,12 @@ MERGED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradl
 MERGED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle\caches\transforms-3\2d7010a55d8ae76836b0cead0715a471\transformed\jetified-firebase-database-20.3.1\AndroidManifest.xml:23:5-67
 MERGED from [com.firebaseui:firebase-ui-firestore:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\8762ba464108a0a863b63cdee49f8cd3\transformed\jetified-firebase-ui-firestore-4.2.0\AndroidManifest.xml:11:5-67
 MERGED from [com.firebaseui:firebase-ui-firestore:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\8762ba464108a0a863b63cdee49f8cd3\transformed\jetified-firebase-ui-firestore-4.2.0\AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
 MERGED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:23:5-67
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:25:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:22.6.0] C:\Users\27662\.gradle\caches\transforms-3\c7cc96253e8b19499606cdf8160ca178\transformed\jetified-play-services-ads-lite-22.6.0\AndroidManifest.xml:24:5-67
@@ -591,17 +597,17 @@ MERGED from [io.github.ponnamkarthik:richlinkpreview:1.0.9] C:\Users\27662\.grad
 MERGED from [com.firebase:geofire-android:2.1.1] C:\Users\27662\.gradle\caches\transforms-3\2b4cd55db6ee6f55832d2f85cf99c856\transformed\jetified-geofire-android-2.1.1\AndroidManifest.xml:4:3-64
 MERGED from [com.firebase:geofire-android:2.1.1] C:\Users\27662\.gradle\caches\transforms-3\2b4cd55db6ee6f55832d2f85cf99c856\transformed\jetified-geofire-android-2.1.1\AndroidManifest.xml:4:3-64
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:33:22-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:36:22-64
 uses-permission#android.permission.CAMERA
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:34:5-65
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:37:5-65
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:34:22-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:37:22-62
 uses-permission#android.permission.VIBRATE
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:37:5-66
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:40:5-66
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:37:22-63
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:40:22-63
 uses-permission#android.permission.WAKE_LOCK
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:38:5-68
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:41:5-68
 MERGED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:24:5-68
 MERGED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:24:5-68
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:24:5-68
@@ -619,13 +625,13 @@ MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\27662\.gradle\caches\tra
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.5.1] C:\Users\27662\.gradle\caches\transforms-3\5a62d1db7791e87a1d8f0d0fc0cb3041\transformed\jetified-play-services-measurement-sdk-api-21.5.1\AndroidManifest.xml:25:5-68
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:21.5.1] C:\Users\27662\.gradle\caches\transforms-3\5a62d1db7791e87a1d8f0d0fc0cb3041\transformed\jetified-play-services-measurement-sdk-api-21.5.1\AndroidManifest.xml:25:5-68
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:38:22-65
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:41:22-65
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:39:5-81
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:42:5-81
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:39:22-78
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:42:22-78
 application
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:42:5-290:19
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:45:5-293:19
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:18:5-29:19
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:18:5-29:19
 MERGED from [com.firebaseui:firebase-ui-auth:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\b8eff7a660636dd7f06811274f93f25a\transformed\jetified-firebase-ui-auth-4.2.0\AndroidManifest.xml:15:5-91:19
@@ -652,6 +658,8 @@ MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\27662\.gradl
 MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\27662\.gradle\caches\transforms-3\19ae873f2ac98bacfb1b941cdaacb152\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:21:5-32:19
 MERGED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle\caches\transforms-3\2d7010a55d8ae76836b0cead0715a471\transformed\jetified-firebase-database-20.3.1\AndroidManifest.xml:25:5-36:19
 MERGED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle\caches\transforms-3\2d7010a55d8ae76836b0cead0715a471\transformed\jetified-firebase-database-20.3.1\AndroidManifest.xml:25:5-36:19
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:28:5-73:19
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:24:5-30:19
 MERGED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:24:5-30:19
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:28:5-36:19
@@ -660,8 +668,6 @@ MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\27662\.gradle\caches\transfo
 MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\27662\.gradle\caches\transforms-3\d4682db875754ff0d76e7e1f988245d4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
 MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\27662\.gradle\caches\transforms-3\5e8f87e0da81bee55117187199bf7cca\transformed\jetified-play-services-places-17.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-places:17.0.0] C:\Users\27662\.gradle\caches\transforms-3\5e8f87e0da81bee55117187199bf7cca\transformed\jetified-play-services-places-17.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:28:5-73:19
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:28:5-73:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:36:5-42:19
 MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\27662\.gradle\caches\transforms-3\099d424bb46eae3e2cc6bab1f62262fd\transformed\jetified-glide-4.11.0\AndroidManifest.xml:10:5-20
@@ -755,480 +761,480 @@ MERGED from [pub.hanks:smallbang:1.2.2] C:\Users\27662\.gradle\caches\transforms
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] C:\Users\27662\.gradle\caches\transforms-3\4a9486d31089e36cf417611973f5ef2a\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:49:9-35
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:52:9-35
 	android:label
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:46:9-31
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:49:9-31
 		REJECTED from [com.github.varunest:sparkbutton:1.0.6] C:\Users\27662\.gradle\caches\transforms-3\08ee4c19098fbe7a19cc2823c172024a\transformed\jetified-sparkbutton-1.0.6\AndroidManifest.xml:13:9-41
 		REJECTED from [com.github.mancj:MaterialSearchBar:0.8.2] C:\Users\27662\.gradle\caches\transforms-3\dd5ca0b8826b318e4d3725eb285273a0\transformed\jetified-MaterialSearchBar-0.8.2\AndroidManifest.xml:13:9-41
 		REJECTED from [pub.hanks:smallbang:1.2.2] C:\Users\27662\.gradle\caches\transforms-3\bb4f4a842deeae675c54fe3d0c8b3def\transformed\jetified-smallbang-1.2.2\AndroidManifest.xml:13:9-41
 	tools:ignore
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:52:9-39
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:55:9-39
 	android:roundIcon
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:48:9-55
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:51:9-55
 	android:icon
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:45:9-50
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:48:9-50
 	android:allowBackup
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:43:9-35
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:46:9-35
 	android:theme
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:50:9-40
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:53:9-40
 	android:enableOnBackInvokedCallback
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:44:9-51
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:47:9-51
 	tools:replace
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:51:9-38
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:54:9-38
 activity#pagiisnet.pagiisnet.GalleryUploads
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:57:5-63:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:60:5-66:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:59:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:62:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:58:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:61:13-62
 meta-data#android.app.lib_name
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:60:13-62:36
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:63:13-65:36
 	android:value
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:62:17-33
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:65:17-33
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:61:17-52
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:64:17-52
 activity#pagiisnet.pagiisnet.WelcomeMotionLayout
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:64:9-73:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:67:9-76:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:66:13-36
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:69:13-36
 	tools:ignore
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:67:13-56
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:70:13-56
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:65:13-67
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:68:13-67
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:68:13-72:29
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:71:13-75:29
 action#android.intent.action.MAIN
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:69:17-69
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:72:17-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:69:25-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:72:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:71:17-77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:74:17-77
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:71:27-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:74:27-74
 activity#pagiisnet.pagiisnet.Verify_Cellphonenumber_Login
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:74:9-82:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:77:9-85:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:76:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:79:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:75:13-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:78:13-76
 activity#pagiisnet.pagiisnet.CellphoneLogin
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:83:9-89:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:86:9-92:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:85:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:88:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:84:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:87:13-62
 activity#pagiisnet.pagiisnet.OnBoarding
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:91:9-97:20
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:94:9-100:20
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:93:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:96:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:92:13-58
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:95:13-58
 activity#pagiisnet.pagiisnet.LinkView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:98:9-65
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:101:9-65
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:98:19-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:101:19-62
 activity#pagiisnet.pagiisnet.StudentRegister
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:99:9-72
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:102:9-72
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:99:19-69
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:102:19-69
 activity#pagiisnet.pagiisnet.StudentLogin
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:100:9-69
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:103:9-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:100:19-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:103:19-66
 activity#pagiisnet.pagiisnet.SiroccoPromoVideos
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:101:9-75
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:104:9-75
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:101:19-72
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:104:19-72
 activity#pagiisnet.pagiisnet.SiroccoOnlineStores
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:102:9-76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:105:9-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:102:19-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:105:19-73
 activity#pagiisnet.pagiisnet.StoreBankDetails
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:103:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:106:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:103:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:106:19-70
 activity#pagiisnet.pagiisnet.SplashActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:104:9-106:48
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:107:9-109:48
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:106:13-36
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:109:13-36
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:105:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:108:13-62
 activity#pagiisnet.pagiisnet.RegisterActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:115:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:118:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:115:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:118:19-70
 activity#pagiisnet.pagiisnet.first_time_profile_config
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:116:9-82
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:119:9-82
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:116:19-79
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:119:19-79
 activity#pagiisnet.pagiisnet.MapsActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:117:9-119:59
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:120:9-122:59
 	android:label
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:119:13-56
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:122:13-56
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:118:13-60
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:121:13-60
 activity#pagiisnet.pagiisnet.ActivityOwnProfile
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:122:9-124:77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:125:9-127:77
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:124:13-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:127:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:123:13-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:126:13-66
 activity#pagiisnet.pagiisnet.ActivityUploadImage
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:125:9-76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:128:9-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:125:19-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:128:19-73
 activity#pagiisnet.pagiisnet.LoginActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:126:9-70
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:129:9-70
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:126:19-67
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:129:19-67
 activity#pagiisnet.pagiisnet.UserProfileActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:127:9-129:79
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:130:9-132:79
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:129:13-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:132:13-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:128:13-67
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:131:13-67
 activity#pagiisnet.pagiisnet.MemePage
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:130:9-132:77
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:132:13-74
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:131:13-56
-activity#pagiisnet.pagiisnet.ViewUsersMemes
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:133:9-135:77
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:135:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:134:13-62
-activity#pagiisnet.pagiisnet.ActivityCamera
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:134:13-56
+activity#pagiisnet.pagiisnet.ViewUsersMemes
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:136:9-138:77
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:138:13-74
 	android:name
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:137:13-62
-activity#pagiisnet.pagiisnet.ActivityNotifications
+activity#pagiisnet.pagiisnet.ActivityCamera
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:139:9-141:77
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:141:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:140:13-69
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:140:13-62
+activity#pagiisnet.pagiisnet.ActivityNotifications
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:142:9-144:77
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:144:13-74
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:143:13-69
 activity#pagiisnet.pagiisnet.ActivityUserPost
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:142:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:145:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:142:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:145:19-70
 activity#pagiisnet.pagiisnet.OnChatting
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:143:9-67
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:146:9-67
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:143:19-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:146:19-64
 activity#pagiisnet.pagiisnet.SiroccoPage
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:144:9-146:79
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:147:9-149:79
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:146:13-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:149:13-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:145:13-59
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:148:13-59
 activity#pagiisnet.pagiisnet.SiroccoProfile
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:147:9-149:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:150:9-152:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:149:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:152:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:148:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:151:13-62
 activity#pagiisnet.pagiisnet.SirrocoImageUpload
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:150:9-152:77
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:153:9-155:77
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:152:13-74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:155:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:151:13-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:154:13-66
 activity#pagiisnet.pagiisnet.SiroccoMaxView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:153:9-155:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:156:9-158:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:155:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:158:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:154:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:157:13-62
 activity#pagiisnet.pagiisnet.PagiisMaxView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:156:9-158:79
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:159:9-161:79
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:158:13-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:161:13-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:157:13-61
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:160:13-61
 activity#pagiisnet.pagiisnet.CatchUp
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:159:9-161:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:162:9-164:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:161:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:164:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:160:13-55
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:163:13-55
 activity#pagiisnet.pagiisnet.ViewUserMaxImage
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:162:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:165:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:162:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:165:19-70
 activity#pagiisnet.pagiisnet.VideowViewing
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:163:9-165:73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:166:9-168:73
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:165:13-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:168:13-70
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:164:13-61
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:167:13-61
 activity#pagiisnet.pagiisnet.ViewUsersVideos
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:166:9-168:79
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:169:9-171:79
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:168:13-76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:171:13-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:167:13-63
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:170:13-63
 activity#pagiisnet.pagiisnet.ActivityUploadVideo
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:169:9-171:77
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:171:13-74
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:170:13-67
-activity#pagiisnet.pagiisnet.LinkPost
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:172:9-174:77
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:174:13-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:173:13-56
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:173:13-67
+activity#pagiisnet.pagiisnet.LinkPost
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:175:9-177:77
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:177:13-74
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:176:13-56
 activity#pagiisnet.pagiisnet.MapsDrawer
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:175:9-67
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:178:9-67
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:175:19-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:178:19-64
 activity#pagiisnet.pagiisnet.SirrocoMusicView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:176:9-178:85
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:179:9-181:85
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:178:13-82
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:181:13-82
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:177:13-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:180:13-64
 activity#pagiisnet.pagiisnet.SiroccoMusicActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:179:9-181:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:182:9-184:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:181:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:184:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:180:13-68
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:183:13-68
 activity#pagiisnet.pagiisnet.MainActivity
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:182:9-69
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:185:9-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:182:19-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:185:19-66
 activity#pagiisnet.pagiisnet.CustomerPurchase
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:183:9-185:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:186:9-188:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:185:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:188:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:184:13-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:187:13-64
 activity#pagiisnet.pagiisnet.OnlineShopView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:186:9-71
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:189:9-71
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:186:19-68
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:189:19-68
 activity#pagiisnet.pagiisnet.ViewOnlinePurchases
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:187:9-76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:190:9-76
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:187:19-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:190:19-73
 activity#pagiisnet.pagiisnet.CreateOnlineShop
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:188:9-190:76
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:190:13-73
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:189:13-64
-activity#pagiisnet.pagiisnet.SellItemPost
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:191:9-193:76
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:193:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:192:13-60
-activity#pagiisnet.pagiisnet.SiroccoBottomNavView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:194:9-77
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:194:19-74
-activity#pagiisnet.pagiisnet.Art
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:195:9-197:76
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:192:13-64
+activity#pagiisnet.pagiisnet.SellItemPost
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:194:9-196:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:197:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:196:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:196:13-51
-activity#pagiisnet.pagiisnet.Music
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:195:13-60
+activity#pagiisnet.pagiisnet.SiroccoBottomNavView
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:197:9-77
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:197:19-74
+activity#pagiisnet.pagiisnet.Art
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:198:9-200:76
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:200:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:199:13-53
-activity#pagiisnet.pagiisnet.Business
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:199:13-51
+activity#pagiisnet.pagiisnet.Music
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:201:9-203:76
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:203:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:202:13-56
-activity#pagiisnet.pagiisnet.Fashion
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:202:13-53
+activity#pagiisnet.pagiisnet.Business
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:204:9-206:76
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:206:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:205:13-55
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:205:13-56
+activity#pagiisnet.pagiisnet.Fashion
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:207:9-209:76
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:209:13-73
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:208:13-55
 activity#pagiisnet.pagiisnet.BoughtItemMaxView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:207:9-209:75
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:210:9-212:75
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:209:13-72
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:212:13-72
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:208:13-65
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:211:13-65
 activity#pagiisnet.pagiisnet.ViewMyCart
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:210:9-212:76
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:213:9-215:76
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:212:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:215:13-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:211:13-58
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:214:13-58
 activity#pagiisnet.pagiisnet.AdminCartView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:213:9-215:72
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:216:9-218:72
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:215:13-69
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:218:13-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:214:13-61
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:217:13-61
 activity#pagiisnet.pagiisnet.CreateEvent
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:216:9-218:86
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:219:9-221:86
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:218:13-83
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:221:13-83
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:217:13-59
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:220:13-59
 activity#pagiisnet.pagiisnet.ViewStreams
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:219:9-68
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:222:9-68
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:219:19-65
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:222:19-65
 activity#pagiisnet.pagiisnet.EventContentUpload
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:220:9-222:74
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:222:13-71
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:221:13-66
-activity#pagiisnet.pagiisnet.ViewEventProfile
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:223:9-225:74
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:225:13-71
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:224:13-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:224:13-66
+activity#pagiisnet.pagiisnet.ViewEventProfile
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:226:9-228:74
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:228:13-71
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:227:13-64
 activity#pagiisnet.pagiisnet.VisitUserPosts
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:226:9-228:84
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:229:9-231:84
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:228:13-81
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:231:13-81
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:227:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:230:13-62
 activity#pagiisnet.pagiisnet.SplashIntroOne
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:229:9-71
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:232:9-71
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:229:19-68
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:232:19-68
 activity#pagiisnet.pagiisnet.SplashIntroTwo
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:230:9-71
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:233:9-71
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:230:19-68
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:233:19-68
 activity#pagiisnet.pagiisnet.SplashIntroThree
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:231:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:234:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:231:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:234:19-70
 activity#pagiisnet.pagiisnet.VisitProfilePosts
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:232:9-74
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:235:9-74
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:232:19-71
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:235:19-71
 activity#pagiisnet.pagiisnet.ViewUserContactDetails
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:233:9-235:84
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:236:9-238:84
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:235:13-81
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:234:13-70
-activity#pagiisnet.pagiisnet.ViewContactRequestList
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:236:9-238:86
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:238:13-83
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:238:13-81
 	android:name
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:237:13-70
+activity#pagiisnet.pagiisnet.ViewContactRequestList
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:239:9-241:86
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:241:13-83
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:240:13-70
 activity#pagiisnet.pagiisnet.VideoStreaming
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:239:9-241:72
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:242:9-244:72
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:241:13-69
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:244:13-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:240:13-62
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:243:13-62
 activity#pagiisnet.pagiisnet.ActivityItemViewers
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:242:9-244:78
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:245:9-247:78
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:244:13-75
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:247:13-75
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:243:13-67
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:246:13-67
 activity#pagiisnet.pagiisnet.Utils.Testin
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:245:9-69
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:248:9-69
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:245:19-66
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:248:19-66
 activity#pagiisnet.pagiisnet.MultiPost
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:246:9-66
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:249:9-66
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:246:19-63
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:249:19-63
 activity#pagiisnet.pagiisnet.RequestMaxView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:247:9-249:86
-	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:249:13-83
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:248:13-62
-activity#pagiisnet.pagiisnet.ViewEvent
 ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:250:9-252:86
 	android:parentActivityName
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:252:13-83
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:251:13-57
-activity#pagiisnet.pagiisnet.MultiMAxView
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:253:9-69
-	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:253:19-66
-activity#pagiisnet.pagiisnet.EventVideoUpload
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:254:9-256:74
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:251:13-62
+activity#pagiisnet.pagiisnet.ViewEvent
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:253:9-255:86
 	android:parentActivityName
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:256:13-71
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:255:13-83
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:255:13-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:254:13-57
+activity#pagiisnet.pagiisnet.MultiMAxView
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:256:9-69
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:256:19-66
+activity#pagiisnet.pagiisnet.EventVideoUpload
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:257:9-259:74
+	android:parentActivityName
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:259:13-71
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:258:13-64
 activity#pagiisnet.pagiisnet.EventPreviewEdit
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:257:9-73
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:260:9-73
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:257:19-70
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:260:19-70
 activity#pagiisnet.pagiisnet.BuyEndEdit
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:258:9-67
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:261:9-67
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:258:19-64
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:261:19-64
 meta-data#com.google.android.geo.API_KEY
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:260:9-262:55
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:263:9-265:55
 	android:value
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:262:13-52
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:265:13-52
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:261:13-58
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:264:13-58
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:263:9-267:21
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:266:9-270:21
 	android:value
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:265:13-67
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:268:13-67
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:264:13-69
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:267:13-69
 service#pagiisnet.pagiisnet.Utils.MyFirebaseIdService
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:269:9-275:19
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:272:9-278:19
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:271:13-36
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:274:13-36
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:270:13-73
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:273:13-73
 intent-filter#action:name:com.google.firebase.INSTANCE_ID_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:272:13-274:29
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:275:13-277:29
 action#com.google.firebase.INSTANCE_ID_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:273:17-80
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:276:17-80
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:273:25-77
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:276:25-77
 uses-library#org.apache.http.legacy
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:277:9-279:40
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:280:9-282:40
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
 	android:required
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:279:13-37
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:282:13-37
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:278:13-50
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:281:13-50
 service#pagiisnet.pagiisnet.FirebaseMessagingService
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:281:9-289:19
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:284:9-292:19
 	android:exported
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:283:13-36
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:286:13-36
 	tools:ignore
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:285:13-43
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:288:13-43
 	android:permission
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:284:13-38
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:287:13-38
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:282:13-72
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:285:13-72
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:286:13-288:29
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:289:13-291:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:287:17-78
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:290:17-78
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:287:25-75
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:290:25-75
 queries
 ADDED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:10:5-16:15
 MERGED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
@@ -1259,12 +1265,12 @@ MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\27662\.gradl
 MERGED from [com.google.firebase:firebase-appcheck:17.1.2] C:\Users\27662\.gradle\caches\transforms-3\19ae873f2ac98bacfb1b941cdaacb152\transformed\jetified-firebase-appcheck-17.1.2\AndroidManifest.xml:22:9-31:19
 MERGED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle\caches\transforms-3\2d7010a55d8ae76836b0cead0715a471\transformed\jetified-firebase-database-20.3.1\AndroidManifest.xml:26:9-35:19
 MERGED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle\caches\transforms-3\2d7010a55d8ae76836b0cead0715a471\transformed\jetified-firebase-database-20.3.1\AndroidManifest.xml:26:9-35:19
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
+MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
 MERGED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:25:9-29:19
 MERGED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:25:9-29:19
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:29:9-35:19
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
-MERGED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:66:9-72:19
 MERGED from [com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\27662\.gradle\caches\transforms-3\20e765680250db3cad3ce155f531e626\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:34:9-40:19
 MERGED from [com.google.android.gms:play-services-measurement-api:21.5.1] C:\Users\27662\.gradle\caches\transforms-3\20e765680250db3cad3ce155f531e626\transformed\jetified-play-services-measurement-api-21.5.1\AndroidManifest.xml:34:9-40:19
 MERGED from [com.google.firebase:firebase-inappmessaging:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\12c56ba0495be4af3f01a943a4037714\transformed\jetified-firebase-inappmessaging-20.4.0\AndroidManifest.xml:11:9-20:19
@@ -1453,10 +1459,6 @@ ADDED from [com.google.android.libraries.places:places:3.3.0] C:\Users\27662\.gr
 		ADDED from [com.google.android.libraries.places:places:3.3.0] C:\Users\27662\.gradle\caches\transforms-3\9b5bf6f3075c5edad10698720740ab41\transformed\jetified-places-3.3.0\AndroidManifest.xml:19:13-61
 	android:name
 		ADDED from [com.google.android.libraries.places:places:3.3.0] C:\Users\27662\.gradle\caches\transforms-3\9b5bf6f3075c5edad10698720740ab41\transformed\jetified-places-3.3.0\AndroidManifest.xml:16:13-91
-uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:23:5-77
-	android:name
-		ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:23:22-74
 uses-permission#com.google.android.c2dm.permission.RECEIVE
 ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:26:5-82
 MERGED from [com.google.firebase:firebase-iid:21.1.0] C:\Users\27662\.gradle\caches\transforms-3\c50a7a1a128d1cff876722bc7523bd1e\transformed\jetified-firebase-iid-21.1.0\AndroidManifest.xml:26:5-82
@@ -1553,6 +1555,40 @@ ADDED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle
 		ADDED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle\caches\transforms-3\2d7010a55d8ae76836b0cead0715a471\transformed\jetified-firebase-database-20.3.1\AndroidManifest.xml:34:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-database:20.3.1] C:\Users\27662\.gradle\caches\transforms-3\2d7010a55d8ae76836b0cead0715a471\transformed\jetified-firebase-database-20.3.1\AndroidManifest.xml:33:17-109
+activity#com.google.firebase.auth.internal.GenericIdpActivity
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:29:9-46:20
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:31:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:33:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:32:13-36
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:34:13-72
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:30:13-80
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:genericidp
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:35:13-45:29
+activity#com.google.firebase.auth.internal.RecaptchaActivity
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:47:9-64:20
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:49:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:51:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:50:13-36
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:52:13-72
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:48:13-79
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:recaptcha
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:53:13-63:29
+meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
+ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:69:13-71:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:71:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:70:17-109
 meta-data#com.google.firebase.components:com.google.firebase.crash.component.FirebaseCrashRegistrar
 ADDED from [com.google.firebase:firebase-crash:16.2.1] C:\Users\27662\.gradle\caches\transforms-3\456c730b3432f3f8d64c2ec7a5a0e397\transformed\jetified-firebase-crash-16.2.1\AndroidManifest.xml:26:13-28:85
 	android:value
@@ -1589,40 +1625,6 @@ ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\27662\.gradle\caches\transfor
 		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\27662\.gradle\caches\transforms-3\d4682db875754ff0d76e7e1f988245d4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
 	android:name
 		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\27662\.gradle\caches\transforms-3\d4682db875754ff0d76e7e1f988245d4\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-activity#com.google.firebase.auth.internal.GenericIdpActivity
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:29:9-46:20
-	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:31:13-46
-	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:33:13-44
-	android:exported
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:32:13-36
-	android:theme
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:34:13-72
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:30:13-80
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:genericidp
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:35:13-45:29
-activity#com.google.firebase.auth.internal.RecaptchaActivity
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:47:9-64:20
-	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:49:13-46
-	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:51:13-44
-	android:exported
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:50:13-36
-	android:theme
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:52:13-72
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:48:13-79
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:recaptcha
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:53:13-63:29
-meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
-ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:69:13-71:85
-	android:value
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:71:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:22.3.1] C:\Users\27662\.gradle\caches\transforms-3\b4abe77e083b38f86e4203db22fe55bc\transformed\jetified-firebase-auth-22.3.1\AndroidManifest.xml:70:17-109
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:18.2.0] C:\Users\27662\.gradle\caches\transforms-3\1cd5d6e5cb8e17a8ef49fd26d4b5d091\transformed\jetified-play-services-maps-18.2.0\AndroidManifest.xml:26:5-28:35
 	android:glEsVersion

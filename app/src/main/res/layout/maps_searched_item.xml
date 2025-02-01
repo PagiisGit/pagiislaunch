@@ -156,7 +156,7 @@
         android:lines="1"
         android:scrollHorizontally="true"
         android:text="Profilename"
-        android:textColor="@color/quantum_black_text"
+        android:textColor="@color/EndBlue"
         android:textSize="15sp" />
 
 

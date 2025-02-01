@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -56,9 +57,7 @@
         <intent>
             <action android:name="android.support.customtabs.action.CustomTabsService" />
         </intent>
-    </queries>
-
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+    </queries> <!-- Required by older versions of Google Play services to create IID tokens -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <uses-feature
@@ -87,6 +86,7 @@
         android:label="Pagiis"
         android:roundIcon="@drawable/pagiis_home_icon"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="pagiisnet.pagiisnet.GalleryUploads"
@@ -354,13 +354,13 @@
                 android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.crash.component.FirebaseCrashRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
-                android:value="com.google.firebase.components.ComponentRegistrar" />
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
@@ -504,24 +504,6 @@
             </intent-filter>
         </service>
 
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="pagiisnet.pagiisnet.androidx-startup"
-            android:exported="false" >
-            <meta-data
-                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.work.WorkManagerInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-                android:value="androidx.startup" />
-        </provider>
-
         <activity
             android:name="com.google.firebase.auth.internal.GenericIdpActivity"
             android:excludeFromRecents="true"
@@ -557,7 +539,25 @@
                     android:path="/"
                     android:scheme="recaptcha" />
             </intent-filter>
-        </activity> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+        </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="pagiisnet.pagiisnet.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+                android:value="androidx.startup" />
+        </provider> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"

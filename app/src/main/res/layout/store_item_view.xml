@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="123dp"
+    android:gravity="center_vertical"
+    android:layout_gravity="center_horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@color/fui_transparent"
     android:foreground="?android:selectableItemBackground"
@@ -67,22 +70,23 @@
 
 
         <TextView
-            android:background="#FFFFFF"
             android:id="@+id/sirocco_brand_model"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:ellipsize="end"
-            android:lines="1"
-            android:fontFamily="@font/yogamedium"
-            android:scrollHorizontally="true"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="#FFFFFF"
+            android:ellipsize="end"
+            android:fontFamily="@font/yogamedium"
             android:gravity="center"
+            android:lines="1"
             android:padding="3dp"
+            android:scrollHorizontally="true"
             android:text="Profilename"
             android:textColor="@color/EndBlue"
             android:textSize="13sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck" />
 
     </RelativeLayout>
 

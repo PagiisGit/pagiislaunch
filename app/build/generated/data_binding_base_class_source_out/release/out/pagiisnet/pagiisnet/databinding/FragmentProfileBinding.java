@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -34,7 +34,7 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final CircularImageView ImageDP;
 
   @NonNull
-  public final Button LogoutText;
+  public final TextView LogoutText;
 
   @NonNull
   public final FrameLayout ProfileFragment;
@@ -46,10 +46,19 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final ImageView addContent;
 
   @NonNull
+  public final TextView followProfileButton;
+
+  @NonNull
+  public final LinearLayoutCompat followersLayout;
+
+  @NonNull
   public final SparkButton imageViewAnimation;
 
   @NonNull
   public final RecyclerView memeRecyclerView;
+
+  @NonNull
+  public final TextView numberOfFollowers;
 
   @NonNull
   public final TextView profileName;
@@ -85,15 +94,17 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final ImageView writeStatus;
 
   private FragmentProfileBinding(@NonNull FrameLayout rootView, @NonNull ImageView ChangeOwnDP,
-      @NonNull CircularImageView ImageDP, @NonNull Button LogoutText,
+      @NonNull CircularImageView ImageDP, @NonNull TextView LogoutText,
       @NonNull FrameLayout ProfileFragment, @NonNull LinearLayout ProfileLayout,
-      @NonNull ImageView addContent, @NonNull SparkButton imageViewAnimation,
-      @NonNull RecyclerView memeRecyclerView, @NonNull TextView profileName,
-      @NonNull ImageView profileSettingsButton, @NonNull TextView profileStatus,
-      @NonNull ImageView profileStoreOptionButton, @NonNull TextView profileStoreOptionText,
-      @NonNull ProgressBar progressCircleOwnProfile, @NonNull ProgressBar progressCircleWebview,
-      @NonNull TextView userProfileSettings, @NonNull TextView userProfileViews,
-      @NonNull WebView webview, @NonNull ImageView writeStatus) {
+      @NonNull ImageView addContent, @NonNull TextView followProfileButton,
+      @NonNull LinearLayoutCompat followersLayout, @NonNull SparkButton imageViewAnimation,
+      @NonNull RecyclerView memeRecyclerView, @NonNull TextView numberOfFollowers,
+      @NonNull TextView profileName, @NonNull ImageView profileSettingsButton,
+      @NonNull TextView profileStatus, @NonNull ImageView profileStoreOptionButton,
+      @NonNull TextView profileStoreOptionText, @NonNull ProgressBar progressCircleOwnProfile,
+      @NonNull ProgressBar progressCircleWebview, @NonNull TextView userProfileSettings,
+      @NonNull TextView userProfileViews, @NonNull WebView webview,
+      @NonNull ImageView writeStatus) {
     this.rootView = rootView;
     this.ChangeOwnDP = ChangeOwnDP;
     this.ImageDP = ImageDP;
@@ -101,8 +112,11 @@ public final class FragmentProfileBinding implements ViewBinding {
     this.ProfileFragment = ProfileFragment;
     this.ProfileLayout = ProfileLayout;
     this.addContent = addContent;
+    this.followProfileButton = followProfileButton;
+    this.followersLayout = followersLayout;
     this.imageViewAnimation = imageViewAnimation;
     this.memeRecyclerView = memeRecyclerView;
+    this.numberOfFollowers = numberOfFollowers;
     this.profileName = profileName;
     this.profileSettingsButton = profileSettingsButton;
     this.profileStatus = profileStatus;
@@ -156,7 +170,7 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       id = R.id.LogoutText;
-      Button LogoutText = ViewBindings.findChildViewById(rootView, id);
+      TextView LogoutText = ViewBindings.findChildViewById(rootView, id);
       if (LogoutText == null) {
         break missingId;
       }
@@ -175,6 +189,18 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.followProfileButton;
+      TextView followProfileButton = ViewBindings.findChildViewById(rootView, id);
+      if (followProfileButton == null) {
+        break missingId;
+      }
+
+      id = R.id.followersLayout;
+      LinearLayoutCompat followersLayout = ViewBindings.findChildViewById(rootView, id);
+      if (followersLayout == null) {
+        break missingId;
+      }
+
       id = R.id.imageViewAnimation;
       SparkButton imageViewAnimation = ViewBindings.findChildViewById(rootView, id);
       if (imageViewAnimation == null) {
@@ -184,6 +210,12 @@ public final class FragmentProfileBinding implements ViewBinding {
       id = R.id.memeRecyclerView;
       RecyclerView memeRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (memeRecyclerView == null) {
+        break missingId;
+      }
+
+      id = R.id.numberOfFollowers;
+      TextView numberOfFollowers = ViewBindings.findChildViewById(rootView, id);
+      if (numberOfFollowers == null) {
         break missingId;
       }
 
@@ -254,10 +286,11 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       return new FragmentProfileBinding((FrameLayout) rootView, ChangeOwnDP, ImageDP, LogoutText,
-          ProfileFragment, ProfileLayout, addContent, imageViewAnimation, memeRecyclerView,
-          profileName, profileSettingsButton, profileStatus, profileStoreOptionButton,
-          profileStoreOptionText, progressCircleOwnProfile, progressCircleWebview,
-          userProfileSettings, userProfileViews, webview, writeStatus);
+          ProfileFragment, ProfileLayout, addContent, followProfileButton, followersLayout,
+          imageViewAnimation, memeRecyclerView, numberOfFollowers, profileName,
+          profileSettingsButton, profileStatus, profileStoreOptionButton, profileStoreOptionText,
+          progressCircleOwnProfile, progressCircleWebview, userProfileSettings, userProfileViews,
+          webview, writeStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

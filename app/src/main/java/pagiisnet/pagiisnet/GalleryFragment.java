@@ -90,6 +90,9 @@ public class GalleryFragment extends Fragment {
 
     private Button mButtonUpload;
 
+
+    private  String noficationItemid;
+
     private DatabaseReference getUserProfileDataRef;
 
     private DatabaseReference checkAndminTrue;
@@ -530,6 +533,9 @@ public class GalleryFragment extends Fragment {
 
 
 
+
+
+
     private void Upload()
     {
         if (mImageUri != null)
@@ -597,7 +603,7 @@ public class GalleryFragment extends Fragment {
 
                                         finalImageUri = uri;
                                         finalImageUrl = String.valueOf(uri);
-                                        final String[] noficationItemid = {null};
+
 
 
                                         ImageUploads upload = new ImageUploads(mEditTextFileName.getText().toString().trim(), finalImageUrl, raterBarValue, currentUserId, raterBarValueDefault, raterBarValueDefault, raterBarValueDefault, postTimeDateStamp, myLastLocationDetails, MyName);
@@ -609,7 +615,7 @@ public class GalleryFragment extends Fragment {
                                                                            DatabaseReference databaseReference) {
 
 
-                                                        noficationItemid[0] = databaseReference.getKey();
+                                                        noficationItemid = databaseReference.getKey();
 
 
                                                         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("PagiisAdmins");
@@ -659,7 +665,7 @@ public class GalleryFragment extends Fragment {
                                                         // Iterate through the list of user FCM tokens and send notifications to each user
                                                         for (String userFcmToken : userFcmTokens) {
                                                             // Instantiate FcmNotificationsSender with the necessary parameters
-                                                            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(userFcmToken, title, body, context, activity, noficationItemid[0]);
+                                                            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(userFcmToken, title, body, context, activity);
 
                                                             // Send the notification
                                                             notificationsSender.SendNotifications();

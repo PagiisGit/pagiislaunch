@@ -94,21 +94,40 @@
 
                             </TextView>
 
-                            <TextView
-                                android:id="@+id/followProfileButton"
-                                android:layout_width="130dp"
-                                android:layout_height="20dp"
-                                android:background="@drawable/button_background_popup"
-                                android:backgroundTint="@color/BlueishBlack"
-                                android:clickable="true"
-                                android:foreground="?android:selectableItemBackground"
-                                android:gravity="center"
-                                android:text=" Followers"
-                                android:textColor="@color/white"
-                                android:textSize="10dp"
-                                android:textStyle="bold">
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
 
-                            </TextView>
+
+
+                                <TextView
+                                    android:id="@+id/followProfileButton"
+                                    android:layout_width="130dp"
+                                    android:layout_height="20dp"
+                                    android:background="@drawable/button_background_popup"
+                                    android:backgroundTint="@color/BlueishBlack"
+                                    android:clickable="true"
+                                    android:foreground="?android:selectableItemBackground"
+                                    android:gravity="center"
+                                    android:text=" Followers"
+                                    android:textColor="@color/white"
+                                    android:textSize="10dp"
+                                    android:textStyle="bold">
+
+                                </TextView>
+
+                                <ProgressBar
+
+                                    android:id="@+id/progress_circle_Follow"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_centerInParent="true"
+                                    android:layout_gravity="center" />
+
+
+                            </RelativeLayout>
+
+
 
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -471,14 +490,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_marginTop="1dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
 
                     <androidx.recyclerview.widget.RecyclerView
 
                         android:id="@+id/memeRecyclerView"
                         android:layout_width="match_parent"
+                        android:layout_gravity="center_vertical"
                         android:layout_height="match_parent">
 
 

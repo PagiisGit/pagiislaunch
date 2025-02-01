@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.viewmodel.CreationExtras;
@@ -459,6 +460,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
     {
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -474,6 +476,12 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
                         if (postSnapshot.getKey().compareTo("store1") == 0) {
                             UrlString = upload.getExRating();
+
+                            /*CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                            CustomTabsIntent customTabsIntent = builder.build();
+                            customTabsIntent.launchUrl(requireActivity(), Uri.parse(UrlString));*/
+
+
                             webViewLinks.getSettings().setJavaScriptEnabled(true);
                             // webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                             webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
@@ -530,6 +538,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
         mSearchQuery.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -543,6 +552,10 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                     if (postSnapshot.getKey().compareTo("store1") ==0)
                     {
                         UrlString = upload.getExRating();
+
+
+
+
 
                         webViewLinks.getSettings().setJavaScriptEnabled(true);
                         webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
@@ -654,6 +667,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
     }
 
 
+    @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -767,7 +781,10 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
         if (UrlString != null) {
-            webViewLinks.loadUrl(UrlString);
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.launchUrl(requireActivity(), Uri.parse(UrlString));
+
 
         } else {
 
@@ -805,6 +822,9 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                         }
                     });
 
+
+
+
                 }
 
                 @Override
@@ -819,6 +839,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
         return rootView;
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onItemClick(int position) {
         ImageUploads selectedImage = mUploads.get(position);
@@ -833,7 +854,13 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
         if (!imageUrl.isEmpty() && !selectedKey.isEmpty())
         {
 
-            webViewLinks.loadUrl(imageUrl);
+
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.launchUrl(requireActivity(), Uri.parse(imageUrl));
+
+
+           /* webViewLinks.loadUrl(imageUrl);
             webViewLinks.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             webViewLinks.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
             webViewLinks.getSettings().setSupportZoom(true);
@@ -857,7 +884,7 @@ public class SiroccoFragment extends Fragment implements ViewStoreItemAdapter.On
                     // You can put your code to check if it's done loading here
                     // For example, you can set a flag or perform some action
                 }
-            });
+            });*/
 
         } else {
             Toast.makeText(getActivity(), "Pagiis cant open Store", Toast.LENGTH_SHORT).show();

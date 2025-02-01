@@ -4,6 +4,23 @@
             "outputFile": "pagiisnet.pagiisnet.app-mergeReleaseResources-4:/values-es/values-es.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\27662\\.gradle\\caches\\transforms-3\\320397af8c19b8882c4e8ab559239b90\\transformed\\browser-1.7.0\\res\\values-es\\values-es.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,162,263,378",
+                        "endColumns": "106,100,114,104",
+                        "endOffsets": "157,258,373,478"
+                    },
+                    "to": {
+                        "startLines": "60,63,64,65",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "6473,6740,6841,6956",
+                        "endColumns": "106,100,114,104",
+                        "endOffsets": "6575,6836,6951,7056"
+                    }
+                },
+                {
                     "source": "C:\\Users\\27662\\.gradle\\caches\\transforms-3\\5e8f87e0da81bee55117187199bf7cca\\transformed\\jetified-play-services-places-17.0.0\\res\\values-es\\values.xml",
                     "from": {
                         "startLines": "4,5",
@@ -122,23 +139,6 @@
                         "startOffsets": "654,756,869,977,1062,1163,1291,1377,1458,1550,1644,1741,1835,1935,2029,2125,2221,2313,2405,2487,2594,2705,2804,2912,3020,3127,3286,19633",
                         "endColumns": "101,112,107,84,100,127,85,80,91,93,96,93,99,93,95,95,91,91,81,106,110,98,107,107,106,158,98,82",
                         "endOffsets": "751,864,972,1057,1158,1286,1372,1453,1545,1639,1736,1830,1930,2024,2120,2216,2308,2400,2482,2589,2700,2799,2907,3015,3122,3281,3380,19711"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\27662\\.gradle\\caches\\transforms-3\\3d876e41451a8a612ed8f89bfcb0c90f\\transformed\\browser-1.4.0\\res\\values-es\\values-es.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,162,263,378",
-                        "endColumns": "106,100,114,104",
-                        "endOffsets": "157,258,373,478"
-                    },
-                    "to": {
-                        "startLines": "60,63,64,65",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "6473,6740,6841,6956",
-                        "endColumns": "106,100,114,104",
-                        "endOffsets": "6575,6836,6951,7056"
                     }
                 },
                 {

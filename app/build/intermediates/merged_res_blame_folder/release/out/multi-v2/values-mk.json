@@ -4,7 +4,7 @@
             "outputFile": "pagiisnet.pagiisnet.app-mergeReleaseResources-4:/values-mk/values-mk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\27662\\.gradle\\caches\\transforms-3\\3d876e41451a8a612ed8f89bfcb0c90f\\transformed\\browser-1.4.0\\res\\values-mk\\values-mk.xml",
+                    "source": "C:\\Users\\27662\\.gradle\\caches\\transforms-3\\320397af8c19b8882c4e8ab559239b90\\transformed\\browser-1.7.0\\res\\values-mk\\values-mk.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

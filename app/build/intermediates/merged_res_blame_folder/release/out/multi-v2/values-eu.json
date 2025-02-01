@@ -4,6 +4,23 @@
             "outputFile": "pagiisnet.pagiisnet.app-mergeReleaseResources-4:/values-eu/values-eu.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\27662\\.gradle\\caches\\transforms-3\\320397af8c19b8882c4e8ab559239b90\\transformed\\browser-1.7.0\\res\\values-eu\\values-eu.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,155,257,370",
+                        "endColumns": "99,101,112,104",
+                        "endOffsets": "150,252,365,470"
+                    },
+                    "to": {
+                        "startLines": "59,62,63,64",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "6140,6406,6508,6621",
+                        "endColumns": "99,101,112,104",
+                        "endOffsets": "6235,6503,6616,6721"
+                    }
+                },
+                {
                     "source": "C:\\Users\\27662\\.gradle\\caches\\transforms-3\\2e0ee7e4eb60eab3f249b33b33d9bccc\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-eu\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -54,23 +71,6 @@
                         "startOffsets": "325,434,532,642,728,834,958,1044,1125,1217,1311,1407,1501,1602,1696,1792,1889,1981,2074,2156,2265,2374,2473,2582,2689,2800,2971,13673",
                         "endColumns": "108,97,109,85,105,123,85,80,91,93,95,93,100,93,95,96,91,92,81,108,108,98,108,106,110,170,98,82",
                         "endOffsets": "429,527,637,723,829,953,1039,1120,1212,1306,1402,1496,1597,1691,1787,1884,1976,2069,2151,2260,2369,2468,2577,2684,2795,2966,3065,13751"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\27662\\.gradle\\caches\\transforms-3\\3d876e41451a8a612ed8f89bfcb0c90f\\transformed\\browser-1.4.0\\res\\values-eu\\values-eu.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,155,257,370",
-                        "endColumns": "99,101,112,104",
-                        "endOffsets": "150,252,365,470"
-                    },
-                    "to": {
-                        "startLines": "59,62,63,64",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "6140,6406,6508,6621",
-                        "endColumns": "99,101,112,104",
-                        "endOffsets": "6235,6503,6616,6721"
                     }
                 },
                 {

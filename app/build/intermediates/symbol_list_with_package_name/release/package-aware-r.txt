@@ -5102,6 +5102,8 @@ id fitXY
 id fixed
 id flip
 id floating
+id followProfileButton
+id followersLayout
 id forever
 id forgotPasswordButton
 id fragment_container_view_tag
@@ -5234,6 +5236,7 @@ id loginOTP
 id loginPassword
 id loginText
 id logo
+id lvPlaceSuggestions
 id m3_side_sheet
 id mainContainer
 id main_content
@@ -5375,6 +5378,7 @@ id notification_background
 id notification_main_column
 id notification_main_column_container
 id nputLayout
+id numberOfFollowers
 id off
 id on
 id onInterceptTouchReturnSwipe

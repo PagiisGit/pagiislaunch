@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
@@ -61,6 +62,22 @@ public final class ActivityMapsBinding implements ViewBinding {
 
   @NonNull
   public final CardView iconstand;
+
+  /**
+   * This binding is not available in all configurations.
+   * <p>
+   * Present:
+   * <ul>
+   *   <li>layout-v23/</li>
+   * </ul>
+   *
+   * Absent:
+   * <ul>
+   *   <li>layout/</li>
+   * </ul>
+   */
+  @Nullable
+  public final ListView lvPlaceSuggestions;
 
   @NonNull
   public final RelativeLayout mainContainer;
@@ -118,9 +135,9 @@ public final class ActivityMapsBinding implements ViewBinding {
       @NonNull View PAGiiSICON, @Nullable AdView adView, @NonNull CardView discoverLayout,
       @NonNull CircularImageView hideMapsPublicPostsCardView,
       @NonNull CircularImageView hidePublicProfilesCardView, @NonNull CardView iconstand,
-      @NonNull RelativeLayout mainContainer, @NonNull FragmentContainerView map,
-      @NonNull BottomNavigationView mapsBottomNav, @NonNull RecyclerView mapsOnlienUserRecyclerview,
-      @NonNull RecyclerView mapsProfileCategory,
+      @Nullable ListView lvPlaceSuggestions, @NonNull RelativeLayout mainContainer,
+      @NonNull FragmentContainerView map, @NonNull BottomNavigationView mapsBottomNav,
+      @NonNull RecyclerView mapsOnlienUserRecyclerview, @NonNull RecyclerView mapsProfileCategory,
       @NonNull RecyclerView mapsPublicContentRecyclerView,
       @NonNull CardView mapsPublicProfilePostsCardView,
       @NonNull CardView mapsViewOnlineUserCardView, @Nullable RecyclerView memeRecyclerView,
@@ -134,6 +151,7 @@ public final class ActivityMapsBinding implements ViewBinding {
     this.hideMapsPublicPostsCardView = hideMapsPublicPostsCardView;
     this.hidePublicProfilesCardView = hidePublicProfilesCardView;
     this.iconstand = iconstand;
+    this.lvPlaceSuggestions = lvPlaceSuggestions;
     this.mainContainer = mainContainer;
     this.map = map;
     this.mapsBottomNav = mapsBottomNav;
@@ -215,6 +233,9 @@ public final class ActivityMapsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.lvPlaceSuggestions;
+      ListView lvPlaceSuggestions = ViewBindings.findChildViewById(rootView, id);
+
       RelativeLayout mainContainer = (RelativeLayout) rootView;
 
       id = R.id.map;
@@ -288,9 +309,10 @@ public final class ActivityMapsBinding implements ViewBinding {
 
       return new ActivityMapsBinding((RelativeLayout) rootView, LogSearchIconGo, PAGiiSICON, adView,
           discoverLayout, hideMapsPublicPostsCardView, hidePublicProfilesCardView, iconstand,
-          mainContainer, map, mapsBottomNav, mapsOnlienUserRecyclerview, mapsProfileCategory,
-          mapsPublicContentRecyclerView, mapsPublicProfilePostsCardView, mapsViewOnlineUserCardView,
-          memeRecyclerView, nearbyLocation, searchEdittext, searchSpinner, searchTextInputLayout);
+          lvPlaceSuggestions, mainContainer, map, mapsBottomNav, mapsOnlienUserRecyclerview,
+          mapsProfileCategory, mapsPublicContentRecyclerView, mapsPublicProfilePostsCardView,
+          mapsViewOnlineUserCardView, memeRecyclerView, nearbyLocation, searchEdittext,
+          searchSpinner, searchTextInputLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

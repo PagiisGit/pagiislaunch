@@ -5,6 +5,7 @@ import static android.view.View.VISIBLE;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -233,16 +235,13 @@ public class PagiisMaxView extends AppCompatActivity
             UrlString = getIntent().getExtras().get("orderLink").toString();
         }
 
-        mToolbar = findViewById(R.id.appBarLayout);
-        setSupportActionBar(mToolbar);
-
         tagedUsers = new ArrayList<>();
 
-        webViewLinks = findViewById(R.id.webview);
+        /*webViewLinks = findViewById(R.id.webview);
         webSettings = webViewLinks.getSettings();
         mProgressBarWebview = findViewById(R.id.progress_circle_webview);
         webViewLinks.setVisibility(INVISIBLE);
-        mProgressBarWebview.setVisibility(INVISIBLE);
+        mProgressBarWebview.setVisibility(INVISIBLE);*/
 
 
         myLocatinLastRef = FirebaseDatabase.getInstance().getReference().child("MyLastLocation");
@@ -355,7 +354,11 @@ public class PagiisMaxView extends AppCompatActivity
 
                 {
 
-                    webViewLinks.setVisibility(VISIBLE);
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                    CustomTabsIntent customTabsIntent = builder.build();
+                    customTabsIntent.launchUrl(PagiisMaxView.this, Uri.parse(UrlString));
+
+                    /*webViewLinks.setVisibility(VISIBLE);
                     webViewLinks.setEnabled(true);
                     mProgressBarWebview.setVisibility(VISIBLE);
                     webViewLinks.getSettings().setUseWideViewPort(true);
@@ -395,7 +398,7 @@ public class PagiisMaxView extends AppCompatActivity
                             view.loadUrl(url);
                             return true; // Return true to indicate that the URL loading has been handled
                         }
-                    });
+                    });*/
 
 
 
@@ -671,11 +674,11 @@ public class PagiisMaxView extends AppCompatActivity
                         if (postSnapshot.getKey().compareTo(imageKey) == 0)
                         {
 
-                            //final String linkView = postSnapshot.child("name").getValue().toString();
+                            final String linkView = postSnapshot.child("name").getValue().toString();
 
                             //itemName = linkView;
 
-                            maxViewLink.setText("Pagiis Notification");
+                            maxViewLink.setText(linkView);
 
                             Glide.with(PagiisMaxView.this).load(ImageUrl).thumbnail(0.65f).into(maxView);
                             mProgressBar.setVisibility(View.INVISIBLE);

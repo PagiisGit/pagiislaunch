@@ -556,10 +556,10 @@ library {
   maven_library {
     groupId: "androidx.browser"
     artifactId: "browser"
-    version: "1.4.0"
+    version: "1.7.0"
   }
   digests {
-    sha256: "\341\220o\204Q/\036\245\344\311&\333\271\025x\232\330\367IO\244\356\232\322E\026?v\030\\\354\332"
+    sha256: "\340;n\370\306\327\241H\210g\002\253\315)\225\356\035K\300I,\254_\306\252I\304r\374\340k\223"
   }
 }
 library {
@@ -2476,11 +2476,11 @@ library_dependencies {
 }
 library_dependencies {
   library_index: 56
+  library_dep_index: 1
   library_dep_index: 7
   library_dep_index: 10
-  library_dep_index: 47
   library_dep_index: 8
-  library_dep_index: 1
+  library_dep_index: 47
   library_dep_index: 11
 }
 library_dependencies {
@@ -3478,6 +3478,7 @@ module_dependencies {
   dependency_index: 148
   dependency_index: 184
   dependency_index: 105
+  dependency_index: 56
   dependency_index: 147
   dependency_index: 185
   dependency_index: 187
@@ -3489,6 +3490,7 @@ module_dependencies {
   dependency_index: 199
   dependency_index: 200
   dependency_index: 201
+  dependency_index: 146
 }
 repositories {
   maven_repo {

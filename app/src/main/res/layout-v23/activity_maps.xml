@@ -112,9 +112,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:textColor="@color/EndBlue"
-                android:textSize="45sp"
+                android:textSize="50sp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="70dp"
                 android:fontFamily="@font/robobold"
                 android:text="@string/discover_na_new_world"
                 android:layout_height="wrap_content">
@@ -125,7 +125,7 @@
             <LinearLayout
                 android:id="@+id/searchTextInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:backgroundTint="#fff"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="10dp"
@@ -146,7 +146,7 @@
 
                     <Spinner
                         android:id="@+id/searchSpinner"
-                        android:layout_width="55dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:gravity="center"
@@ -166,8 +166,8 @@
 
                         <com.mikhaellopez.circularimageview.CircularImageView
                             android:id="@+id/nearbyLocation"
-                            android:layout_width="40dp"
-                            android:layout_height="45dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_gravity="center_vertical"
                             android:focusable="true"
                             android:src="@drawable/pagiis_onlineusers_finder"
@@ -179,6 +179,9 @@
 
                 </LinearLayout>
 
+
+
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
@@ -186,7 +189,7 @@
                     android:gravity="center_horizontal"
                     android:layout_height="match_parent">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/searchEdittext"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -195,16 +198,15 @@
                         android:layout_marginEnd="45dp"
                         android:layout_marginStart="2dp"
                         android:layout_alignParentEnd="true"
-                        android:fontFamily="@font/yogamedium"
                         android:hint="Search"
-                        android:lines="1"
-                        android:outlineSpotShadowColor="@color/BlueishBlack"
                         android:textAlignment="textStart"
                         android:textColor="@color/BlueishBlack"
-                        android:textColorHighlight="@color/searchBarPrimaryColorDark"
-                        android:textColorHint="@color/searchBarPrimaryColorDark"
-                        android:textSize="20sp"
-                        tools:ignore="RtlCompat,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        android:textColorHint="@color/places_ui_default_primary_dark"
+                        android:textSize="15sp"
+                        tools:ignore="RtlCompat,TouchTargetSizeCheck,TouchTargetSizeCheck">
+
+
+                    </EditText>
 
 
                     <ImageView
@@ -214,7 +216,7 @@
                         android:layout_alignParentBottom="true"
                         android:layout_gravity="center"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="5dp"
+                        android:layout_marginEnd="3dp"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="10dp"
                         android:clickable="true"
@@ -225,9 +227,27 @@
                         android:contentDescription="TODO" />
 
 
+
                 </RelativeLayout>
 
+
+
+
+
             </LinearLayout>
+
+            <ListView
+                android:id="@+id/lvPlaceSuggestions"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
+                android:visibility="gone"
+                android:background="@android:color/white"/>
+
+
+
+
             
             <TextView
                 android:layout_width="wrap_content"
@@ -310,14 +330,14 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="172dp"
+        android:layout_height="185dp"
         android:id="@+id/mapsViewOnlineUserCardView"
         android:layout_alignParentEnd="true"
         android:backgroundTint="#55000000"
         android:background="#55000000"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp">
+        android:layout_marginBottom="63dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -343,6 +363,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mapsOnlienUserRecyclerview"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="4dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -364,7 +385,7 @@
         android:backgroundTint="#fff"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemIconSize="25dp"
+        app:itemIconSize="30dp"
         app:itemIconTint="@drawable/item_selector"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav">

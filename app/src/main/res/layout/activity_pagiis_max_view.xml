@@ -7,9 +7,6 @@
     tools:context=".PagiisMaxView">
 
 
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -91,11 +88,6 @@
             android:textColor="#fff"
             android:textSize="20sp"
             tools:ignore="SpeakableTextPresentCheck" />
-
-
-
-
-
 
 
     </RelativeLayout>

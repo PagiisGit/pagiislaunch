@@ -1,5 +1,6 @@
 package pagiisnet.pagiisnet.Utils;
 
+import static android.view.View.INVISIBLE;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
@@ -31,6 +32,8 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.common.net.InternetDomainName;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +49,7 @@ import java.util.List;
 
 import io.github.ponnamkarthik.richlinkpreview.RichLinkView;
 import io.github.ponnamkarthik.richlinkpreview.ViewListener;
+import pagiisnet.pagiisnet.FCMHELPER;
 import pagiisnet.pagiisnet.FcmNotificationsSender;
 import pagiisnet.pagiisnet.R;
 import pagiisnet.pagiisnet.ImageUploads;
@@ -82,6 +86,9 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
     //private ProgressBar loadbar;
 
     private String postLikes;
+    private String numberOfProfileLikes;
+
+    private TextView profileLikesTextView;
 
     public ViewProfilePicsAdapter(Context context, List<ImageUploads> uploads)
     {
@@ -124,7 +131,40 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
         RequestOptions options = new RequestOptions();
 
+        String selectedKey = uploadCurrent .getKey();
+
+        onlineUserId = selectedKey;
+
+
+
         mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
+
+
+        mDatabaseRefLikes.child(selectedKey).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+
+                    String x = String.valueOf(dataSnapshot.getChildrenCount());
+
+                    numberOfProfileLikes= x;
+
+                    profileLikesTextView.setText(numberOfProfileLikes);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
 
 
@@ -310,130 +350,6 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
 
 
-        public void checkLocation()
-
-        {
-
-            databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
-            databaseReferenceLocation.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot)
-                {
-
-                        // Retrieve the location value as a string
-                        String location = dataSnapshot.getValue(String.class);
-                        mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference("userTokens");
-
-
-                        getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
-                        mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("WalkinWall");
-                        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
-
-                        notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
-
-
-
-                                    String userKey = dataSnapshot.getKey().toString();
-
-                                    mDatabaseRef_Tokens.child(userKey).addValueEventListener(new ValueEventListener() {
-                                        @SuppressLint("RestrictedApi")
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-
-                                        {
-                                            if(dataSnapshot.exists())
-                                            {
-
-                                                String userId = dataSnapshot.getKey().toString();
-                                                getUserProfileDataRef.child(userId).addValueEventListener(new ValueEventListener() {
-                                                    @Override
-                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-
-                                                    {
-                                                        if(dataSnapshot.exists())
-                                                        {
-
-                                                            String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
-                                                            String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
-
-                                                            String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
-
-
-                                                            myImageDpUrl = myDpUrl;
-                                                            myName = name;
-
-                                                            mDatabaseRefLikes.child(onlineUserId).child(mAuth.getCurrentUser().getUid().toString()).setValue(mAuth);
-
-
-
-                                                            postNotification();
-
-                                                        }
-
-
-
-                                                    }
-
-
-                                                    private void postNotification()
-                                                    {
-                                                        String myUserId = mAuth.getCurrentUser().getUid().toString();
-                                                        ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Your post has a new like");
-                                                        notificationReference.child(userId)
-                                                                .push()
-                                                                .setValue(upload, new DatabaseReference.CompletionListener() {
-                                                                    @Override
-                                                                    public void onComplete(DatabaseError databaseError,
-                                                                                           DatabaseReference databaseReference) {
-
-                                                                        //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
-                                                                        //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
-                                                                        // String uniqueKey = databaseReference.getKey();
-                                                                        //Create the function for Clearing/The ImageView Widget.
-                                                                    }
-                                                                });
-
-                                                    }
-
-                                                    @Override
-                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                                    }
-                                                });
-
-                                                userToken = dataSnapshot.getValue().toString();
-
-                                                @SuppressLint("RestrictedApi") FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in ",getApplicationContext(),
-                                                        (Activity) getApplicationContext());
-
-                                                notificationSender.SendNotifications();
-
-                                            }
-
-
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                        }
-                                    });
-
-
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    // Handle errors
-                    System.err.println("Error retrieving location: " + databaseError.getMessage());
-                }
-            });
-        }
-
-
-
-
         public ImageViewHolder(final View itemView)
         {
             super(itemView);
@@ -458,6 +374,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             imageViewLikes = itemView.findViewById(R.id.imageViewAnimation);
 
             loading = itemView.findViewById(R.id.loading);
+
+            profileLikesTextView = itemView.findViewById(R.id.likesText);
             //imageViewSirocco = itemView.findViewById(R.id.views);
 
             //imageViewRadiusChats = itemView.findViewById(R.id.pagiis_radius_chat);
@@ -480,8 +398,13 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             int position = getAdapterPosition();
             int postionX = (int) getItemId();
 
+            mAuth = FirebaseAuth.getInstance();
 
-            databaseReferenceLocation.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+            databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
+
+
+
+           databaseReferenceLocation.child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot)
 
@@ -505,56 +428,63 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             });
 
 
-
-
-            ImageUploads selectedImage = mUploads.get(position);
-
-            String selectedKey = selectedImage.getKey();
-
-            onlineUserId = selectedKey;
-
-
-
             imageViewLikes.setEventListener(new SparkEventListener() {
                 @Override
                 public void onEvent(ImageView button, boolean buttonState) {
                     if(buttonState)
                     {
-                        getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
-                        getUserProfileDataRef.child(onlineUserId).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                        ImageUploads selectedImage = mUploads.get(position);
 
-                            {
-                                if(dataSnapshot.exists())
-                                {
+                        String selectedKey = selectedImage.getKey();
 
-                                    String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
-                                    String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+                        String getUserRef = selectedImage.getUserId();
 
-                                    String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
-                                    userStatusMessage = userStatus;
-                                    myImageDpUrl = myDpUrl;
-                                    myName = name;
+                        String imageUrl = selectedImage.getImageUrl();
 
-                                    checkLocation();
+                        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
 
-                                }
+                        onlineUserId = selectedKey;
 
 
+                        mDatabaseRefLikes.child(selectedKey).child(mAuth.getCurrentUser().getUid().toString()).setValue("true")
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task)
 
-                            }
+                                    {
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        if (task.isSuccessful())
+                                        {
+                                            mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            }
-                        });
+                                                    if (dataSnapshot.exists()) {
 
-                        mDatabaseRefLikes.child(onlineUserId).child(mAuth.getCurrentUser().toString()).setValue("1");
+                                                        String x = String.valueOf(dataSnapshot.getChildrenCount());
+
+                                                        numberOfProfileLikes= x;
+
+                                                        profileLikesTextView.setText(numberOfProfileLikes);
+
+                                                        postNotification("Like");
+
+                                                    }
+
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                }
+                                            });
 
 
+
+                                        }
+                                    }
+                                });
 
                         Toast.makeText(mContext.getApplicationContext(), "add to favourite!", Toast.LENGTH_SHORT).show();
                     }else{
@@ -574,10 +504,6 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
                 }
             });
-
-
-
-
 
 
            /* imageViewLikes.setOnClickListener(
@@ -814,6 +740,34 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             }
             return false;
         }
+    }
+
+    private void postNotification(String fromLikeOrFollower) {
+
+        String myUserId = mAuth.getCurrentUser().getUid().toString();
+
+
+        if (fromLikeOrFollower == "Like") {
+
+            notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+
+
+            ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Your Profile has a new like");
+            notificationReference.child(onlineUserId)
+                    .push()
+                    .setValue(upload, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError,
+                                               DatabaseReference databaseReference) {
+
+
+                            FCMHELPER.sendPushNotification(userToken, "Post Like", "Your Post has a new like.");
+
+                        }
+                    });
+
+        }
+
     }
 
 

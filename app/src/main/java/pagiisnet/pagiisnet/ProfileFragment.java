@@ -38,6 +38,7 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -155,6 +156,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private StorageReference userImageStorageDpRef;
     private DatabaseReference getUserProfileDataRef;
 
+    private TextView profileLikesTextView;
+
     private DatabaseReference mDatabaseRef_Y;
     private FloatingActionButton facebookIcon, twitterIcon, instagramIcon;
     private DatabaseReference usernameDataRef;
@@ -172,6 +175,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private String UrlString3;
 
     private TextView profilePosts;
+
+    String numberOfProfileLikes;
 
     private String shareAppLink;
 
@@ -192,6 +197,11 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private String myName;
     private String myLastLocationDetails;
     private DatabaseReference mDatabaseRefLikes;
+
+    private DatabaseReference mDatabaseRefFollowers;
+    private String numberOfProfileFollowers;
+
+    private ProgressBar progressBarFollow;
 
 
     public ProfileFragment()
@@ -231,6 +241,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
 
+
         mUploads = new ArrayList<>();
 
         /*if(haveNetwork()){
@@ -259,9 +270,93 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                 String value = extras.getString("visited_user_id");
                 user_profile_view_id = value;
 
+                onlineUserId = user_profile_view_id;
+
 
             }
+        }else if (extras == null)
+        {
+            onlineUserId = mAuth.getCurrentUser().getUid().toString();
         }
+
+
+
+
+
+        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("profileLikes");
+
+
+        mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+            {
+                if(dataSnapshot.exists())
+                {
+
+                    numberOfProfileLikes = String.valueOf(dataSnapshot.getChildrenCount());
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        mDatabaseRefFollowers = FirebaseDatabase.getInstance().getReference().child("profileFollowers");
+
+
+        mDatabaseRefFollowers.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+            {
+                if(dataSnapshot.exists())
+                {
+
+                    numberOfProfileFollowers = String.valueOf(dataSnapshot.getChildrenCount());
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
+
+        databaseReferenceLocation.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+            {
+                if(dataSnapshot.exists())
+                {
+
+                    myLastLocationDetails = dataSnapshot.getValue().toString();
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 
@@ -354,11 +449,20 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
 //Here we open a webview for the webiste of the pagiis profile which has an online shopping site inisde of pagiis
+    @SuppressLint("RestrictedApi")
     private void profileProductWebview() {
 
-        if (UrlString.compareTo("nulll") != 0) {
+        if (UrlString.compareTo("nulll") != 0)
+        {
 
-            mProgressBarWebview.setVisibility(View.VISIBLE);
+
+
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent customTabsIntent = builder.build();
+
+            customTabsIntent.launchUrl(requireActivity(), Uri.parse(UrlString));
+
+            /*mProgressBarWebview.setVisibility(View.VISIBLE);
             webViewLinks.setVisibility(VISIBLE);
 
             webViewLinks.getSettings().setJavaScriptEnabled(true);
@@ -407,7 +511,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                         mProgressBarWebview.setVisibility(View.INVISIBLE);
                     }
                 }
-            });
+            });*/
 
 
 
@@ -801,6 +905,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private void checkifAdmindTrue()
     {
 
+
+
         String visited_user_key = null;
 
         Bundle extras = getActivity().getIntent().getExtras();
@@ -827,6 +933,30 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
         }
+
+
+        mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+
+                    String x = String.valueOf(dataSnapshot.getChildrenCount());
+
+                    numberOfProfileLikes= x;
+                    profileLikesTextView.setText(numberOfProfileLikes);
+
+                    postNotification("Like");
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         final String userId = mAuth.getCurrentUser().getUid();
@@ -1489,6 +1619,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
         userImageDp = rootView.findViewById(R.id.ImageDP);
+        profileLikesTextView = rootView.findViewById(R.id.userProfileViews);
         //closeLinkView = rootView.findViewById(R.id.close_link);
         userName = rootView.findViewById(R.id.profileName);
         PostTitle = rootView.findViewById(R.id.post_title);
@@ -1497,6 +1628,12 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         numberOfFollowers = rootView.findViewById(R.id.numberOfFollowers);
         followProfileTextView = rootView.findViewById(R.id.followProfileButton);
+
+        progressBarFollow = rootView.findViewById(R.id.progress_circle_Follow);
+
+
+
+        progressBarFollow.setVisibility(INVISIBLE);
 
         viewProfileStore = rootView.findViewById(R.id.profileStoreOptionButton);
 
@@ -1538,6 +1675,9 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
         //richLinkView.setWebViewClient(myWebViewClient);
+
+        numberOfFollowers.setText(numberOfProfileFollowers);
+        profileLikesTextView.setText(numberOfProfileLikes);
 
 
         AddContent.setEnabled(false);
@@ -1672,7 +1812,14 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             @SuppressLint("RestrictedApi")
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
-                if (buttonState) {
+                if (buttonState)
+                {
+
+                    mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
+
+                    mDatabaseRefLikes.child(onlineUserId).child(mAuth.getCurrentUser().getUid().toString()).setValue("true");
+
+                    checkLocation("Like");
 
 
                     Toast.makeText(getApplicationContext(), "add to favourite!", Toast.LENGTH_SHORT).show();
@@ -1693,12 +1840,6 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
             }
         });
-
-        //profileProductWebview();
-
-
-
-
 
 
         logoutText.setOnClickListener(new View.OnClickListener() {
@@ -1740,6 +1881,24 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         });
 
 
+        //profileProductWebview();
+
+
+
+
+
+
+        followProfileTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                progressBarFollow.setVisibility(VISIBLE);
+                checkLocation("Follower");
+
+            }
+        });
+
+
         editStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1750,24 +1909,32 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         });
 
 
-        checkifAdmindTrue();
 
-        databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
 
-        databaseReferenceLocation.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+
+        mDatabaseRefFollowers = FirebaseDatabase.getInstance().getReference().child("profileFollowers");
+
+        mDatabaseRefFollowers.child(onlineUserId).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            {
-                if(dataSnapshot.exists())
-                {
+                if (dataSnapshot.exists()) {
 
-                    myLastLocationDetails = dataSnapshot.getValue().toString();
+                    String x = String.valueOf(dataSnapshot.getChildrenCount());
 
+                    numberOfProfileFollowers= x;
+
+                    numberOfFollowers.setText(numberOfProfileFollowers);
+
+                    if(dataSnapshot.child(mAuth.getCurrentUser().getUid().toString()).exists())
+                    {
+
+                        followProfileTextView.setText("Following");
+
+
+                    }
 
                 }
-
-
 
             }
 
@@ -1777,6 +1944,37 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             }
         });
 
+
+
+        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("profileLikes");
+
+
+        mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+
+                    String x = String.valueOf(dataSnapshot.getChildrenCount());
+
+                    numberOfProfileLikes= x;
+
+                    profileLikesTextView.setText(numberOfProfileLikes);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        checkifAdmindTrue();
 
 
         return rootView;
@@ -1790,120 +1988,174 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
     {
 
-        databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
-        databaseReferenceLocation.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
 
-                // Retrieve the location value as a string
-                String location = dataSnapshot.getValue(String.class);
-                mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference("userTokens");
-
-
-                getUserProfileDataRef = FirebaseDatabase.getInstance().getReference().child("Users");
-                mDatabaseRef_Y = FirebaseDatabase.getInstance().getReference().child("WalkinWall");
-                mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
-
-                notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+        if(FollowOrLike == "Like")
+        {
 
 
 
-                String userKey = dataSnapshot.getKey().toString();
+            mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("profileLikes");
 
-                mDatabaseRef_Tokens.child(userKey).addValueEventListener(new ValueEventListener() {
-                    @SuppressLint("RestrictedApi")
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
 
-                    {
-                        if(dataSnapshot.exists())
+            mDatabaseRefLikes.child(onlineUserId).child(mAuth.getCurrentUser().getUid().toString()).setValue("true")
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task)
+
                         {
 
-                            String userId = dataSnapshot.getKey().toString();
-                            getUserProfileDataRef.child(userId).addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                            if (task.isSuccessful())
+                            {
+                                mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                {
-                                    if(dataSnapshot.exists())
-                                    {
+                                        if (dataSnapshot.exists()) {
 
-                                        String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
-                                        String userStatus = dataSnapshot.child("userDefaultStatus").getValue().toString();
+                                            String x = String.valueOf(dataSnapshot.getChildrenCount());
 
-                                        String myDpUrl = dataSnapshot.child("userImageDp").getValue().toString();
+                                            numberOfProfileLikes= x;
 
+                                            profileLikesTextView.setText(numberOfProfileLikes);
 
-                                        myImageDpUrl = myDpUrl;
-                                        myName = name;
+                                            postNotification("Like");
 
-                                        mDatabaseRefLikes.child(onlineUserId).child(mAuth.getCurrentUser().getUid().toString()).setValue(mAuth);
-
-                                        postNotification();
+                                        }
 
                                     }
 
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
 
 
-                                }
 
-
-                                private void postNotification()
-                                {
-                                    String myUserId = mAuth.getCurrentUser().getUid().toString();
-                                    ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Your Profile has a new like");
-                                    notificationReference.child(userId)
-                                            .push()
-                                            .setValue(upload, new DatabaseReference.CompletionListener() {
-                                                @Override
-                                                public void onComplete(DatabaseError databaseError,
-                                                                       DatabaseReference databaseReference) {
-
-                                                    //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
-                                                    //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
-                                                    // String uniqueKey = databaseReference.getKey();
-                                                    //Create the function for Clearing/The ImageView Widget.
-                                                }
-                                            });
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
-                            userToken = dataSnapshot.getValue().toString();
-
-                            @SuppressLint("RestrictedApi") FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in ",getApplicationContext(),
-                                    (Activity) getApplicationContext());
-
-                            notificationSender.SendNotifications();
-
+                            }
                         }
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                    });
 
 
 
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle errors
-                System.err.println("Error retrieving location: " + databaseError.getMessage());
-            }
-        });
+
+
+        }else if(FollowOrLike == "Follower")
+        {
+
+            mDatabaseRefFollowers = FirebaseDatabase.getInstance().getReference().child("profileFollowers");
+
+
+            mDatabaseRefFollowers.child(onlineUserId).child(mAuth.getCurrentUser().getUid().toString()).setValue("true")
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task)
+
+                        {
+
+                            if (task.isSuccessful())
+                            {
+                                mDatabaseRefFollowers.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                        if (dataSnapshot.exists()) {
+
+                                            String x = String.valueOf(dataSnapshot.getChildrenCount());
+
+                                            numberOfProfileFollowers= x;
+
+                                            numberOfFollowers.setText(numberOfProfileFollowers);
+                                            followProfileTextView.setText("Following");
+
+                                            progressBarFollow.setVisibility(INVISIBLE);
+
+                                            postNotification("Follower");
+
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+
+
+                            }
+                        }
+                    });
+
+
+
+        }
+
+
+
+
     }
+
+
+    private void postNotification(String fromLikeOrFollower)
+    {
+        String myUserId = mAuth.getCurrentUser().getUid().toString();
+
+
+        if(fromLikeOrFollower == "Like")
+        {
+
+            notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+
+
+            ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Your Profile has a new like");
+            notificationReference.child(onlineUserId)
+                    .push()
+                    .setValue(upload, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError,
+                                               DatabaseReference databaseReference) {
+
+
+
+                            FCMHELPER.sendPushNotification( userToken , "Post Like", "Your profile has a new like.");
+
+                            //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
+                            //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
+                            // String uniqueKey = databaseReference.getKey();
+                            //Create the function for Clearing/The ImageView Widget.
+                        }
+                    });
+
+
+
+        }else if(fromLikeOrFollower == "Follower")
+        {
+            notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
+
+            ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Your Profile has a new follower");
+            notificationReference.child(onlineUserId)
+                    .push()
+                    .setValue(upload, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError,
+                                               DatabaseReference databaseReference) {
+
+                            //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
+                            //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
+                            // String uniqueKey = databaseReference.getKey();
+                            //Create the function for Clearing/The ImageView Widget.
+                            FCMHELPER.sendPushNotification( userToken , "Post Like", "Your profile has a new follower.");
+                        }
+                    });
+
+
+        }
+
+    }
+
 
 
 
@@ -1937,7 +2189,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         profileProffession.setEnabled(true);
         logoutText.setVisibility(VISIBLE);
         logoutText.setEnabled(true);
-
+        followProfileTextView.setEnabled(false);
 
     }
 

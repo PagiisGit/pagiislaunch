@@ -21,7 +21,7 @@ public class FcmNotificationsSender
 {
 
     private final String postUrl = "https://fcm.googleapis.com/fcm/send";
-    private final String fcmServerKey = "AAAA64f0YOg:APA91bF98RhT-3jKt1zHvDbhzdlYWGVqX_NqitzwMp_3SpC8ZgIoantI0GfhUKDJ6qLUBZcXpdn857BzkyKhIYAFM6eX0pT3Zmxkut08HBj1mABJPzjqsEWzg2pf9Q8F9hL5l2qWH-sC";
+    private final String fcmServerKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS";
     String userFcmToken;
     String title;
     String body;
@@ -39,11 +39,6 @@ public class FcmNotificationsSender
         this.mActivity = mActivity;
 
 
-    }
-
-    public FcmNotificationsSender(String[] userToken, String title, String body, Context applicationContext, MapsActivity mActivity)
-
-    {
     }
 
     public void SendNotifications()

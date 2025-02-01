@@ -6,12 +6,11 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -29,10 +28,11 @@ import android.location.GnssStatus;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Looper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -50,6 +50,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -125,7 +126,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.varunest.sparkbutton.SparkButton;
@@ -134,9 +134,7 @@ import com.varunest.sparkbutton.SparkEventListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 
 import pagiisnet.pagiisnet.Utils.FilterMapsProfileCategory;
@@ -230,6 +228,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private List<tags> tagedUsers;
     private List<tags> tagedUserString;
 
+    private String UserNotificationToken;
+
     private List<RadiusUserNotification> radiusUserNotifications;
     private LocationCallback mLocationCallbaCk;
     Dialog myDialog;
@@ -282,6 +282,10 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private String userFoundID;
 
     private String visitUserFoundId;
+
+
+
+    private  PlacesClient placesClient;
 
     private static final int ACTION_NUM = 0;
     private androidx.appcompat.widget.Toolbar mToolbar;
@@ -363,6 +367,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     private DatabaseReference getmDatabaseRef_lastLocation;
     private CircularImageView nearbyLocationImagevIew;
+
+    private CircularImageView pagiisIcon;
     private PlaceInfor mPlace;
     private TextView noSearcFound;
 
@@ -378,6 +384,14 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private BottomSheetDialog bottomSheetDialog;
 
 
+
+    private AutoCompleteTextView etSearchLocation;
+    private ListView lvPlaceSuggestions;
+    private ArrayAdapter<String> placesAdapter;
+    private List<String> placeSuggestions;
+
+
+
     public class MyAppConstants {
         public static final String CHANNEL_ID = "YOUR_CHANNEL_ID";
     }
@@ -389,6 +403,22 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         Places.initialize(getApplicationContext(), "AIzaSyAWyHMDgO9ZvpefFyYxmPoal7J-uljmouk");
         FirebaseApp.initializeApp(getApplicationContext());
 
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), "AIzaSyAWyHMDgO9ZvpefFyYxmPoal7J-uljmouk");
+        }
+
+
+        etSearchLocation = findViewById(R.id.searchEdittext);
+        lvPlaceSuggestions = findViewById(R.id.lvPlaceSuggestions);
+
+
+
+
+        placeSuggestions = new ArrayList<>();
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, placeSuggestions);
+        lvPlaceSuggestions.setAdapter(placesAdapter);
+
+
 
         MobileAds.initialize(this, initializationStatus -> {});
 
@@ -396,6 +426,9 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+
+        pagiisIcon = findViewById(R.id.PAGiiS_ICON);
 
 
 
@@ -408,7 +441,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         // Subscribe the tokens to the topic
         firebaseMessaging.subscribeToTopic("new_product_forms");
 
-        PlacesClient placesClient = Places.createClient(this);
+       placesClient = Places.createClient(this);
 
 
 
@@ -426,7 +459,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
         bottomNavigationView.setSelectedItemId(R.id.home);
-        bottomNavigationView.setItemIconSize(30);
+        bottomNavigationView.setItemIconSize(35);
 
         searchSpinner = findViewById(R.id.searchSpinner);
 
@@ -449,6 +482,12 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
             {
                 mDatabaseRef_Tokens.child(mAuth.getCurrentUser().getUid()).setValue(task.getResult().getToken().toString());
+
+
+                String myToken = task.getResult().getToken().toString();
+
+                UserNotificationToken = task.getResult().getToken().toString();
+
 
             }
         });
@@ -475,6 +514,18 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             }
 
         });
+
+        pagiisIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+
+            {
+                sendWelcomeMessage();
+
+            }
+
+        });
+
 
 
         //String shareItemId = getIntent().getExtras().get("visit_user_id").toString();
@@ -1441,6 +1492,37 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 }else if (!mSearchText.getText().toString().isEmpty() && searcValue.compareTo("pagiis360") ==0)
                 {
 
+
+                    etSearchLocation.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            if (!s.toString().isEmpty()) {
+                                fetchPlaceSuggestions(s.toString());
+                            } else {
+                                lvPlaceSuggestions.setVisibility(View.GONE);
+                            }
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {}
+                    });
+
+                    // Handle item click in ListView
+                    lvPlaceSuggestions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            etSearchLocation.setText(placeSuggestions.get(position));
+                            searcValue = etSearchLocation.getText().toString();
+                            getPagiis360Data(searcValue);
+                            lvPlaceSuggestions.setVisibility(View.GONE);
+                        }
+                    });
+
+
+                    send360request(mSearchText.getText().toString());
                     send360request(mSearchText.getText().toString());
 
                 }
@@ -1460,7 +1542,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             //checkDataAvalability();
             //getDataNormally();
             getShareAppLink();
-            createNotificationChannel();
+            //createNotificationChannel();
 
 
 
@@ -1469,7 +1551,30 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     } // Oncreate Ends Here
 
-    private void createNotificationChannel() {
+    private void fetchPlaceSuggestions(String query)
+    {
+        FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
+                .setQuery(query)
+                .build();
+
+        placesClient.findAutocompletePredictions(request)
+                .addOnSuccessListener(response -> {
+                    placeSuggestions.clear();
+                    for (com.google.android.libraries.places.api.model.AutocompletePrediction prediction : response.getAutocompletePredictions()) {
+                        placeSuggestions.add(prediction.getFullText(null).toString());
+                    }
+                    placesAdapter.notifyDataSetChanged();
+                    lvPlaceSuggestions.setVisibility(View.VISIBLE);
+                })
+                .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+    }
+
+    private void sendWelcomeMessage()
+    {
+        FCMHELPER.sendPushNotification( UserNotificationToken , "Welcome to pagiis", "Hellow and welcome to Pagiis, this button is where you will find all your pagiis app settings in future, stay tuned.");
+    }
+
+    /*private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String channelId = MyAppConstants.CHANNEL_ID;
             String channelName = "Pagiis request for admin product verification.";
@@ -1482,7 +1587,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
-    }
+    }*/
 
 
     private void getShareAppLink()
@@ -2186,13 +2291,6 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     }
 
 
-
-
-
-
-
-
-
     public void GetMapsOnlineProfileByCategoryAll(String profileCategory)
     {
 
@@ -2253,7 +2351,9 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     }
 
-    private void getPagiis360Data(String valueToCheck) {
+    private void getPagiis360Data(String valueToCheck)
+
+    {
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
         final String userIdRef = mAuth.getCurrentUser().getUid();
@@ -2266,50 +2366,59 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
 
-                    String location = dataSnapshot.getValue(String.class);
-
-
-                    if (location != null && !location.isEmpty())
+                    for(DataSnapshot dy : ds.getChildren())
 
                     {
+                       String location = dy.child("postLocation").getValue().toString();
 
-                        // Split the string into components (Address, City, Country)
-                        String[] locationParts = location.split(", \\s*"); // Split by comma and optional spaces
+                        if (location != null && !location.isEmpty())
 
-                        // Check if the input value matches any part of the location
-                        boolean matchFound = false;
-                        for (String part : locationParts) {
-                            if (valueToCheck.equalsIgnoreCase(part.trim()))
+                        {
+
+                            // Split the string into components (Address, City, Country)
+                            String[] locationParts = location.split(", \\s*"); // Split by comma and optional spaces
+
+                            // Check if the input value matches any part of the location
+                            boolean matchFound = false;
+                            for (String part : locationParts)
                             {
 
-                                String userKey = dataSnapshot.getKey().toString();
-                                for (DataSnapshot dx : ds.getChildren()) {
-                                    ImageUploads upload = dx.getValue(ImageUploads.class);
-                                    upload.setKey(dx.getKey());
-                                    pagiis360Uploads.add(upload);
-                                    Collections.shuffle(mUploads);
+                                if (valueToCheck.equalsIgnoreCase(part.trim()))
+                                {
+
+                                    String userKey = dataSnapshot.getKey().toString();
+
+                                        ImageUploads upload = dy.getValue(ImageUploads.class);
+                                        upload.setKey(dy.getKey());
+                                        pagiis360Uploads.add(upload);
+                                        Collections.shuffle(pagiis360Uploads);
+
+                                    pagiis360Adapter.notifyDataSetChanged();
+
+                                    mapsDiscoverLayout.setVisibility(INVISIBLE);
+                                    pagiis360RecyclerView.setVisibility(View.VISIBLE);
+                                    mProgressCircle.setVisibility(INVISIBLE);
+
                                 }
 
-                                pagiis360Adapter.notifyDataSetChanged();
-                                mProgressCircle.setVisibility(INVISIBLE);
 
+
+                            }
+
+                            if (!matchFound) {
+                                System.out.println("No match found for: " + valueToCheck);
                             }
                         }
 
-                        if (!matchFound) {
-                            System.out.println("No match found for: " + valueToCheck);
+                        else {
+                            System.out.println("Location value is null or empty.");
                         }
-                    } else {
-                        System.out.println("Location value is null or empty.");
-                    }
 
 
-
-                    if (ds.exists() && ds.child("postLocation").getValue().toString() == pagiis360DataValue)
-                    {
 
 
                     }
+
 
                     //getDataNormally();
 
@@ -2426,9 +2535,6 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                         notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
 
-
-
-
                         if (location != null && !location.isEmpty()) {
                             // Split the string into components (Address, City, Country)
                             String[] locationParts = location.split(",\\s*"); // Split by comma and optional spaces
@@ -2495,6 +2601,13 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                                                                         finish();
                                                                         // String uniqueKey = databaseReference.getKey();
                                                                         //Create the function for Clearing/The ImageView Widget.
+
+                                                                        userToken = dataSnapshot.getValue().toString();
+
+                                                                        FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in "+valueToCheck ,getApplicationContext(),
+                                                                                MapsActivity.this);
+
+                                                                        notificationSender.SendNotifications();
                                                                     }
                                                                 });
 
@@ -2506,12 +2619,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                                                     }
                                                 });
 
-                                                userToken = dataSnapshot.getValue().toString();
 
-                                                FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in "+valueToCheck ,getApplicationContext(),
-                                                        MapsActivity.this);
-
-                                                notificationSender.SendNotifications();
 
                                             }else
 
