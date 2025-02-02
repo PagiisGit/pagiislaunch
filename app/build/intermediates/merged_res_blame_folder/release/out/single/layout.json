@@ -84,6 +84,10 @@
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\event_closed_notice.xml"
     },
     {
+        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/store_item_view.xml",
+        "source": "pagiisnet.pagiisnet.app-main-7:/layout/store_item_view.xml"
+    },
+    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\friend_request_cardview.xml",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\friend_request_cardview.xml"
     },
@@ -222,10 +226,6 @@
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_gallery_uploads.xml",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_gallery_uploads.xml"
-    },
-    {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_home.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_home.xml"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_bought_item_max_view.xml",
@@ -468,12 +468,12 @@
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\bottom_sheet_profile_service.xml"
     },
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_login.xml",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_login.xml"
-    },
-    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\fragment_home.xml",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_login.xml"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\star_rate_sirocco.xml",

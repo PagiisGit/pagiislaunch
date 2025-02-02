@@ -5159,6 +5159,7 @@ id icon
 id icon_group
 id icon_only
 id iconstand
+id iconstand2
 id ifRoom
 id ignore
 id ignoreRequest

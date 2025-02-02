@@ -676,50 +676,6 @@ public class GalleryUploads extends AppCompatActivity
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void myLastLocationDetailsMetod() {
 
         String user_id = mAuth.getCurrentUser().getUid();

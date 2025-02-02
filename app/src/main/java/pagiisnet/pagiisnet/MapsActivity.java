@@ -3102,6 +3102,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                         String localID = ds.getKey();
 
+
                         tagedUserString.add(new tags(localID));
                         //mapsViewSearcCardMax.setVisibility(View.VISIBLE);
 
@@ -3188,20 +3189,6 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 Toast.makeText(MapsActivity.this, databaseError.getMessage() + "\n" + "Pagiis failed to update tags.", Toast.LENGTH_SHORT).show();
 
 
-                // Get the custom layout view.
-               /* View toastView = getLayoutInflater().inflate(R.layout.activity_toast_custom_view, null);
-
-                TextView messageGrid = findViewById(R.id.customToastText);
-
-                // Initiate the Toast instance.
-                Toast toast = new Toast(getApplicationContext());
-                messageGrid.setText("Pagiis online user update failed. Pagiis will restart activity");
-                // Set custom view in toast.
-                toast.setView(toastView);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0,0);
-                toast.show();
-                finish();*/
             }
 
         });

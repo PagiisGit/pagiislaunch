@@ -143,7 +143,8 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     private ArrayAdapter<String> locationAdapter;
     private ListView locationSuggestionsList;
 
-    private ArrayList<String> locationSuggestions = new ArrayList<>();
+    private ArrayList<String> locationSuggestions;
+    private DatabaseReference locationDetails;
 
 
     public HomeFragment() {
@@ -179,6 +180,8 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
         }
 
         FirebaseApp.initializeApp(getApplicationContext());
+
+        locationSuggestions = new ArrayList<>();
 
 
         getUserProfileDataRef = FirebaseDatabase.getInstance().getReference("Users");
@@ -217,37 +220,6 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
 
 
-
-        // Initialize the adapter and set it to the ListView
-        locationAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, locationSuggestions);
-        locationSuggestionsList.setAdapter(locationAdapter);
-
-        // Listen for text input changes
-        locationInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 1) { // Start searching after at least 2 characters
-                    searchLocations(s.toString());
-                } else {
-                    locationSuggestions.clear();
-                    locationAdapter.notifyDataSetChanged();
-                    locationSuggestionsList.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
-
-        // Handle item selection from suggestions
-        locationSuggestionsList.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedLocation = locationSuggestions.get(position);
-            locationInput.setText(selectedLocation); // Set selected location in EditText
-            locationSuggestionsList.setVisibility(View.GONE); // Hide suggestions
-        });
 
 
         getUserProfileDataRef.child(onlineUserId).addValueEventListener(new ValueEventListener() {
@@ -325,18 +297,60 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
 
 
-    private void searchLocations(String query) {
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void searchLocations(String query)
+    {
+
+       // databaseReference = FirebaseDatabase.getInstance().getReference("MyLastLocation");
+        locationDetails = FirebaseDatabase.getInstance().getReference().child("MyLastLocation");
+        locationDetails.addListenerForSingleValueEvent(new ValueEventListener()
+
+        {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 locationSuggestions.clear();
 
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String location = ds.getValue(String.class);
-                    if (location != null && location.toLowerCase().contains(query.toLowerCase())) {
-                        locationSuggestions.add(location);
+
+                    for(DataSnapshot ds : dataSnapshot.getChildren())
+                    {
+
+                        locationDetails.child(ds.getKey()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshotY) {
+                                if (dataSnapshotY.exists())
+                                {
+
+                                    String location = dataSnapshotY.getValue().toString();
+                                    if (location != null && location.contains(query))
+                                    {
+
+                                        String[] locationParts = location.split(","); // Split into parts
+                                        for (String part : locationParts) {
+                                            if (part.trim().equalsIgnoreCase(query.trim()))
+                                            {
+                                                locationSuggestions.add(location);
+
+                                            }
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                            @SuppressLint("RestrictedApi")
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+
+                                Toast.makeText(getApplicationContext(), databaseError.getMessage() + "\n" + "Location does not have active users", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        });
+
                     }
-                }
+
 
                 if (!locationSuggestions.isEmpty()) {
                     locationSuggestionsList.setVisibility(View.VISIBLE);
@@ -572,7 +586,8 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
                         String searchLocation = locationInput.getText().toString().trim();
 
-                        if (TextUtils.isEmpty(searchLocation)) {
+                        if (TextUtils.isEmpty(searchLocation))
+                        {
                             Toast.makeText(getActivity(), "Enter a location", Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -580,21 +595,27 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
                         for (DataSnapshot ds : dataSnapshot1.getChildren()) {
                             ImageUploads upload = ds.getValue(ImageUploads.class);
 
-                            if (upload != null) {
+                            if (upload != null )
+
+                            {
                                 String postLocation = ds.child("postLocation").getValue(String.class);
 
                                 if (postLocation != null) {
                                     String[] locationParts = postLocation.split(","); // Split into parts
-                                    for (String part : locationParts) {
+                                    for (String part : locationParts)
+                                    {
+
+                                        int Size;
                                         if (part.trim().equalsIgnoreCase(searchLocation.trim()))
                                         {
-
 
 
                                             upload.setKey(ds.getKey()); // Set the key for retrieval
                                             mUploads.add(upload);
                                             notifyUsersMatchingLocation(locationInput.getText().toString().trim());
                                             discoverLayoutCard.setVisibility(INVISIBLE);
+
+
                                             break; // Stop checking once a match is found
 
 
@@ -609,8 +630,6 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
                             uploadItem.setVisibility(View.INVISIBLE);
                             uploadItem.setEnabled(false);
                             mAdapter.notifyDataSetChanged();
-                        } else {
-                            Toast.makeText(getActivity(), "No matching posts found", Toast.LENGTH_LONG).show();
                         }
 
                         mProgressCircle.setVisibility(View.INVISIBLE);
@@ -620,6 +639,9 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
                     }
 
 
+                }else
+                {
+                    Toast.makeText(getActivity(), "No matching posts found", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -1338,7 +1360,7 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
         uploadItem = rootView.findViewById(R.id.businessId);
 
-        searchInputLayout = rootView.findViewById(R.id.searchTextInputLayout);
+        //searchInputLayout = rootView.findViewById(R.id.searchTextInputLayout);
 
         //searchInputLayout.setVisibility(INVISIBLE);
         //searchInputLayout.setEnabled(true);
@@ -1373,6 +1395,38 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
         mAdapter = new ViewProfilePicsAdapter(getApplicationContext(), mUploads);
         mAdapterLink = new ViewProfilePicsAdapter(getApplicationContext(), mUploads);
         sAdapter = new mapSearchedItemAdaptor(getApplicationContext(), kUploads);
+
+        // Initialize the adapter and set it to the ListView
+        locationAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, locationSuggestions);
+        locationSuggestionsList.setAdapter(locationAdapter);
+
+        // Listen for text input changes
+        locationInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 1) { // Start searching after at least 2 characters
+                    searchLocations(s.toString());
+                    //locationSuggestionsList.setVisibility(VISIBLE);
+                } else {
+                    locationSuggestions.clear();
+                    locationAdapter.notifyDataSetChanged();
+                    locationSuggestionsList.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        // Handle item selection from suggestions
+        locationSuggestionsList.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedLocation = locationSuggestions.get(position);
+            locationInput.setText(selectedLocation); // Set selected location in EditText
+            locationSuggestionsList.setVisibility(View.GONE); // Hide suggestions
+        });
 
 
         //sAdapter = new mapsProfileItemsViewAdaptor(getApplicationContext(), kUploads);

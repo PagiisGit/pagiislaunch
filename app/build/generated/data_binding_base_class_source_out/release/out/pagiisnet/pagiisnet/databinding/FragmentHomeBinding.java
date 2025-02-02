@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -39,6 +41,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ImageView businessId;
 
   @NonNull
+  public final CardView discoverLayout;
+
+  @NonNull
   public final FloatingActionButton goToMaps;
 
   @NonNull
@@ -51,10 +56,19 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final CardView iconstand;
 
   @NonNull
+  public final CardView iconstand2;
+
+  @NonNull
+  public final ListView lvPlaceSuggestions;
+
+  @NonNull
+  public final RecyclerView mapsProfileCategory;
+
+  @NonNull
   public final RecyclerView memeRecyclerView;
 
   @NonNull
-  public final LinearLayout nputLayout;
+  public final CircularImageView nearbyLocation;
 
   @NonNull
   public final ProgressBar progressCircleUserMemes;
@@ -63,28 +77,38 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final AppCompatEditText searchEdittext;
 
   @NonNull
-  public final CardView searchTextInputLayout;
+  public final Spinner searchSpinner;
+
+  @NonNull
+  public final LinearLayout searchTextInputLayout;
 
   private FragmentHomeBinding(@NonNull FrameLayout rootView, @NonNull ImageView LogSearchIconGo,
       @NonNull CircularImageView PAGiiSICON, @NonNull RecyclerView SearchRecyclerViewTop,
-      @NonNull ImageView businessId, @NonNull FloatingActionButton goToMaps,
-      @NonNull FloatingActionButton goToVideos, @NonNull FrameLayout homeFragment,
-      @NonNull CardView iconstand, @NonNull RecyclerView memeRecyclerView,
-      @NonNull LinearLayout nputLayout, @NonNull ProgressBar progressCircleUserMemes,
-      @NonNull AppCompatEditText searchEdittext, @NonNull CardView searchTextInputLayout) {
+      @NonNull ImageView businessId, @NonNull CardView discoverLayout,
+      @NonNull FloatingActionButton goToMaps, @NonNull FloatingActionButton goToVideos,
+      @NonNull FrameLayout homeFragment, @NonNull CardView iconstand, @NonNull CardView iconstand2,
+      @NonNull ListView lvPlaceSuggestions, @NonNull RecyclerView mapsProfileCategory,
+      @NonNull RecyclerView memeRecyclerView, @NonNull CircularImageView nearbyLocation,
+      @NonNull ProgressBar progressCircleUserMemes, @NonNull AppCompatEditText searchEdittext,
+      @NonNull Spinner searchSpinner, @NonNull LinearLayout searchTextInputLayout) {
     this.rootView = rootView;
     this.LogSearchIconGo = LogSearchIconGo;
     this.PAGiiSICON = PAGiiSICON;
     this.SearchRecyclerViewTop = SearchRecyclerViewTop;
     this.businessId = businessId;
+    this.discoverLayout = discoverLayout;
     this.goToMaps = goToMaps;
     this.goToVideos = goToVideos;
     this.homeFragment = homeFragment;
     this.iconstand = iconstand;
+    this.iconstand2 = iconstand2;
+    this.lvPlaceSuggestions = lvPlaceSuggestions;
+    this.mapsProfileCategory = mapsProfileCategory;
     this.memeRecyclerView = memeRecyclerView;
-    this.nputLayout = nputLayout;
+    this.nearbyLocation = nearbyLocation;
     this.progressCircleUserMemes = progressCircleUserMemes;
     this.searchEdittext = searchEdittext;
+    this.searchSpinner = searchSpinner;
     this.searchTextInputLayout = searchTextInputLayout;
   }
 
@@ -139,6 +163,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.discoverLayout;
+      CardView discoverLayout = ViewBindings.findChildViewById(rootView, id);
+      if (discoverLayout == null) {
+        break missingId;
+      }
+
       id = R.id.goToMaps;
       FloatingActionButton goToMaps = ViewBindings.findChildViewById(rootView, id);
       if (goToMaps == null) {
@@ -159,15 +189,33 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.iconstand2;
+      CardView iconstand2 = ViewBindings.findChildViewById(rootView, id);
+      if (iconstand2 == null) {
+        break missingId;
+      }
+
+      id = R.id.lvPlaceSuggestions;
+      ListView lvPlaceSuggestions = ViewBindings.findChildViewById(rootView, id);
+      if (lvPlaceSuggestions == null) {
+        break missingId;
+      }
+
+      id = R.id.mapsProfileCategory;
+      RecyclerView mapsProfileCategory = ViewBindings.findChildViewById(rootView, id);
+      if (mapsProfileCategory == null) {
+        break missingId;
+      }
+
       id = R.id.memeRecyclerView;
       RecyclerView memeRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (memeRecyclerView == null) {
         break missingId;
       }
 
-      id = R.id.nputLayout;
-      LinearLayout nputLayout = ViewBindings.findChildViewById(rootView, id);
-      if (nputLayout == null) {
+      id = R.id.nearbyLocation;
+      CircularImageView nearbyLocation = ViewBindings.findChildViewById(rootView, id);
+      if (nearbyLocation == null) {
         break missingId;
       }
 
@@ -183,15 +231,22 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.searchSpinner;
+      Spinner searchSpinner = ViewBindings.findChildViewById(rootView, id);
+      if (searchSpinner == null) {
+        break missingId;
+      }
+
       id = R.id.searchTextInputLayout;
-      CardView searchTextInputLayout = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout searchTextInputLayout = ViewBindings.findChildViewById(rootView, id);
       if (searchTextInputLayout == null) {
         break missingId;
       }
 
       return new FragmentHomeBinding((FrameLayout) rootView, LogSearchIconGo, PAGiiSICON,
-          SearchRecyclerViewTop, businessId, goToMaps, goToVideos, homeFragment, iconstand,
-          memeRecyclerView, nputLayout, progressCircleUserMemes, searchEdittext,
+          SearchRecyclerViewTop, businessId, discoverLayout, goToMaps, goToVideos, homeFragment,
+          iconstand, iconstand2, lvPlaceSuggestions, mapsProfileCategory, memeRecyclerView,
+          nearbyLocation, progressCircleUserMemes, searchEdittext, searchSpinner,
           searchTextInputLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);

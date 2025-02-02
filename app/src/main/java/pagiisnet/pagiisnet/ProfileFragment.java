@@ -295,110 +295,6 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
 
-        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("profileLikes");
-
-
-        mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-
-            {
-                if(dataSnapshot.exists())
-                {
-
-                    numberOfProfileLikes = String.valueOf(dataSnapshot.getChildrenCount());
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        mDatabaseRefFollowers = FirebaseDatabase.getInstance().getReference().child("profileFollowers");
-
-
-        mDatabaseRefFollowers.child(onlineUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-
-            {
-                if(dataSnapshot.exists())
-                {
-
-
-
-                        mDatabaseRefFollowers.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-
-                            {
-                                if(dataSnapshot.exists())
-                                {
-
-                                     following = "following";
-
-
-                                }else
-                                {
-                                     following = "follow";
-
-                                }
-
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-
-
-                    numberOfProfileFollowers = String.valueOf(dataSnapshot.getChildrenCount());
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-        databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
-
-        databaseReferenceLocation.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-
-            {
-                if(dataSnapshot.exists())
-                {
-
-                    myLastLocationDetails = dataSnapshot.getValue().toString();
-
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
 
 
         if (mAuth.getCurrentUser() == null) {
@@ -959,6 +855,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         {
             String name = getArguments().getString("visited_user_id");
 
+
+
             if (name!= null && !(name.compareTo(mAuth.getCurrentUser().getUid())==0) ) {
                 // Check if the key you used to put the extra is present
                 if (getArguments().containsKey("visited_user_id")) {
@@ -972,33 +870,11 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                 Toast.makeText(getActivity(),"Pagiis could not find profile", Toast.LENGTH_SHORT).show();
             }
 
+            upDateFollowers("Follower");
+            upDateLikes("Follower");
+
 
         }
-
-
-        mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()) {
-
-                    String x = String.valueOf(dataSnapshot.getChildrenCount());
-
-                    numberOfProfileLikes= x;
-                    profileLikesTextView.setText(numberOfProfileLikes);
-
-
-                    postNotification("Like");
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
 
         final String userId = mAuth.getCurrentUser().getUid();
@@ -1011,6 +887,9 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             changeDisplay();
 
             String onlineUserId = mAuth.getCurrentUser().getUid();
+
+            upDateFollowers("Like");
+            upDateLikes("Like");
 
             //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
@@ -1070,14 +949,14 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     {
                         viewProfileStore.setVisibility(VISIBLE);
                         viewProfileStore.setEnabled(true);
-                        followProfileTextView.setText(following);
+                        //followProfileTextView.setText(following);
 
                     }else
                     {
 
                         viewProfileStore.setVisibility(INVISIBLE);
                         viewProfileStore.setEnabled(false);
-                        followProfileTextView.setText(following);
+                        //followProfileTextView.setText(following);
 
 
                     }
@@ -1096,7 +975,92 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             });
 
 
-            mDatabaseRef_y.child(onlineUserId).orderByValue().equalTo(onlineUserId).addValueEventListener(new ValueEventListener() {
+
+
+
+            //mDatabaseRefFollowers = FirebaseDatabase.getInstance().getReference().child("profileFollowers");
+
+
+            /*mDatabaseRefFollowers.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                {
+                    if(dataSnapshot.exists())
+                    {
+
+
+
+                        mDatabaseRefFollowers.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                            {
+                                if(dataSnapshot.exists())
+                                {
+
+                                    following = "followers";
+                                    followProfileTextView.setText(following);
+
+
+                                }else
+                                {
+                                    following = "follow";
+                                    followProfileTextView.setText(following);
+
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                        numberOfProfileFollowers = String.valueOf(dataSnapshot.getChildrenCount());
+
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });*/
+
+
+
+            databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
+
+            databaseReferenceLocation.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                {
+                    if(dataSnapshot.exists())
+                    {
+
+                        myLastLocationDetails = dataSnapshot.getValue().toString();
+
+
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+            /*mDatabaseRef_y.child(onlineUserId).orderByValue().equalTo(onlineUserId).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -1150,46 +1114,9 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
-            });
+            });*/
 
 
-                        /*getUserProfileDataRef.child(onlineUserId).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                String name = dataSnapshot.child("userNameAsEmail").getValue().toString();
-                                String status = dataSnapshot.child("userDefaultStatus").getValue().toString();
-                                String imageProfileDP = dataSnapshot.child("userImageDp").getValue().toString();
-
-                                String thumbImage = dataSnapshot.child("userThumbImageDp").getValue().toString();
-
-                                String facebookLink = dataSnapshot.child("facebookLink").getValue().toString();
-                                String twitterLink = dataSnapshot.child("twitterLink").getValue().toString();
-                                String instagramLink = dataSnapshot.child("instagramLink").getValue().toString();
-
-                                userName.setText(name);//Returning The Email as userName for now...
-                                Status.setText(status);
-
-                                facebookLinkTextView.setText(facebookLink);
-                                twitterLinkTextView.setText(twitterLink);
-                                instagramLinkTextView.setText(instagramLink);
-                                // Check if The Default Frofile is set or Now
-
-                                //String imageUrl = imageProfileDP;
-
-                                RequestOptions options = new RequestOptions();
-
-                                Glide.with(ActivityOwnProfile.this).load(imageProfileDP).apply(options.centerCrop()).thumbnail(0.75f).into(userImageDp);
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });*/
-
-            //Call the Onclick Listener On The Change Dp Button
 
 
             String user_id = mAuth.getCurrentUser().getUid();
@@ -1304,6 +1231,89 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
 
+
+
+
+                /*mDatabaseRefFollowers = FirebaseDatabase.getInstance().getReference().child("profileFollowers");
+
+
+                mDatabaseRefFollowers.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                    {
+                        if(dataSnapshot.exists())
+                        {
+
+                            mDatabaseRefFollowers.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                                {
+                                    if(dataSnapshot.exists())
+                                    {
+
+                                        following = "followers";
+                                        followProfileTextView.setText(following);
+
+
+                                    }
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+                            numberOfProfileFollowers = String.valueOf(dataSnapshot.getChildrenCount());
+
+
+                        }else
+                        {
+                            following = "followers";
+                            followProfileTextView.setText(following);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });*/
+
+
+
+                databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
+
+                databaseReferenceLocation.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                    {
+                        if(dataSnapshot.exists())
+                        {
+
+                            myLastLocationDetails = dataSnapshot.getValue().toString();
+
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
             } else
             {
                 // Handle the case where the data is not available
@@ -1313,7 +1323,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
             //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
-            mDatabaseRef_y.child(onlineUserId).orderByValue().equalTo(onlineUserId).addValueEventListener(new ValueEventListener() {
+            /*mDatabaseRef_y.child(onlineUserId).orderByValue().equalTo(onlineUserId).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -1648,7 +1658,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     }
 
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "NewApi"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -1696,7 +1706,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         profileProffession = rootView.findViewById(R.id.profileSettingsButton);
 
-        followProfileTextView.setText(following);
+        //followProfileTextView.setText(following);
 
 
         profileProffession.setEnabled(false);
@@ -1723,7 +1733,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         //richLinkView.setWebViewClient(myWebViewClient);
 
         numberOfFollowers.setText(numberOfProfileFollowers);
-        profileLikesTextView.setText(numberOfProfileLikes);
+        //profileLikesTextView.setText(numberOfProfileLikes);
 
 
         AddContent.setEnabled(false);
@@ -1742,8 +1752,6 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         profileTags = rootView.findViewById(R.id.userProfileConnected);
         profileViews = rootView.findViewById(R.id.userProfileViews);
         userContactDetails = rootView.findViewById(R.id.profile_contact_details);
-
-        followProfileTextView.setText(following);
 
         //facebookLinkTextView = rootView.findViewById(R.id.faceboolinkTextview);
         //twitterLinkTextView = rootView.findViewById(R.id.tweeterLinkTexview);
@@ -1781,6 +1789,11 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         mRecyclerView.setAdapter(mAdapter);
 
         shareLinkButton = rootView.findViewById(R.id.ripple_button);
+
+
+
+
+
 
 
         changeDp.setOnClickListener(new View.OnClickListener() {
@@ -1856,12 +1869,16 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
 
+
+
         imageviewAnim.setEventListener(new SparkEventListener() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
                 if (buttonState)
                 {
+
+
 
                     mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
 
@@ -1960,70 +1977,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
 
-        mDatabaseRefFollowers = FirebaseDatabase.getInstance().getReference().child("profileFollowers");
-
-        mDatabaseRefFollowers.child(onlineUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()) {
-
-                    String x = String.valueOf(dataSnapshot.getChildrenCount());
-
-                    numberOfProfileFollowers= x;
-
-                    numberOfFollowers.setText(numberOfProfileFollowers);
-
-                    if(dataSnapshot.child(mAuth.getCurrentUser().getUid().toString()).exists())
-                    {
-
-                        followProfileTextView.setText(following);
-
-
-                    }
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("profileLikes");
-
-
-        mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()) {
-
-                    String x = String.valueOf(dataSnapshot.getChildrenCount());
-
-                    numberOfProfileLikes= x;
-
-                    profileLikesTextView.setText(numberOfProfileLikes);
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
 
         checkifAdmindTrue();
-
 
         return rootView;
     }
@@ -2039,8 +1994,6 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         if(FollowOrLike == "Like")
         {
-
-
 
             mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("profileLikes");
 
@@ -2140,6 +2093,296 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
 
         }
+
+
+
+
+    }
+
+
+    public void upDateFollowers(String FollowOrLike)
+
+    {
+
+        if(FollowOrLike == "Like")
+        {
+
+            mDatabaseRefFollowers = FirebaseDatabase.getInstance().getReference().child("profileFollowers");
+
+            mDatabaseRefFollowers.child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener()
+
+            {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists()) {
+
+                        String x = String.valueOf(dataSnapshot.getChildrenCount());
+
+                        numberOfProfileFollowers = x;
+
+                        numberOfFollowers.setText(numberOfProfileFollowers);
+
+                        followProfileTextView.setText("Followers");
+
+                        progressBarFollow.setVisibility(INVISIBLE);
+
+                        //postNotification("Follower");
+                    }else
+                    {
+
+
+                        numberOfProfileFollowers = "0";
+
+                        numberOfFollowers.setText(numberOfProfileFollowers);
+
+                        followProfileTextView.setText("Followers");
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+
+        }else if(FollowOrLike == "Follower") {
+
+            mDatabaseRefFollowers = FirebaseDatabase.getInstance().getReference().child("profileFollowers");
+
+            mDatabaseRefFollowers.child(user_profile_view_id).addValueEventListener(new ValueEventListener()
+
+            {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists()) {
+
+                        String x = String.valueOf(dataSnapshot.getChildrenCount());
+
+                        numberOfProfileFollowers = x;
+
+                        numberOfFollowers.setText(numberOfProfileFollowers);
+
+                        followProfileTextView.setText("Follow");
+
+                        mDatabaseRefFollowers.child(onlineUserId).child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                if (dataSnapshot.exists()) {
+
+
+                                    followProfileTextView.setText("Following");
+
+                                    progressBarFollow.setVisibility(INVISIBLE);
+
+                                    //postNotification("Follower");
+                                }else
+                                {
+                                    followProfileTextView.setText("Follow");
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                        progressBarFollow.setVisibility(INVISIBLE);
+
+                        //postNotification("Follower");
+                    }else
+                    {
+
+
+                        numberOfProfileFollowers = "0";
+
+                        numberOfFollowers.setText(numberOfProfileFollowers);
+
+                        followProfileTextView.setText("Follow");
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
+
+
+
+
+    }
+
+
+    public void upDateLikes(String FollowOrLike)
+
+    {
+
+        if(FollowOrLike == "Like")
+        {
+
+            mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("profileLikes");
+
+
+            mDatabaseRefLikes.child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener()
+
+            {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists()) {
+
+                        String x = String.valueOf(dataSnapshot.getChildrenCount());
+
+                        numberOfProfileLikes = x;
+
+                        profileLikesTextView.setText(numberOfProfileLikes);
+
+                        mDatabaseRefLikes.child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                if (dataSnapshot.exists()) {
+
+                                    //imageviewAnim.isChecked();
+                                    imageviewAnim.setActivated(true);
+                                    progressBarFollow.setVisibility(INVISIBLE);
+
+                                    //postNotification("Follower");
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+
+                        progressBarFollow.setVisibility(INVISIBLE);
+
+                        //postNotification("Follower");
+                    }else
+                    {
+
+                        mDatabaseRefLikes.child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                if (dataSnapshot.exists()) {
+
+                                    //imageviewAnim.isChecked();
+                                    imageviewAnim.setActivated(true);
+                                    progressBarFollow.setVisibility(INVISIBLE);
+
+                                    //postNotification("Follower");
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                        numberOfProfileLikes = "0";
+
+                        profileLikesTextView.setText(numberOfProfileFollowers);
+
+                        //profileLikesTextView.setText("Followers");
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+
+        }else if(FollowOrLike == "Follower") {
+
+            mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("profileLikes");
+
+
+            mDatabaseRefLikes.child(user_profile_view_id).addValueEventListener(new ValueEventListener()
+
+            {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.exists()) {
+
+                        String x = String.valueOf(dataSnapshot.getChildrenCount());
+
+                        numberOfProfileLikes = x;
+
+                        profileLikesTextView.setText(numberOfProfileLikes);
+
+
+                        mDatabaseRefFollowers.child(user_profile_view_id).child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                if (dataSnapshot.exists()) {
+
+                                    imageviewAnim.isChecked();
+                                    imageviewAnim.setActivated(true);
+                                    progressBarFollow.setVisibility(INVISIBLE);
+
+                                    //postNotification("Follower");
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                        progressBarFollow.setVisibility(INVISIBLE);
+
+                        //postNotification("Follower");
+                    }else
+                    {
+
+
+                        numberOfProfileLikes = "0";
+
+                        profileLikesTextView.setText(numberOfProfileFollowers);
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
 
 
 
@@ -2279,7 +2522,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         logoutText.setVisibility(VISIBLE);
         logoutText.setEnabled(true);
         followProfileTextView.setEnabled(false);
-        followProfileTextView.setText(following);
+        followProfileTextView.setText("Followers");
 
     }
 

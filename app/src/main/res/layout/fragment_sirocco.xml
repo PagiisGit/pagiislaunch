@@ -54,7 +54,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="202dp"
+            android:layout_height="195dp"
             android:id="@+id/storeListCardView"
             android:layout_alignParentEnd="true"
             android:background="#55000000"
