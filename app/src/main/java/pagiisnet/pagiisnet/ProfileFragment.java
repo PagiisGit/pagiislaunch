@@ -46,6 +46,10 @@ import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -73,9 +77,14 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import pagiisnet.pagiisnet.Utils.ViewStoreItemAdapter;
 import pl.droidsonroids.gif.GifImageView;
@@ -202,6 +211,9 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private String numberOfProfileFollowers;
 
     private ProgressBar progressBarFollow;
+    private String notificationTitle;
+    private String notificationMessage;
+    private String following;
 
 
     public ProfileFragment()
@@ -318,6 +330,35 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
             {
                 if(dataSnapshot.exists())
                 {
+
+
+
+                        mDatabaseRefFollowers.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+
+                            {
+                                if(dataSnapshot.exists())
+                                {
+
+                                     following = "following";
+
+
+                                }else
+                                {
+                                     following = "follow";
+
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
 
                     numberOfProfileFollowers = String.valueOf(dataSnapshot.getChildrenCount());
 
@@ -946,6 +987,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     numberOfProfileLikes= x;
                     profileLikesTextView.setText(numberOfProfileLikes);
 
+
                     postNotification("Like");
 
                 }
@@ -1028,12 +1070,14 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     {
                         viewProfileStore.setVisibility(VISIBLE);
                         viewProfileStore.setEnabled(true);
+                        followProfileTextView.setText(following);
 
                     }else
                     {
 
                         viewProfileStore.setVisibility(INVISIBLE);
                         viewProfileStore.setEnabled(false);
+                        followProfileTextView.setText(following);
 
 
                     }
@@ -1652,6 +1696,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         profileProffession = rootView.findViewById(R.id.profileSettingsButton);
 
+        followProfileTextView.setText(following);
+
 
         profileProffession.setEnabled(false);
         viewProfileStore.setEnabled(false);
@@ -1696,6 +1742,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         profileTags = rootView.findViewById(R.id.userProfileConnected);
         profileViews = rootView.findViewById(R.id.userProfileViews);
         userContactDetails = rootView.findViewById(R.id.profile_contact_details);
+
+        followProfileTextView.setText(following);
 
         //facebookLinkTextView = rootView.findViewById(R.id.faceboolinkTextview);
         //twitterLinkTextView = rootView.findViewById(R.id.tweeterLinkTexview);
@@ -1929,7 +1977,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                     if(dataSnapshot.child(mAuth.getCurrentUser().getUid().toString()).exists())
                     {
 
-                        followProfileTextView.setText("Following");
+                        followProfileTextView.setText(following);
 
 
                     }
@@ -2118,9 +2166,11 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                         public void onComplete(DatabaseError databaseError,
                                                DatabaseReference databaseReference) {
 
+                            notificationTitle = "New profile like";
 
+                            notificationMessage = "Someone just liked your profile";
 
-                            FCMHELPER.sendPushNotification( userToken , "Post Like", "Your profile has a new like.");
+                            sendFCMNotification(userToken);
 
                             //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
                             //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
@@ -2147,13 +2197,52 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                             //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
                             // String uniqueKey = databaseReference.getKey();
                             //Create the function for Clearing/The ImageView Widget.
-                            FCMHELPER.sendPushNotification( userToken , "Post Like", "Your profile has a new follower.");
+
+
+                            notificationTitle = "New follower";
+
+                            notificationMessage = "A new firend has followed your profile";
+                            sendFCMNotification(userToken);
                         }
                     });
 
 
         }
 
+    }
+
+    private void sendFCMNotification(String fcmToken) {
+        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
+        String contentType = "application/json";
+
+        JSONObject notification = new JSONObject();
+        JSONObject notificationBody = new JSONObject();
+
+        try {
+            notificationBody.put("title", notificationTitle);
+            notificationBody.put("message", notificationMessage);
+
+            notification.put("to", fcmToken);
+            notification.put("data", notificationBody);
+        } catch (JSONException e) {
+            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", serverKey);
+                headers.put("Content-Type", contentType);
+                return headers;
+            }
+        };
+
+        @SuppressLint("RestrictedApi") RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(jsonObjectRequest);
     }
 
 
@@ -2190,6 +2279,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         logoutText.setVisibility(VISIBLE);
         logoutText.setEnabled(true);
         followProfileTextView.setEnabled(false);
+        followProfileTextView.setText(following);
 
     }
 

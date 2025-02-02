@@ -33,6 +33,10 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -54,13 +58,18 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -665,10 +674,7 @@ public class GalleryFragment extends Fragment {
                                                         // Iterate through the list of user FCM tokens and send notifications to each user
                                                         for (String userFcmToken : userFcmTokens) {
                                                             // Instantiate FcmNotificationsSender with the necessary parameters
-                                                            FcmNotificationsSender notificationsSender = new FcmNotificationsSender(userFcmToken, title, body, context, activity);
-
-                                                            // Send the notification
-                                                            notificationsSender.SendNotifications();
+                                                            sendFCMNotification(userFcmToken);
                                                         }
 
                                                         //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
@@ -740,6 +746,40 @@ public class GalleryFragment extends Fragment {
         }
 
 
+    }
+
+    private void sendFCMNotification(String fcmToken) {
+        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
+        String contentType = "application/json";
+
+        JSONObject notification = new JSONObject();
+        JSONObject notificationBody = new JSONObject();
+
+        try {
+            notificationBody.put("title", "Location Alert!");
+            notificationBody.put("message", "Someone is exploring your area. Check it out!");
+
+            notification.put("to", fcmToken);
+            notification.put("data", notificationBody);
+        } catch (JSONException e) {
+            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", serverKey);
+                headers.put("Content-Type", contentType);
+                return headers;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
+        requestQueue.add(jsonObjectRequest);
     }
 
 

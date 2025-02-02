@@ -4,7 +4,6 @@ package pagiisnet.pagiisnet.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -123,7 +122,7 @@ public final class ActivityMapsBinding implements ViewBinding {
   public final CircularImageView nearbyLocation;
 
   @NonNull
-  public final AutoCompleteTextView searchEdittext;
+  public final View searchEdittext;
 
   @NonNull
   public final Spinner searchSpinner;
@@ -141,7 +140,7 @@ public final class ActivityMapsBinding implements ViewBinding {
       @NonNull RecyclerView mapsPublicContentRecyclerView,
       @NonNull CardView mapsPublicProfilePostsCardView,
       @NonNull CardView mapsViewOnlineUserCardView, @Nullable RecyclerView memeRecyclerView,
-      @NonNull CircularImageView nearbyLocation, @NonNull AutoCompleteTextView searchEdittext,
+      @NonNull CircularImageView nearbyLocation, @NonNull View searchEdittext,
       @NonNull Spinner searchSpinner, @NonNull LinearLayout searchTextInputLayout) {
     this.rootView = rootView;
     this.LogSearchIconGo = LogSearchIconGo;
@@ -290,7 +289,7 @@ public final class ActivityMapsBinding implements ViewBinding {
       }
 
       id = R.id.searchEdittext;
-      AutoCompleteTextView searchEdittext = ViewBindings.findChildViewById(rootView, id);
+      View searchEdittext = ViewBindings.findChildViewById(rootView, id);
       if (searchEdittext == null) {
         break missingId;
       }

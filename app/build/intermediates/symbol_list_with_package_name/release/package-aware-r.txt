@@ -5505,6 +5505,7 @@ id profile_contact_details
 id progressBar
 id progressBarOTP
 id progress_circle
+id progress_circle_Follow
 id progress_circle_camera
 id progress_circle_own_profile
 id progress_circle_play

@@ -1,6 +1,7 @@
 package pagiisnet.pagiisnet;
 
 import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 import static com.firebase.ui.auth.AuthUI.TAG;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
@@ -10,6 +11,9 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
@@ -19,19 +23,27 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.jarjarred.org.antlr.v4.gui.TreeTextProvider;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,12 +56,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.mikhaellopez.circularimageview.CircularImageView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import pagiisnet.pagiisnet.Utils.ViewProfilePicsAdapter;
@@ -86,7 +104,7 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     private mapSearchedItemAdaptor sAdapter;
     private ProgressBar mProgressCircle;
     private DatabaseReference getUserProfileDataRef;
-    private EditText mSearchEditText;
+    private AppCompatEditText locationInput;
     private ImageView searchForResults;
     private ImageView openSearchbar;
     private ImageView uploadItem;
@@ -114,6 +132,18 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     private FloatingActionButton goToMaps;
     private DatabaseReference notificationReference;
     private DatabaseReference databaseReference;
+    private String notificationTitle;
+
+    private String notificationMessage;
+
+    private CircularImageView pagiisIcon;
+    private String isLayoutVisisble = "false";
+
+    private CardView discoverLayoutCard;
+    private ArrayAdapter<String> locationAdapter;
+    private ListView locationSuggestionsList;
+
+    private ArrayList<String> locationSuggestions = new ArrayList<>();
 
 
     public HomeFragment() {
@@ -184,6 +214,40 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
 
         String onlineUserId = mAuth.getCurrentUser().getUid();
+
+
+
+
+        // Initialize the adapter and set it to the ListView
+        locationAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, locationSuggestions);
+        locationSuggestionsList.setAdapter(locationAdapter);
+
+        // Listen for text input changes
+        locationInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 1) { // Start searching after at least 2 characters
+                    searchLocations(s.toString());
+                } else {
+                    locationSuggestions.clear();
+                    locationAdapter.notifyDataSetChanged();
+                    locationSuggestionsList.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        // Handle item selection from suggestions
+        locationSuggestionsList.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedLocation = locationSuggestions.get(position);
+            locationInput.setText(selectedLocation); // Set selected location in EditText
+            locationSuggestionsList.setVisibility(View.GONE); // Hide suggestions
+        });
 
 
         getUserProfileDataRef.child(onlineUserId).addValueEventListener(new ValueEventListener() {
@@ -257,6 +321,37 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
             getPagiisData();
         }
+    }
+
+
+
+    private void searchLocations(String query) {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                locationSuggestions.clear();
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String location = ds.getValue(String.class);
+                    if (location != null && location.toLowerCase().contains(query.toLowerCase())) {
+                        locationSuggestions.add(location);
+                    }
+                }
+
+                if (!locationSuggestions.isEmpty()) {
+                    locationSuggestionsList.setVisibility(View.VISIBLE);
+                } else {
+                    locationSuggestionsList.setVisibility(View.GONE);
+                }
+
+                locationAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors
+            }
+        });
     }
      
     private void updateArrayListImages() {
@@ -458,6 +553,191 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
 
 
+    private void getPagiisDataByLocation()
+    {
+
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
+                {
+
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                    {
+
+                        mUploads.clear(); // Clear the list before adding new data
+
+                        String searchLocation = locationInput.getText().toString().trim();
+
+                        if (TextUtils.isEmpty(searchLocation)) {
+                            Toast.makeText(getActivity(), "Enter a location", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        for (DataSnapshot ds : dataSnapshot1.getChildren()) {
+                            ImageUploads upload = ds.getValue(ImageUploads.class);
+
+                            if (upload != null) {
+                                String postLocation = ds.child("postLocation").getValue(String.class);
+
+                                if (postLocation != null) {
+                                    String[] locationParts = postLocation.split(","); // Split into parts
+                                    for (String part : locationParts) {
+                                        if (part.trim().equalsIgnoreCase(searchLocation.trim()))
+                                        {
+
+
+
+                                            upload.setKey(ds.getKey()); // Set the key for retrieval
+                                            mUploads.add(upload);
+                                            notifyUsersMatchingLocation(locationInput.getText().toString().trim());
+                                            discoverLayoutCard.setVisibility(INVISIBLE);
+                                            break; // Stop checking once a match is found
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (!mUploads.isEmpty()) {
+                            Collections.shuffle(mUploads);
+                            uploadItem.setVisibility(View.INVISIBLE);
+                            uploadItem.setEnabled(false);
+                            mAdapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getActivity(), "No matching posts found", Toast.LENGTH_LONG).show();
+                        }
+
+                        mProgressCircle.setVisibility(View.INVISIBLE);
+
+
+
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors gracefully
+                // Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+        });
+
+    }
+
+
+    private void notifyUsersMatchingLocation(final String searchLocation) {
+        DatabaseReference locationRef = FirebaseDatabase.getInstance().getReference("myLastLocation");
+
+        locationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<String> matchedUserKeys = new ArrayList<>();
+
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    String userLocation = userSnapshot.getValue(String.class);
+
+                    if (userLocation != null) {
+                        String[] locationParts = userLocation.split(",");
+                        for (String part : locationParts) {
+                            if (part.trim().equalsIgnoreCase(searchLocation.trim())) {
+                                matchedUserKeys.add(userSnapshot.getKey());
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (!matchedUserKeys.isEmpty()) {
+                    sendPushNotifications(matchedUserKeys);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("NotifyUsers", "Error fetching location data: " + databaseError.getMessage());
+            }
+        });
+    }
+
+
+    private void sendPushNotifications(List<String> userKeys) {
+        DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("userTokens");
+
+        tokensRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<String> fcmTokens = new ArrayList<>();
+
+                for (String userKey : userKeys) {
+                    String token = dataSnapshot.child(userKey).getValue(String.class);
+                    if (token != null) {
+                        fcmTokens.add(token);
+                    }
+                }
+
+                if (!fcmTokens.isEmpty()) {
+                    for (String token : fcmTokens)
+                    {
+
+                        notificationTitle = "New post like";
+                        notificationMessage = "You post just got a new like.";
+                        sendFCMNotification(token);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("SendNotifications", "Error fetching FCM tokens: " + databaseError.getMessage());
+            }
+        });
+    }
+
+
+    private void sendFCMNotification(String fcmToken) {
+        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
+        String contentType = "application/json";
+
+        JSONObject notification = new JSONObject();
+        JSONObject notificationBody = new JSONObject();
+
+        try {
+            notificationBody.put("title", notificationTitle);
+            notificationBody.put("message", notificationMessage);
+
+            notification.put("to", fcmToken);
+            notification.put("data", notificationBody);
+        } catch (JSONException e) {
+            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", serverKey);
+                headers.put("Content-Type", contentType);
+                return headers;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
+        requestQueue.add(jsonObjectRequest);
+    }
+
+
     private void getPagiisData() {
 
 
@@ -529,7 +809,7 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
                     sAdapter.notifyDataSetChanged();
                     uploadItem.setVisibility(View.INVISIBLE);
                     uploadItem.setEnabled(false);
-                    searchRecyclerView.setVisibility(View.VISIBLE);
+                    searchRecyclerView.setVisibility(VISIBLE);
                     sAdapter.notifyDataSetChanged();
                     mProgressCircle.setVisibility(View.INVISIBLE);
 
@@ -572,7 +852,7 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
                             contentRaterLink.setVisibility(INVISIBLE);
                             contentRaterLink.setEnabled(false);
 
-                            contentRater.setVisibility(View.VISIBLE);
+                            contentRater.setVisibility(VISIBLE);
                             contentRater.setEnabled(true);
 
                             mAdapterLink.notifyDataSetChanged();
@@ -1044,22 +1324,32 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
         //contentRater = rootView.findViewById(R.id.contentRating);
         //contentRaterLink = rootView.findViewById(R.id.contentRatingLnk);
         viewUserVideos = rootView.findViewById(R.id.goToVideos);
-        viewUserVideos.getRootView().setVisibility(View.VISIBLE);
+        viewUserVideos.getRootView().setVisibility(VISIBLE);
         viewUserVideos.setEnabled(true);
 
 
         goToMaps = rootView.findViewById(R.id.goToMaps);
 
+        pagiisIcon = rootView.findViewById(R.id.PAGiiS_ICON);
 
-        mSearchEditText = rootView.findViewById(R.id.searchEdittext);
+
+        locationInput = rootView.findViewById(R.id.searchEdittext);
         searchForResults = rootView.findViewById(R.id.LogSearchIconGo);
 
         uploadItem = rootView.findViewById(R.id.businessId);
 
         searchInputLayout = rootView.findViewById(R.id.searchTextInputLayout);
 
-        searchInputLayout.setVisibility(INVISIBLE);
-        searchInputLayout.setEnabled(false);
+        //searchInputLayout.setVisibility(INVISIBLE);
+        //searchInputLayout.setEnabled(true);
+
+        discoverLayoutCard = rootView.findViewById(R.id.discoverLayout);
+
+        discoverLayoutCard.setVisibility(INVISIBLE);
+        discoverLayoutCard.setEnabled(true);
+
+
+        locationSuggestionsList = rootView.findViewById(R.id.lvPlaceSuggestions);
 
         //searchNotice = rootView.findViewById(R.id.SearcNotice);
         //searchNotice.setVisibility(INVISIBLE);
@@ -1106,7 +1396,7 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
         mProgressCircle = rootView.findViewById(R.id.progress_circle_user_memes);
 
-        mProgressCircle.setVisibility(View.VISIBLE);
+        mProgressCircle.setVisibility(VISIBLE);
 
         viewUserVideos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1117,6 +1407,31 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
                 startActivity(intent);
             }
         });
+
+        pagiisIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                view.findViewById(R.id.PAGiiS_ICON);
+
+                if(isLayoutVisisble.compareTo("false")==0)
+                {
+                    discoverLayoutCard.setVisibility(VISIBLE);
+                    isLayoutVisisble = "true";
+
+                }else if(isLayoutVisisble.compareTo("true")==0)
+                {
+
+                    isLayoutVisisble = "false";
+                    discoverLayoutCard.setVisibility(INVISIBLE);
+
+
+                }
+
+
+            }
+        });
+
 
 
         goToMaps.setOnClickListener(new View.OnClickListener() {
@@ -1137,11 +1452,9 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
             public void onClick(View view) {
                 view.findViewById(R.id.LogSearchIconGo);
 
-                String searchedText = mSearchEditText.getText().toString();
 
 
-                Intent intent = new Intent(getActivity(), MapsActivity.class);
-                startActivity(intent);
+                getPagiisDataByLocation();
 
                /* if (!tagedUsers.isEmpty()) {
 

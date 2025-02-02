@@ -1,5 +1,7 @@
 package pagiisnet.pagiisnet;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -8,6 +10,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -29,6 +32,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,8 +53,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GalleryUploads extends AppCompatActivity
 {
@@ -132,6 +144,9 @@ public class GalleryUploads extends AppCompatActivity
     private DatabaseReference mDatabaseRef_Tokens;
     private DatabaseReference mDatabaseRef_Y;
     private DatabaseReference notificationReference;
+    private String notificationTitle;
+
+    private String notificationMessage;
 
 
     @SuppressLint("MissingInflatedId")
@@ -1178,8 +1193,18 @@ public class GalleryUploads extends AppCompatActivity
                                                                                            DatabaseReference databaseReference) {
 
                                                                         //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
-                                                                        //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
+                                                                        //
+
+                                                                        userToken = dataSnapshot.getValue().toString();
+
+                                                                        notificationTitle = "Local Post";
+                                                                        notificationMessage = "Someone might have something intersting to share with, check it ou";
+
+                                                                        sendFCMNotification(userToken);
+
                                                                         finish();
+
+
                                                                         // String uniqueKey = databaseReference.getKey();
                                                                         //Create the function for Clearing/The ImageView Widget.
                                                                     }
@@ -1193,12 +1218,6 @@ public class GalleryUploads extends AppCompatActivity
                                                     }
                                                 });
 
-                                                userToken = dataSnapshot.getValue().toString();
-
-                                                FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in "+valueToCheck ,getApplicationContext(),
-                                                        GalleryUploads.this);
-
-                                                notificationSender.SendNotifications();
 
                                             }else
 
@@ -1242,6 +1261,40 @@ public class GalleryUploads extends AppCompatActivity
                 }
             });
         }
+    }
+
+    private void sendFCMNotification(String fcmToken) {
+        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
+        String contentType = "application/json";
+
+        JSONObject notification = new JSONObject();
+        JSONObject notificationBody = new JSONObject();
+
+        try {
+            notificationBody.put("title", "Location Alert!");
+            notificationBody.put("message", "Someone is exploring your area. Check it out!");
+
+            notification.put("to", fcmToken);
+            notification.put("data", notificationBody);
+        } catch (JSONException e) {
+            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", serverKey);
+                headers.put("Content-Type", contentType);
+                return headers;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(GalleryUploads.this);
+        requestQueue.add(jsonObjectRequest);
     }
 
 

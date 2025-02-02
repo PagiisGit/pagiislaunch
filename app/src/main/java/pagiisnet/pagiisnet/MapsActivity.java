@@ -7,6 +7,10 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -16,6 +20,7 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
@@ -32,6 +37,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Looper;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
@@ -59,6 +65,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -131,11 +138,15 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
+import java.util.Map;
 
 import pagiisnet.pagiisnet.Utils.FilterMapsProfileCategory;
 import pagiisnet.pagiisnet.Utils.PlaceAutocompleteAdapter;
@@ -238,7 +249,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private Task getUserPage;
 
     private static final String TAG = "MapsActivity";
-    private AutoCompleteTextView mSearchText;
+    //private AutoCompleteTextView mSearchText;mhu
 
     private LatLng currentUserLocation;
     private LatLng userLocation;
@@ -385,11 +396,12 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
 
-    private AutoCompleteTextView etSearchLocation;
+    private AppCompatEditText etSearchLocation;
     private ListView lvPlaceSuggestions;
     private ArrayAdapter<String> placesAdapter;
     private List<String> placeSuggestions;
-
+    private String notificationTitle;
+    private String notificationMessage;
 
 
     public class MyAppConstants {
@@ -603,9 +615,9 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         //SeachLocationImageview.setEnabled(FALSE);
 
-        mSearchText = findViewById(R.id.searchEdittext);
+        etSearchLocation = findViewById(R.id.searchEdittext);
 
-        searchedText = mSearchText.getText().toString();
+        searchedText = etSearchLocation.getText().toString();
 
 
         // This code if for seaching google places. from touching the search icon an activating it
@@ -887,7 +899,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 if(selectedItem.compareTo("live events") == 0)
                 {
                     searchIndicatoIcon.setImageResource(R.drawable.time_and_date);
-                    mSearchText.setHint("search live events ");
+                    etSearchLocation.setHint("search live events ");
                     searcValue = "Events";
 
 
@@ -895,13 +907,13 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 }else if(selectedItem.compareTo("Services") == 0)
                 {
                     searchIndicatoIcon.setImageResource(R.drawable.tag_siroco);
-                    mSearchText.setHint("Nearby services. ");
+                    etSearchLocation.setHint("Nearby services. ");
                     searcValue = "Services";
 
                 }else if(selectedItem.compareTo("nearby places") == 0)
                 {
                     searchIndicatoIcon.setImageResource(R.drawable.pagiis_onlineusers_finder);
-                    mSearchText.setHint("Nearby places.");
+                    etSearchLocation.setHint("Nearby places.");
                     searcValue = "nearby places";
 
                     PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
@@ -927,7 +939,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             {
 
                 searchIndicatoIcon = findViewById(R.id.nearbyLocation);
-                mSearchText.setText("Pagiis search");
+                etSearchLocation.setText("Pagiis search");
 
             }
         });
@@ -1472,58 +1484,27 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             public void onClick(View view)
             {
                 view.findViewById(R.id.LogSearchIconGo);
-                if(!mSearchText.getText().toString().isEmpty() && searcValue.compareTo("Services") ==0 )
+                if(!etSearchLocation.getText().toString().isEmpty() && searcValue.compareTo("Services") ==0 )
                 {
 
-                    String searchedText = mSearchText.getText().toString();
+                    String searchedText = etSearchLocation.getText().toString();
 
                    // progressBarSearc.setVisibility(View.VISIBLE);
                     GetMapsOnlineProfileByCategory(searchedText);
 
                     // getSearchedDataNormally(searchedText);
 
-                }else if(!mSearchText.getText().toString().isEmpty() && searcValue.compareTo("live events") ==0)
+                }else if(!etSearchLocation.getText().toString().isEmpty() && searcValue.compareTo("live events") ==0)
                 {
-                    String searchedText = mSearchText.getText().toString();
+                    String searchedText = etSearchLocation.getText().toString();
 
                     //progressBarSearc.setVisibility(View.VISIBLE);
 
                     GetMapsOnlineProfileByCategory(searchedText);
-                }else if (!mSearchText.getText().toString().isEmpty() && searcValue.compareTo("pagiis360") ==0)
+                }else if (!etSearchLocation.getText().toString().isEmpty() && searcValue.compareTo("pagiis360") ==0)
                 {
 
-
-                    etSearchLocation.addTextChangedListener(new TextWatcher() {
-                        @Override
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-                        @Override
-                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-                            if (!s.toString().isEmpty()) {
-                                fetchPlaceSuggestions(s.toString());
-                            } else {
-                                lvPlaceSuggestions.setVisibility(View.GONE);
-                            }
-                        }
-
-                        @Override
-                        public void afterTextChanged(Editable s) {}
-                    });
-
-                    // Handle item click in ListView
-                    lvPlaceSuggestions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            etSearchLocation.setText(placeSuggestions.get(position));
-                            searcValue = etSearchLocation.getText().toString();
-                            getPagiis360Data(searcValue);
-                            lvPlaceSuggestions.setVisibility(View.GONE);
-                        }
-                    });
-
-
-                    send360request(mSearchText.getText().toString());
-                    send360request(mSearchText.getText().toString());
+                    getPagiisDataByLocation();
 
                 }
 
@@ -1545,6 +1526,39 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             //createNotificationChannel();
 
 
+        etSearchLocation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().isEmpty())
+                {
+
+                    if(searcValue.compareTo("pagiis360")==0)
+                    {
+
+                        fetchPlaceSuggestions(s.toString());
+                    }
+
+                } else {
+                    lvPlaceSuggestions.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        // Handle item click in ListView
+        lvPlaceSuggestions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                etSearchLocation.setText(placeSuggestions.get(position));
+                searcValue = etSearchLocation.getText().toString();
+                lvPlaceSuggestions.setVisibility(View.GONE);
+            }
+        });
 
 
 
@@ -1571,7 +1585,11 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     private void sendWelcomeMessage()
     {
-        FCMHELPER.sendPushNotification( UserNotificationToken , "Welcome to pagiis", "Hellow and welcome to Pagiis, this button is where you will find all your pagiis app settings in future, stay tuned.");
+
+        sendFCMNotification(UserNotificationToken);
+        notificationTitle = "Welcome to Pagiis";
+        notificationMessage = "Hi and welcome to Pagiis, you are about to explore the world and see it through the eyes of the people accross the world. Stay tuned!";
+        //FCMHELPER.sendPushNotification( UserNotificationToken , "Welcome to pagiis", "Hellow and welcome to Pagiis, this button is where you will find all your pagiis app settings in future, stay tuned.");
     }
 
     /*private void createNotificationChannel() {
@@ -1619,6 +1637,10 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
     }
+
+
+
+
 
     private void getDataNormally()
     {
@@ -2436,6 +2458,177 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     }
 
 
+
+
+    private void getPagiisDataByLocation()
+    {
+
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    mUploads.clear(); // Clear the list before adding new data
+
+                    String searchLocation = etSearchLocation.getText().toString().trim();
+
+                    if (TextUtils.isEmpty(searchLocation)) {
+                        Toast.makeText(getApplicationContext(), "Enter a location", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        ImageUploads upload = ds.getValue(ImageUploads.class);
+
+                        if (upload != null) {
+                            String postLocation = ds.child("postLocation").getValue(String.class);
+
+                            if (postLocation != null) {
+                                String[] locationParts = postLocation.split(","); // Split into parts
+                                for (String part : locationParts) {
+                                    if (part.trim().equalsIgnoreCase(searchLocation.trim())) {
+                                        upload.setKey(ds.getKey()); // Set the key for retrieval
+                                        mUploads.add(upload);
+
+                                        notifyUsersMatchingLocation(etSearchLocation.getText().toString().trim());
+                                        break; // Stop checking once a match is found
+
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (!mUploads.isEmpty()) {
+                        Collections.shuffle(mUploads);
+
+                        mAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No matching posts found", Toast.LENGTH_LONG).show();
+                    }
+
+                    mProgressCircle.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors gracefully
+                // Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+        });
+
+    }
+
+
+    private void notifyUsersMatchingLocation(final String searchLocation) {
+        DatabaseReference locationRef = FirebaseDatabase.getInstance().getReference("myLastLocation");
+
+        locationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<String> matchedUserKeys = new ArrayList<>();
+
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    String userLocation = userSnapshot.getValue(String.class);
+
+                    if (userLocation != null) {
+                        String[] locationParts = userLocation.split(",");
+                        for (String part : locationParts) {
+                            if (part.trim().equalsIgnoreCase(searchLocation.trim())) {
+                                matchedUserKeys.add(userSnapshot.getKey());
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (!matchedUserKeys.isEmpty())
+                {
+                    sendPushNotifications(matchedUserKeys);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("NotifyUsers", "Error fetching location data: " + databaseError.getMessage());
+            }
+        });
+    }
+
+
+    private void sendPushNotifications(List<String> userKeys) {
+        DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("userTokens");
+
+        tokensRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<String> fcmTokens = new ArrayList<>();
+
+                for (String userKey : userKeys) {
+                    String token = dataSnapshot.child(userKey).getValue(String.class);
+                    if (token != null) {
+                        fcmTokens.add(token);
+                    }
+                }
+
+                if (!fcmTokens.isEmpty()) {
+                    for (String token : fcmTokens) {
+
+                        notificationTitle = "Pagiis explorer";
+                        notificationMessage = "Someone is interested in exploring your location, be kind enough to share your experiences with them";
+                        sendFCMNotification(token);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("SendNotifications", "Error fetching FCM tokens: " + databaseError.getMessage());
+            }
+        });
+    }
+
+    private void sendFCMNotification(String fcmToken) {
+        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
+        String contentType = "application/json";
+
+        JSONObject notification = new JSONObject();
+        JSONObject notificationBody = new JSONObject();
+
+        try {
+            notificationBody.put("title", notificationTitle);
+            notificationBody.put("message", notificationMessage);
+
+            notification.put("to", fcmToken);
+            notification.put("data", notificationBody);
+        } catch (JSONException e) {
+            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", serverKey);
+                headers.put("Content-Type", contentType);
+                return headers;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonObjectRequest);
+    }
+
+
+
     public void send360request(String profileCategory)
     {
 
@@ -2475,7 +2668,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                         //mAdapter.notifyDataSetChanged();
                         //mapsViewCard.setVisibility(View.VISIBLE);
                         //mapsRecyclerView.setVisibility(View.VISIBLE);
-                        String searchedText = mSearchText.getText().toString();
+                        String searchedText = etSearchLocation.getText().toString();
 
                         getPagiis360Data(searchedText);
                     }else
@@ -2604,10 +2797,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                                                                         userToken = dataSnapshot.getValue().toString();
 
-                                                                        FcmNotificationsSender notificationSender = new FcmNotificationsSender(userToken,"Share experiences","There are people who would like you to share your experiences in "+valueToCheck ,getApplicationContext(),
-                                                                                MapsActivity.this);
-
-                                                                        notificationSender.SendNotifications();
+                                                                        sendFCMNotification(userToken);
                                                                     }
                                                                 });
 
@@ -3109,10 +3299,13 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             String address = addresses.get(0).getAddressLine(0);
             String area = addresses.get(0).getLocality();
             String citi = addresses.get(0).getAdminArea();
+
+            String citiFeatureName = addresses.get(0).getFeatureName();
+            String citiFeatureName2 = addresses.get(0).getSubAdminArea();
             String country = addresses.get(0).getCountryName();
 
 
-            myLastLocationDetails = address + "," + "," + citi + "," + "," + country;
+            myLastLocationDetails = citiFeatureName +","+ area + ","+ address + "," + citiFeatureName2 + "," + citi + "," + "," + country;
 
             getmDatabaseRef_lastLocation.setValue(myLastLocationDetails);
 
@@ -3207,13 +3400,13 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
         placeAutocompleteAdapter = new PlaceAutocompleteAdapter(this, mGoogleApiClient, LAT_LNG_BOUNDS, null);
-        mSearchText.setAdapter(placeAutocompleteAdapter);
+        //etSearchLocation.setAdapter(placeAutocompleteAdapter);
 
 
-        if (!(mSearchText.getText() == null) && !(mSearchText.getText().toString() == "")) {
+        if (!(etSearchLocation.getText() == null) && !(etSearchLocation.getText().toString() == "")) {
 
 
-            mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener()
+            etSearchLocation.setOnEditorActionListener(new TextView.OnEditorActionListener()
             {
                 @Override
                 public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent)
@@ -3258,7 +3451,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     private void geolocate() {
 
-        searchedText = mSearchText.getText().toString();
+        searchedText = etSearchLocation.getText().toString();
 
         Geocoder geocoder = new Geocoder(MapsActivity.this);
 

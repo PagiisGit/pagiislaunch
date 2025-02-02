@@ -10,12 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -60,7 +60,7 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ProgressBar progressCircleUserMemes;
 
   @NonNull
-  public final TextInputEditText searchEdittext;
+  public final AppCompatEditText searchEdittext;
 
   @NonNull
   public final CardView searchTextInputLayout;
@@ -71,7 +71,7 @@ public final class FragmentHomeBinding implements ViewBinding {
       @NonNull FloatingActionButton goToVideos, @NonNull FrameLayout homeFragment,
       @NonNull CardView iconstand, @NonNull RecyclerView memeRecyclerView,
       @NonNull LinearLayout nputLayout, @NonNull ProgressBar progressCircleUserMemes,
-      @NonNull TextInputEditText searchEdittext, @NonNull CardView searchTextInputLayout) {
+      @NonNull AppCompatEditText searchEdittext, @NonNull CardView searchTextInputLayout) {
     this.rootView = rootView;
     this.LogSearchIconGo = LogSearchIconGo;
     this.PAGiiSICON = PAGiiSICON;
@@ -178,7 +178,7 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       id = R.id.searchEdittext;
-      TextInputEditText searchEdittext = ViewBindings.findChildViewById(rootView, id);
+      AppCompatEditText searchEdittext = ViewBindings.findChildViewById(rootView, id);
       if (searchEdittext == null) {
         break missingId;
       }

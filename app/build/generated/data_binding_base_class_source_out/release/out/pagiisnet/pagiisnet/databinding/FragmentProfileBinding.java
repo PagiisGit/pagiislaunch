@@ -76,6 +76,9 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView profileStoreOptionText;
 
   @NonNull
+  public final ProgressBar progressCircleFollow;
+
+  @NonNull
   public final ProgressBar progressCircleOwnProfile;
 
   @NonNull
@@ -101,10 +104,10 @@ public final class FragmentProfileBinding implements ViewBinding {
       @NonNull RecyclerView memeRecyclerView, @NonNull TextView numberOfFollowers,
       @NonNull TextView profileName, @NonNull ImageView profileSettingsButton,
       @NonNull TextView profileStatus, @NonNull ImageView profileStoreOptionButton,
-      @NonNull TextView profileStoreOptionText, @NonNull ProgressBar progressCircleOwnProfile,
-      @NonNull ProgressBar progressCircleWebview, @NonNull TextView userProfileSettings,
-      @NonNull TextView userProfileViews, @NonNull WebView webview,
-      @NonNull ImageView writeStatus) {
+      @NonNull TextView profileStoreOptionText, @NonNull ProgressBar progressCircleFollow,
+      @NonNull ProgressBar progressCircleOwnProfile, @NonNull ProgressBar progressCircleWebview,
+      @NonNull TextView userProfileSettings, @NonNull TextView userProfileViews,
+      @NonNull WebView webview, @NonNull ImageView writeStatus) {
     this.rootView = rootView;
     this.ChangeOwnDP = ChangeOwnDP;
     this.ImageDP = ImageDP;
@@ -122,6 +125,7 @@ public final class FragmentProfileBinding implements ViewBinding {
     this.profileStatus = profileStatus;
     this.profileStoreOptionButton = profileStoreOptionButton;
     this.profileStoreOptionText = profileStoreOptionText;
+    this.progressCircleFollow = progressCircleFollow;
     this.progressCircleOwnProfile = progressCircleOwnProfile;
     this.progressCircleWebview = progressCircleWebview;
     this.userProfileSettings = userProfileSettings;
@@ -249,6 +253,12 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progress_circle_Follow;
+      ProgressBar progressCircleFollow = ViewBindings.findChildViewById(rootView, id);
+      if (progressCircleFollow == null) {
+        break missingId;
+      }
+
       id = R.id.progress_circle_own_profile;
       ProgressBar progressCircleOwnProfile = ViewBindings.findChildViewById(rootView, id);
       if (progressCircleOwnProfile == null) {
@@ -289,8 +299,8 @@ public final class FragmentProfileBinding implements ViewBinding {
           ProfileFragment, ProfileLayout, addContent, followProfileButton, followersLayout,
           imageViewAnimation, memeRecyclerView, numberOfFollowers, profileName,
           profileSettingsButton, profileStatus, profileStoreOptionButton, profileStoreOptionText,
-          progressCircleOwnProfile, progressCircleWebview, userProfileSettings, userProfileViews,
-          webview, writeStatus);
+          progressCircleFollow, progressCircleOwnProfile, progressCircleWebview,
+          userProfileSettings, userProfileViews, webview, writeStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

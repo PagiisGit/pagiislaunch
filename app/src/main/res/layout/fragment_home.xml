@@ -13,8 +13,232 @@
 
 
         <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:id="@+id/discoverLayout"
+            android:backgroundTint="#55000000"
+            android:background="@drawable/gradient_background_maps"
+            android:layout_height="match_parent">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:backgroundTint="#55000000"
+                android:background="@drawable/gradient_background_maps"
+                android:layout_height="match_parent">
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/iconstand"
+                    app:cardCornerRadius="23dp"
+                    android:background="#55000000"
+                    android:backgroundTint="#55000000"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="-56dp"
+                    android:layout_marginStart="5dp">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:background="#55000000"
+                        android:backgroundTint="#55000000"
+                        android:orientation="horizontal">
+
+
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/EndBlue"
+                    android:textSize="50sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="70dp"
+                    android:fontFamily="@font/robobold"
+                    android:text="@string/discover_na_new_world"
+                    android:layout_height="wrap_content">
+
+
+                </TextView>
+
+                <LinearLayout
+                    android:id="@+id/searchTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:backgroundTint="#fff"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/white_border"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:focusable="true"
+                    tools:ignore="TouchTargetSizeCheck">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:contextClickable="true"
+                        android:orientation="horizontal">
+
+
+                        <Spinner
+                            android:id="@+id/searchSpinner"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:clickable="true"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
+
+                        </Spinner>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="2dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <com.mikhaellopez.circularimageview.CircularImageView
+                                android:id="@+id/nearbyLocation"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_vertical"
+                                android:focusable="true"
+                                android:src="@drawable/pagiis_onlineusers_finder"
+                                android:text="@string/SearchLocation"
+                                android:textSize="10sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/searchEdittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginEnd="45dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_alignParentEnd="true"
+                            android:hint="Type location"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/BlueishBlack"
+                            android:textColorHint="@color/places_ui_default_primary_dark"
+                            android:textSize="15sp"
+                            tools:ignore="RtlCompat,TouchTargetSizeCheck,TouchTargetSizeCheck">
+
+
+                        </androidx.appcompat.widget.AppCompatEditText>
+
+
+                        <ImageView
+                            android:id="@+id/LogSearchIconGo"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_gravity="center"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:clickable="true"
+                            android:contextClickable="true"
+                            android:focusable="true"
+                            android:src="@drawable/loupe"
+                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                            android:contentDescription="TODO" />
+
+
+
+                    </RelativeLayout>
+
+
+
+
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/lvPlaceSuggestions"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="30dp"
+                    android:visibility="gone"
+                    android:background="@android:color/white"/>
+
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/popular"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/robobold"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/EndBlue"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mapsProfileCategory"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:background="#55000000"
+                    android:backgroundTint="#55000000"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp">
+
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
-            android:id="@+id/iconstand"
+            android:id="@+id/iconstand2"
             app:cardCornerRadius="23dp"
             android:background="#55000000"
             android:backgroundTint="#55000000"
@@ -129,67 +353,6 @@
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/searchTextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:background="#55000000"
-            android:backgroundTint="#55000000"
-            app:cardCornerRadius="100dp">
-
-
-            <LinearLayout
-                android:id="@+id/nputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/follow_button_background"
-                android:backgroundTint="#55000000">
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/searchEdittext"
-                    android:layout_width="250dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="2dp"
-                    android:fontFamily="@font/robobold"
-                    android:gravity="center"
-                    android:hint="Type"
-                    android:outlineSpotShadowColor="@color/BlueishBlack"
-                    android:textAlignment="textStart"
-                    android:textColor="#fff"
-                    android:textColorHighlight="@color/LemonChaffon"
-                    android:textColorHint="@color/EndBlue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    tools:ignore="RtlCompat,TouchTargetSizeCheck" />
-
-
-                <ImageView
-                    android:id="@+id/LogSearchIconGo"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
-                    android:clickable="true"
-                    android:contextClickable="true"
-                    android:src="@drawable/search"
-                    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-
-            </LinearLayout>
-
-
-        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

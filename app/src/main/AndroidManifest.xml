@@ -22,6 +22,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
 
@@ -282,7 +284,7 @@
             android:required="false" />
 
         <service
-            android:name="pagiisnet.pagiisnet.FirebaseMessagingService"
+            android:name="pagiisnet.pagiisnet.MyFirebaseMessagingService"
             android:exported="true"
             android:permission="TODO"
             tools:ignore="ExportedService">

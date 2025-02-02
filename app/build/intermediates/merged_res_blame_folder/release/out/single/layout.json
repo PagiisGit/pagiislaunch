@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\maps_search_item_two.xml",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\maps_search_item_two.xml"
-    },
-    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_pagiis_max_view.xml",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_pagiis_max_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\maps_search_item_two.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\maps_search_item_two.xml"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_link_post.xml",
@@ -224,6 +224,10 @@
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_gallery_uploads.xml"
     },
     {
+        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_home.xml",
+        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_home.xml"
+    },
+    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_bought_item_max_view.xml",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_bought_item_max_view.xml"
     },
@@ -326,10 +330,6 @@
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_sirroco_image_upload.xml",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirroco_image_upload.xml"
-    },
-    {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_profile.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_profile.xml"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout\\activity_video_streaming.xml",

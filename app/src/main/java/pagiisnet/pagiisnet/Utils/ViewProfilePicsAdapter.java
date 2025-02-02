@@ -1,12 +1,11 @@
 package pagiisnet.pagiisnet.Utils;
 
-import static android.view.View.INVISIBLE;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -25,6 +24,10 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -34,7 +37,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.net.InternetDomainName;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,12 +47,15 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.github.ponnamkarthik.richlinkpreview.RichLinkView;
 import io.github.ponnamkarthik.richlinkpreview.ViewListener;
-import pagiisnet.pagiisnet.FCMHELPER;
-import pagiisnet.pagiisnet.FcmNotificationsSender;
 import pagiisnet.pagiisnet.R;
 import pagiisnet.pagiisnet.ImageUploads;
 //import pagiisnet.pagiisnet.R;
@@ -83,12 +88,20 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
     private FirebaseAuth mAuth;
     private String myLastLocationDetails;
 
+
+
+    private int positionX;
+
+    private String selectedKeyx;
+
     //private ProgressBar loadbar;
 
     private String postLikes;
     private String numberOfProfileLikes;
 
     private TextView profileLikesTextView;
+    private String notificationTitle;
+    private String notificationMessage;
 
     public ViewProfilePicsAdapter(Context context, List<ImageUploads> uploads)
     {
@@ -108,6 +121,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
     public void onBindViewHolder(ImageViewHolder imageViewHolder, final int position) {
 
         final ImageUploads uploadCurrent = mUploads.get(position);
+
+        selectedKeyx = uploadCurrent.getKey();
 
         String loadImageUrl = uploadCurrent.getImageUrl();
 
@@ -169,7 +184,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
 
 
-        mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+        mDatabaseRefLikes.child(selectedKeyx).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
 
@@ -395,8 +410,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                 }
             });*/
 
-            int position = getAdapterPosition();
-            int postionX = (int) getItemId();
+
 
             mAuth = FirebaseAuth.getInstance();
 
@@ -434,20 +448,11 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                     if(buttonState)
                     {
 
-                        ImageUploads selectedImage = mUploads.get(position);
-
-                        String selectedKey = selectedImage.getKey();
-
-                        String getUserRef = selectedImage.getUserId();
-
-                        String imageUrl = selectedImage.getImageUrl();
 
                         mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
 
-                        onlineUserId = selectedKey;
 
-
-                        mDatabaseRefLikes.child(selectedKey).child(mAuth.getCurrentUser().getUid().toString()).setValue("true")
+                        mDatabaseRefLikes.child(selectedKeyx).child(mAuth.getCurrentUser().getUid().toString()).setValue("true")
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task)
@@ -456,7 +461,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
                                         if (task.isSuccessful())
                                         {
-                                            mDatabaseRefLikes.child(onlineUserId).addValueEventListener(new ValueEventListener() {
+                                            mDatabaseRefLikes.child(selectedKeyx).addValueEventListener(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -467,6 +472,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                                                         numberOfProfileLikes= x;
 
                                                         profileLikesTextView.setText(numberOfProfileLikes);
+
+
 
                                                         postNotification("Like");
 
@@ -761,13 +768,52 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                                                DatabaseReference databaseReference) {
 
 
-                            FCMHELPER.sendPushNotification(userToken, "Post Like", "Your Post has a new like.");
+                            notificationTitle = "New post like";
+                            notificationMessage = "You post just got a new like.";
+
+                            sendFCMNotification(userToken);
+
 
                         }
                     });
 
         }
 
+    }
+
+
+    private void sendFCMNotification(String fcmToken) {
+        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
+        String contentType = "application/json";
+
+        JSONObject notification = new JSONObject();
+        JSONObject notificationBody = new JSONObject();
+
+        try {
+            notificationBody.put("title", notificationTitle);
+            notificationBody.put("message", notificationMessage);
+
+            notification.put("to", fcmToken);
+            notification.put("data", notificationBody);
+        } catch (JSONException e) {
+            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", serverKey);
+                headers.put("Content-Type", contentType);
+                return headers;
+            }
+        };
+
+        @SuppressLint("RestrictedApi") RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(jsonObjectRequest);
     }
 
 

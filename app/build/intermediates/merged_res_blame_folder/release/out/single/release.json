@@ -24,12 +24,12 @@
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-hdpi\\ic_arrow_back.png"
     },
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xhdpi_pagiis_splash_logo_edit.jpg.flat",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\pagiis_splash_logo_edit.jpg"
-    },
-    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-mdpi_alien_weak.png.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-mdpi\\alien_weak.png"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xhdpi_pagiis_splash_logo_edit.jpg.flat",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\pagiis_splash_logo_edit.jpg"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xxhdpi_ic_action_lock.png.flat",
@@ -60,12 +60,12 @@
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\fragment_video_streams.xml"
     },
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xxhdpi_medium.png.flat",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xxhdpi\\medium.png"
-    },
-    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xxhdpi_headphone.png.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xxhdpi\\headphone.png"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xxhdpi_medium.png.flat",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xxhdpi\\medium.png"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-mdpi_ic_add_goup.png.flat",
@@ -140,48 +140,52 @@
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\search.png"
     },
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xhdpi_ic_home_orrnge.png.flat",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\ic_home_orrnge.png"
-    },
-    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xhdpi_bill.png.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\bill.png"
     },
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable_heart_seletor.xml.flat",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable\\heart_seletor.xml"
-    },
-    {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xhdpi_small.png.flat",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\small.png"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xhdpi_ic_home_orrnge.png.flat",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\ic_home_orrnge.png"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-mdpi_online_payment.png.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-mdpi\\online_payment.png"
     },
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-mdpi_ic_air_play.png.flat",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-mdpi\\ic_air_play.png"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xhdpi_small.png.flat",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\small.png"
     },
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\layout_activity_sirocco_music.xml.flat",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirocco_music.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable_heart_seletor.xml.flat",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable\\heart_seletor.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-mdpi_ic_air_play.png.flat",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-mdpi\\ic_air_play.png"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xhdpi_globalnetwork.jpg.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xhdpi\\globalnetwork.jpg"
     },
     {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\layout_activity_sirocco_music.xml.flat",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\activity_sirocco_music.xml"
+    },
+    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xxhdpi_ic_model_orrange.png.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-xxhdpi\\ic_model_orrange.png"
     },
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\layout_custom_bar_notifications.xml.flat",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\custom_bar_notifications.xml"
+        "merged": "pagiisnet.pagiisnet.app-merged_res-6:/layout_fragment_home.xml.flat",
+        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_home.xml"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-mdpi_ic_view_uploads.png.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-mdpi\\ic_view_uploads.png"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\layout_custom_bar_notifications.xml.flat",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\custom_bar_notifications.xml"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-xxhdpi_pagiis_internet_icon.jpg.flat",
@@ -428,12 +432,12 @@
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-mdpi\\ic_save.png"
     },
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-hdpi_link.png.flat",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-hdpi\\link.png"
-    },
-    {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\layout_item_viewers_itemview.xml.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout\\item_viewers_itemview.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-hdpi_link.png.flat",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-hdpi\\link.png"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\layout_activity_sirroco_post.xml.flat",
@@ -4942,10 +4946,6 @@
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-hdpi_ic_forum.png.flat",
         "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\drawable-hdpi\\ic_forum.png"
-    },
-    {
-        "merged": "pagiisnet.pagiisnet.app-merged_res-6:/layout_fragment_profile.xml.flat",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_profile.xml"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-merged_res-6:\\drawable-hdpi_click_two.png.flat",
