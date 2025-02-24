@@ -258,12 +258,6 @@ public class PagiisMaxView extends AppCompatActivity
         }
 
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true);
-
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Pagiis");
 
         maxView = findViewById(R.id.pagiis_max_view);
 

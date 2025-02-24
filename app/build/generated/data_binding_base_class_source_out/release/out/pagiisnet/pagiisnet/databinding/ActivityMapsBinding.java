@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,22 +33,9 @@ public final class ActivityMapsBinding implements ViewBinding {
   public final ImageView LogSearchIconGo;
 
   @NonNull
-  public final View PAGiiSICON;
+  public final CircularImageView PAGiiSICON;
 
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout-v23/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   */
-  @Nullable
+  @NonNull
   public final AdView adView;
 
   @NonNull
@@ -62,20 +50,7 @@ public final class ActivityMapsBinding implements ViewBinding {
   @NonNull
   public final CardView iconstand;
 
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout-v23/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   */
-  @Nullable
+  @NonNull
   public final ListView lvPlaceSuggestions;
 
   @NonNull
@@ -102,27 +77,14 @@ public final class ActivityMapsBinding implements ViewBinding {
   @NonNull
   public final CardView mapsViewOnlineUserCardView;
 
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout-v23/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   */
-  @Nullable
+  @NonNull
   public final RecyclerView memeRecyclerView;
 
   @NonNull
   public final CircularImageView nearbyLocation;
 
   @NonNull
-  public final View searchEdittext;
+  public final AppCompatEditText searchEdittext;
 
   @NonNull
   public final Spinner searchSpinner;
@@ -131,16 +93,16 @@ public final class ActivityMapsBinding implements ViewBinding {
   public final LinearLayout searchTextInputLayout;
 
   private ActivityMapsBinding(@NonNull RelativeLayout rootView, @NonNull ImageView LogSearchIconGo,
-      @NonNull View PAGiiSICON, @Nullable AdView adView, @NonNull CardView discoverLayout,
-      @NonNull CircularImageView hideMapsPublicPostsCardView,
+      @NonNull CircularImageView PAGiiSICON, @NonNull AdView adView,
+      @NonNull CardView discoverLayout, @NonNull CircularImageView hideMapsPublicPostsCardView,
       @NonNull CircularImageView hidePublicProfilesCardView, @NonNull CardView iconstand,
-      @Nullable ListView lvPlaceSuggestions, @NonNull RelativeLayout mainContainer,
+      @NonNull ListView lvPlaceSuggestions, @NonNull RelativeLayout mainContainer,
       @NonNull FragmentContainerView map, @NonNull BottomNavigationView mapsBottomNav,
       @NonNull RecyclerView mapsOnlienUserRecyclerview, @NonNull RecyclerView mapsProfileCategory,
       @NonNull RecyclerView mapsPublicContentRecyclerView,
       @NonNull CardView mapsPublicProfilePostsCardView,
-      @NonNull CardView mapsViewOnlineUserCardView, @Nullable RecyclerView memeRecyclerView,
-      @NonNull CircularImageView nearbyLocation, @NonNull View searchEdittext,
+      @NonNull CardView mapsViewOnlineUserCardView, @NonNull RecyclerView memeRecyclerView,
+      @NonNull CircularImageView nearbyLocation, @NonNull AppCompatEditText searchEdittext,
       @NonNull Spinner searchSpinner, @NonNull LinearLayout searchTextInputLayout) {
     this.rootView = rootView;
     this.LogSearchIconGo = LogSearchIconGo;
@@ -200,13 +162,16 @@ public final class ActivityMapsBinding implements ViewBinding {
       }
 
       id = R.id.PAGiiS_ICON;
-      View PAGiiSICON = ViewBindings.findChildViewById(rootView, id);
+      CircularImageView PAGiiSICON = ViewBindings.findChildViewById(rootView, id);
       if (PAGiiSICON == null) {
         break missingId;
       }
 
       id = R.id.adView;
       AdView adView = ViewBindings.findChildViewById(rootView, id);
+      if (adView == null) {
+        break missingId;
+      }
 
       id = R.id.discoverLayout;
       CardView discoverLayout = ViewBindings.findChildViewById(rootView, id);
@@ -234,6 +199,9 @@ public final class ActivityMapsBinding implements ViewBinding {
 
       id = R.id.lvPlaceSuggestions;
       ListView lvPlaceSuggestions = ViewBindings.findChildViewById(rootView, id);
+      if (lvPlaceSuggestions == null) {
+        break missingId;
+      }
 
       RelativeLayout mainContainer = (RelativeLayout) rootView;
 
@@ -281,6 +249,9 @@ public final class ActivityMapsBinding implements ViewBinding {
 
       id = R.id.memeRecyclerView;
       RecyclerView memeRecyclerView = ViewBindings.findChildViewById(rootView, id);
+      if (memeRecyclerView == null) {
+        break missingId;
+      }
 
       id = R.id.nearbyLocation;
       CircularImageView nearbyLocation = ViewBindings.findChildViewById(rootView, id);
@@ -289,7 +260,7 @@ public final class ActivityMapsBinding implements ViewBinding {
       }
 
       id = R.id.searchEdittext;
-      View searchEdittext = ViewBindings.findChildViewById(rootView, id);
+      AppCompatEditText searchEdittext = ViewBindings.findChildViewById(rootView, id);
       if (searchEdittext == null) {
         break missingId;
       }

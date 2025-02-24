@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pagiisnet.pagiisnet"
-    android:versionCode="703"
+    android:versionCode="2"
     android:versionName="ii" >
 
     <uses-sdk
-        android:minSdkVersion="22"
+        android:minSdkVersion="24"
         android:targetSdkVersion="34" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -19,8 +19,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -36,8 +34,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <queries>
         <intent>
@@ -71,7 +72,6 @@
     <uses-permission android:name="android.permission.ACCESS_ADSERVICES_TOPICS" />
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <permission
         android:name="pagiisnet.pagiisnet.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
@@ -83,12 +83,32 @@
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:enableOnBackInvokedCallback="true"
+        android:extractNativeLibs="false"
         android:icon="@drawable/pagiis_home_icon"
         android:label="Pagiis"
         android:roundIcon="@drawable/pagiis_home_icon"
         android:supportsRtl="true"
-        android:testOnly="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
+        <service
+            android:name="pagiisnet.pagiisnet.TorService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+        <service
+            android:name="pagiisnet.pagiisnet.ChromeService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <receiver
+            android:name="pagiisnet.pagiisnet.BootReceiver"
+            android:enabled="true"
+            android:exported="true" > <!-- Explicitly set exported to true -->
+
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name="pagiisnet.pagiisnet.GalleryUploads"
             android:exported="false" >

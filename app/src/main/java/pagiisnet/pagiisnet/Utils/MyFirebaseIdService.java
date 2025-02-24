@@ -24,7 +24,7 @@ public class MyFirebaseIdService extends FirebaseInstanceIdService {
             public void run() {
                 try {
                     // Construct URL to your server endpoint
-                    URL url = new URL("YOUR_SERVER_ENDPOINT");
+                    URL url = new URL("https://us-central1-pagiis-ix.cloudfunctions.net/saveFCMToken\n");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setDoOutput(true);

@@ -1,18 +1,27 @@
 package pagiisnet.pagiisnet.Utils;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.media.browse.MediaBrowser;
+import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,6 +31,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.Player;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.ui.PlayerView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -35,8 +50,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -56,279 +70,49 @@ import java.util.Map;
 
 import io.github.ponnamkarthik.richlinkpreview.RichLinkView;
 import io.github.ponnamkarthik.richlinkpreview.ViewListener;
+import pagiisnet.pagiisnet.LoginActivity;
+import pagiisnet.pagiisnet.MapsActivity;
+import pagiisnet.pagiisnet.ProfileFragment;
+import pagiisnet.pagiisnet.ProfileViewHolder;
 import pagiisnet.pagiisnet.R;
 import pagiisnet.pagiisnet.ImageUploads;
-//import pagiisnet.pagiisnet.R;
-
+import pagiisnet.pagiisnet.RegisterActivity;
 
 public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePicsAdapter.ImageViewHolder> {
 
     private final Context mContext;
-
     private final List<ImageUploads> mUploads;
-
     private OnItemClickListener mListener;
-    private DatabaseReference databaseReferenceLocation;
+    private final FirebaseAuth mAuth;
+    private final DatabaseReference mDatabaseRefLikes;
+    private final DatabaseReference mDatabaseRefNotifications;
     private String onlineUserId;
-    private String  userStatusMessage;
-
-    private String userToken;
-
-    private String  myImageDpUrl;
-
+    private String myImageDpUrl;
     private String myName;
-    private DatabaseReference notificationReference;
-    private DatabaseReference mDatabaseRef_Tokens;
-
-    private DatabaseReference getUserProfileDataRef;
-    private DatabaseReference mDatabaseRef_Y;
-
-    private DatabaseReference mDatabaseRefLikes;
-
-    private FirebaseAuth mAuth;
     private String myLastLocationDetails;
 
 
+    private String userToken;
 
-    private int positionX;
+    public ViewProfilePicsAdapter(Context context, List<ImageUploads> uploads) {
+        this.mContext = context;
+        this.mUploads = uploads;
+        this.mAuth = FirebaseAuth.getInstance();
+        this.mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference("postLikes");
+        this.mDatabaseRefNotifications = FirebaseDatabase.getInstance().getReference("PagiisNotification");
+    }
 
-    private String selectedKeyx;
-
-    //private ProgressBar loadbar;
-
-    private String postLikes;
-    private String numberOfProfileLikes;
-
-    private TextView profileLikesTextView;
-    private String notificationTitle;
-    private String notificationMessage;
-
-    public ViewProfilePicsAdapter(Context context, List<ImageUploads> uploads)
-    {
-        mContext = context;
-        mUploads = uploads;
+    @NonNull
+    @Override
+    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.view_user_meme_item, parent, false);
+        return new ImageViewHolder(view);
     }
 
     @Override
-    public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.view_user_meme_item, parent, false);
-        return new ViewProfilePicsAdapter.ImageViewHolder(v);
-
-    }
-
-    @Override
-    public void onBindViewHolder(ImageViewHolder imageViewHolder, final int position) {
-
-        final ImageUploads uploadCurrent = mUploads.get(position);
-
-        selectedKeyx = uploadCurrent.getKey();
-
-        String loadImageUrl = uploadCurrent.getImageUrl();
-
-        String raterValue =  uploadCurrent.getExRating();
-
-        String post_tile = uploadCurrent.getName();
-
-        String likes = uploadCurrent.getLikes();
-
-        String postPosition = uploadCurrent.getPostLocation();
-
-        String views = uploadCurrent.getViews();
-
-        String share = uploadCurrent.getShare();
-
-        String time = uploadCurrent.getPostTime();
-
-        String FinalValue = "internetLink";
-
-        String postName =uploadCurrent.getPostName();
-
-        RequestOptions options = new RequestOptions();
-
-        String selectedKey = uploadCurrent .getKey();
-
-        onlineUserId = selectedKey;
-
-
-
-        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
-
-
-        mDatabaseRefLikes.child(selectedKey).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()) {
-
-                    String x = String.valueOf(dataSnapshot.getChildrenCount());
-
-                    numberOfProfileLikes= x;
-
-                    profileLikesTextView.setText(numberOfProfileLikes);
-
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-
-
-
-        mDatabaseRefLikes.child(selectedKeyx).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-
-            {
-                if(dataSnapshot.exists())
-                {
-
-                    postLikes = String.valueOf(dataSnapshot.getChildrenCount());
-
-
-                }
-
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        if(loadImageUrl != null && loadImageUrl.compareTo("null") !=0  && !Patterns.WEB_URL.matcher(post_tile).matches() )
-        {
-            imageViewHolder.textViewName.setText(postName);
-            imageViewHolder.Post_Title.setText(post_tile);
-            imageViewHolder.Post_Position.setText(postPosition);
-            imageViewHolder.Post_Time.setText(time);
-            imageViewHolder.textViewNameLikes.setText(postLikes);
-
-            imageViewHolder.linkView.setVisibility(View.INVISIBLE);
-
-
-            Glide.with(mContext)
-                    .load(loadImageUrl)
-                    .apply(options.centerCrop())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .listener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-
-                            imageViewHolder.loading.setVisibility(View.INVISIBLE);
-                            return false;
-                        }
-                    })
-                    .into(imageViewHolder.imageView);
-
-
-
-
-
-
-        }else if(loadImageUrl != null && loadImageUrl.compareTo("null") !=0  && Patterns.WEB_URL.matcher(post_tile).matches() )
-        {
-
-            imageViewHolder.linkView.setVisibility(View.VISIBLE);
-            imageViewHolder.imageView.setVisibility(View.INVISIBLE);
-
-            imageViewHolder.textViewName.setText(postName);
-            imageViewHolder.Post_Title.setText(post_tile);
-            imageViewHolder.Post_Position.setText(postPosition);
-            imageViewHolder.Post_Time.setText(time);
-
-            imageViewHolder.linkView.setLink(loadImageUrl, new ViewListener() {
-                @Override
-                public void onSuccess(boolean status)
-                {
-
-                }
-
-                @Override
-                public void onError(Exception e)
-                {
-
-
-                }
-            });
-
-        }else
-        {
-            imageViewHolder.imageView.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.pagiis_logo_final));
-        }
-
-
-
-        if(!(likes==null) && likes.compareTo("userDefaultDp") != 0 && views != null)
-        {
-            imageViewHolder.imageViewLikes.setVisibility(View.VISIBLE);
-            imageViewHolder.textViewNameLikes.setText(likes);
-        }
-
-
-        if(!(raterValue==null) && raterValue.compareTo("userDefaultDp") !=0 &&  views != null)
-        {
-
-
-
-            Glide.with(mContext)
-                    .load(raterValue)
-                    .apply(options.centerCrop())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imageViewHolder.profileImageView);
-
-        }else
-        {
-            Glide.with(mContext)
-                    .load(loadImageUrl)
-                    .apply(options.centerCrop())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imageViewHolder.profileImageView);
-        }
-
-
-
-
-        /*if (loadImageUrl != null)
-
-        {
-            imageViewHolder.textViewName.setText(uploadCurrent.getName());
-
-            RequestOptions options = new RequestOptions();
-
-            Glide.with(mContext)
-                    .load(loadImageUrl)
-                    .apply(options.centerCrop())
-                    .into(imageViewHolder.imageView);
-
-            Picasso.with(mContext).load(loadImageUrl)
-                    .centerCrop()
-                    .error(R.drawable.ic_action_catchup)
-                    .into(imageViewHolder.imageView);
-        }
-
-        else
-        {
-            imageViewHolder.imageView.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.ic_profile));
-        }*/
-
+    public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
+        ImageUploads uploadCurrent = mUploads.get(position);
+        holder.bind(uploadCurrent);
     }
 
     @Override
@@ -336,402 +120,281 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         return mUploads.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnCreateContextMenuListener,MenuItem.OnMenuItemClickListener
-    {
-        public TextView textViewName;
-        public TextView textViewNameChats;
-        public TextView textViewNameView;
-        public TextView textViewNameShare;
-        public TextView textViewNameLikes;
-        public SparkButton imageViewLikes;
-        public ImageView imageView;
-        public CircularImageView imageViewSirocco;
-        public CircularImageView imageViewRadiusChats;
-        public CircularImageView imageViewRadiusFriends;
-        public CircularImageView profileImageView;
-        public ImageView ripleButton;
+    public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, MenuItem.OnMenuItemClickListener {
+        private final TextView textViewName, Post_Title, Post_Time, Post_Position, textViewNameLikes;
+        private final ImageView imageView;
+        private final CircularImageView profileImageView;
+        private final ProgressBar loading;
+        private final RichLinkView linkView;
+        private final SparkButton imageViewLikes;
+        private final CardView userMemeCardView;
+        private PlayerView playerView; // Add PlayerView for video playback
+        private ExoPlayer exoPlayer;
 
-        public ProgressBar loading;
-
-        private RichLinkView linkView;
-
-        public CardView userMemeCardView;
-
-        public TextView Post_Title;
-
-        public TextView Post_Time;
-
-        public TextView Post_Position;
-
-
-
-        public ImageViewHolder(final View itemView)
-        {
+        public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
-
             textViewName = itemView.findViewById(R.id.memeName);
-            //textViewNameView = itemView.findViewById(R.id.viewers);
-            //textViewNameShare = itemView.findViewById(R.id.share);
-            //textViewNameChats = itemView.findViewById(R.id.chats);
-            linkView = itemView.findViewById(R.id.memeImageViewLink);
-
-            userMemeCardView = itemView.findViewById(R.id.userMemeCardView);
-
-
-            Post_Time = itemView.findViewById(R.id.postTime);
-
             Post_Title = itemView.findViewById(R.id.post_title);
-
+            Post_Time = itemView.findViewById(R.id.postTime);
             Post_Position = itemView.findViewById(R.id.postPosition);
-
             textViewNameLikes = itemView.findViewById(R.id.likesText);
             imageView = itemView.findViewById(R.id.memeImageView);
-            imageViewLikes = itemView.findViewById(R.id.imageViewAnimation);
-
-            loading = itemView.findViewById(R.id.loading);
-
-            profileLikesTextView = itemView.findViewById(R.id.likesText);
-            //imageViewSirocco = itemView.findViewById(R.id.views);
-
-            //imageViewRadiusChats = itemView.findViewById(R.id.pagiis_radius_chat);
-            //imageViewRadiusFriends = itemView.findViewById(R.id.pagiis_radius_friends);
             profileImageView = itemView.findViewById(R.id.user_item_view_profilepic);
-            //ripleButton = itemView.findViewById(R.id.ripple_button);
+            loading = itemView.findViewById(R.id.loading);
+            linkView = itemView.findViewById(R.id.memeImageViewLink);
+            imageViewLikes = itemView.findViewById(R.id.imageViewAnimation);
+            userMemeCardView = itemView.findViewById(R.id.userMemeCardView);
+            playerView = itemView.findViewById(R.id.videoPlayer);
 
-            //imageViewLikes.setVisibility(View.INVISIBLE);
+            itemView.setOnClickListener(this);
+            itemView.setOnCreateContextMenuListener((menu, v, menuInfo) -> {
+                menu.setHeaderTitle("Select Action");
+                menu.setHeaderIcon(R.drawable.pagiis_logo_final);
+                MenuItem doWhatever = menu.add(Menu.NONE, 1, 1, "Posted By");
+                MenuItem share = menu.add(Menu.NONE, 2, 2, "Share");
+                MenuItem chats = menu.add(Menu.NONE, 3, 3, "Chats");
 
-            /*imageViewRadiusChats.setOnClickListener(new View.OnClickListener() {
+                share.setIcon(R.drawable.location_group);
+                chats.setIcon(R.drawable.location_based_chat);
+                doWhatever.setIcon(R.drawable.pagiis_profile_icon);
+
+                doWhatever.setOnMenuItemClickListener(this);
+                share.setOnMenuItemClickListener(this);
+                chats.setOnMenuItemClickListener(this);
+            });
+
+            profileImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view)
                 {
-                    view.findViewById(R.id.pagiis_radius_chat);
-
-                    Toast.makeText(mContext, "Waitin update", Toast.LENGTH_SHORT).show();
-                }
-            });*/
-
-
-
-            mAuth = FirebaseAuth.getInstance();
-
-            databaseReferenceLocation = FirebaseDatabase.getInstance().getReference("myLastLocation");
-
-
-
-           databaseReferenceLocation.child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-
-                {
-                    if(dataSnapshot.exists())
-                    {
-
-                        myLastLocationDetails = dataSnapshot.getValue().toString();
-
-
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        mListener.onClick(position);
+                        viewProfile(position); // Call viewProfile with the correct position
                     }
-
-
-
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
             });
 
+        }
 
+        public void bind(ImageUploads uploadCurrent) {
+            String loadImageUrl = uploadCurrent.getImageUrl();
+            String postTitle = uploadCurrent.getName();
+            String profileImage = uploadCurrent.getExRating();
+            String likes = uploadCurrent.getLikes();
+            String postPosition = uploadCurrent.getPostLocation();
+            String time = uploadCurrent.getPostTime();
+            String postName = uploadCurrent.getPostName();
+
+            textViewName.setText(postName);
+            Post_Title.setText(postTitle);
+            Post_Position.setText(postPosition);
+            Post_Time.setText(time);
+            textViewNameLikes.setText("likes");
+
+            if (loadImageUrl != null && !loadImageUrl.equals("null")) {
+                if (isVideoUrl(loadImageUrl)) {
+                    // Handle video URL
+                    playerView.setVisibility(VISIBLE);
+                    imageView.setVisibility(INVISIBLE);
+                    linkView.setVisibility(INVISIBLE);
+                    initializeExoPlayer(loadImageUrl);
+                } else if (Patterns.WEB_URL.matcher(postTitle).matches()) {
+                    // Handle link preview
+                    linkView.setVisibility(VISIBLE);
+                    imageView.setVisibility(INVISIBLE);
+                    playerView.setVisibility(INVISIBLE);
+
+                    linkView.setLink(loadImageUrl, new ViewListener() {
+                        @Override
+                        public void onSuccess(boolean status) {}
+
+                        @Override
+                        public void onError(Exception e) {}
+                    });
+                } else {
+                    // Handle image URL
+                    linkView.setVisibility(INVISIBLE);
+                    imageView.setVisibility(VISIBLE);
+                    playerView.setVisibility(INVISIBLE);
+                    loadImageWithGlide(loadImageUrl);
+                }
+                loadProfileImage(profileImage);
+            } else {
+                imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
+            }
+
+
+            setupLikeButton(uploadCurrent.getKey());
+        }
+
+
+        private boolean isVideoUrl(String url) {
+            // Check if the URL points to a video file
+            return url.endsWith(".mp4") || url.endsWith(".3gp") || url.endsWith(".mkv");
+        }
+
+        private void initializeExoPlayer(String videoUrl) {
+            if (exoPlayer == null) {
+                exoPlayer = new ExoPlayer.Builder(mContext).build();
+                playerView.setPlayer(exoPlayer);
+            }
+
+            MediaItem mediaItem = MediaItem.fromUri(Uri.parse(videoUrl));
+            exoPlayer.setMediaItem(mediaItem);
+            exoPlayer.prepare();
+            exoPlayer.setPlayWhenReady(false); // Autoplay when ready
+            exoPlayer.addListener(new Player.Listener() {
+                @Override
+                public void onPlaybackStateChanged(int state) {
+                    if (state == Player.STATE_ENDED) {
+                        exoPlayer.seekTo(0); // Loop the video
+                        exoPlayer.setPlayWhenReady(true);
+                    }
+                }
+            });
+        }
+
+        private void releaseExoPlayer() {
+            if (exoPlayer != null) {
+                exoPlayer.release();
+                exoPlayer = null;
+            }
+        }
+
+        private void loadImageWithGlide(String imageUrl) {
+            Glide.with(mContext)
+                    .load(imageUrl)
+                    .apply(new RequestOptions().centerCrop())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            loading.setVisibility(INVISIBLE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            loading.setVisibility(INVISIBLE);
+                            return false;
+                        }
+                    })
+                    .into(imageView);
+
+        }
+
+
+
+
+        private void loadProfileImage(String imageUrl) {
+
+
+            if(imageUrl != null && !imageUrl.equals("null"))
+            {
+                Glide.with(mContext)
+                        .load(imageUrl)
+                        .apply(new RequestOptions().centerCrop())
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                return false;
+                            }
+                        })
+                        .into(profileImageView);
+
+            }else {
+                profileImageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
+            }
+        }
+
+        private void setupLikeButton(String postKey) {
             imageViewLikes.setEventListener(new SparkEventListener() {
                 @Override
                 public void onEvent(ImageView button, boolean buttonState) {
-                    if(buttonState)
-                    {
-
-
-                        mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference().child("postLikes");
-
-
-                        mDatabaseRefLikes.child(selectedKeyx).child(mAuth.getCurrentUser().getUid().toString()).setValue("true")
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task)
-
-                                    {
-
-                                        if (task.isSuccessful())
-                                        {
-                                            mDatabaseRefLikes.child(selectedKeyx).addValueEventListener(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                                    if (dataSnapshot.exists()) {
-
-                                                        String x = String.valueOf(dataSnapshot.getChildrenCount());
-
-                                                        numberOfProfileLikes= x;
-
-                                                        profileLikesTextView.setText(numberOfProfileLikes);
-
-
-
-                                                        postNotification("Like");
-
-                                                    }
-
-                                                }
-
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                                }
-                                            });
-
-
-
-                                        }
-                                    }
-                                });
-
-                        Toast.makeText(mContext.getApplicationContext(), "add to favourite!", Toast.LENGTH_SHORT).show();
-                    }else{
-
-
-                        Toast.makeText(mContext.getApplicationContext(), "remove from favourite!", Toast.LENGTH_SHORT).show();
+                    if (buttonState) {
+                        handleLike(postKey);
+                    } else {
+                        handleUnlike(postKey);
                     }
                 }
 
                 @Override
-                public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+                public void onEventAnimationEnd(ImageView button, boolean buttonState) {}
 
+                @Override
+                public void onEventAnimationStart(ImageView button, boolean buttonState) {}
+            });
+        }
+
+        private void handleLike(String postKey) {
+            mDatabaseRefLikes.child(postKey).child(mAuth.getCurrentUser().getUid()).setValue("true")
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            updateLikesCount(postKey);
+                            postNotification(postKey, "Like");
+                            Toast.makeText(mContext, "Added to favorites!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+
+        private void handleUnlike(String postKey) {
+            mDatabaseRefLikes.child(postKey).child(mAuth.getCurrentUser().getUid()).removeValue()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            updateLikesCount(postKey);
+                            Toast.makeText(mContext, "Removed from favorites!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+
+        private void updateLikesCount(String postKey) {
+            mDatabaseRefLikes.child(postKey).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        // If likes exist, display the count
+                        String likesCount = String.valueOf(snapshot.getChildrenCount());
+                        textViewNameLikes.setText(likesCount);
+                    } else {
+                        // If no likes exist, display "0"
+                        textViewNameLikes.setText("Likes");
+                    }
                 }
 
                 @Override
-                public void onEventAnimationStart(ImageView button, boolean buttonState) {
-
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("FirebaseError", "Failed to update likes: " + error.getMessage());
+                    // Optionally, set a default value in case of an error
+                    textViewNameLikes.setText("Likes");
                 }
             });
-
-
-           /* imageViewLikes.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (imageViewLikes.isSelected()) {
-                                imageViewLikes.setSelected(false);
-                            } else {
-                                // if not selected only
-                                // then show animation.
-                                imageViewLikes.setSelected(true);
-                                imageViewLikes.likeAnimation();
-
-                            }
-                        }
-                    });*/
-
-
-            /*ripleButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view)
-                {
-                    view.findViewById(R.id.pagiis_radius_chat);
-
-                    int position = getAdapterPosition();
-                    int selctecid = view.getId();
-
-                    int postionX = (int) getItemId();
-
-                    if (position != RecyclerView.NO_POSITION)
-                    {
-
-                        ImageUploads selectedImage = mUploads.get(position);
-
-                        String selectedKey = selectedImage.getKey();
-
-                        String getUserRef = selectedImage.getUserId();
-
-                        String imageUrl = selectedImage.getImageUrl();
-
-                        if(imageUrl!=null)
-                        {
-                            Intent intent = new Intent(mContext,ActivityUploadImage.class);
-                            intent.putExtra("share_item_id", imageUrl);
-                            mContext.startActivity(intent); ///Good Work Marlii
-                        }
-
-
-
-                    }
-
-                }
-            });*/
-
-
-            /*userMemeCardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view)
-                {
-                    view.findViewById(R.id.userMemeCardView);
-
-                    int position = getAdapterPosition();
-                    int selctecid = view.getId();
-
-                    int postionX = (int) getItemId();
-
-                    if (position != RecyclerView.NO_POSITION)
-                    {
-
-                        ImageUploads selectedImage = mUploads.get(position);
-
-                        String selectedKey = selectedImage.getKey();
-
-                        String getUserRef = selectedImage.getUserId();
-
-                        String imageUrl = selectedImage.getImageUrl();
-
-                        if(imageUrl!=null)
-                        {
-                            Intent intent = new Intent(mContext,ActivityUploadImage.class);
-                            intent.putExtra("imageKeyMAx", selectedKey);
-                            intent.putExtra("imageUrlMax",imageUrl);
-                            intent.putExtra("imageUserId",getUserRef);
-                            mContext.startActivity(intent); ///Good Work Marlii
-                        }
-
-
-
-                    }
-
-                }
-            });*/
-
-
-
-            /*imageViewRadiusChats.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view)
-                {
-                    view.findViewById(R.id.pagiis_radius_chat);
-
-                    int position = getAdapterPosition();
-                    int selctecid = view.getId();
-
-                    int postionX = (int) getItemId();
-
-                    if (position != RecyclerView.NO_POSITION)
-                    {
-
-                        ImageUploads selectedImage = mUploads.get(position);
-
-                        String selectedKey = selectedImage.getKey();
-
-                        String getUserRef = selectedImage.getUserId();
-
-                        String imageUrl = selectedImage.getImageUrl();
-
-                        if(imageUrl!=null)
-                        {
-                            Intent intent = new Intent(mContext,ActivityUploadImage.class);
-                            intent.putExtra("share_item_id", imageUrl);
-                            mContext.startActivity(intent); ///Good Work Marlii
-                        }
-
-
-
-                    }
-
-                }
-            });*/
-
-            /*imageViewSirocco.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view)
-                {
-                    view.findViewById(R.id.pagiis_radius_chat);
-
-                    int position = getAdapterPosition();
-                    int selctecid = view.getId();
-
-                    int postionX = (int) getItemId();
-
-                    if (position != RecyclerView.NO_POSITION)
-                    {
-
-                        ImageUploads selectedImage = mUploads.get(position);
-
-                        String selectedKey = selectedImage.getKey();
-
-                        String getUserRefId = selectedImage.getUserId();
-
-                        String imageUrl = selectedImage.getImageUrl();
-
-                        if(imageUrl!=null)
-                        {
-                            Intent intent = new Intent(mContext,ActivityItemViewers.class);
-                            intent.putExtra("share_item_url", imageUrl);
-                            intent.putExtra("share_item_userId",getUserRefId);
-                            intent.putExtra("share_item_userKey",selectedKey);
-
-                            mContext.startActivity(intent); ///Good Work Marlii
-                        }
-
-
-
-                    }
-
-                }
-            });*/
-
-
-            itemView.setOnClickListener(this);
-            itemView.setOnCreateContextMenuListener(this);
         }
 
         @Override
-        public void onClick(View view) {
-
-            if (mListener != null )
-            {
+        public void onClick(View v) {
+            if (mListener != null) {
                 int position = getAdapterPosition();
-
-                int selctecid = view.getId();
-
-                int postionX = (int) getItemId();
-
-                if (position != RecyclerView.NO_POSITION)
-                {
+                if (position != RecyclerView.NO_POSITION) {
                     mListener.onClick(position);
-
                 }
-
             }
-
         }
+
         @Override
-        public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-
-
-            contextMenu.setHeaderTitle("Select Action");
-            contextMenu.setHeaderIcon(R.drawable.pagiis_logo_final);
-            MenuItem doWhatever = contextMenu.add(Menu.NONE, 1, 1, "Posted By");
-
-            MenuItem share= contextMenu.add(Menu.NONE, 2, 2, "Share");
-            MenuItem chats = contextMenu.add(Menu.NONE, 3, 3, "Chats");
-
-            share.setIcon(R.drawable.location_group);
-            chats.setIcon(R.drawable.location_based_chat);
-            doWhatever.setIcon(R.drawable.pagiis_profile_icon);
-
-            doWhatever.setOnMenuItemClickListener(this);
-            share.setOnMenuItemClickListener(this);
-            chats.setOnMenuItemClickListener(this);
-        }
-
         public boolean onMenuItemClick(MenuItem item) {
             if (mListener != null) {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-
                     switch (item.getItemId()) {
                         case 1:
                             mListener.onWhatEverClick(position);
@@ -749,58 +412,158 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         }
     }
 
-    private void postNotification(String fromLikeOrFollower) {
-
-        String myUserId = mAuth.getCurrentUser().getUid().toString();
-
-
-        if (fromLikeOrFollower == "Like") {
-
-            notificationReference = FirebaseDatabase.getInstance().getReference().child("PagiisNotification");
-
-
-            ImageUploads upload = new ImageUploads(myName, myImageDpUrl, "", myUserId, "", "", "", "", myLastLocationDetails, "Your Profile has a new like");
-            notificationReference.child(onlineUserId)
-                    .push()
-                    .setValue(upload, new DatabaseReference.CompletionListener() {
-                        @Override
-                        public void onComplete(DatabaseError databaseError,
-                                               DatabaseReference databaseReference) {
-
-
-                            notificationTitle = "New post like";
-                            notificationMessage = "You post just got a new like.";
-
-                            sendFCMNotification(userToken);
-
-
-                        }
-                    });
-
+    @SuppressLint("MissingInflatedId")
+    private void viewProfile(int position) {
+        // Ensure we use an Activity context
+        if (!(mContext instanceof Activity)) {
+            return;  // Prevent crashes
         }
 
+        // Get the selected image from the list using the position
+        final ImageUploads selectedImage = mUploads.get(position);
+
+        // Extract the required data from the selected image
+        final String imageUrl = selectedImage.getImageUrl(); // Assuming this is the correct getter method
+        final String userId = selectedImage.getUserId(); // Assuming this is the correct getter method
+
+        // Initialize BottomSheetDialog with Activity context
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog((Activity) mContext, R.style.BottomSheetDialogueTheme);
+        View bottomSheetView = LayoutInflater.from(mContext).inflate(R.layout.botttom_sheet_layout, null);
+
+        // Initialize views from the bottom sheet layout
+        ImageView profilePicture = bottomSheetView.findViewById(R.id.mapsItemProfile);
+        TextView profileName = bottomSheetView.findViewById(R.id.popUpDescriptionTextViewTwo);
+        TextView profileStatus = bottomSheetView.findViewById(R.id.popUpDescriptionTextViewThreee);
+        TextView profileView = bottomSheetView.findViewById(R.id.popLocationTexview);
+        TextView sharePagiis = bottomSheetView.findViewById(R.id.share);
+        Button viewProfileButton = bottomSheetView.findViewById(R.id.visitProfile);
+        SparkButton imageViewLikes = bottomSheetView.findViewById(R.id.likes);
+
+        // Set profile name
+        if (selectedImage.getName() != null && !selectedImage.getName().isEmpty()) {
+            profileName.setText(selectedImage.getName());
+        }
+
+        // Load profile picture using Glide
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            RequestOptions options = new RequestOptions();
+            Glide.with(mContext)
+                    .load(imageUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .apply(options.centerCrop())
+                    .thumbnail(0.75f)
+                    .into(profilePicture);
+        } else {
+            // Set a default image if the URL is null or empty
+            profilePicture.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
+        }
+
+        // View Profile Button Click Listener
+        viewProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("visited_user_id", userId); // Pass the userId to the ProfileFragment
+
+                ProfileFragment targetFragment = new ProfileFragment();
+                targetFragment.setArguments(bundle);
+
+                if (mContext instanceof FragmentActivity) {
+                    FragmentManager fragmentManager = ((FragmentActivity) mContext).getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.mainContainer, targetFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
+        });
+
+        // Share App Functionality
+        bottomSheetView.findViewById(R.id.shareImageView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family, please check out this amazing App called Pagiis: " + Uri.parse("https://www.pagiis.co.za/"));
+                intent.setType("text/plain");
+
+                if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+                    mContext.startActivity(intent);  // ✅ Works inside Adapter
+                }
+            }
+        });
+
+        // Explore Pagiis Action
+
+        // Share Pagiis Button
+        sharePagiis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family, please check out this amazing App called Pagiis: " + Uri.parse("https://www.pagiis.co.za/"));
+                intent.setType("text/plain");
+
+                if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+                    mContext.startActivity(intent);  // ✅ Fixed
+                }
+            }
+        });
+
+        // Like Button Click Event
+        imageViewLikes.setEventListener(new SparkEventListener() {
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+                if (buttonState) {
+                    Toast.makeText(mContext, "Added to favourites!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "Removed from favourites!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) { }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) { }
+        });
+
+        // Show the bottom sheet dialog
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
     }
 
+    private void postNotification(String postKey, String type) {
+        if (type.equals("Like")) {
+            ImageUploads notification = new ImageUploads(
+                    myName, myImageDpUrl, "", mAuth.getCurrentUser().getUid(), "", "", "", "", myLastLocationDetails, "Your profile has a new like"
+            );
+            mDatabaseRefNotifications.child(postKey).push().setValue(notification, (error, ref) -> {
+                if (error == null) {
+                    sendFCMNotification(userToken, "New post like", "Your post just got a new like.");
+                }
+            });
+        }
+    }
 
-    private void sendFCMNotification(String fcmToken) {
+    private void sendFCMNotification(String fcmToken, String title, String message) {
         String FCM_API = "https://fcm.googleapis.com/fcm/send";
-        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
+        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS";
         String contentType = "application/json";
 
         JSONObject notification = new JSONObject();
         JSONObject notificationBody = new JSONObject();
 
         try {
-            notificationBody.put("title", notificationTitle);
-            notificationBody.put("message", notificationMessage);
-
+            notificationBody.put("title", title);
+            notificationBody.put("message", message);
             notification.put("to", fcmToken);
             notification.put("data", notificationBody);
         } catch (JSONException e) {
             Log.e("FCM Error", "JSON Exception: " + e.getMessage());
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
                 response -> Log.d("FCM Response", "Success: " + response.toString()),
                 error -> Log.e("FCM Error", "Failed: " + error.toString())) {
             @Override
@@ -812,32 +575,18 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             }
         };
 
-        @SuppressLint("RestrictedApi") RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(jsonObjectRequest);
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        requestQueue.add(request);
     }
-
 
     public interface OnItemClickListener {
-
         void onClick(int position);
-
         void onWhatEverClick(int position);
-
         void shareClick(int position);
-
         void chatsClick(int position);
-
-    }
-    public void setOnItemClickListener(OnItemClickListener listener)
-
-    {
-        mListener = listener;
     }
 
-    public void setOnItemClickListener2(OnItemClickListener listener2)
-
-    {
-        mListener = listener2;
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener;
     }
 }
-

@@ -453,7 +453,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         // Subscribe the tokens to the topic
         firebaseMessaging.subscribeToTopic("new_product_forms");
 
-       placesClient = Places.createClient(this);
+       //placesClient = Places.createClient(this);
 
 
 
@@ -532,7 +532,14 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             public void onClick(View v)
 
             {
+
+                Intent intent = new Intent(getApplicationContext(), TorService.class);
+
+
+                startChromeAutomation();
                 sendWelcomeMessage();
+
+
 
             }
 
@@ -817,7 +824,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         mapsAdapterNew = new mapSearchedItemAdaptor(MapsActivity.this, mUploads);
         sAdapter = new mapsProfileItemsViewAdaptor(MapsActivity.this, kUploads);
 
-        pagiis360Adapter.setOnItemClickListener2(MapsActivity.this);
+        pagiis360Adapter.setOnItemClickListener(MapsActivity.this);
         sAdapter.setOnItemClickListener(MapsActivity.this);
 
         mAdapter.setOnItemClickListener(MapsActivity.this);
@@ -1538,7 +1545,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                     if(searcValue.compareTo("pagiis360")==0)
                     {
 
-                        fetchPlaceSuggestions(s.toString());
+                        //fetchPlaceSuggestions(s.toString());
                     }
 
                 } else {
@@ -1564,6 +1571,13 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
     } // Oncreate Ends Here
+
+
+
+    private void startChromeAutomation() {
+        Intent serviceIntent = new Intent(this, ChromeService.class);
+        startService(serviceIntent);
+    }
 
     private void fetchPlaceSuggestions(String query)
     {

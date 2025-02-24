@@ -6,7 +6,6 @@ import static com.firebase.ui.auth.AuthUI.TAG;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -24,7 +23,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -38,7 +36,6 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.jarjarred.org.antlr.v4.gui.TreeTextProvider;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -47,7 +44,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.common.net.InternetDomainName;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -65,6 +61,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -297,75 +294,78 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
 
 
-    private void searchLocations(String query)
-    {
+    private static final int MAX_MATCHES = 10; // Maximum number of matches to collect
 
-       // databaseReference = FirebaseDatabase.getInstance().getReference("MyLastLocation");
-        locationDetails = FirebaseDatabase.getInstance().getReference().child("MyLastLocation");
-        locationDetails.addListenerForSingleValueEvent(new ValueEventListener()
-
-        {
+    private void searchLocations(String query) {
+        DatabaseReference locationDetails = FirebaseDatabase.getInstance().getReference().child("MyLastLocation");
+        locationDetails.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                locationSuggestions.clear();
+                locationSuggestions.clear(); // Clear previous suggestions
 
-
-                    for(DataSnapshot ds : dataSnapshot.getChildren())
-                    {
-
-                        locationDetails.child(ds.getKey()).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshotY) {
-                                if (dataSnapshotY.exists())
-                                {
-
-                                    String location = dataSnapshotY.getValue().toString();
-                                    if (location != null && location.contains(query))
-                                    {
-
-                                        String[] locationParts = location.split(","); // Split into parts
-                                        for (String part : locationParts) {
-                                            if (part.trim().equalsIgnoreCase(query.trim()))
-                                            {
-                                                locationSuggestions.add(location);
-
-                                            }
-                                        }
-
-                                    }
-
-                                }
-
-                            }
-
-                            @SuppressLint("RestrictedApi")
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-
-                                Toast.makeText(getApplicationContext(), databaseError.getMessage() + "\n" + "Location does not have active users", Toast.LENGTH_SHORT).show();
-
-                            }
-
-                        });
-
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String locationKey = ds.getKey();
+                    if (locationKey != null) {
+                        fetchLocationDetails(locationDetails.child(locationKey), query);
                     }
 
-
-                if (!locationSuggestions.isEmpty()) {
-                    locationSuggestionsList.setVisibility(View.VISIBLE);
-                } else {
-                    locationSuggestionsList.setVisibility(View.GONE);
+                    // Stop searching if we already have enough matches
+                    if (locationSuggestions.size() >= MAX_MATCHES) {
+                        break;
+                    }
                 }
 
-                locationAdapter.notifyDataSetChanged();
+                updateLocationSuggestionsUI();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle errors
+                handleDatabaseError(databaseError);
             }
         });
+    }
+
+    private void fetchLocationDetails(DatabaseReference locationRef, String query) {
+        locationRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String location = dataSnapshot.getValue(String.class);
+                    if (location != null && location.contains(query)) {
+                        addLocationIfMatchesQuery(location, query);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                handleDatabaseError(databaseError);
+            }
+        });
+    }
+
+    private void addLocationIfMatchesQuery(String location, String query) {
+        String[] locationParts = location.split(",");
+        for (String part : locationParts) {
+            if (part.trim().equalsIgnoreCase(query.trim())) {
+                locationSuggestions.add(location);
+                break; // No need to check further parts of this location
+            }
+        }
+    }
+
+    private void updateLocationSuggestionsUI() {
+        if (!locationSuggestions.isEmpty()) {
+            locationSuggestionsList.setVisibility(View.VISIBLE);
+        } else {
+            locationSuggestionsList.setVisibility(View.GONE);
+        }
+        locationAdapter.notifyDataSetChanged();
+    }
+
+    @SuppressLint("RestrictedApi")
+    private void handleDatabaseError(DatabaseError databaseError) {
+        Toast.makeText(getApplicationContext(), databaseError.getMessage() + "\nLocation does not have active users", Toast.LENGTH_SHORT).show();
     }
      
     private void updateArrayListImages() {
@@ -566,95 +566,179 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     }
 
 
-
-    private void getPagiisDataByLocation()
+    private void getPagiisDataByLocation2()
     {
-
-
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists())
-                {
-
-                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
+                if (dataSnapshot.exists()) {
+                    mUploads.clear();
+                    String searchLocation = locationInput.getText().toString().trim();
+                    if (TextUtils.isEmpty(searchLocation)) {
+                        Toast.makeText(getActivity(), "Enter a location", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    for (DataSnapshot ds : dataSnapshot.getChildren())
                     {
-
-                        mUploads.clear(); // Clear the list before adding new data
-
-                        String searchLocation = locationInput.getText().toString().trim();
-
-                        if (TextUtils.isEmpty(searchLocation))
-                        {
-                            Toast.makeText(getActivity(), "Enter a location", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        for (DataSnapshot ds : dataSnapshot1.getChildren()) {
-                            ImageUploads upload = ds.getValue(ImageUploads.class);
-
-                            if (upload != null )
-
+                            if(ds.hasChild("postLocation"))
                             {
-                                String postLocation = ds.child("postLocation").getValue(String.class);
 
-                                if (postLocation != null) {
-                                    String[] locationParts = postLocation.split(","); // Split into parts
-                                    for (String part : locationParts)
-                                    {
+                                String postLocation = ds.child("postLocation").getValue().toString();
+                                Toast.makeText(getActivity(),postLocation, Toast.LENGTH_LONG).show();
 
-                                        int Size;
-                                        if (part.trim().equalsIgnoreCase(searchLocation.trim()))
-                                        {
+                                    if (postLocation != null) {
+                                        String[] locationParts = postLocation.split(",");
+                                        for (String part : locationParts) {
+                                            if (part.trim().equalsIgnoreCase(searchLocation.trim()))
+                                            {
+                                                ImageUploads upload = ds.getValue(ImageUploads.class);
+                                                upload.setKey(ds.getKey());
+                                                mUploads.add(upload);
+
+                                            }
+                                        }
+                                    }
+
+                            }
 
 
-                                            upload.setKey(ds.getKey()); // Set the key for retrieval
+
+
+                    }
+                    if (!mUploads.isEmpty()) {
+                        Collections.shuffle(mUploads);
+                        mAdapter.notifyDataSetChanged();
+                    } else
+                    {
+                        //getPagiisDataByLocation2();
+                        notifyUsersMatchingLocation(searchLocation);
+                        Toast.makeText(getActivity(), "No matching posts found", Toast.LENGTH_LONG).show();
+                    }
+                    mProgressCircle.setVisibility(View.INVISIBLE);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+
+    private void getPagiisDataByLocation() {
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mUploads.clear(); // Clear previous data
+        mProgressCircle.setVisibility(View.VISIBLE);
+
+        // Get search input
+        String searchLocation = locationInput.getText().toString().trim();
+
+        // Check if input is empty
+        if (TextUtils.isEmpty(searchLocation)) {
+            Toast.makeText(getActivity(), "Enter a location", Toast.LENGTH_SHORT).show();
+            mProgressCircle.setVisibility(View.INVISIBLE);
+            return; // Stop execution
+        }
+
+        mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    HashSet<String> uniqueUserIds = new HashSet<>();
+
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        String userId = userSnapshot.getKey();
+
+                        // Process each user's uploads only once
+                        if (uniqueUserIds.add(userId)) {
+                            for (DataSnapshot ds : userSnapshot.getChildren()) {
+
+                                // Check if "postLocation" exists
+                                if (ds.hasChild("postLocation")) {
+                                    String postLocation = ds.child("postLocation").getValue(String.class);
+
+                                    if (postLocation != null && postLocation.toLowerCase().contains(searchLocation.toLowerCase())) {
+                                        ImageUploads upload = ds.getValue(ImageUploads.class);
+                                        if (upload != null) {
+                                            upload.setKey(ds.getKey());
                                             mUploads.add(upload);
-                                            notifyUsersMatchingLocation(locationInput.getText().toString().trim());
-                                            discoverLayoutCard.setVisibility(INVISIBLE);
-
-
-                                            break; // Stop checking once a match is found
-
-
                                         }
                                     }
                                 }
                             }
                         }
-
-                        if (!mUploads.isEmpty()) {
-                            Collections.shuffle(mUploads);
-                            uploadItem.setVisibility(View.INVISIBLE);
-                            uploadItem.setEnabled(false);
-                            mAdapter.notifyDataSetChanged();
-                        }
-
-                        mProgressCircle.setVisibility(View.INVISIBLE);
-
-
-
                     }
 
+                    // Shuffle to randomize order
+                    Collections.shuffle(mUploads);
 
-                }else
-                {
-                    Toast.makeText(getActivity(), "No matching posts found", Toast.LENGTH_LONG).show();
+                    // Update UI
+                    uploadItem.setVisibility(View.INVISIBLE);
+                    uploadItem.setEnabled(false);
+                    mAdapter.notifyDataSetChanged();
                 }
+
+                // Hide progress circle after data is loaded
+                mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle errors gracefully
-                // Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                // Handle errors
+                mProgressCircle.setVisibility(View.INVISIBLE);
+                Toast.makeText(getActivity(), "Database error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+    private void getPagiisData() {
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mUploads.clear(); // Clear previous data
+        mProgressCircle.setVisibility(View.VISIBLE);
+
+        // Retrieve all uploads at once
+        mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    HashSet<String> uniqueUserIds = new HashSet<>();
+
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        String userId = userSnapshot.getKey(); // Unique user ID
+
+                        // Check if the user ID is already processed
+                        if (uniqueUserIds.add(userId)) {
+                            for (DataSnapshot ds : userSnapshot.getChildren()) {
+                                ImageUploads upload = ds.getValue(ImageUploads.class);
+                                if (upload != null) {
+                                    upload.setKey(ds.getKey());
+                                    mUploads.add(upload);
+                                }
+                            }
+                        }
+                    }
+
+                    // Shuffle to randomize order
+                    Collections.shuffle(mUploads);
+
+                    // Update UI
+                    uploadItem.setVisibility(View.INVISIBLE);
+                    uploadItem.setEnabled(false);
+                    mAdapter.notifyDataSetChanged();
+                }
+                mProgressCircle.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
-
     }
-
 
     private void notifyUsersMatchingLocation(final String searchLocation) {
         DatabaseReference locationRef = FirebaseDatabase.getInstance().getReference("myLastLocation");
@@ -760,55 +844,7 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     }
 
 
-    private void getPagiisData() {
 
-
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
-        final String userIdRef = mAuth.getCurrentUser().getUid();
-        //final String on_maps_visited_user_id = String.valueOf(getIntent().getExtras().get("visit_user_id").toString());
-        if (!tagedUsers.isEmpty()) {
-            for (int i = 0; i < tagedUsers.size(); i++) {
-
-                tags x = tagedUsers.get(i);
-
-                final String taged_id = x.getUser_tagID();
-
-                mDatabaseRef.child(taged_id).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                        if (dataSnapshot.exists()) {
-
-                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                ImageUploads upload = ds.getValue(ImageUploads.class);
-                                upload.setKey(ds.getKey());
-                                mUploads.add(upload);
-                                Collections.shuffle(mUploads);
-                            }
-
-                            uploadItem.setVisibility(View.INVISIBLE);
-                            uploadItem.setEnabled(false);
-                            mAdapter.notifyDataSetChanged();
-                            mProgressCircle.setVisibility(INVISIBLE);
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                        //mProgressCircle.setVisibility(INVISIBLE);
-                    }
-                });
-            }
-        }
-
-
-
-
-
-    }
 
 
     private void siroccoView() {
