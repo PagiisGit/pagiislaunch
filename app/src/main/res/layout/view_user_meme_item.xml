@@ -195,8 +195,47 @@
                     android:foregroundGravity="center_horizontal"
                     android:scaleType="centerCrop"
                     android:src="@drawable/for_gallery_pic"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="SpeakableTextPresentCheck">
 
+                </androidx.media3.ui.PlayerView>
+
+                <com.google.android.gms.ads.nativead.NativeAdView
+                    android:id="@+id/nativeAdView"
+                    android:layout_width="match_parent"
+                    android:layout_height="470dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:id="@+id/ad_headline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/ad_body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"/>
+
+                        <ImageView
+                            android:id="@+id/ad_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <Button
+                            android:id="@+id/ad_call_to_action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Learn More"/>
+                    </LinearLayout>
+                </com.google.android.gms.ads.nativead.NativeAdView>
 
                 <ProgressBar
                     android:id="@+id/loading"

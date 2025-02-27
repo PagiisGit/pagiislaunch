@@ -267,7 +267,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private ImageView memedialogueImageView;
     private ImageView dialogueImageView;
 
-    private final double radiusMax = 0.5;
+    private final double radiusMax = 21;
     private ImageView radiusIncrement;
     private ImageView mGps, mInfo, mPlacePicker, navigationToTabs, hideSearchRecyclerView, hideUserRecyclerView;
     private String radiusValue;
@@ -471,7 +471,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
         bottomNavigationView.setSelectedItemId(R.id.home);
-        bottomNavigationView.setItemIconSize(35);
+        bottomNavigationView.setItemIconSize(40);
 
         searchSpinner = findViewById(R.id.searchSpinner);
 
@@ -493,12 +493,17 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             public void onComplete(@NonNull Task<InstanceIdResult> task)
 
             {
-                mDatabaseRef_Tokens.child(mAuth.getCurrentUser().getUid()).setValue(task.getResult().getToken().toString());
+
+                if (!(mAuth.getCurrentUser().getUid() == null))
+                {
+                    mDatabaseRef_Tokens.child(mAuth.getCurrentUser().getUid()).setValue(task.getResult().getToken().toString());
 
 
-                String myToken = task.getResult().getToken().toString();
+                    String myToken = task.getResult().getToken().toString();
 
-                UserNotificationToken = task.getResult().getToken().toString();
+                    UserNotificationToken = task.getResult().getToken().toString();
+
+                }
 
 
             }
@@ -2170,7 +2175,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                         }
 
                         //Collections.reverse(uploads);
-                        Collections.shuffle(mUploads);
+                        Collections.shuffle(uploads);
                         mAdapter.notifyDataSetChanged();
                         //recyclerProgressBar.setVisibility(View.INVISIBLE);
                         mapsViewCard.setVisibility(View.VISIBLE);

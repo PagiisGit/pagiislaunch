@@ -50,6 +50,13 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.nativead.NativeAdView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -64,6 +71,7 @@ import com.varunest.sparkbutton.SparkEventListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,9 +98,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
     private String myImageDpUrl;
     private String myName;
     private String myLastLocationDetails;
-
-
     private String userToken;
+    private DatabaseReference mDatabaseRef_Tokens;
 
     public ViewProfilePicsAdapter(Context context, List<ImageUploads> uploads) {
         this.mContext = context;
@@ -100,6 +107,9 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         this.mAuth = FirebaseAuth.getInstance();
         this.mDatabaseRefLikes = FirebaseDatabase.getInstance().getReference("postLikes");
         this.mDatabaseRefNotifications = FirebaseDatabase.getInstance().getReference("PagiisNotification");
+
+        // Initialize AdMob
+        MobileAds.initialize(mContext);
     }
 
     @NonNull
@@ -112,7 +122,21 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         ImageUploads uploadCurrent = mUploads.get(position);
-        holder.bind(uploadCurrent);
+
+        // Check if the position is a multiple of 5 (e.g., 5th, 10th, 15th, etc.)
+        if ((position + 1) % 5 == 0) {
+            // Show the Native Ad
+            holder.nativeAdView.setVisibility(VISIBLE);
+            holder.imageView.setVisibility(INVISIBLE); // Hide the post image
+            holder.linkView.setVisibility(INVISIBLE); // Hide the link preview
+            holder.playerView.setVisibility(INVISIBLE); // Hide the video player
+
+            loadNativeAd(holder); // Load the Native Ad
+        } else {
+            // Show the post content
+            holder.nativeAdView.setVisibility(INVISIBLE); // Hide the Native Ad
+            holder.bind(uploadCurrent); // Bind the post data
+        }
     }
 
     @Override
@@ -120,6 +144,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         return mUploads.size();
     }
 
+    // ViewHolder for Posts and Ads
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, MenuItem.OnMenuItemClickListener {
         private final TextView textViewName, Post_Title, Post_Time, Post_Position, textViewNameLikes;
         private final ImageView imageView;
@@ -130,6 +155,12 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         private final CardView userMemeCardView;
         private PlayerView playerView; // Add PlayerView for video playback
         private ExoPlayer exoPlayer;
+
+        // Native Ad Views
+        private NativeAdView nativeAdView;
+        private TextView adHeadline, adBody;
+        private ImageView adImage;
+        private Button adCallToAction;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -145,6 +176,13 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             imageViewLikes = itemView.findViewById(R.id.imageViewAnimation);
             userMemeCardView = itemView.findViewById(R.id.userMemeCardView);
             playerView = itemView.findViewById(R.id.videoPlayer);
+
+            // Native Ad Views
+            nativeAdView = itemView.findViewById(R.id.nativeAdView);
+            adHeadline = itemView.findViewById(R.id.ad_headline);
+            adBody = itemView.findViewById(R.id.ad_body);
+            adImage = itemView.findViewById(R.id.ad_image);
+            adCallToAction = itemView.findViewById(R.id.ad_call_to_action);
 
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener((menu, v, menuInfo) -> {
@@ -163,20 +201,12 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                 chats.setOnMenuItemClickListener(this);
             });
 
-            profileImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view)
-                {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        mListener.onClick(position);
-                        viewProfile(position); // Call viewProfile with the correct position
-                    }
+            profileImageView.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    mListener.onClick(position);
                 }
-
-
             });
-
         }
 
         public void bind(ImageUploads uploadCurrent) {
@@ -187,6 +217,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             String postPosition = uploadCurrent.getPostLocation();
             String time = uploadCurrent.getPostTime();
             String postName = uploadCurrent.getPostName();
+
+            onlineUserId = uploadCurrent.getUserId();
 
             textViewName.setText(postName);
             Post_Title.setText(postTitle);
@@ -226,10 +258,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                 imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
             }
 
-
             setupLikeButton(uploadCurrent.getKey());
         }
-
 
         private boolean isVideoUrl(String url) {
             // Check if the URL points to a video file
@@ -283,36 +313,16 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                         }
                     })
                     .into(imageView);
-
         }
 
-
-
-
         private void loadProfileImage(String imageUrl) {
-
-
-            if(imageUrl != null && !imageUrl.equals("null"))
-            {
+            if (imageUrl != null && !imageUrl.equals("null")) {
                 Glide.with(mContext)
                         .load(imageUrl)
                         .apply(new RequestOptions().centerCrop())
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .listener(new RequestListener<Drawable>() {
-                            @Override
-                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-
-                                return false;
-                            }
-
-                            @Override
-                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                                return false;
-                            }
-                        })
                         .into(profileImageView);
-
-            }else {
+            } else {
                 profileImageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
             }
         }
@@ -412,10 +422,24 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         }
     }
 
-    @SuppressLint("MissingInflatedId")
+    private void postNotification(String postKey, String type) {
+        if (type.equals("Like")) {
+            ImageUploads notification = new ImageUploads(
+                    myName, myImageDpUrl, "", mAuth.getCurrentUser().getUid(), "", "", "", "", myLastLocationDetails, "Your profile has a new like"
+            );
+            mDatabaseRefNotifications.child(postKey).push().setValue(notification, (error, ref) -> {
+                if (error == null) {
+                    sendFCMNotification(mContext,userToken, "New post like", "Your post just got a new like.");
+                }
+            });
+        }
+    }
+
+
+    @SuppressLint({"MissingInflatedId", "RestrictedApi"})
     private void viewProfile(int position) {
         // Ensure we use an Activity context
-        if (!(mContext instanceof Activity)) {
+        if (!(getApplicationContext() instanceof Activity)) {
             return;  // Prevent crashes
         }
 
@@ -427,8 +451,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         final String userId = selectedImage.getUserId(); // Assuming this is the correct getter method
 
         // Initialize BottomSheetDialog with Activity context
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog((Activity) mContext, R.style.BottomSheetDialogueTheme);
-        View bottomSheetView = LayoutInflater.from(mContext).inflate(R.layout.botttom_sheet_layout, null);
+        @SuppressLint("RestrictedApi") final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog((Activity)getApplicationContext(), R.style.BottomSheetDialogueTheme);
+        @SuppressLint("RestrictedApi") View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.botttom_sheet_layout, null);
 
         // Initialize views from the bottom sheet layout
         ImageView profilePicture = bottomSheetView.findViewById(R.id.mapsItemProfile);
@@ -447,7 +471,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         // Load profile picture using Glide
         if (imageUrl != null && !imageUrl.isEmpty()) {
             RequestOptions options = new RequestOptions();
-            Glide.with(mContext)
+            Glide.with(getApplicationContext())
                     .load(imageUrl)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .apply(options.centerCrop())
@@ -455,7 +479,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                     .into(profilePicture);
         } else {
             // Set a default image if the URL is null or empty
-            profilePicture.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
+            profilePicture.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.pagiis_logo_final));
         }
 
         // View Profile Button Click Listener
@@ -468,8 +492,9 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                 ProfileFragment targetFragment = new ProfileFragment();
                 targetFragment.setArguments(bundle);
 
-                if (mContext instanceof FragmentActivity) {
-                    FragmentManager fragmentManager = ((FragmentActivity) mContext).getSupportFragmentManager();
+
+                if (getApplicationContext() instanceof FragmentActivity) {
+                    FragmentManager fragmentManager = ((FragmentActivity) getApplicationContext()).getSupportFragmentManager();
                     fragmentManager.beginTransaction()
                             .replace(R.id.mainContainer, targetFragment)
                             .addToBackStack(null)
@@ -480,6 +505,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
         // Share App Functionality
         bottomSheetView.findViewById(R.id.shareImageView).setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -487,97 +513,114 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                 intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family, please check out this amazing App called Pagiis: " + Uri.parse("https://www.pagiis.co.za/"));
                 intent.setType("text/plain");
 
-                if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+                if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
                     mContext.startActivity(intent);  // ✅ Works inside Adapter
                 }
             }
         });
-
-        // Explore Pagiis Action
-
-        // Share Pagiis Button
-        sharePagiis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family, please check out this amazing App called Pagiis: " + Uri.parse("https://www.pagiis.co.za/"));
-                intent.setType("text/plain");
-
-                if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-                    mContext.startActivity(intent);  // ✅ Fixed
-                }
-            }
-        });
-
-        // Like Button Click Event
-        imageViewLikes.setEventListener(new SparkEventListener() {
-            @Override
-            public void onEvent(ImageView button, boolean buttonState) {
-                if (buttonState) {
-                    Toast.makeText(mContext, "Added to favourites!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(mContext, "Removed from favourites!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onEventAnimationEnd(ImageView button, boolean buttonState) { }
-
-            @Override
-            public void onEventAnimationStart(ImageView button, boolean buttonState) { }
-        });
-
-        // Show the bottom sheet dialog
-        bottomSheetDialog.setContentView(bottomSheetView);
-        bottomSheetDialog.show();
     }
 
-    private void postNotification(String postKey, String type) {
-        if (type.equals("Like")) {
-            ImageUploads notification = new ImageUploads(
-                    myName, myImageDpUrl, "", mAuth.getCurrentUser().getUid(), "", "", "", "", myLastLocationDetails, "Your profile has a new like"
-            );
-            mDatabaseRefNotifications.child(postKey).push().setValue(notification, (error, ref) -> {
-                if (error == null) {
-                    sendFCMNotification(userToken, "New post like", "Your post just got a new like.");
+
+    private void sendFCMNotification(Context context, String fcmToken, String title, String message) {
+
+        if (fcmToken == null || fcmToken.isEmpty()) {
+            mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference().child("userTokens").child(onlineUserId);
+
+            mDatabaseRef_Tokens.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        userToken = dataSnapshot.getValue().toString();
+
+                        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+                        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS";
+                        String contentType = "application/json";
+
+                        JSONObject notification = new JSONObject();
+                        JSONObject notificationBody = new JSONObject();
+                        JSONObject dataPayload = new JSONObject();
+
+                        try {
+                            notificationBody.put("title", title);
+                            notificationBody.put("body", message);
+                            notificationBody.put("android_channel_id", "Pagiis_notifications"); // ✅ Set channel ID
+                            dataPayload.put("key1", "value1"); // Optional payload
+                            dataPayload.put("key2", "value2");
+
+                            notification.put("to", userToken);
+                            notification.put("notification", notificationBody);
+                            notification.put("data", dataPayload);
+                        } catch (JSONException e) {
+                            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
+                        }
+
+                        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                                error -> {
+                                    if (error.networkResponse != null) {
+                                        Log.e("FCM Error", "Error code: " + error.networkResponse.statusCode);
+                                        Log.e("FCM Error", "Error data: " + new String(error.networkResponse.data));
+                                    }
+                                    Log.e("FCM Error", "Failed: " + error.toString());
+                                }) {
+                            @Override
+                            public Map<String, String> getHeaders() {
+                                Map<String, String> headers = new HashMap<>();
+                                headers.put("Authorization", "key=" + serverKey);
+                                headers.put("Content-Type", contentType);
+                                return headers;
+                            }
+                        };
+
+                        RequestQueue requestQueue = Volley.newRequestQueue(context);
+                        requestQueue.add(request);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e("FCM Error", "Database Error: " + databaseError.getMessage());
                 }
             });
         }
     }
 
-    private void sendFCMNotification(String fcmToken, String title, String message) {
-        String FCM_API = "https://fcm.googleapis.com/fcm/send";
-        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS";
-        String contentType = "application/json";
+    // Load Native Ad
 
-        JSONObject notification = new JSONObject();
-        JSONObject notificationBody = new JSONObject();
+    private void loadNativeAd(ImageViewHolder holder) {
+        AdLoader adLoader = new AdLoader.Builder(mContext, "ca-app-pub-1698498156044590/2792098143")
+                .forNativeAd(nativeAd -> {
+                    holder.nativeAdView.setHeadlineView(holder.adHeadline);
+                    holder.nativeAdView.setBodyView(holder.adBody);
+                    holder.nativeAdView.setIconView(holder.adImage);
+                    holder.nativeAdView.setCallToActionView(holder.adCallToAction);
 
-        try {
-            notificationBody.put("title", title);
-            notificationBody.put("message", message);
-            notification.put("to", fcmToken);
-            notification.put("data", notificationBody);
-        } catch (JSONException e) {
-            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
-        }
+                    // Set NativeAd data
+                    holder.adHeadline.setText(nativeAd.getHeadline());
+                    holder.adBody.setText(nativeAd.getBody());
+                    holder.adCallToAction.setText(nativeAd.getCallToAction());
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
-                response -> Log.d("FCM Response", "Success: " + response.toString()),
-                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", serverKey);
-                headers.put("Content-Type", contentType);
-                return headers;
-            }
-        };
+                    if (nativeAd.getImages() != null && !nativeAd.getImages().isEmpty()) {
+                        holder.adImage.setImageDrawable(nativeAd.getImages().get(0).getDrawable());
+                    }
 
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
-        requestQueue.add(request);
+                    // Show the native ad
+                    holder.nativeAdView.setNativeAd(nativeAd);
+                    holder.nativeAdView.setVisibility(View.VISIBLE);
+                }) .withAdListener(new AdListener() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError adError) {
+                        super.onAdFailedToLoad(adError);
+                        // Hide the ad view or replace it with an empty space
+                        holder.nativeAdView.setVisibility(View.GONE);
+                    }
+                })
+                .build();
+
+        adLoader.loadAd(new AdRequest.Builder().build());
     }
+
+
 
     public interface OnItemClickListener {
         void onClick(int position);

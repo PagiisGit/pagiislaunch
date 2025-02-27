@@ -151,8 +151,8 @@
                         </TextView>
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
                             android:layout_gravity="center"
@@ -169,7 +169,7 @@
                             <com.mikhaellopez.circularimageview.CircularImageView
                                 android:id="@+id/ImageDP"
                                 android:layout_width="match_parent"
-                                android:layout_height="130dp"
+                                android:layout_height="120dp"
                                 android:background="#fff"
                                 android:backgroundTint="#fff"
                                 android:clickable="true"
@@ -906,6 +906,7 @@
         android:layout_height="match_parent">
 
     </WebView>
+
 
     <ProgressBar
 

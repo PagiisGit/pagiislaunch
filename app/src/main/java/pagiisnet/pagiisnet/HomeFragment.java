@@ -6,9 +6,11 @@ import static com.firebase.ui.auth.AuthUI.TAG;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -23,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -33,7 +36,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,8 +47,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +63,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.mikhaellopez.circularimageview.CircularImageView;
+import com.varunest.sparkbutton.SparkButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -519,6 +530,91 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     }
 
 
+    @SuppressLint({"MissingInflatedId", "RestrictedApi"})
+    private void viewProfile(int position) {
+        // Ensure we use an Activity context
+        if (!(getApplicationContext() instanceof Activity)) {
+            return;  // Prevent crashes
+        }
+
+        // Get the selected image from the list using the position
+        final ImageUploads selectedImage = mUploads.get(position);
+
+        // Extract the required data from the selected image
+        final String imageUrl = selectedImage.getImageUrl(); // Assuming this is the correct getter method
+        final String userId = selectedImage.getUserId(); // Assuming this is the correct getter method
+
+        // Initialize BottomSheetDialog with Activity context
+        @SuppressLint("RestrictedApi") final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog((Activity)getApplicationContext(), R.style.BottomSheetDialogueTheme);
+        @SuppressLint("RestrictedApi") View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.botttom_sheet_layout, null);
+
+        // Initialize views from the bottom sheet layout
+        ImageView profilePicture = bottomSheetView.findViewById(R.id.mapsItemProfile);
+        TextView profileName = bottomSheetView.findViewById(R.id.popUpDescriptionTextViewTwo);
+        TextView profileStatus = bottomSheetView.findViewById(R.id.popUpDescriptionTextViewThreee);
+        TextView profileView = bottomSheetView.findViewById(R.id.popLocationTexview);
+        TextView sharePagiis = bottomSheetView.findViewById(R.id.share);
+        Button viewProfileButton = bottomSheetView.findViewById(R.id.visitProfile);
+        SparkButton imageViewLikes = bottomSheetView.findViewById(R.id.likes);
+
+        // Set profile name
+        if (selectedImage.getName() != null && !selectedImage.getName().isEmpty()) {
+            profileName.setText(selectedImage.getName());
+        }
+
+        // Load profile picture using Glide
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            RequestOptions options = new RequestOptions();
+            Glide.with(getApplicationContext())
+                    .load(imageUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .apply(options.centerCrop())
+                    .thumbnail(0.75f)
+                    .into(profilePicture);
+        } else {
+            // Set a default image if the URL is null or empty
+            profilePicture.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.pagiis_logo_final));
+        }
+
+        // View Profile Button Click Listener
+        viewProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("visited_user_id", userId); // Pass the userId to the ProfileFragment
+
+                ProfileFragment targetFragment = new ProfileFragment();
+                targetFragment.setArguments(bundle);
+
+
+                if (getApplicationContext() instanceof FragmentActivity) {
+                    FragmentManager fragmentManager = ((FragmentActivity) getApplicationContext()).getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.mainContainer, targetFragment)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
+        });
+
+        // Share App Functionality
+        bottomSheetView.findViewById(R.id.shareImageView).setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family, please check out this amazing App called Pagiis: " + Uri.parse("https://www.pagiis.co.za/"));
+                intent.setType("text/plain");
+
+                if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
+                    startActivity(intent);  // ✅ Works inside Adapter
+                }
+            }
+        });
+    }
+
+
     private void getDataNormally() {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
         final String userIdRef = mAuth.getCurrentUser().getUid();
@@ -794,9 +890,9 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
                     for (String token : fcmTokens)
                     {
 
-                        notificationTitle = "New post like";
-                        notificationMessage = "You post just got a new like.";
-                        sendFCMNotification(token);
+                        notificationTitle = "Your location interests";
+                        notificationMessage = "People are interested in whats happening where you are .";
+                        sendFCMNotification(token,notificationTitle,notificationMessage);
                     }
                 }
             }
@@ -809,40 +905,39 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     }
 
 
-    private void sendFCMNotification(String fcmToken) {
+    private void sendFCMNotification(String fcmToken, String title, String message) {
         String FCM_API = "https://fcm.googleapis.com/fcm/send";
-        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
+        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS";
         String contentType = "application/json";
 
         JSONObject notification = new JSONObject();
         JSONObject notificationBody = new JSONObject();
 
         try {
-            notificationBody.put("title", notificationTitle);
-            notificationBody.put("message", notificationMessage);
-
+            notificationBody.put("title", title);
+            notificationBody.put("body", message); // Use "body" for notifications
             notification.put("to", fcmToken);
-            notification.put("data", notificationBody);
+            notification.put("notification", notificationBody); // Correct key
+            notification.put("data", notificationBody); // Optional for additional data
         } catch (JSONException e) {
             Log.e("FCM Error", "JSON Exception: " + e.getMessage());
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
                 response -> Log.d("FCM Response", "Success: " + response.toString()),
                 error -> Log.e("FCM Error", "Failed: " + error.toString())) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", serverKey);
+                headers.put("Authorization", "key=" + serverKey); // Corrected
                 headers.put("Content-Type", contentType);
                 return headers;
             }
         };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
-        requestQueue.add(jsonObjectRequest);
+        @SuppressLint("RestrictedApi") RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext()); // Fixed Context
+        requestQueue.add(request);
     }
-
 
 
 
@@ -1028,7 +1123,8 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
     //This button is for the explicit content view
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
 
         if (item.getItemId() == R.id.sirocco_icon) {
             @SuppressLint("RestrictedApi") Intent intent = new Intent(getApplicationContext(), SiroccoPage.class);
@@ -1037,8 +1133,11 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
-    public void onClick(int position) {
+    public void onClick(int position)
+
+    {
         ImageUploads selectedImage = mUploads.get(position);
 
         final String selectedKey = selectedImage.getKey();
@@ -1049,65 +1148,84 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
 
         final String userKeyId = selectedImage.getUserId();
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads").child(userKeyId).child(selectedKey);
+        // Get the selected image from the list using the position
+        // Assuming this is the correct getter method
+        final String userId = selectedImage.getUserId(); // Assuming this is the correct getter method
 
-        lockedImages = FirebaseDatabase.getInstance().getReference("Likes").child(selectedKey).child(own_user_id);
-        mDatabaseRef_z = FirebaseDatabase.getInstance().getReference("Views").child(selectedKey);
+        // Initialize BottomSheetDialog with Activity context
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogueTheme);
+        View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.botttom_sheet_layout, null);
 
-        if (!imageUrl.isEmpty() && !selectedKey.isEmpty()) {
+        // Initialize views from the bottom sheet layout
+        ImageView profilePicture = bottomSheetView.findViewById(R.id.mapsItemProfile);
+        TextView profileName = bottomSheetView.findViewById(R.id.popUpDescriptionTextViewTwo);
+        TextView profileStatus = bottomSheetView.findViewById(R.id.popUpDescriptionTextViewThreee);
+        TextView profileView = bottomSheetView.findViewById(R.id.popLocationTexview);
+        TextView sharePagiis = bottomSheetView.findViewById(R.id.share);
+        Button viewProfileButton = bottomSheetView.findViewById(R.id.visitProfile);
+        SparkButton imageViewLikes = bottomSheetView.findViewById(R.id.likes);
 
-            lockedImages.addValueEventListener(new ValueEventListener() {
+        profileStatus.setText(selectedImage.getPostName());
 
-                String UnitLikes;
+        // Set profile name
+        if (selectedImage.getName() != null && !selectedImage.getName().isEmpty()) {
+            profileName.setText(selectedImage.getName());
+        }
 
-                @Override
-                public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+        // Load profile picture using Glide
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            RequestOptions options = new RequestOptions();
+            Glide.with(getApplicationContext())
+                    .load(imageUrl)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .apply(options.centerCrop())
+                    .thumbnail(0.75f)
+                    .into(profilePicture);
+        } else {
+            // Set a default image if the URL is null or empty
+            profilePicture.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.pagiis_logo_final));
+        }
 
-                    //String name, String imageUrl, String rateEx, String userId,String views,String likes, String share
+        // View Profile Button Click Listener
+        bottomSheetView.findViewById(R.id.visitProfile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("visited_user_id", userId); // Pass the userId to the ProfileFragment
 
-                    lockedImages.child("name").setValue(myName);
-                    lockedImages.child("imageUrl").setValue(imageUrl);
-                    lockedImages.child("rateEx").setValue(userStatusMessage);
-                    lockedImages.child("userId").setValue(own_user_id);
-                    lockedImages.child("views").setValue("1");
-                    lockedImages.child("likes").setValue("1");
-                    lockedImages.child("share").setValue(myImageDpUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-
-                            UnitLikes = String.valueOf(Objects.requireNonNull(dataSnapshot).getChildrenCount() + 1);
-
-                            mDatabaseRef.child("likes").setValue(UnitLikes);
-                            mDatabaseRef.child("views").setValue(UnitLikes);
-                            lockedImages.child("userId").setValue(UnitLikes);
-                            lockedImages.child("views").setValue(UnitLikes).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                ProfileFragment targetFragment = new ProfileFragment();
+                targetFragment.setArguments(bundle);
 
 
-                                    @SuppressLint("RestrictedApi") Intent intent = new Intent(getApplicationContext(), PagiisMaxView.class);
-                                    intent.putExtra("imageKeyMAx", selectedKey);
-                                    intent.putExtra("imageUrlMax", imageUrl);
-                                    intent.putExtra("imageUserId", userKeyId);
-                                    startActivity(intent);
+                FragmentManager fragmentManager = ((FragmentActivity) requireContext()).getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                            .replace(R.id.mainContainer, targetFragment)
+                            .addToBackStack(null)
+                            .commit();
+            }
 
-                                }
-                            });
 
-                            //mDatabaseRef.child("likes").setValue(String.valueOf(dataSnapshot.getChildrenCount()));
-                            //mDatabaseRef.child("views").setValue(String.valueOf(dataSnapshot.getChildrenCount()));
+        });
 
-                        }
-                    });
+        // Share App Functionality
+        bottomSheetView.findViewById(R.id.shareImageView).setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.putExtra(Intent.EXTRA_TEXT, "Hi Friends and Family, please check out this amazing App called Pagiis: " + Uri.parse("https://www.pagiis.co.za/"));
+                intent.setType("text/plain");
 
+                if (intent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
+                    startActivity(intent);  // ✅ Works inside Adapter
                 }
+            }
+        });
 
-                @SuppressLint("RestrictedApi")
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), "Click to like item.", Toast.LENGTH_SHORT).show();
-                }
-            });
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+    }
 
 
             /*lockedImages.addValueEventListener(new ValueEventListener() {
@@ -1144,9 +1262,6 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
                 }
             });*/
 
-
-        }
-    }
 
     @Override
     public void onNItemClick(int position) {

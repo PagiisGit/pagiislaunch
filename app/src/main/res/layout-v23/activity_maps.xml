@@ -287,12 +287,9 @@
         android:id="@+id/mapsPublicProfilePostsCardView"
         android:layout_width="match_parent"
         android:contextClickable="true"
-        android:background="#55000000"
-        android:backgroundTint="#55000000"
         android:layout_alignParentBottom="true"
         android:foreground="?android:selectableItemBackground"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/hideMapsPublicPostsCardView"
@@ -314,8 +311,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:background="#55000000"
-            android:backgroundTint="#55000000"
             android:clickable="true"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck"
             android:focusable="true">
@@ -333,17 +328,14 @@
         android:layout_height="185dp"
         android:id="@+id/mapsViewOnlineUserCardView"
         android:layout_alignParentEnd="true"
-        android:backgroundTint="#55000000"
-        android:background="#55000000"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="63dp">
+        android:layout_marginBottom="55dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:backgroundTint="#55000000"
-            android:background="#55000000"
+
             android:layout_height="match_parent">
 
 

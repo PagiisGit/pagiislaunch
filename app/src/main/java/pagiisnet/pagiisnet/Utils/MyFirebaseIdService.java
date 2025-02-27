@@ -1,57 +1,61 @@
 package pagiisnet.pagiisnet.Utils;
 
 import android.util.Log;
-
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdService;
-
+import com.google.firebase.messaging.FirebaseMessagingService;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
-public class MyFirebaseIdService extends FirebaseInstanceIdService {
+public class MyFirebaseIdService extends FirebaseMessagingService {
 
     @Override
-    public void onTokenRefresh() {
-        super.onTokenRefresh();
-        sendNewTokenToSever(FirebaseInstanceId.getInstance().getToken());
+    public void onNewToken(String token) {
+        super.onNewToken(token);
+        sendNewTokenToServer(token);
     }
 
-    private void sendNewTokenToSever(String token)
-    {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    // Construct URL to your server endpoint
-                    URL url = new URL("https://us-central1-pagiis-ix.cloudfunctions.net/saveFCMToken\n");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
-                    conn.setDoOutput(true);
+    private void sendNewTokenToServer(String token) {
+        new Thread(() -> {
+            try {
+                // Construct the JSON payload
+                JSONObject jsonPayload = new JSONObject();
+                jsonPayload.put("fcmToken", token);
 
-                    // Write token to the request body
-                    OutputStream os = conn.getOutputStream();
-                    os.write(token.getBytes());
-                    os.flush();
-                    os.close();
+                // Construct URL to your server endpoint
+                URL url = new URL("https://us-central1-pagiis-ix.cloudfunctions.net/saveFCMToken");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setDoOutput(true);
 
-                    // Get the response code
-                    int responseCode = conn.getResponseCode();
-                    // Handle the response code appropriately
+                // Send JSON payload
+                OutputStream os = conn.getOutputStream();
+                os.write(jsonPayload.toString().getBytes("UTF-8"));
+                os.flush();
+                os.close();
 
-                    if (responseCode == HttpURLConnection.HTTP_OK) {
-                        // The request was successful
-                        Log.d("FCM Token", "Token sent successfully");
-                    } else {
-                        // Handle other response codes (e.g., error handling)
-                        Log.e("FCM Token", "Failed to send token. Response code: " + responseCode);
-                    }
-
-                    // Close the connection
-                    conn.disconnect();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                // Read the response
+                int responseCode = conn.getResponseCode();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
                 }
+                reader.close();
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    Log.d("FCM Token", "Token sent successfully: " + response.toString());
+                } else {
+                    Log.e("FCM Token", "Failed to send token. Response code: " + responseCode + ", Message: " + response.toString());
+                }
+
+                conn.disconnect();
+            } catch (Exception e) {
+                Log.e("FCM Token", "Exception: " + e.getMessage(), e);
             }
         }).start();
     }

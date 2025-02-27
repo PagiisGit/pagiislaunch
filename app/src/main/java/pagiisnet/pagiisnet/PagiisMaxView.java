@@ -232,7 +232,12 @@ public class PagiisMaxView extends AppCompatActivity
             ImageUrl = getIntent().getExtras().get("imageUrlMax").toString();
             imageKey = getIntent().getExtras().get("imageKeyMAx").toString();
             imageUserId = getIntent().getExtras().get("imageUserId").toString();
-            UrlString = getIntent().getExtras().get("orderLink").toString();
+
+            if(!(getIntent().getExtras().get("orderLink").toString() == null))
+            {
+                UrlString = getIntent().getExtras().get("orderLink").toString();
+            }
+          
         }
 
         tagedUsers = new ArrayList<>();

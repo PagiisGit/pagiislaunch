@@ -4,6 +4,7 @@ package pagiisnet.pagiisnet.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -11,8 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.media3.ui.PlayerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.gms.ads.nativead.NativeAdView;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.varunest.sparkbutton.SparkButton;
 import io.github.ponnamkarthik.richlinkpreview.RichLinkView;
@@ -27,6 +30,18 @@ public final class ViewUserMemeItemBinding implements ViewBinding {
 
   @NonNull
   public final LinearLayout TitleId;
+
+  @NonNull
+  public final TextView adBody;
+
+  @NonNull
+  public final Button adCallToAction;
+
+  @NonNull
+  public final TextView adHeadline;
+
+  @NonNull
+  public final ImageView adImage;
 
   @NonNull
   public final SparkButton imageViewAnimation;
@@ -45,6 +60,9 @@ public final class ViewUserMemeItemBinding implements ViewBinding {
 
   @NonNull
   public final TextView memeName;
+
+  @NonNull
+  public final NativeAdView nativeAdView;
 
   @NonNull
   public final TextView postPosition;
@@ -70,22 +88,32 @@ public final class ViewUserMemeItemBinding implements ViewBinding {
   @NonNull
   public final ImageView userName;
 
+  @NonNull
+  public final PlayerView videoPlayer;
+
   private ViewUserMemeItemBinding(@NonNull CardView rootView, @NonNull LinearLayout TitleId,
-      @NonNull SparkButton imageViewAnimation, @NonNull TextView likesText,
-      @NonNull ProgressBar loading, @NonNull ImageView memeImageView,
+      @NonNull TextView adBody, @NonNull Button adCallToAction, @NonNull TextView adHeadline,
+      @NonNull ImageView adImage, @NonNull SparkButton imageViewAnimation,
+      @NonNull TextView likesText, @NonNull ProgressBar loading, @NonNull ImageView memeImageView,
       @NonNull RichLinkView memeImageViewLink, @NonNull TextView memeName,
-      @NonNull TextView postPosition, @NonNull TextView postTime, @NonNull TextView postTitle,
+      @NonNull NativeAdView nativeAdView, @NonNull TextView postPosition,
+      @NonNull TextView postTime, @NonNull TextView postTitle,
       @NonNull LinearLayout reactingIconsLayout, @NonNull CardView reactingLayout,
       @NonNull CircularImageView userItemViewProfilepic, @NonNull CardView userMemeCardView,
-      @NonNull ImageView userName) {
+      @NonNull ImageView userName, @NonNull PlayerView videoPlayer) {
     this.rootView = rootView;
     this.TitleId = TitleId;
+    this.adBody = adBody;
+    this.adCallToAction = adCallToAction;
+    this.adHeadline = adHeadline;
+    this.adImage = adImage;
     this.imageViewAnimation = imageViewAnimation;
     this.likesText = likesText;
     this.loading = loading;
     this.memeImageView = memeImageView;
     this.memeImageViewLink = memeImageViewLink;
     this.memeName = memeName;
+    this.nativeAdView = nativeAdView;
     this.postPosition = postPosition;
     this.postTime = postTime;
     this.postTitle = postTitle;
@@ -94,6 +122,7 @@ public final class ViewUserMemeItemBinding implements ViewBinding {
     this.userItemViewProfilepic = userItemViewProfilepic;
     this.userMemeCardView = userMemeCardView;
     this.userName = userName;
+    this.videoPlayer = videoPlayer;
   }
 
   @Override
@@ -126,6 +155,30 @@ public final class ViewUserMemeItemBinding implements ViewBinding {
       id = R.id.TitleId;
       LinearLayout TitleId = ViewBindings.findChildViewById(rootView, id);
       if (TitleId == null) {
+        break missingId;
+      }
+
+      id = R.id.ad_body;
+      TextView adBody = ViewBindings.findChildViewById(rootView, id);
+      if (adBody == null) {
+        break missingId;
+      }
+
+      id = R.id.ad_call_to_action;
+      Button adCallToAction = ViewBindings.findChildViewById(rootView, id);
+      if (adCallToAction == null) {
+        break missingId;
+      }
+
+      id = R.id.ad_headline;
+      TextView adHeadline = ViewBindings.findChildViewById(rootView, id);
+      if (adHeadline == null) {
+        break missingId;
+      }
+
+      id = R.id.ad_image;
+      ImageView adImage = ViewBindings.findChildViewById(rootView, id);
+      if (adImage == null) {
         break missingId;
       }
 
@@ -162,6 +215,12 @@ public final class ViewUserMemeItemBinding implements ViewBinding {
       id = R.id.memeName;
       TextView memeName = ViewBindings.findChildViewById(rootView, id);
       if (memeName == null) {
+        break missingId;
+      }
+
+      id = R.id.nativeAdView;
+      NativeAdView nativeAdView = ViewBindings.findChildViewById(rootView, id);
+      if (nativeAdView == null) {
         break missingId;
       }
 
@@ -213,10 +272,17 @@ public final class ViewUserMemeItemBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ViewUserMemeItemBinding((CardView) rootView, TitleId, imageViewAnimation,
-          likesText, loading, memeImageView, memeImageViewLink, memeName, postPosition, postTime,
-          postTitle, reactingIconsLayout, reactingLayout, userItemViewProfilepic, userMemeCardView,
-          userName);
+      id = R.id.videoPlayer;
+      PlayerView videoPlayer = ViewBindings.findChildViewById(rootView, id);
+      if (videoPlayer == null) {
+        break missingId;
+      }
+
+      return new ViewUserMemeItemBinding((CardView) rootView, TitleId, adBody, adCallToAction,
+          adHeadline, adImage, imageViewAnimation, likesText, loading, memeImageView,
+          memeImageViewLink, memeName, nativeAdView, postPosition, postTime, postTitle,
+          reactingIconsLayout, reactingLayout, userItemViewProfilepic, userMemeCardView, userName,
+          videoPlayer);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

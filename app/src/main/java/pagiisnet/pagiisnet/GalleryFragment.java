@@ -804,7 +804,7 @@ public class GalleryFragment extends Fragment {
 
             final String saveRaterBarValue = String.valueOf(raterBarValue);
 
-            mDatabaseRef = FirebaseDatabase.getInstance().getReference("videoUploads");
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
             mStorageRef = FirebaseStorage.getInstance().getReference("videoUploads");
 

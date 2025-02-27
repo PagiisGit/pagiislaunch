@@ -7,6 +7,7 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -2413,7 +2414,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
                             notificationMessage = "Someone just liked your profile";
 
-                            sendFCMNotification(userToken);
+                            sendFCMNotification(requireContext(),userToken, notificationTitle, notificationMessage);
 
                             //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
                             //Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
@@ -2445,7 +2446,7 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
                             notificationTitle = "New follower";
 
                             notificationMessage = "A new firend has followed your profile";
-                            sendFCMNotification(userToken);
+                            sendFCMNotification(requireContext(),userToken, notificationTitle, notificationMessage);
                         }
                     });
 
@@ -2454,38 +2455,76 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
     }
 
-    private void sendFCMNotification(String fcmToken) {
-        String FCM_API = "https://fcm.googleapis.com/fcm/send";
-        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
-        String contentType = "application/json";
+    private void sendFCMNotification(Context context, String fcmToken, String title, String message) {
+        if (fcmToken == null || fcmToken.isEmpty()) {
+            mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference().child("userTokens").child(onlineUserId);
 
-        JSONObject notification = new JSONObject();
-        JSONObject notificationBody = new JSONObject();
+            mDatabaseRef_Tokens.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot)
+                {
 
-        try {
-            notificationBody.put("title", notificationTitle);
-            notificationBody.put("message", notificationMessage);
+                    if(dataSnapshot.exists())
+                    {
 
-            notification.put("to", fcmToken);
-            notification.put("data", notificationBody);
-        } catch (JSONException e) {
-            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
+                        userToken = dataSnapshot.getValue().toString();
+
+                        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+                        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS";
+                        String contentType = "application/json";
+
+                        JSONObject notification = new JSONObject();
+                        JSONObject notificationBody = new JSONObject();
+                        JSONObject dataPayload = new JSONObject();
+
+                        try {
+                            notificationBody.put("title", title);
+                            notificationBody.put("body", message);
+                            dataPayload.put("key1", "value1"); // Optional data payload
+                            dataPayload.put("key2", "value2");
+
+                            notification.put("to", userToken);
+                            notification.put("notification", notificationBody);
+                            notification.put("data", dataPayload); // Optional data payload
+                        } catch (JSONException e) {
+                            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
+                        }
+
+                        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                                error -> {
+                                    if (error.networkResponse != null) {
+                                        Log.e("FCM Error", "Error code: " + error.networkResponse.statusCode);
+                                        Log.e("FCM Error", "Error data: " + new String(error.networkResponse.data));
+                                    }
+                                    Log.e("FCM Error", "Failed: " + error.toString());
+                                }) {
+                            @Override
+                            public Map<String, String> getHeaders() {
+                                Map<String, String> headers = new HashMap<>();
+                                headers.put("Authorization", "key=" + serverKey);
+                                headers.put("Content-Type", contentType);
+                                return headers;
+                            }
+                        };
+
+                        RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
+                        requestQueue.add(request);
+
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    //Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    //mProgressCircle.setVisibility(INVISIBLE);
+                }
+            });
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
-                response -> Log.d("FCM Response", "Success: " + response.toString()),
-                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", serverKey);
-                headers.put("Content-Type", contentType);
-                return headers;
-            }
-        };
 
-        @SuppressLint("RestrictedApi") RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(jsonObjectRequest);
     }
 
 
