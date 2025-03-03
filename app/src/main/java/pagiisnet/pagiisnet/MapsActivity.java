@@ -35,6 +35,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -366,7 +367,6 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     private String searcValue;
     private String userStatus;
-    private AdView adView;
 
     private String userProfileServiceTag;
 
@@ -403,6 +403,21 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
     private String notificationTitle;
     private String notificationMessage;
 
+    private ProgressBar progressBar;
+
+    private final Handler handler = new Handler();
+    private AdView adView, adView1, adView2, adView3, adView4, adView5,
+            adView6, adView7, adView8, adView9, adView10, adView11, adView12, adView13, adView14, adView15, adView16, adView17, adView18, adView19,
+            adView20, adView21, adView22, adView23, adView24, adView25, adView26, adView27;
+
+    private final Runnable adRunnable = new Runnable() {
+        @Override
+        public void run() {
+            showAds(); // Load ads
+            handler.postDelayed(this, 5000); // Run again after 5 seconds
+        }
+    };
+
 
     public class MyAppConstants {
         public static final String CHANNEL_ID = "YOUR_CHANNEL_ID";
@@ -438,6 +453,39 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         adView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+
+
+        // Find the AdView and load the ad
+        adView = findViewById(R.id.adView);
+        adView1 = findViewById(R.id.adView1);
+        adView2 = findViewById(R.id.adView2);
+        adView3 = findViewById(R.id.adView3);
+        adView4 = findViewById(R.id.adView4);
+        adView5 = findViewById(R.id.adView5);
+        adView6 = findViewById(R.id.adView6);
+        adView7 = findViewById(R.id.adView7);
+        adView8 = findViewById(R.id.adView8);
+        adView9 = findViewById(R.id.adView9);
+        adView10 = findViewById(R.id.adView10);
+        adView11 = findViewById(R.id.adView11);
+        adView12 = findViewById(R.id.adView12);
+        adView13 = findViewById(R.id.adView13);
+
+        adView14 = findViewById(R.id.adView14);
+        adView15 = findViewById(R.id.adView15);
+        adView16 = findViewById(R.id.adView16);
+        adView17 = findViewById(R.id.adView17);
+        adView18 = findViewById(R.id.adView18);
+        adView19 = findViewById(R.id.adView19);
+        adView20 = findViewById(R.id.adView20);
+        adView21 = findViewById(R.id.adView21);
+        adView22 = findViewById(R.id.adView22);
+        adView23 = findViewById(R.id.adView23);
+        adView24 = findViewById(R.id.adView24);
+        adView25 = findViewById(R.id.adView25);
+        adView26 = findViewById(R.id.adView26);
+        adView27 = findViewById(R.id.adView27);
 
 
         pagiisIcon = findViewById(R.id.PAGiiS_ICON);
@@ -647,6 +695,8 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         mapsViewCard = findViewById(R.id.mapsViewOnlineUserCardView);
         mRecyclerView = findViewById(R.id.mapsOnlienUserRecyclerview);
         pagiis360RecyclerView = findViewById(R.id.memeRecyclerView);
+
+        progressBar = findViewById(R.id.progressBar);
 
         mRecyclerViewProfileCategory = findViewById(R.id.mapsProfileCategory);
         mRecyclerViewProfileCategory.setHasFixedSize(true);
@@ -1574,10 +1624,70 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
 
 
+        //monitorUploadProgress();
+        startAdLoop();
+
 
     } // Oncreate Ends Here
 
 
+    private void showAds() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        // List of AdViews
+        AdView[] adViews = {
+                adView, adView1, adView2, adView3, adView4, adView5,
+                adView6, adView7, adView8, adView9, adView10,
+                adView11, adView12, adView13, adView14, adView15, adView16, adView17, adView18, adView19,
+                adView20, adView21, adView22, adView23, adView24,
+                adView25, adView26, adView27
+        };
+
+        // Load ads safely
+        for (AdView adView : adViews) {
+            if (adView != null) {
+                adView.loadAd(adRequest);
+            }
+        }
+    }
+
+    private void startAdLoop()
+
+    {
+        handler.post(adRunnable);
+    }
+
+
+
+    private void monitorUploadProgress() {
+        String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference progressRef = FirebaseDatabase.getInstance()
+                .getReference("uploads")
+                .child(currentUserId)
+                .child("uploadProgress");
+
+        progressRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Object value = snapshot.getValue();
+                    if (value instanceof Double) {
+                        progressBar.setVisibility(View.VISIBLE);
+                        progressBar.setProgress(((Double) value).intValue());
+                    } else if ("Completed".equals(value)) {
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Upload Completed!", Toast.LENGTH_SHORT).show();
+                    } else if ("Failed".equals(value)) {
+                        Toast.makeText(getApplicationContext(), "Upload Failed! Check Internet", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
     private void startChromeAutomation() {
         Intent serviceIntent = new Intent(this, ChromeService.class);
@@ -1602,14 +1712,18 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                 .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
-    private void sendWelcomeMessage()
-    {
+    private void sendWelcomeMessage() {
+        if (UserNotificationToken == null || UserNotificationToken.isEmpty()) {
+            Log.e("FCM", "User notification token is null or empty.");
+            return;
+        }
 
-        sendFCMNotification(UserNotificationToken);
-        notificationTitle = "Welcome to Pagiis";
-        notificationMessage = "Hi and welcome to Pagiis, you are about to explore the world and see it through the eyes of the people accross the world. Stay tuned!";
-        //FCMHELPER.sendPushNotification( UserNotificationToken , "Welcome to pagiis", "Hellow and welcome to Pagiis, this button is where you will find all your pagiis app settings in future, stay tuned.");
+        String notificationTitle = "Welcome to Pagiis";
+        String notificationMessage = "Hi and welcome to Pagiis, you are about to explore the world and see it through the eyes of the people across the world. Stay tuned!";
+
+        sendFCMNotification(UserNotificationToken, notificationTitle, notificationMessage);
     }
+
 
     /*private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -2600,7 +2714,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                         notificationTitle = "Pagiis explorer";
                         notificationMessage = "Someone is interested in exploring your location, be kind enough to share your experiences with them";
-                        sendFCMNotification(token);
+                        sendFCMNotification(token, notificationTitle, notificationMessage);
                     }
                 }
             }
@@ -2612,7 +2726,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         });
     }
 
-    private void sendFCMNotification(String fcmToken) {
+    private void sendFCMNotification(String fcmToken, String notificationTitle1, String notificationMessage1) {
         String FCM_API = "https://fcm.googleapis.com/fcm/send";
         String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
         String contentType = "application/json";
@@ -2621,27 +2735,41 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         JSONObject notificationBody = new JSONObject();
 
         try {
-            notificationBody.put("title", notificationTitle);
-            notificationBody.put("message", notificationMessage);
+            // Add notification content
+            notificationBody.put("title", notificationTitle1);
+            notificationBody.put("message", notificationMessage1);
 
+            // Set the "to" field to send to a specific token
             notification.put("to", fcmToken);
-            notification.put("data", notificationBody);
+
+            // Add both notification and data to the payload
+            notification.put("notification", notificationBody);  // For display on the device
+            notification.put("data", notificationBody);  // Optional: can be used to pass custom data
+
         } catch (JSONException e) {
             Log.e("FCM Error", "JSON Exception: " + e.getMessage());
         }
 
+        // Prepare a JSON object request to send to the FCM API
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
                 response -> Log.d("FCM Response", "Success: " + response.toString()),
-                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+                error -> {
+                    if (error.networkResponse != null) {
+                        Log.e("FCM Error", "Failed: " + new String(error.networkResponse.data));
+                    } else {
+                        Log.e("FCM Error", "Error: " + error.getMessage());
+                    }
+                }) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", serverKey);
+                headers.put("Authorization", "key=" + serverKey);  // Correct Authorization header
                 headers.put("Content-Type", contentType);
                 return headers;
             }
         };
 
+        // Add the request to the request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
     }
@@ -2810,13 +2938,16 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                                                                         //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
                                                                         Toast.makeText(getApplicationContext(), "Notification sent to all users in location.", Toast.LENGTH_SHORT).show();
-                                                                        finish();
                                                                         // String uniqueKey = databaseReference.getKey();
                                                                         //Create the function for Clearing/The ImageView Widget.
 
                                                                         userToken = dataSnapshot.getValue().toString();
 
-                                                                        sendFCMNotification(userToken);
+                                                                        String notificationTitle = "Welcome to Pagiis";
+                                                                        String notificationMessage = "Hi and welcome to Pagiis, you are about to explore the world and see it through the eyes of the people across the world. Stay tuned!";
+                                                                        sendFCMNotification(userToken, notificationTitle, notificationMessage);
+
+                                                                        finish();
                                                                     }
                                                                 });
 

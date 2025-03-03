@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import androidx.annotation.NonNull;
@@ -37,6 +38,87 @@ public final class ActivityMapsBinding implements ViewBinding {
 
   @NonNull
   public final AdView adView;
+
+  @NonNull
+  public final AdView adView1;
+
+  @NonNull
+  public final AdView adView10;
+
+  @NonNull
+  public final AdView adView11;
+
+  @NonNull
+  public final AdView adView12;
+
+  @NonNull
+  public final AdView adView13;
+
+  @NonNull
+  public final AdView adView14;
+
+  @NonNull
+  public final AdView adView15;
+
+  @NonNull
+  public final AdView adView16;
+
+  @NonNull
+  public final AdView adView17;
+
+  @NonNull
+  public final AdView adView18;
+
+  @NonNull
+  public final AdView adView19;
+
+  @NonNull
+  public final AdView adView2;
+
+  @NonNull
+  public final AdView adView20;
+
+  @NonNull
+  public final AdView adView21;
+
+  @NonNull
+  public final AdView adView22;
+
+  @NonNull
+  public final AdView adView23;
+
+  @NonNull
+  public final AdView adView24;
+
+  @NonNull
+  public final AdView adView25;
+
+  @NonNull
+  public final AdView adView26;
+
+  @NonNull
+  public final AdView adView27;
+
+  @NonNull
+  public final AdView adView3;
+
+  @NonNull
+  public final AdView adView4;
+
+  @NonNull
+  public final AdView adView5;
+
+  @NonNull
+  public final AdView adView6;
+
+  @NonNull
+  public final AdView adView7;
+
+  @NonNull
+  public final AdView adView8;
+
+  @NonNull
+  public final AdView adView9;
 
   @NonNull
   public final CardView discoverLayout;
@@ -84,6 +166,9 @@ public final class ActivityMapsBinding implements ViewBinding {
   public final CircularImageView nearbyLocation;
 
   @NonNull
+  public final ProgressBar progressBar;
+
+  @NonNull
   public final AppCompatEditText searchEdittext;
 
   @NonNull
@@ -93,8 +178,17 @@ public final class ActivityMapsBinding implements ViewBinding {
   public final LinearLayout searchTextInputLayout;
 
   private ActivityMapsBinding(@NonNull RelativeLayout rootView, @NonNull ImageView LogSearchIconGo,
-      @NonNull CircularImageView PAGiiSICON, @NonNull AdView adView,
-      @NonNull CardView discoverLayout, @NonNull CircularImageView hideMapsPublicPostsCardView,
+      @NonNull CircularImageView PAGiiSICON, @NonNull AdView adView, @NonNull AdView adView1,
+      @NonNull AdView adView10, @NonNull AdView adView11, @NonNull AdView adView12,
+      @NonNull AdView adView13, @NonNull AdView adView14, @NonNull AdView adView15,
+      @NonNull AdView adView16, @NonNull AdView adView17, @NonNull AdView adView18,
+      @NonNull AdView adView19, @NonNull AdView adView2, @NonNull AdView adView20,
+      @NonNull AdView adView21, @NonNull AdView adView22, @NonNull AdView adView23,
+      @NonNull AdView adView24, @NonNull AdView adView25, @NonNull AdView adView26,
+      @NonNull AdView adView27, @NonNull AdView adView3, @NonNull AdView adView4,
+      @NonNull AdView adView5, @NonNull AdView adView6, @NonNull AdView adView7,
+      @NonNull AdView adView8, @NonNull AdView adView9, @NonNull CardView discoverLayout,
+      @NonNull CircularImageView hideMapsPublicPostsCardView,
       @NonNull CircularImageView hidePublicProfilesCardView, @NonNull CardView iconstand,
       @NonNull ListView lvPlaceSuggestions, @NonNull RelativeLayout mainContainer,
       @NonNull FragmentContainerView map, @NonNull BottomNavigationView mapsBottomNav,
@@ -102,12 +196,40 @@ public final class ActivityMapsBinding implements ViewBinding {
       @NonNull RecyclerView mapsPublicContentRecyclerView,
       @NonNull CardView mapsPublicProfilePostsCardView,
       @NonNull CardView mapsViewOnlineUserCardView, @NonNull RecyclerView memeRecyclerView,
-      @NonNull CircularImageView nearbyLocation, @NonNull AppCompatEditText searchEdittext,
-      @NonNull Spinner searchSpinner, @NonNull LinearLayout searchTextInputLayout) {
+      @NonNull CircularImageView nearbyLocation, @NonNull ProgressBar progressBar,
+      @NonNull AppCompatEditText searchEdittext, @NonNull Spinner searchSpinner,
+      @NonNull LinearLayout searchTextInputLayout) {
     this.rootView = rootView;
     this.LogSearchIconGo = LogSearchIconGo;
     this.PAGiiSICON = PAGiiSICON;
     this.adView = adView;
+    this.adView1 = adView1;
+    this.adView10 = adView10;
+    this.adView11 = adView11;
+    this.adView12 = adView12;
+    this.adView13 = adView13;
+    this.adView14 = adView14;
+    this.adView15 = adView15;
+    this.adView16 = adView16;
+    this.adView17 = adView17;
+    this.adView18 = adView18;
+    this.adView19 = adView19;
+    this.adView2 = adView2;
+    this.adView20 = adView20;
+    this.adView21 = adView21;
+    this.adView22 = adView22;
+    this.adView23 = adView23;
+    this.adView24 = adView24;
+    this.adView25 = adView25;
+    this.adView26 = adView26;
+    this.adView27 = adView27;
+    this.adView3 = adView3;
+    this.adView4 = adView4;
+    this.adView5 = adView5;
+    this.adView6 = adView6;
+    this.adView7 = adView7;
+    this.adView8 = adView8;
+    this.adView9 = adView9;
     this.discoverLayout = discoverLayout;
     this.hideMapsPublicPostsCardView = hideMapsPublicPostsCardView;
     this.hidePublicProfilesCardView = hidePublicProfilesCardView;
@@ -123,6 +245,7 @@ public final class ActivityMapsBinding implements ViewBinding {
     this.mapsViewOnlineUserCardView = mapsViewOnlineUserCardView;
     this.memeRecyclerView = memeRecyclerView;
     this.nearbyLocation = nearbyLocation;
+    this.progressBar = progressBar;
     this.searchEdittext = searchEdittext;
     this.searchSpinner = searchSpinner;
     this.searchTextInputLayout = searchTextInputLayout;
@@ -170,6 +293,168 @@ public final class ActivityMapsBinding implements ViewBinding {
       id = R.id.adView;
       AdView adView = ViewBindings.findChildViewById(rootView, id);
       if (adView == null) {
+        break missingId;
+      }
+
+      id = R.id.adView1;
+      AdView adView1 = ViewBindings.findChildViewById(rootView, id);
+      if (adView1 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView10;
+      AdView adView10 = ViewBindings.findChildViewById(rootView, id);
+      if (adView10 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView11;
+      AdView adView11 = ViewBindings.findChildViewById(rootView, id);
+      if (adView11 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView12;
+      AdView adView12 = ViewBindings.findChildViewById(rootView, id);
+      if (adView12 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView13;
+      AdView adView13 = ViewBindings.findChildViewById(rootView, id);
+      if (adView13 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView14;
+      AdView adView14 = ViewBindings.findChildViewById(rootView, id);
+      if (adView14 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView15;
+      AdView adView15 = ViewBindings.findChildViewById(rootView, id);
+      if (adView15 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView16;
+      AdView adView16 = ViewBindings.findChildViewById(rootView, id);
+      if (adView16 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView17;
+      AdView adView17 = ViewBindings.findChildViewById(rootView, id);
+      if (adView17 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView18;
+      AdView adView18 = ViewBindings.findChildViewById(rootView, id);
+      if (adView18 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView19;
+      AdView adView19 = ViewBindings.findChildViewById(rootView, id);
+      if (adView19 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView2;
+      AdView adView2 = ViewBindings.findChildViewById(rootView, id);
+      if (adView2 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView20;
+      AdView adView20 = ViewBindings.findChildViewById(rootView, id);
+      if (adView20 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView21;
+      AdView adView21 = ViewBindings.findChildViewById(rootView, id);
+      if (adView21 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView22;
+      AdView adView22 = ViewBindings.findChildViewById(rootView, id);
+      if (adView22 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView23;
+      AdView adView23 = ViewBindings.findChildViewById(rootView, id);
+      if (adView23 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView24;
+      AdView adView24 = ViewBindings.findChildViewById(rootView, id);
+      if (adView24 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView25;
+      AdView adView25 = ViewBindings.findChildViewById(rootView, id);
+      if (adView25 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView26;
+      AdView adView26 = ViewBindings.findChildViewById(rootView, id);
+      if (adView26 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView27;
+      AdView adView27 = ViewBindings.findChildViewById(rootView, id);
+      if (adView27 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView3;
+      AdView adView3 = ViewBindings.findChildViewById(rootView, id);
+      if (adView3 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView4;
+      AdView adView4 = ViewBindings.findChildViewById(rootView, id);
+      if (adView4 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView5;
+      AdView adView5 = ViewBindings.findChildViewById(rootView, id);
+      if (adView5 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView6;
+      AdView adView6 = ViewBindings.findChildViewById(rootView, id);
+      if (adView6 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView7;
+      AdView adView7 = ViewBindings.findChildViewById(rootView, id);
+      if (adView7 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView8;
+      AdView adView8 = ViewBindings.findChildViewById(rootView, id);
+      if (adView8 == null) {
+        break missingId;
+      }
+
+      id = R.id.adView9;
+      AdView adView9 = ViewBindings.findChildViewById(rootView, id);
+      if (adView9 == null) {
         break missingId;
       }
 
@@ -259,6 +544,12 @@ public final class ActivityMapsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       id = R.id.searchEdittext;
       AppCompatEditText searchEdittext = ViewBindings.findChildViewById(rootView, id);
       if (searchEdittext == null) {
@@ -278,10 +569,13 @@ public final class ActivityMapsBinding implements ViewBinding {
       }
 
       return new ActivityMapsBinding((RelativeLayout) rootView, LogSearchIconGo, PAGiiSICON, adView,
+          adView1, adView10, adView11, adView12, adView13, adView14, adView15, adView16, adView17,
+          adView18, adView19, adView2, adView20, adView21, adView22, adView23, adView24, adView25,
+          adView26, adView27, adView3, adView4, adView5, adView6, adView7, adView8, adView9,
           discoverLayout, hideMapsPublicPostsCardView, hidePublicProfilesCardView, iconstand,
           lvPlaceSuggestions, mainContainer, map, mapsBottomNav, mapsOnlienUserRecyclerview,
           mapsProfileCategory, mapsPublicContentRecyclerView, mapsPublicProfilePostsCardView,
-          mapsViewOnlineUserCardView, memeRecyclerView, nearbyLocation, searchEdittext,
+          mapsViewOnlineUserCardView, memeRecyclerView, nearbyLocation, progressBar, searchEdittext,
           searchSpinner, searchTextInputLayout);
     }
     String missingId = rootView.getResources().getResourceName(id);

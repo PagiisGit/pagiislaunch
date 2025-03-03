@@ -71,6 +71,7 @@ import com.varunest.sparkbutton.SparkEventListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -100,6 +101,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
     private String myLastLocationDetails;
     private String userToken;
     private DatabaseReference mDatabaseRef_Tokens;
+
+    private String ProfilePicture;
 
     public ViewProfilePicsAdapter(Context context, List<ImageUploads> uploads) {
         this.mContext = context;
@@ -217,6 +220,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             String postPosition = uploadCurrent.getPostLocation();
             String time = uploadCurrent.getPostTime();
             String postName = uploadCurrent.getPostName();
+            String fileExtention = uploadCurrent.getExRating();
+
 
             onlineUserId = uploadCurrent.getUserId();
 
@@ -226,22 +231,96 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             Post_Time.setText(time);
             textViewNameLikes.setText("likes");
 
+
+
+
             if (loadImageUrl != null && !loadImageUrl.equals("null")) {
-                if (isVideoUrl(loadImageUrl)) {
+                if (fileExtention != null && !fileExtention.isEmpty() && isVideoUrl(fileExtention) )
+                {
+
+
+                        playerView.setVisibility(VISIBLE);
+                        imageView.setVisibility(INVISIBLE);
+                        linkView.setVisibility(INVISIBLE);
+                        initializeExoPlayer(loadImageUrl);
+
+                    DatabaseReference mDatabaseRef_x = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
+
+                    mDatabaseRef_x.addValueEventListener(new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                        {
+
+                            if(dataSnapshot.exists()  && dataSnapshot.hasChild("userImageDp") )
+                            {
+                                if(dataSnapshot.child("userImageDp").getValue() != "userDefaultDp")
+                                {
+                                    ProfilePicture = dataSnapshot.child("userImageDp").getValue().toString();
+                                    loadProfileImage(ProfilePicture);
+                                }
+
+                            }else {
+                                // Set a default image if the URL is null or empty
+                                profileImageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
+                            }
+
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
                     // Handle video URL
-                    playerView.setVisibility(VISIBLE);
-                    imageView.setVisibility(INVISIBLE);
-                    linkView.setVisibility(INVISIBLE);
-                    initializeExoPlayer(loadImageUrl);
+
                 } else if (Patterns.WEB_URL.matcher(postTitle).matches()) {
                     // Handle link preview
                     linkView.setVisibility(VISIBLE);
                     imageView.setVisibility(INVISIBLE);
                     playerView.setVisibility(INVISIBLE);
 
+
+
+
                     linkView.setLink(loadImageUrl, new ViewListener() {
                         @Override
-                        public void onSuccess(boolean status) {}
+                        public void onSuccess(boolean status)
+                        {
+                            DatabaseReference mDatabaseRef_x = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
+
+                            mDatabaseRef_x.addValueEventListener(new ValueEventListener() {
+
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                {
+
+                                    if(dataSnapshot.exists()  && dataSnapshot.hasChild("userImageDp") )
+                                    {
+                                        if(dataSnapshot.child("userImageDp").getValue() != "userDefaultDp")
+                                        {
+                                            ProfilePicture = dataSnapshot.child("userImageDp").getValue().toString();
+                                            loadProfileImage(ProfilePicture);
+                                        }
+
+                                    }else {
+                                        // Set a default image if the URL is null or empty
+                                        profileImageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
+                                    }
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                        }
 
                         @Override
                         public void onError(Exception e) {}
@@ -252,8 +331,40 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                     imageView.setVisibility(VISIBLE);
                     playerView.setVisibility(INVISIBLE);
                     loadImageWithGlide(loadImageUrl);
+
+                    DatabaseReference mDatabaseRef_x = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
+
+                    mDatabaseRef_x.addValueEventListener(new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                        {
+
+                            if(dataSnapshot.exists()  && dataSnapshot.hasChild("userImageDp") )
+                            {
+                                if(dataSnapshot.child("userImageDp").getValue() != "userDefaultDp")
+                                {
+                                    ProfilePicture = dataSnapshot.child("userImageDp").getValue().toString();
+                                    loadProfileImage(ProfilePicture);
+                                }
+
+                            }else {
+                                // Set a default image if the URL is null or empty
+                                profileImageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
                 }
-                loadProfileImage(profileImage);
+
             } else {
                 imageView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.pagiis_logo_final));
             }
@@ -261,9 +372,12 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             setupLikeButton(uploadCurrent.getKey());
         }
 
-        private boolean isVideoUrl(String url) {
+        private boolean isVideoUrl(String url)
+        {
             // Check if the URL points to a video file
-            return url.endsWith(".mp4") || url.endsWith(".3gp") || url.endsWith(".mkv");
+
+                return url.endsWith(".mp4") || url.endsWith(".3gp") || url.endsWith(".mkv");
+
         }
 
         private void initializeExoPlayer(String videoUrl) {
@@ -332,7 +446,7 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                 @Override
                 public void onEvent(ImageView button, boolean buttonState) {
                     if (buttonState) {
-                        handleLike(postKey);
+                        handleLike(postKey,onlineUserId);
                     } else {
                         handleUnlike(postKey);
                     }
@@ -346,12 +460,12 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
             });
         }
 
-        private void handleLike(String postKey) {
+        private void handleLike(String postKey, String userKeyId) {
             mDatabaseRefLikes.child(postKey).child(mAuth.getCurrentUser().getUid()).setValue("true")
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             updateLikesCount(postKey);
-                            postNotification(postKey, "Like");
+                            postNotification(postKey, "Like", userKeyId);
                             Toast.makeText(mContext, "Added to favorites!", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -422,18 +536,45 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         }
     }
 
-    private void postNotification(String postKey, String type) {
+
+    private void postNotification(String postKey, String type, String userKeyId) {
         if (type.equals("Like")) {
-            ImageUploads notification = new ImageUploads(
-                    myName, myImageDpUrl, "", mAuth.getCurrentUser().getUid(), "", "", "", "", myLastLocationDetails, "Your profile has a new like"
-            );
-            mDatabaseRefNotifications.child(postKey).push().setValue(notification, (error, ref) -> {
-                if (error == null) {
-                    sendFCMNotification(mContext,userToken, "New post like", "Your post just got a new like.");
+            DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("userTokens");
+            tokensRef.child(userKeyId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    // Get the user token from the dataSnapshot
+                    String userToken = dataSnapshot.getValue(String.class); // Assuming the token is stored as a string
+
+                    if (userToken != null) {
+                        // Create the notification object with the correct data
+                        ImageUploads notification = new ImageUploads(
+                                myName, myImageDpUrl, "", mAuth.getCurrentUser().getUid(),
+                                "", "", "", "", myLastLocationDetails, "Your profile has a new like"
+                        );
+
+                        // Push the notification to Firebase Realtime Database
+                        mDatabaseRefNotifications.child(postKey).push().setValue(notification, (error, ref) -> {
+                            if (error == null) {
+                                // Send the FCM notification
+                                sendFCMNotification(userToken, "New post like", "Your post just got a new like.");
+                            } else {
+                                Log.e("Database Error", "Failed to send notification: " + error.getMessage());
+                            }
+                        });
+                    } else {
+                        Log.e("FCM Error", "User token not found for user: " + userKeyId);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("SendNotifications", "Error fetching FCM tokens: " + databaseError.getMessage());
                 }
             });
         }
     }
+
 
 
     @SuppressLint({"MissingInflatedId", "RestrictedApi"})
@@ -521,74 +662,58 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
     }
 
 
-    private void sendFCMNotification(Context context, String fcmToken, String title, String message) {
+    private void sendFCMNotification(String fcmToken, String notificationTitle1, String notificationMessage1) {
+        String FCM_API = "https://fcm.googleapis.com/fcm/send";
+        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
+        String contentType = "application/json";
 
-        if (fcmToken == null || fcmToken.isEmpty()) {
-            mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference().child("userTokens").child(onlineUserId);
+        JSONObject notification = new JSONObject();
+        JSONObject notificationBody = new JSONObject();
 
-            mDatabaseRef_Tokens.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        userToken = dataSnapshot.getValue().toString();
+        try {
+            // Add notification content
+            notificationBody.put("title", notificationTitle1);
+            notificationBody.put("message", notificationMessage1);
 
-                        String FCM_API = "https://fcm.googleapis.com/fcm/send";
-                        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS";
-                        String contentType = "application/json";
+            // Set the "to" field to send to a specific token
+            notification.put("to", fcmToken);
 
-                        JSONObject notification = new JSONObject();
-                        JSONObject notificationBody = new JSONObject();
-                        JSONObject dataPayload = new JSONObject();
+            // Add both notification and data to the payload
+            notification.put("notification", notificationBody);  // For display on the device
+            notification.put("data", notificationBody);  // Optional: can be used to pass custom data
 
-                        try {
-                            notificationBody.put("title", title);
-                            notificationBody.put("body", message);
-                            notificationBody.put("android_channel_id", "Pagiis_notifications"); // ✅ Set channel ID
-                            dataPayload.put("key1", "value1"); // Optional payload
-                            dataPayload.put("key2", "value2");
-
-                            notification.put("to", userToken);
-                            notification.put("notification", notificationBody);
-                            notification.put("data", dataPayload);
-                        } catch (JSONException e) {
-                            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
-                        }
-
-                        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
-                                response -> Log.d("FCM Response", "Success: " + response.toString()),
-                                error -> {
-                                    if (error.networkResponse != null) {
-                                        Log.e("FCM Error", "Error code: " + error.networkResponse.statusCode);
-                                        Log.e("FCM Error", "Error data: " + new String(error.networkResponse.data));
-                                    }
-                                    Log.e("FCM Error", "Failed: " + error.toString());
-                                }) {
-                            @Override
-                            public Map<String, String> getHeaders() {
-                                Map<String, String> headers = new HashMap<>();
-                                headers.put("Authorization", "key=" + serverKey);
-                                headers.put("Content-Type", contentType);
-                                return headers;
-                            }
-                        };
-
-                        RequestQueue requestQueue = Volley.newRequestQueue(context);
-                        requestQueue.add(request);
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e("FCM Error", "Database Error: " + databaseError.getMessage());
-                }
-            });
+        } catch (JSONException e) {
+            Log.e("FCM Error", "JSON Exception: " + e.getMessage());
         }
+
+        // Prepare a JSON object request to send to the FCM API
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                error -> {
+                    if (error.networkResponse != null) {
+                        Log.e("FCM Error", "Failed: " + new String(error.networkResponse.data));
+                    } else {
+                        Log.e("FCM Error", "Error: " + error.getMessage());
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "key=" + serverKey);  // Correct Authorization header
+                headers.put("Content-Type", contentType);
+                return headers;
+            }
+        };
+
+        // Add the request to the request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext);
+        requestQueue.add(jsonObjectRequest);
     }
 
     // Load Native Ad
 
     private void loadNativeAd(ImageViewHolder holder) {
-        AdLoader adLoader = new AdLoader.Builder(mContext, "ca-app-pub-1698498156044590/2792098143")
+        AdLoader adLoader = new AdLoader.Builder(mContext, "ca-app-pub-1698498156044590/8114080739")
                 .forNativeAd(nativeAd -> {
                     holder.nativeAdView.setHeadlineView(holder.adHeadline);
                     holder.nativeAdView.setBodyView(holder.adBody);

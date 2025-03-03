@@ -668,13 +668,21 @@ public class GalleryFragment extends Fragment {
 
 
                                                         // Get the context and activity
-                                                        @SuppressLint("RestrictedApi") Context context = getApplicationContext();
+                                                        @SuppressLint("RestrictedApi") Context context = requireContext();
                                                         Activity activity = getActivity();
 
                                                         // Iterate through the list of user FCM tokens and send notifications to each user
                                                         for (String userFcmToken : userFcmTokens) {
                                                             // Instantiate FcmNotificationsSender with the necessary parameters
-                                                            sendFCMNotification(userFcmToken);
+
+                                                            if (userFcmToken == null || userFcmToken.isEmpty()) {
+                                                                Log.e("FCM", "User notification token is null or empty.");
+                                                                return;
+                                                            }
+
+                                                            String notificationTitle = "Interesting post";
+                                                            String notificationMessage = "Pagiis users have interesting posts to share.";
+                                                            sendFCMNotification(userFcmToken,notificationTitle,notificationMessage);
                                                         }
 
                                                         //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
@@ -748,7 +756,7 @@ public class GalleryFragment extends Fragment {
 
     }
 
-    private void sendFCMNotification(String fcmToken) {
+    private void sendFCMNotification(String fcmToken, String notificationTitle1, String notificationMessage1) {
         String FCM_API = "https://fcm.googleapis.com/fcm/send";
         String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
         String contentType = "application/json";
@@ -757,27 +765,41 @@ public class GalleryFragment extends Fragment {
         JSONObject notificationBody = new JSONObject();
 
         try {
-            notificationBody.put("title", "Location Alert!");
-            notificationBody.put("message", "Someone is exploring your area. Check it out!");
+            // Add notification content
+            notificationBody.put("title", notificationTitle1);
+            notificationBody.put("message", notificationMessage1);
 
+            // Set the "to" field to send to a specific token
             notification.put("to", fcmToken);
-            notification.put("data", notificationBody);
+
+            // Add both notification and data to the payload
+            notification.put("notification", notificationBody);  // For display on the device
+            notification.put("data", notificationBody);  // Optional: can be used to pass custom data
+
         } catch (JSONException e) {
             Log.e("FCM Error", "JSON Exception: " + e.getMessage());
         }
 
+        // Prepare a JSON object request to send to the FCM API
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
                 response -> Log.d("FCM Response", "Success: " + response.toString()),
-                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+                error -> {
+                    if (error.networkResponse != null) {
+                        Log.e("FCM Error", "Failed: " + new String(error.networkResponse.data));
+                    } else {
+                        Log.e("FCM Error", "Error: " + error.getMessage());
+                    }
+                }) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", serverKey);
+                headers.put("Authorization", "key=" + serverKey);  // Correct Authorization header
                 headers.put("Content-Type", contentType);
                 return headers;
             }
         };
 
+        // Add the request to the request queue
         RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
         requestQueue.add(jsonObjectRequest);
     }
@@ -835,7 +857,7 @@ public class GalleryFragment extends Fragment {
                                         finalImageUrl = String.valueOf(uri);
 
                                         ImageUploads upload = new ImageUploads(mEditTextFileName.getText().toString().trim(),
-                                                finalImageUrl, saveRaterBarValue, currentUserId, "1", "1", "0", uploadTimeValue, myLastLocationDetails, MyName);
+                                                finalImageUrl, raterBarValue+"." + getFileExtension(mImageUri), currentUserId, "1", "1", "0", uploadTimeValue, myLastLocationDetails, MyName);
 
                                         mDatabaseRef.child(currentUserId)
                                                 .push()
@@ -847,7 +869,7 @@ public class GalleryFragment extends Fragment {
                                                         //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
                                                         Toast.makeText(getActivity(), " Video upload successful !!", Toast.LENGTH_SHORT).show();
                                                         mProgressBar.setVisibility(View.INVISIBLE);
-                                                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.GalleryFragment,new VideoFragment()).commit();
+                                                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.GalleryFragment,new HomeFragment()).commit();
                                                         // String uniqueKey = databaseReference.getKey();
                                                         //Create the function for Clearing/The ImageView Widget.
                                                     }

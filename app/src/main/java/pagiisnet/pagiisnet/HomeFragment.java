@@ -12,6 +12,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -93,6 +94,10 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private DatabaseReference mDatabaseRef_Y;
+
+    private static final long DEBOUNCE_DELAY = 300;  // Delay in milliseconds
+    private Handler handler = new Handler();
+    private Runnable debounceRunnable;
     private DatabaseReference mDatabaseRef_Tokens;
 
     // TODO: Rename and change types of parameters
@@ -308,12 +313,29 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     private static final int MAX_MATCHES = 10; // Maximum number of matches to collect
 
     private void searchLocations(String query) {
+        // Remove any existing pending runnable to prevent multiple queries
+        if (debounceRunnable != null) {
+            handler.removeCallbacks(debounceRunnable);
+        }
+
+        // Delay the Firebase query execution to avoid firing it for every keystroke
+        debounceRunnable = new Runnable() {
+            @Override
+            public void run() {
+                performSearch(query);
+            }
+        };
+
+        // Execute the query after DEBOUNCE_DELAY milliseconds
+        handler.postDelayed(debounceRunnable, DEBOUNCE_DELAY);
+    }
+
+    private void performSearch(String query) {
         DatabaseReference locationDetails = FirebaseDatabase.getInstance().getReference().child("MyLastLocation");
         locationDetails.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                locationSuggestions.clear(); // Clear previous suggestions
-
+                locationSuggestions.clear();  // Clear previous suggestions
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String locationKey = ds.getKey();
                     if (locationKey != null) {
@@ -325,7 +347,6 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
                         break;
                     }
                 }
-
                 updateLocationSuggestionsUI();
             }
 
@@ -335,6 +356,10 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
             }
         });
     }
+
+
+
+
 
     private void fetchLocationDetails(DatabaseReference locationRef, String query) {
         locationRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -355,6 +380,7 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
         });
     }
 
+
     private void addLocationIfMatchesQuery(String location, String query) {
         String[] locationParts = location.split(",");
         for (String part : locationParts) {
@@ -366,12 +392,16 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
     }
 
     private void updateLocationSuggestionsUI() {
-        if (!locationSuggestions.isEmpty()) {
-            locationSuggestionsList.setVisibility(View.VISIBLE);
+        // If the adapter isn't set yet, do it now
+        if (locationAdapter == null) {
+            locationAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, locationSuggestions);
+            locationSuggestionsList.setAdapter(locationAdapter);
         } else {
-            locationSuggestionsList.setVisibility(View.GONE);
+            // Ensure that UI update happens on the main thread
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(() ->locationAdapter.notifyDataSetChanged());
+            }
         }
-        locationAdapter.notifyDataSetChanged();
     }
 
     @SuppressLint("RestrictedApi")
@@ -1554,22 +1584,21 @@ public class HomeFragment extends Fragment implements ViewProfilePicsAdapter.OnI
         // Listen for text input changes
         locationInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 1) { // Start searching after at least 2 characters
-                    searchLocations(s.toString());
-                    //locationSuggestionsList.setVisibility(VISIBLE);
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                String query = charSequence.toString();
+                if (!query.isEmpty()) {
+                    searchLocations(query);
                 } else {
                     locationSuggestions.clear();
-                    locationAdapter.notifyDataSetChanged();
-                    locationSuggestionsList.setVisibility(View.GONE);
+                    updateLocationSuggestionsUI();  // Clear suggestions when the query is empty
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable editable) {}
         });
 
         // Handle item selection from suggestions

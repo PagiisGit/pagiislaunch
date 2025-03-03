@@ -31,6 +31,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.work.Constraints;
+import androidx.work.Data;
+import androidx.work.NetworkType;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -58,6 +63,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -502,42 +508,42 @@ public class GalleryUploads extends AppCompatActivity
     private void popLinkEdit()
     {
 
-                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(GalleryUploads.this);
-                View mView = getLayoutInflater().inflate(R.layout.productstorelink, null);
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(GalleryUploads.this);
+        View mView = getLayoutInflater().inflate(R.layout.productstorelink, null);
 
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-                @SuppressLint({"MissingInflatedId", "LocalSuppress"}) EditText emailField = mView.findViewById(R.id.emailContact);
-                @SuppressLint({"MissingInflatedId", "LocalSuppress"}) EditText cellPhoneNumber = mView.findViewById(R.id.cancelSignOutImage);
-                ImageButton sendEmail = mView.findViewById(R.id.sendEmail);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) EditText emailField = mView.findViewById(R.id.emailContact);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) EditText cellPhoneNumber = mView.findViewById(R.id.cancelSignOutImage);
+        ImageButton sendEmail = mView.findViewById(R.id.sendEmail);
 
-                mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
+        mBuilder.setView(mView);
+        AlertDialog dialog = mBuilder.create();
+        dialog.show();
 
-                sendEmail.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+        sendEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                        if(!emailField.getText().toString().isEmpty())
+                if(!emailField.getText().toString().isEmpty())
 
-                        {
+                {
 
-                            String link = emailField.getText().toString();
-
-
-                            addProduct(link);
+                    String link = emailField.getText().toString();
 
 
-                        }else
-                        {
+                    addProduct(link);
 
-                            Toast.makeText(getApplicationContext(), "Paste a link to your product store.", Toast.LENGTH_LONG).show();
 
-                        }
+                }else
+                {
 
-                    }
-                });
+                    Toast.makeText(getApplicationContext(), "Paste a link to your product store.", Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+        });
 
     }
 
@@ -806,7 +812,7 @@ public class GalleryUploads extends AppCompatActivity
                                         finalImageUrl = String.valueOf(uri);
 
 
-                                        ImageUploads upload = new ImageUploads(mEditTextFileName.getText().toString().trim(), finalImageUrl, raterBarValue, currentUserId, raterBarValueDefault, raterBarValueDefault, raterBarValueDefault, postTimeDateStamp, myLastLocationDetails, MyName);
+                                        ImageUploads upload = new ImageUploads(mEditTextFileName.getText().toString().trim(), finalImageUrl, raterBarValue+"." + getFileExtension(mImageUri), currentUserId, raterBarValueDefault, raterBarValueDefault, raterBarValueDefault, postTimeDateStamp, myLastLocationDetails, MyName);
                                         mDatabaseRef.child(currentUserId)
                                                 .push()
                                                 .setValue(upload, new DatabaseReference.CompletionListener() {
@@ -1156,7 +1162,7 @@ public class GalleryUploads extends AppCompatActivity
                                                                         notificationTitle = "Local Post";
                                                                         notificationMessage = "Someone might have something intersting to share with, check it ou";
 
-                                                                        sendFCMNotification(userToken);
+                                                                        sendFCMNotification(userToken,notificationTitle,notificationMessage);
 
                                                                         finish();
 
@@ -1219,7 +1225,7 @@ public class GalleryUploads extends AppCompatActivity
         }
     }
 
-    private void sendFCMNotification(String fcmToken) {
+    private void sendFCMNotification(String fcmToken, String notificationTitle1, String notificationMessage1) {
         String FCM_API = "https://fcm.googleapis.com/fcm/send";
         String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
         String contentType = "application/json";
@@ -1228,28 +1234,42 @@ public class GalleryUploads extends AppCompatActivity
         JSONObject notificationBody = new JSONObject();
 
         try {
-            notificationBody.put("title", "Location Alert!");
-            notificationBody.put("message", "Someone is exploring your area. Check it out!");
+            // Add notification content
+            notificationBody.put("title", notificationTitle1);
+            notificationBody.put("message", notificationMessage1);
 
+            // Set the "to" field to send to a specific token
             notification.put("to", fcmToken);
-            notification.put("data", notificationBody);
+
+            // Add both notification and data to the payload
+            notification.put("notification", notificationBody);  // For display on the device
+            notification.put("data", notificationBody);  // Optional: can be used to pass custom data
+
         } catch (JSONException e) {
             Log.e("FCM Error", "JSON Exception: " + e.getMessage());
         }
 
+        // Prepare a JSON object request to send to the FCM API
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
                 response -> Log.d("FCM Response", "Success: " + response.toString()),
-                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+                error -> {
+                    if (error.networkResponse != null) {
+                        Log.e("FCM Error", "Failed: " + new String(error.networkResponse.data));
+                    } else {
+                        Log.e("FCM Error", "Error: " + error.getMessage());
+                    }
+                }) {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", serverKey);
+                headers.put("Authorization", "key=" + serverKey);  // Correct Authorization header
                 headers.put("Content-Type", contentType);
                 return headers;
             }
         };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(GalleryUploads.this);
+        // Add the request to the request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(jsonObjectRequest);
     }
 
@@ -1399,10 +1419,58 @@ public class GalleryUploads extends AppCompatActivity
     }
 
 
+    /*private void getTimeUpload() {
+        if (mImageUri != null) {
+            Data data = new Data.Builder()
+                    .putString("video_uri", mImageUri.toString())
+                    .build();
+
+            OneTimeWorkRequest uploadRequest = new OneTimeWorkRequest.Builder(VideoUploadWorker.class)
+                    .setConstraints(
+                            new Constraints.Builder()
+                                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                                    .build()
+                    )
+                    .setInputData(data)
+                    .build();
+
+            WorkManager.getInstance(this).enqueue(Collections.singletonList(uploadRequest));
+
+            Toast.makeText(getApplicationContext(), "Video upload in progress", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Please select a file to post", Toast.LENGTH_SHORT).show();
+        }
+    }*/
+
+
+
     private void getTimeUpload() {
         //String uploadTime = calendar.getTime().toString();
 
-        if(mImageUri != null) {
+        if(mImageUri != null)
+        {
+
+            final String currentUserId = mAuth.getCurrentUser().getUid();
+
+            mDatabaseRef_x = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+
+            mDatabaseRef_x.addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    raterBarValue = dataSnapshot.child("userImageDp").getValue().toString();
+                    MyName = dataSnapshot.child("userNameAsEmail").getValue().toString();
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
 
             simpleDateFormat = new SimpleDateFormat("dd:MM:yy:HH:mm:ss");
 
@@ -1410,15 +1478,13 @@ public class GalleryUploads extends AppCompatActivity
             uploadTimeValue = simpleDateFormat.format(calendar.getTime());
 
 
-            final String currentUserId = mAuth.getCurrentUser().getUid();
-
             //mProgressCircle.setVisibility(View.VISIBLE);
 
             final String imageUrl = String.valueOf(mImageUri);
 
             final String saveRaterBarValue = String.valueOf(raterBarValue);
 
-            mDatabaseRef = FirebaseDatabase.getInstance().getReference("videoUploads");
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
             mStorageRef = FirebaseStorage.getInstance().getReference("videoUploads");
 
@@ -1449,7 +1515,7 @@ public class GalleryUploads extends AppCompatActivity
                                         finalImageUrl = String.valueOf(uri);
 
                                         ImageUploads upload = new ImageUploads(mEditTextFileName.getText().toString().trim(),
-                                                finalImageUrl, saveRaterBarValue, currentUserId, "1", "1", "0", uploadTimeValue, myLastLocationDetails, MyName);
+                                                finalImageUrl,saveRaterBarValue +"." + getFileExtension(mImageUri), currentUserId, "1", "1", "0", uploadTimeValue, myLastLocationDetails, MyName);
 
                                         mDatabaseRef.child(currentUserId)
                                                 .push()
@@ -1461,7 +1527,7 @@ public class GalleryUploads extends AppCompatActivity
                                                         //mProgressCircle.setVisibility(View.INVISIBLE);  This function is used to hide the progress Bar after its function is done
                                                         Toast.makeText(getApplicationContext(), " Video upload successful !!", Toast.LENGTH_SHORT).show();
                                                         mProgressBar.setVisibility(View.INVISIBLE);
-                                                        getSupportFragmentManager().beginTransaction().replace(R.id.GalleryFragment,new VideoFragment()).commit();
+                                                        finish();
                                                         // String uniqueKey = databaseReference.getKey();
                                                         //Create the function for Clearing/The ImageView Widget.
                                                     }
