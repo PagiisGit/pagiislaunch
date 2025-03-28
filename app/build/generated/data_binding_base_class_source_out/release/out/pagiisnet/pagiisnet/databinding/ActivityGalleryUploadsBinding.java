@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
@@ -14,8 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -26,19 +23,10 @@ public final class ActivityGalleryUploadsBinding implements ViewBinding {
   private final RelativeLayout rootView;
 
   @NonNull
-  public final FloatingActionButton GalleryOption;
-
-  @NonNull
-  public final TextInputEditText chosenTitleEdit;
-
-  @NonNull
   public final VideoView chosenVideoView;
 
   @NonNull
   public final ImageView galleryChosenImageView;
-
-  @NonNull
-  public final LinearLayout postTitle;
 
   @NonNull
   public final ProgressBar progressCircleUpload;
@@ -46,23 +34,14 @@ public final class ActivityGalleryUploadsBinding implements ViewBinding {
   @NonNull
   public final Button uploadChosenFile;
 
-  @NonNull
-  public final FloatingActionButton videOption;
-
   private ActivityGalleryUploadsBinding(@NonNull RelativeLayout rootView,
-      @NonNull FloatingActionButton GalleryOption, @NonNull TextInputEditText chosenTitleEdit,
       @NonNull VideoView chosenVideoView, @NonNull ImageView galleryChosenImageView,
-      @NonNull LinearLayout postTitle, @NonNull ProgressBar progressCircleUpload,
-      @NonNull Button uploadChosenFile, @NonNull FloatingActionButton videOption) {
+      @NonNull ProgressBar progressCircleUpload, @NonNull Button uploadChosenFile) {
     this.rootView = rootView;
-    this.GalleryOption = GalleryOption;
-    this.chosenTitleEdit = chosenTitleEdit;
     this.chosenVideoView = chosenVideoView;
     this.galleryChosenImageView = galleryChosenImageView;
-    this.postTitle = postTitle;
     this.progressCircleUpload = progressCircleUpload;
     this.uploadChosenFile = uploadChosenFile;
-    this.videOption = videOption;
   }
 
   @Override
@@ -92,18 +71,6 @@ public final class ActivityGalleryUploadsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.GalleryOption;
-      FloatingActionButton GalleryOption = ViewBindings.findChildViewById(rootView, id);
-      if (GalleryOption == null) {
-        break missingId;
-      }
-
-      id = R.id.chosenTitleEdit;
-      TextInputEditText chosenTitleEdit = ViewBindings.findChildViewById(rootView, id);
-      if (chosenTitleEdit == null) {
-        break missingId;
-      }
-
       id = R.id.chosenVideoView;
       VideoView chosenVideoView = ViewBindings.findChildViewById(rootView, id);
       if (chosenVideoView == null) {
@@ -113,12 +80,6 @@ public final class ActivityGalleryUploadsBinding implements ViewBinding {
       id = R.id.galleryChosenImageView;
       ImageView galleryChosenImageView = ViewBindings.findChildViewById(rootView, id);
       if (galleryChosenImageView == null) {
-        break missingId;
-      }
-
-      id = R.id.postTitle;
-      LinearLayout postTitle = ViewBindings.findChildViewById(rootView, id);
-      if (postTitle == null) {
         break missingId;
       }
 
@@ -134,15 +95,8 @@ public final class ActivityGalleryUploadsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.videOption;
-      FloatingActionButton videOption = ViewBindings.findChildViewById(rootView, id);
-      if (videOption == null) {
-        break missingId;
-      }
-
-      return new ActivityGalleryUploadsBinding((RelativeLayout) rootView, GalleryOption,
-          chosenTitleEdit, chosenVideoView, galleryChosenImageView, postTitle, progressCircleUpload,
-          uploadChosenFile, videOption);
+      return new ActivityGalleryUploadsBinding((RelativeLayout) rootView, chosenVideoView,
+          galleryChosenImageView, progressCircleUpload, uploadChosenFile);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

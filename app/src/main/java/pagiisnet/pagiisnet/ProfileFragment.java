@@ -6,24 +6,17 @@ import static android.view.View.VISIBLE;
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-
-import android.Manifest;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.CookieManager;
-import android.webkit.GeolocationPermissions;
-import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -36,7 +29,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.browser.customtabs.CustomTabsIntent;
@@ -60,14 +52,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.common.net.InternetDomainName;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -81,6 +72,7 @@ import com.varunest.sparkbutton.SparkEventListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -128,6 +120,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
     private int position;
     private WebView richLinkView;
     private ImageView changeDp;
+
+    private ImageView shareProfile;
     private List<ImageUploads> mUploads;
     private DatabaseReference userProfileInfor;
     private ImageView saveinfo;
@@ -1707,6 +1701,8 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
         profileProffession = rootView.findViewById(R.id.profileSettingsButton);
 
+        shareProfile = rootView.findViewById(R.id.profileShare);
+
         //followProfileTextView.setText(following);
 
 
@@ -1814,6 +1810,23 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
             }
         });
+
+
+        shareProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+
+
+                // Put the data you want to send in the Bundle
+
+                shareUserProfile();
+
+
+
+            }
+        });
+
 
 
         profileProffession.setOnClickListener(new View.OnClickListener() {
@@ -1984,8 +1997,31 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
         return rootView;
     }
 
+    private void shareUserProfile()
+    {
 
 
+        // Inside your Fragment
+
+        // Inside your Fragment
+
+        String userId = mAuth.getCurrentUser().getUid().toString(); // Get the actual user ID
+        String profileLink = "pagiis://profile/" + userId;
+
+// Share the link using Android's share functionality
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, profileLink);
+        sendIntent.setType("text/plain");
+
+// Make sure the activity is not null
+        if (getActivity() != null) {
+            // Start the share activity using the activity that hosts the fragment
+            getActivity().startActivity(Intent.createChooser(sendIntent, "Share profile via"));
+        }
+
+
+    }
 
 
     public void checkLocation(String FollowOrLike)
@@ -2455,44 +2491,78 @@ public class ProfileFragment extends Fragment implements ViewStoreItemAdapter.On
 
     }
 
-    private void sendFCMNotification(String fcmToken, String title, String message) {
-        String FCM_API = "https://fcm.googleapis.com/fcm/send";
-        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS";
-        String contentType = "application/json";
+    private void sendFCMNotification(String fcmToken, String notificationTitle1, String notificationMessage1) {
+        // Set the FCM HTTP v1 API endpoint
+        String FCM_API = "https://fcm.googleapis.com/v1/projects/pagiis-ix/messages:send";  // Update with your project ID
 
+        // JSON payload structure for FCM message
         JSONObject notification = new JSONObject();
         JSONObject notificationBody = new JSONObject();
+        JSONObject messageBody = new JSONObject();
+        JSONObject dataBody = new JSONObject();
 
         try {
-            notificationBody.put("title", title);
-            notificationBody.put("body", message); // Use "body" for notifications
-            notification.put("to", fcmToken);
-            notification.put("notification", notificationBody); // Correct key
-            notification.put("data", notificationBody); // Optional for additional data
+            // Add notification content
+            notificationBody.put("title", notificationTitle1);
+            notificationBody.put("body", notificationMessage1);
+
+            // Add notification payload
+            messageBody.put("token", fcmToken);
+            messageBody.put("notification", notificationBody);
+            messageBody.put("data", dataBody);
+
+            // Construct the final payload
+            notification.put("message", messageBody);
+
         } catch (JSONException e) {
             Log.e("FCM Error", "JSON Exception: " + e.getMessage());
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+        // Prepare the request to FCM API
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
                 response -> Log.d("FCM Response", "Success: " + response.toString()),
-                error -> Log.e("FCM Error", "Failed: " + error.toString())) {
+                error -> {
+                    if (error.networkResponse != null) {
+                        Log.e("FCM Error", "Failed: " + new String(error.networkResponse.data));
+                    } else {
+                        Log.e("FCM Error", "Error: " + error.getMessage());
+                    }
+                }) {
+
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "key=" + serverKey); // Corrected
-                headers.put("Content-Type", contentType);
+                try {
+                    String accessToken = getAccessToken(); // Use OAuth2 to get access token
+                    headers.put("Authorization", "Bearer " + accessToken);  // Use OAuth 2.0 token for Authorization
+                    headers.put("Content-Type", "application/json");
+                } catch (IOException e) {
+                    Log.e("FCM Error", "Failed to get access token: " + e.getMessage());
+                }
                 return headers;
             }
         };
 
-        @SuppressLint("RestrictedApi") RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext()); // Fixed Context
-        requestQueue.add(request);
+        // Add the request to the request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
+        requestQueue.add(jsonObjectRequest);
     }
 
+    // Method to fetch the OAuth 2.0 access token
+    private String getAccessToken() throws IOException {
+        // Ensure that you get the context from the Fragment
+        Context context = getContext();
+        if (context == null) {
+            throw new IOException("Context is null");
+        }
 
+        // Load credentials from the service account JSON (assuming the file is placed under the assets folder)
+        GoogleCredentials credentials = GoogleCredentials.fromStream(context.getAssets().open("pagiis-ix-firebase-adminsdk-grvv2-0c39556ec0.json"))
+                .createScoped("https://www.googleapis.com/auth/firebase.messaging");
 
-
-
+        credentials.refreshIfExpired();
+        return credentials.getAccessToken().getTokenValue();
+    }
 
 
 

@@ -416,6 +416,10 @@
         "source": "pagiisnet.pagiisnet.app-main-7:/layout/request_item.xml"
     },
     {
+        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/fragment_gallery_bottom_sheet.xml",
+        "source": "pagiisnet.pagiisnet.app-main-7:/layout/fragment_gallery_bottom_sheet.xml"
+    },
+    {
         "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/chats_update_infor.xml",
         "source": "pagiisnet.pagiisnet.app-main-7:/layout/chats_update_infor.xml"
     },
@@ -596,12 +600,16 @@
         "source": "pagiisnet.pagiisnet.app-main-7:/layout/productstorelink.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/bottom_sheet_explore_activities.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/bottom_sheet_explore_activities.xml"
+        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/item_gallery_image.xml",
+        "source": "pagiisnet.pagiisnet.app-main-7:/layout/item_gallery_image.xml"
     },
     {
         "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/chatting_message_item.xml",
         "source": "pagiisnet.pagiisnet.app-main-7:/layout/chatting_message_item.xml"
+    },
+    {
+        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/bottom_sheet_explore_activities.xml",
+        "source": "pagiisnet.pagiisnet.app-main-7:/layout/bottom_sheet_explore_activities.xml"
     },
     {
         "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_business.xml",
@@ -668,12 +676,12 @@
         "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_user_contact_details.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_main.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_main.xml"
-    },
-    {
         "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_view_online_purchases.xml",
         "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_view_online_purchases.xml"
+    },
+    {
+        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_main.xml",
+        "source": "pagiisnet.pagiisnet.app-main-7:/layout/activity_main.xml"
     },
     {
         "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout/activity_user_profile.xml",

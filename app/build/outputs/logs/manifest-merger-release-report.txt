@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-313:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-313:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-313:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-313:12
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-327:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-327:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-327:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-327:12
 MERGED from [androidx.databinding:viewbinding:7.3.1] C:\Users\27662\.gradle\caches\transforms-3\2572e656b94b57c4b34fe0a31428280a\transformed\jetified-viewbinding-7.3.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:2:1-31:12
 MERGED from [com.firebaseui:firebase-ui-auth:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\b8eff7a660636dd7f06811274f93f25a\transformed\jetified-firebase-ui-auth-4.2.0\AndroidManifest.xml:2:1-93:12
@@ -154,22 +154,22 @@ MERGED from [androidx.annotation:annotation-experimental:1.3.1] C:\Users\27662\.
 MERGED from [io.michaelrocks:libphonenumber-android:8.12.19-2] C:\Users\27662\.gradle\caches\transforms-3\3a015e353724e990328b21ee80620668\transformed\jetified-libphonenumber-android-8.12.19-2\AndroidManifest.xml:2:1-9:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] C:\Users\27662\.gradle\caches\transforms-3\658760c472f513a8ffd37f1312be2afe\transformed\jetified-rxandroid-2.0.2\AndroidManifest.xml:15:1-21:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\27662\.gradle\caches\transforms-3\1c101753d7ccbc9bafba6b3ca48f8a42\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-313:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-313:12
-INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-313:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-327:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-327:12
+INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-327:12
 	package
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:5:5-35
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-313:12
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-327:12
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-313:12
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:1-327:12
 		INJECTED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:2:11-69
@@ -674,7 +674,7 @@ MERGED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.grad
 	android:name
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:48:22-74
 application
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:50:5-311:19
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:50:5-325:19
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:18:5-29:19
 MERGED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:18:5-29:19
 MERGED from [com.firebaseui:firebase-ui-auth:4.2.0] C:\Users\27662\.gradle\caches\transforms-3\b8eff7a660636dd7f06811274f93f25a\transformed\jetified-firebase-ui-auth-4.2.0\AndroidManifest.xml:15:5-91:19
@@ -1275,17 +1275,39 @@ ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:297:9-301:21
 	android:name
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:298:13-69
 service#pagiisnet.pagiisnet.MyFirebaseMessagingService
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:303:9-309:19
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:303:9-310:19
+	android:enabled
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:306:13-35
 	android:exported
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:305:13-37
 	android:name
 		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:304:13-74
 intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:306:13-308:29
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:307:13-309:29
 action#com.google.firebase.MESSAGING_EVENT
-ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:307:17-78
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:308:17-78
 	android:name
-		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:307:25-75
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:308:25-75
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:314:9-322:20
+MERGED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:29:9-40:20
+MERGED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:29:9-40:20
+	android:exported
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:316:13-36
+	android:permission
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:317:13-73
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:315:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE+category:name:pagiisnet.pagiisnet
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:318:13-321:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:319:17-81
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:319:25-78
+category#pagiisnet.pagiisnet
+ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:320:17-64
+	android:name
+		ADDED from C:\PAGiiSNET\app\src\main\AndroidManifest.xml:320:27-61
 queries
 ADDED from [com.google.firebase:firebase-inappmessaging-display:20.4.0] C:\Users\27662\.gradle\caches\transforms-3\05b721180c9ab152f9519847466b7075\transformed\jetified-firebase-inappmessaging-display-20.4.0\AndroidManifest.xml:10:5-16:15
 MERGED from [com.google.android.gms:play-services-ads-lite:22.6.0] C:\Users\27662\.gradle\caches\transforms-3\c7cc96253e8b19499606cdf8160ca178\transformed\jetified-play-services-ads-lite-22.6.0\AndroidManifest.xml:35:5-51:15
@@ -1518,20 +1540,8 @@ MERGED from [com.google.android.gms:play-services-cloud-messaging:17.1.0] C:\Use
 MERGED from [com.google.android.gms:play-services-cloud-messaging:17.1.0] C:\Users\27662\.gradle\caches\transforms-3\8a18e6d3c323dcb0b9529f623ff854a9\transformed\jetified-play-services-cloud-messaging-17.1.0\AndroidManifest.xml:11:5-82
 	android:name
 		ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:26:22-79
-receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
-ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:29:9-40:20
-	android:exported
-		ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:31:13-36
-	android:permission
-		ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:32:13-73
-	android:name
-		ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:30:13-78
 intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
 ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:33:13-35:29
-action#com.google.android.c2dm.intent.RECEIVE
-ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:34:17-81
-	android:name
-		ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:34:25-78
 meta-data#com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED
 ADDED from [com.google.firebase:firebase-messaging:23.4.1] C:\Users\27662\.gradle\caches\transforms-3\3264a1af7ce8a38620eccb396ed3dcd1\transformed\jetified-firebase-messaging-23.4.1\AndroidManifest.xml:37:13-39:40
 	android:value

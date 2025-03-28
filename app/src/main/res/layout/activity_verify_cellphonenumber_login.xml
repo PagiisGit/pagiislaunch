@@ -53,7 +53,7 @@
                     android:gravity="center"
                     android:fontFamily="@font/robobold"
                     android:text="ENTER OTP SENT TO YOUR PHONE NUMBER "
-                    android:textColor="@color/grey_900"
+                    android:textColor="@color/BlueishBlack"
                     android:textSize="20sp">
 
 
@@ -98,8 +98,6 @@
                 android:textStyle="bold" />
 
 
-
-
             <ProgressBar
                 android:id="@+id/progressBarOTP"
                 android:layout_width="wrap_content"
@@ -112,7 +110,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/BlueishBlack"
                 android:textSize="15sp"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/resendOTP"

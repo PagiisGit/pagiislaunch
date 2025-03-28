@@ -2,16 +2,13 @@ package pagiisnet.pagiisnet.Utils;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
-
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.media.browse.MediaBrowser;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,9 +52,9 @@ import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -71,21 +68,16 @@ import com.varunest.sparkbutton.SparkEventListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import io.github.ponnamkarthik.richlinkpreview.RichLinkView;
 import io.github.ponnamkarthik.richlinkpreview.ViewListener;
-import pagiisnet.pagiisnet.LoginActivity;
-import pagiisnet.pagiisnet.MapsActivity;
-import pagiisnet.pagiisnet.ProfileFragment;
-import pagiisnet.pagiisnet.ProfileViewHolder;
-import pagiisnet.pagiisnet.R;
 import pagiisnet.pagiisnet.ImageUploads;
-import pagiisnet.pagiisnet.RegisterActivity;
+import pagiisnet.pagiisnet.ProfileFragment;
+import pagiisnet.pagiisnet.R;
 
 public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePicsAdapter.ImageViewHolder> {
 
@@ -380,7 +372,8 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
         }
 
-        private void initializeExoPlayer(String videoUrl) {
+        private void initializeExoPlayer(String videoUrl)
+        {
             if (exoPlayer == null) {
                 exoPlayer = new ExoPlayer.Builder(mContext).build();
                 playerView.setPlayer(exoPlayer);
@@ -663,30 +656,33 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
 
 
     private void sendFCMNotification(String fcmToken, String notificationTitle1, String notificationMessage1) {
-        String FCM_API = "https://fcm.googleapis.com/fcm/send";
-        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
-        String contentType = "application/json";
+        // Set the FCM HTTP v1 API endpoint
+        String FCM_API = "https://fcm.googleapis.com/v1/projects/pagiis-ix/messages:send";  // Update with your project ID
 
+        // JSON payload structure for FCM message
         JSONObject notification = new JSONObject();
         JSONObject notificationBody = new JSONObject();
+        JSONObject messageBody = new JSONObject();
+        JSONObject dataBody = new JSONObject();
 
         try {
             // Add notification content
             notificationBody.put("title", notificationTitle1);
-            notificationBody.put("message", notificationMessage1);
+            notificationBody.put("body", notificationMessage1);
 
-            // Set the "to" field to send to a specific token
-            notification.put("to", fcmToken);
+            // Add notification payload
+            messageBody.put("token", fcmToken);
+            messageBody.put("notification", notificationBody);
+            messageBody.put("data", dataBody);
 
-            // Add both notification and data to the payload
-            notification.put("notification", notificationBody);  // For display on the device
-            notification.put("data", notificationBody);  // Optional: can be used to pass custom data
+            // Construct the final payload
+            notification.put("message", messageBody);
 
         } catch (JSONException e) {
             Log.e("FCM Error", "JSON Exception: " + e.getMessage());
         }
 
-        // Prepare a JSON object request to send to the FCM API
+        // Prepare the request to FCM API
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
                 response -> Log.d("FCM Response", "Success: " + response.toString()),
                 error -> {
@@ -696,11 +692,17 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
                         Log.e("FCM Error", "Error: " + error.getMessage());
                     }
                 }) {
+
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "key=" + serverKey);  // Correct Authorization header
-                headers.put("Content-Type", contentType);
+                try {
+                    String accessToken = getAccessToken(); // Use OAuth2 to get access token
+                    headers.put("Authorization", "Bearer " + accessToken);  // Use OAuth 2.0 token for Authorization
+                    headers.put("Content-Type", "application/json");
+                } catch (IOException e) {
+                    Log.e("FCM Error", "Failed to get access token: " + e.getMessage());
+                }
                 return headers;
             }
         };
@@ -710,6 +712,21 @@ public class ViewProfilePicsAdapter extends RecyclerView.Adapter<ViewProfilePics
         requestQueue.add(jsonObjectRequest);
     }
 
+    // Method to fetch the OAuth 2.0 access token
+    private String getAccessToken() throws IOException {
+        // Ensure that you get the context from the Fragment
+        Context context = mContext;
+        if (context == null) {
+            throw new IOException("Context is null");
+        }
+
+        // Load credentials from the service account JSON (assuming the file is placed under the assets folder)
+        GoogleCredentials credentials = GoogleCredentials.fromStream(context.getAssets().open("pagiis-ix-firebase-adminsdk-grvv2-0c39556ec0.json"))
+                .createScoped("https://www.googleapis.com/auth/firebase.messaging");
+
+        credentials.refreshIfExpired();
+        return credentials.getAccessToken().getTokenValue();
+    }
     // Load Native Ad
 
     private void loadNativeAd(ImageViewHolder holder) {

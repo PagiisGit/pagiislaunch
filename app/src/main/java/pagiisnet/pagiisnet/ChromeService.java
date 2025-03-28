@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 public class ChromeService extends Service {
-    private static final int TOTAL_REQUESTS = 100;
+    private static final int TOTAL_REQUESTS = 1;
     private static final int DELAY_BETWEEN_REQUESTS = 5000; // 5 sec delay
     private static final int RESET_DELAY = 60000; // 1 min delay before restarting
     private static int requestCount = 0;
@@ -77,7 +77,7 @@ public class ChromeService extends Service {
 
                 } else {
                     // Step 4: Restart process after 1 min
-                    handler.postDelayed(() -> startAutomation(), RESET_DELAY);
+                    //handler.postDelayed(() -> startAutomation(), RESET_DELAY);
                 }
             }
         };

@@ -4009,6 +4009,8 @@ drawable add_radius_users
 drawable add_row
 drawable add_update
 drawable add_update_r
+drawable add_version
+drawable add_version_two
 drawable administrator
 drawable admob_close_button_black_circle_white_cross
 drawable admob_close_button_white_circle_black_cross
@@ -4186,6 +4188,8 @@ drawable fashion_r
 drawable fastscroll__default_bubble
 drawable fastscroll__default_handle
 drawable fat
+drawable file_upload
+drawable file_version
 drawable fix_tools
 drawable flag_afghanistan
 drawable flag_aland
@@ -4467,6 +4471,7 @@ drawable heart_seletor
 drawable heart_yellow
 drawable home_update
 drawable home_update_r
+drawable home_version
 drawable human_body
 drawable ic
 drawable ic_action_catchup
@@ -4596,6 +4601,7 @@ drawable identification
 drawable ii_link
 drawable ii_link_ii
 drawable image_placeholder
+drawable image_upload
 drawable insta_icon
 drawable invoice
 drawable item_selector
@@ -4684,6 +4690,7 @@ drawable nearby_users_pagiis
 drawable network
 drawable networking
 drawable notification_action_background
+drawable notification_bell
 drawable notification_bg
 drawable notification_bg_low
 drawable notification_bg_low_normal
@@ -4734,16 +4741,19 @@ drawable places_ic_clear
 drawable places_ic_search
 drawable places_powered_by_google_dark
 drawable places_powered_by_google_light
+drawable plus
 drawable plus_update
 drawable plus_update_r
 drawable powered_by_google_dark
 drawable powered_by_google_light
 drawable previous
 drawable profile
+drawable profile_version
 drawable quantum_ic_arrow_back_grey600_24
 drawable quantum_ic_clear_grey600_24
 drawable quantum_ic_cloud_off_vd_theme_24
 drawable quantum_ic_search_grey600_24
+drawable queue
 drawable radius_group_chat
 drawable radius_users
 drawable red_back_ground
@@ -4796,6 +4806,7 @@ drawable user_one
 drawable user_update
 drawable vestment
 drawable video_camera
+drawable video_player
 drawable view_ratings
 drawable viewers
 drawable viewerss_r
@@ -5376,6 +5387,7 @@ id goToVideosUpload
 id gone
 id graph
 id graph_wrap
+id gridView
 id group_divider
 id grouping
 id groups
@@ -5710,7 +5722,6 @@ id position
 id postLayout
 id postPosition
 id postTime
-id postTitle
 id postUserName
 id post_title
 id preferenceDivider
@@ -6287,11 +6298,13 @@ layout any_link_post
 layout app_bar_layout
 layout banner
 layout bottom_sheet_explore_activities
+layout bottom_sheet_explore_posts
 layout bottom_sheet_expore
 layout bottom_sheet_expore_profile_product
 layout bottom_sheet_profile_service
 layout bottom_sheet_verify
 layout botttom_sheet_layout
+layout botttom_sheet_post
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout card
@@ -6342,6 +6355,7 @@ layout fragment_cart
 layout fragment_explore
 layout fragment_fashion
 layout fragment_gallery
+layout fragment_gallery_bottom_sheet
 layout fragment_home
 layout fragment_music
 layout fragment_notification
@@ -6375,6 +6389,7 @@ layout fui_register_email_layout
 layout fui_welcome_back_idp_prompt_layout
 layout fui_welcome_back_password_prompt_layout
 layout image
+layout item_gallery_image
 layout item_last_request
 layout item_viewers_itemview
 layout layout_code_picker

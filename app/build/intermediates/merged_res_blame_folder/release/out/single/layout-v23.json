@@ -1,11 +1,19 @@
 [
     {
-        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout-v23\\bottom_sheet_expore_profile_product.xml",
-        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout-v23\\bottom_sheet_expore_profile_product.xml"
+        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout-v23/bottom_sheet_explore_posts.xml",
+        "source": "pagiisnet.pagiisnet.app-main-7:/layout-v23/bottom_sheet_explore_posts.xml"
     },
     {
-        "merged": "pagiisnet.pagiisnet.app-mergeReleaseResources-5:/layout-v23/activity_maps.xml",
-        "source": "pagiisnet.pagiisnet.app-main-7:/layout-v23/activity_maps.xml"
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout-v23\\botttom_sheet_post.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout-v23\\botttom_sheet_post.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout-v23\\bottom_sheet_explore_posts.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout-v23\\bottom_sheet_explore_posts.xml"
+    },
+    {
+        "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout-v23\\bottom_sheet_expore_profile_product.xml",
+        "source": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-main-7:\\layout-v23\\bottom_sheet_expore_profile_product.xml"
     },
     {
         "merged": "C:\\Users\\27662\\.gradle\\daemon\\8.2\\pagiisnet.pagiisnet.app-mergeReleaseResources-5:\\layout-v23\\activity_maps.xml",

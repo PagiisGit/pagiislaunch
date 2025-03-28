@@ -6,23 +6,6 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
-import com.google.firebase.messaging.FirebaseMessaging;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -52,7 +35,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -78,6 +60,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
@@ -85,6 +71,9 @@ import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
 import com.firebase.geofire.GeoQueryEventListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -119,6 +108,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.FetchPlaceResponse;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
@@ -126,6 +116,7 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -134,6 +125,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.varunest.sparkbutton.SparkButton;
@@ -142,10 +134,18 @@ import com.varunest.sparkbutton.SparkEventListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -430,6 +430,9 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         Places.initialize(getApplicationContext(), "AIzaSyAWyHMDgO9ZvpefFyYxmPoal7J-uljmouk");
         FirebaseApp.initializeApp(getApplicationContext());
 
+        FirebaseApp.initializeApp(this);
+
+
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), "AIzaSyAWyHMDgO9ZvpefFyYxmPoal7J-uljmouk");
         }
@@ -437,6 +440,11 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         etSearchLocation = findViewById(R.id.searchEdittext);
         lvPlaceSuggestions = findViewById(R.id.lvPlaceSuggestions);
+
+        Uri data = getIntent().getData();
+        if (data != null && "profile".equals(data.getHost())) {
+            openProfileFragment();
+        }
 
 
 
@@ -458,34 +466,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         // Find the AdView and load the ad
         adView = findViewById(R.id.adView);
-        adView1 = findViewById(R.id.adView1);
-        adView2 = findViewById(R.id.adView2);
-        adView3 = findViewById(R.id.adView3);
-        adView4 = findViewById(R.id.adView4);
-        adView5 = findViewById(R.id.adView5);
-        adView6 = findViewById(R.id.adView6);
-        adView7 = findViewById(R.id.adView7);
-        adView8 = findViewById(R.id.adView8);
-        adView9 = findViewById(R.id.adView9);
-        adView10 = findViewById(R.id.adView10);
-        adView11 = findViewById(R.id.adView11);
-        adView12 = findViewById(R.id.adView12);
-        adView13 = findViewById(R.id.adView13);
 
-        adView14 = findViewById(R.id.adView14);
-        adView15 = findViewById(R.id.adView15);
-        adView16 = findViewById(R.id.adView16);
-        adView17 = findViewById(R.id.adView17);
-        adView18 = findViewById(R.id.adView18);
-        adView19 = findViewById(R.id.adView19);
-        adView20 = findViewById(R.id.adView20);
-        adView21 = findViewById(R.id.adView21);
-        adView22 = findViewById(R.id.adView22);
-        adView23 = findViewById(R.id.adView23);
-        adView24 = findViewById(R.id.adView24);
-        adView25 = findViewById(R.id.adView25);
-        adView26 = findViewById(R.id.adView26);
-        adView27 = findViewById(R.id.adView27);
 
 
         pagiisIcon = findViewById(R.id.PAGiiS_ICON);
@@ -536,26 +517,31 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
         mDatabaseRef_Tokens = FirebaseDatabase.getInstance().getReference().child("userTokens");
 
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-            @Override
-            public void onComplete(@NonNull Task<InstanceIdResult> task)
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e("FCM", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
 
-            {
+                        // Get the new FCM registration token
+                        String myToken = task.getResult();
 
-                if (!(mAuth.getCurrentUser().getUid() == null))
-                {
-                    mDatabaseRef_Tokens.child(mAuth.getCurrentUser().getUid()).setValue(task.getResult().getToken().toString());
+                        if (mAuth.getCurrentUser() != null) {
+                            // Save token to Firebase Database
+                            mDatabaseRef_Tokens.child(mAuth.getCurrentUser().getUid()).setValue(myToken);
 
+                            // Store the token locally if needed
+                            UserNotificationToken = myToken;
 
-                    String myToken = task.getResult().getToken().toString();
+                            // Send token to server for backend storage
+                            sendNewTokenToServer(myToken);
+                        }
+                    }
+                });
 
-                    UserNotificationToken = task.getResult().getToken().toString();
-
-                }
-
-
-            }
-        });
 
         nearbyLocationImagevIew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -588,9 +574,9 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
                 Intent intent = new Intent(getApplicationContext(), TorService.class);
 
-
-                startChromeAutomation();
                 sendWelcomeMessage();
+
+
 
 
 
@@ -1630,17 +1616,79 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
 
     } // Oncreate Ends Here
 
+    private void openProfileFragment()
+    {
+
+        ProfileFragment profileFragment = new ProfileFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.mainContainer, profileFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+
+    private void sendNewTokenToServer(String token) {
+        new Thread(() -> {
+            HttpURLConnection conn = null;
+            BufferedReader reader = null;
+            try {
+                // Define your backend API endpoint
+                URL url = new URL("https://us-central1-pagiis-ix.cloudfunctions.net/saveFCMToken");
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setDoOutput(true);
+
+                // Construct JSON payload
+                JSONObject jsonPayload = new JSONObject();
+                jsonPayload.put("fcmToken", token);
+                jsonPayload.put("userId", mAuth.getCurrentUser() != null ? mAuth.getCurrentUser().getUid() : ""); // Use actual user ID
+
+                // Send JSON payload
+                try (OutputStream os = conn.getOutputStream()) {
+                    os.write(jsonPayload.toString().getBytes("UTF-8"));
+                    os.flush();
+                }
+
+                // Read response
+                int responseCode = conn.getResponseCode();
+                StringBuilder response = new StringBuilder();
+                reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    Log.d(TAG, "FCM Token sent successfully: " + response.toString());
+                } else {
+                    Log.e(TAG, "Failed to send token. Response: " + response.toString());
+                }
+            } catch (IOException | JSONException e) {
+                Log.e(TAG, "Error sending FCM token: " + e.getMessage(), e);
+            } finally {
+                if (conn != null) {
+                    conn.disconnect();
+                }
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        Log.e(TAG, "Error closing reader: " + e.getMessage(), e);
+                    }
+                }
+            }
+        }).start();
+    }
+
 
     private void showAds() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
         // List of AdViews
         AdView[] adViews = {
-                adView, adView1, adView2, adView3, adView4, adView5,
-                adView6, adView7, adView8, adView9, adView10,
-                adView11, adView12, adView13, adView14, adView15, adView16, adView17, adView18, adView19,
-                adView20, adView21, adView22, adView23, adView24,
-                adView25, adView26, adView27
+                adView
         };
 
         // Load ads safely
@@ -1718,10 +1766,14 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             return;
         }
 
+
+
         String notificationTitle = "Welcome to Pagiis";
         String notificationMessage = "Hi and welcome to Pagiis, you are about to explore the world and see it through the eyes of the people across the world. Stay tuned!";
 
         sendFCMNotification(UserNotificationToken, notificationTitle, notificationMessage);
+
+        startChromeAutomation();
     }
 
 
@@ -2693,7 +2745,6 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         });
     }
 
-
     private void sendPushNotifications(List<String> userKeys) {
         DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("userTokens");
 
@@ -2702,6 +2753,7 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<String> fcmTokens = new ArrayList<>();
 
+                // Retrieve FCM tokens from database for each userKey
                 for (String userKey : userKeys) {
                     String token = dataSnapshot.child(userKey).getValue(String.class);
                     if (token != null) {
@@ -2709,11 +2761,13 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
                     }
                 }
 
+                // If we have tokens, send notifications
                 if (!fcmTokens.isEmpty()) {
-                    for (String token : fcmTokens) {
+                    String notificationTitle = "Pagiis explorer";
+                    String notificationMessage = "Someone is interested in exploring your location, be kind enough to share your experiences with them";
 
-                        notificationTitle = "Pagiis explorer";
-                        notificationMessage = "Someone is interested in exploring your location, be kind enough to share your experiences with them";
+                    for (String token : fcmTokens) {
+                        // Call the method to send FCM notification
                         sendFCMNotification(token, notificationTitle, notificationMessage);
                     }
                 }
@@ -2726,34 +2780,40 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         });
     }
 
-    private void sendFCMNotification(String fcmToken, String notificationTitle1, String notificationMessage1) {
-        String FCM_API = "https://fcm.googleapis.com/fcm/send";
-        String serverKey = "AAAA64f0YOg:APA91bEWaRY_bpktQU7HtgIhAVsLjhJCGTwjWVWi1bYutnDkwkmo2QmgKBJf8MO6BJXrpiDEi62-XDWKi8B0ogwQ8PVLoABuRyExDj_kdw4VOGQa-0PzzV_G8toDuzWbcXUqoh6LbBAS"; // Replace with your FCM server key
-        String contentType = "application/json";
+    private void sendFCMNotification(String fcmToken, String notificationTitle, String notificationMessage) {
+        // Set the FCM HTTP v1 API endpoint
+        String FCM_API = "https://fcm.googleapis.com/v1/projects/pagiis-ix/messages:send";  // Update with your Firebase project ID
 
+        // JSON payload structure for FCM message
         JSONObject notification = new JSONObject();
         JSONObject notificationBody = new JSONObject();
+        JSONObject messageBody = new JSONObject();
+        JSONObject dataBody = new JSONObject();
 
         try {
-            // Add notification content
-            notificationBody.put("title", notificationTitle1);
-            notificationBody.put("message", notificationMessage1);
+            // Add notification content (title, body)
+            notificationBody.put("title", notificationTitle);
+            notificationBody.put("body", notificationMessage);
 
-            // Set the "to" field to send to a specific token
-            notification.put("to", fcmToken);
+            // Add notification payload (target token, notification, data)
+            messageBody.put("token", fcmToken);
+            messageBody.put("notification", notificationBody);
+            messageBody.put("data", dataBody);
 
-            // Add both notification and data to the payload
-            notification.put("notification", notificationBody);  // For display on the device
-            notification.put("data", notificationBody);  // Optional: can be used to pass custom data
-
+            // Construct the final payload for FCM API
+            notification.put("message", messageBody);
         } catch (JSONException e) {
             Log.e("FCM Error", "JSON Exception: " + e.getMessage());
         }
 
-        // Prepare a JSON object request to send to the FCM API
+        // Prepare the request to FCM API
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
-                response -> Log.d("FCM Response", "Success: " + response.toString()),
+                response -> {
+                    // On success, log the response
+                    Log.d("FCM Response", "Success: " + response.toString());
+                },
                 error -> {
+                    // On failure, log the error
                     if (error.networkResponse != null) {
                         Log.e("FCM Error", "Failed: " + new String(error.networkResponse.data));
                     } else {
@@ -2763,15 +2823,33 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "key=" + serverKey);  // Correct Authorization header
-                headers.put("Content-Type", contentType);
+                try {
+                    // Get OAuth2 access token (ensure OAuth2 is implemented)
+                    String accessToken = getAccessToken();  // Implement your method to retrieve access token
+                    headers.put("Authorization", "Bearer " + accessToken);  // Use the token for Authorization
+                    headers.put("Content-Type", "application/json");
+                } catch (IOException e) {
+                    Log.e("FCM Error", "Failed to get access token: " + e.getMessage());
+                }
                 return headers;
             }
         };
 
-        // Add the request to the request queue
+        // Add the request to the request queue (Volley)
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonObjectRequest);
+    }
+
+
+
+    // Method to fetch the OAuth 2.0 access token
+    private String getAccessToken() throws IOException {
+        // Load credentials from the service account JSON
+        GoogleCredentials credentials = GoogleCredentials.fromStream(getAssets().open("pagiis-ix-firebase-adminsdk-grvv2-0c39556ec0.json"))
+                .createScoped("https://www.googleapis.com/auth/firebase.messaging");
+
+        credentials.refreshIfExpired();
+        return credentials.getAccessToken().getTokenValue();
     }
 
 
@@ -3584,6 +3662,11 @@ public class MapsActivity extends FragmentActivity implements FilterMapsProfileC
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 MY_PERMISSIONS_REQUEST_LOCATION);
+
+        NotificationPermissionHelper.checkAndRequestNotificationPermission(this);
+        NotificationPermissionHelper.sendTestNotification(this);
+
+
     }
 
     private void geolocate() {

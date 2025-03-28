@@ -39,7 +39,6 @@
         <VideoView
             android:id="@+id/chosenVideoView"
             android:layout_width="match_parent"
-            android:layout_below="@+id/postTitle"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
@@ -52,7 +51,6 @@
         android:layout_width="match_parent"
 
         android:layout_height="match_parent"
-        android:layout_below="@+id/postTitle"
         android:layout_centerInParent="true"
         android:background="#fff"
         android:backgroundTint="#fff"
@@ -69,7 +67,7 @@
             android:layout_gravity="center" />
 
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/postTitle"
@@ -98,7 +96,7 @@
                 android:textSize="20sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
-        </LinearLayout>
+        </LinearLayout>!-->
 
 
     <Button
@@ -120,7 +118,7 @@
 
 
 
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#55000000"
@@ -150,7 +148,10 @@
             tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
 
-    </RelativeLayout>
+    </RelativeLayout> !-->
+
+
+
 
 
 </RelativeLayout>

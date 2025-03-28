@@ -148,9 +148,24 @@
         -->
         <activity android:name="pagiisnet.pagiisnet.RegisterActivity" /> <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <activity android:name="pagiisnet.pagiisnet.first_time_profile_config" />
+
+
         <activity
             android:name="pagiisnet.pagiisnet.MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
+            tools:ignore="AppLinkUrlError"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Custom deep link -->
+                <data android:scheme="pagiis" android:host="profile" />
+            </intent-filter>
+        </activity>
+
 
 
         <activity
@@ -302,11 +317,25 @@
 
         <service
             android:name="pagiisnet.pagiisnet.MyFirebaseMessagingService"
-            android:exported="false">
+            android:exported="false"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+
+
+        <receiver
+            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="pagiisnet.pagiisnet" />
+            </intent-filter>
+        </receiver>
+
 
     </application>
 

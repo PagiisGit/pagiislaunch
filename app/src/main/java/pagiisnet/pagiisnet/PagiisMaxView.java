@@ -4,9 +4,12 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,10 +25,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.Fragment;
+import androidx.media3.common.MediaItem;
+import androidx.media3.common.Player;
+import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.ui.PlayerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -68,6 +73,7 @@ public class PagiisMaxView extends AppCompatActivity
 
 
     private String ImageUrl;
+    private String FileName;
     private String imageKey;
     private String imageUserId;
     private TextView maxViewLink;
@@ -84,6 +90,8 @@ public class PagiisMaxView extends AppCompatActivity
     private String MyName;
     private String MyLastLocation;
 
+    private ExoPlayer exoPlayer;
+
     private String MyProfileUrl;
 
     private BottomSheetDialog bottomSheetDialog;
@@ -91,6 +99,11 @@ public class PagiisMaxView extends AppCompatActivity
     private DatabaseReference mDatabaseRef_online_products;
 
     private Fragment oldFragment;
+
+    private PlayerView playerView; // Add PlayerView for video playback
+
+    private ImageView downloadFile;
+    private String fileType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -272,6 +285,10 @@ public class PagiisMaxView extends AppCompatActivity
 
         maxViewLink = findViewById(R.id.linkTextView);
 
+        downloadFile = findViewById(R.id.downloadLink);
+
+        playerView = findViewById(R.id.videoPlayer);
+
 
         maxViewLink.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -340,6 +357,15 @@ public class PagiisMaxView extends AppCompatActivity
             }
         });*/
 
+        downloadFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+
+                downloadFile(ImageUrl,itemName );
+
+            }
+        });
 
 
         RippleButton.setOnClickListener(new View.OnClickListener()
@@ -434,6 +460,42 @@ public class PagiisMaxView extends AppCompatActivity
     }
 
 
+    private void initializeExoPlayer(String videoUrl)
+    {
+        if (exoPlayer == null) {
+            exoPlayer = new ExoPlayer.Builder(getApplicationContext()).build();
+            playerView.setPlayer(exoPlayer);
+        }
+
+        MediaItem mediaItem = MediaItem.fromUri(Uri.parse(videoUrl));
+        exoPlayer.setMediaItem(mediaItem);
+        exoPlayer.prepare();
+        exoPlayer.setPlayWhenReady(false); // Autoplay when ready
+        exoPlayer.addListener(new Player.Listener() {
+            @Override
+            public void onPlaybackStateChanged(int state) {
+                if (state == Player.STATE_ENDED) {
+                    exoPlayer.seekTo(0); // Loop the video
+                    exoPlayer.setPlayWhenReady(true);
+                }
+            }
+        });
+    }
+
+
+    private void downloadFile(String fileUrl, String fileName) {
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(fileUrl));
+        request.setTitle(fileName);
+        request.setDescription("Downloading...");
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+
+        DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        if (downloadManager != null) {
+            downloadManager.enqueue(request);
+            Toast.makeText(getApplicationContext(), "Download started...", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private void updateArrayList()
 
@@ -675,12 +737,27 @@ public class PagiisMaxView extends AppCompatActivity
 
                             final String linkView = postSnapshot.child("name").getValue().toString();
 
-                            //itemName = linkView;
+                            itemName = linkView;
 
                             maxViewLink.setText(linkView);
 
-                            Glide.with(PagiisMaxView.this).load(ImageUrl).thumbnail(0.65f).into(maxView);
-                            mProgressBar.setVisibility(View.INVISIBLE);
+                            fileType = postSnapshot.child("exRating").getValue().toString();
+
+
+                            if(fileType.endsWith(".mp4") || fileType.endsWith(".3gp") || fileType.endsWith(".mkv"))
+                            {
+
+                                playerView.setVisibility(VISIBLE);
+                                initializeExoPlayer(ImageUrl);
+                                mProgressBar.setVisibility(View.INVISIBLE);
+                            }else
+                            {
+                                Glide.with(PagiisMaxView.this).load(ImageUrl).thumbnail(0.65f).into(maxView);
+                                mProgressBar.setVisibility(View.INVISIBLE);
+                            }
+
+
+
 
                         }
                     }
